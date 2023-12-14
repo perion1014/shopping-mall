@@ -21,7 +21,7 @@ public class CartController_CMS {
 
     @GetMapping("/{memberNo}")
     public String showMemberCartList(@PathVariable Long memberNo){
-    cartList = CartService.getlist(memberNo);
+
 
 
     return "/carts/member-cart-list";

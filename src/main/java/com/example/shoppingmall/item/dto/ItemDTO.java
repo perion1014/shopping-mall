@@ -23,7 +23,7 @@ public class ItemDTO {
     private Integer itemOnsale;
     private Timestamp itemRegisteredTime;
 
-    public static ItemDTO toItemDTO(Item item) {
+    public static ItemDTO ItemtoItemDTO(Item item) {
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setItemNo(item.getItemNo());
         itemDTO.setItemName(item.getItemName());

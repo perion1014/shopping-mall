@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface MemberMapper {
     void save(Member member);
     void update(Member member);
-    void deleteByNo(Long memberNo);
+    void deleteById(String memberId);
     Optional<Member> findById(String memberId);
     List<Member> findAll();
 }

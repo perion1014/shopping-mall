@@ -1,12 +1,15 @@
 package com.example.shoppingmall.admin.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Admin {
-    private Integer admin_no;
-    private String admin_id;
-    private String admin_pw;
+    private Integer adminNo;
+    private String adminId;
+    private String adminPw;
 }

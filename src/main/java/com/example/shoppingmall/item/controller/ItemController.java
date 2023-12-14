@@ -21,7 +21,8 @@ public class ItemController {
     @GetMapping("/items/admin")
     public String showItemList(Model model) {
         List<ItemDTO> itemDTOList = null;
-        itemDTOList = itemService.getAllItems();
+        //itemDTOList = itemService.getAllItems();
+        return null;
     }
 
     @GetMapping("/items/admin/add")

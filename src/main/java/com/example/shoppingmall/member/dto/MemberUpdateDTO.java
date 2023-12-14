@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberUpdateDto {
+public class MemberUpdateDTO {
     private String memberId;
     private String memberPw;
     private String memberPw2;
@@ -19,15 +19,15 @@ public class MemberUpdateDto {
     private String memberAddressBasic;
     private String memberAddressDetail;
 
-    public static Member MemberUpdateDtoToMember(MemberUpdateDto memberUpdateDto){
+    public static Member MemberUpdateDTOToMember(MemberUpdateDTO memberUpdateDTO){
         Member member = new Member();
-        member.setMemberId(memberUpdateDto.getMemberId());
-        member.setMemberPw(memberUpdateDto.getMemberPw());
-        member.setMemberHp(memberUpdateDto.getMemberHp());
-        member.setMemberName(memberUpdateDto.getMemberName());
-        member.setMemberPostalCode(memberUpdateDto.getMemberPostalCode());
-        member.setMemberAddressBasic(memberUpdateDto.getMemberAddressBasic());
-        member.setMemberAddressDetail(memberUpdateDto.getMemberAddressDetail());
+        member.setMemberId(memberUpdateDTO.getMemberId());
+        member.setMemberPw(memberUpdateDTO.getMemberPw());
+        member.setMemberHp(memberUpdateDTO.getMemberHp());
+        member.setMemberName(memberUpdateDTO.getMemberName());
+        member.setMemberPostalCode(memberUpdateDTO.getMemberPostalCode());
+        member.setMemberAddressBasic(memberUpdateDTO.getMemberAddressBasic());
+        member.setMemberAddressDetail(memberUpdateDTO.getMemberAddressDetail());
         return member;
     }
 }

@@ -1,9 +1,9 @@
 package com.example.shoppingmall.member.controller;
 
 import com.example.shoppingmall.member.domain.Member;
-import com.example.shoppingmall.member.dto.MemberAddDto;
-import com.example.shoppingmall.member.dto.MemberLoginDto;
-import com.example.shoppingmall.member.dto.MemberSearchDto;
+import com.example.shoppingmall.member.dto.MemberAddDTO;
+import com.example.shoppingmall.member.dto.MemberLoginDTO;
+import com.example.shoppingmall.member.dto.MemberSearchDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,7 +22,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String memberLogin(@ModelAttribute MemberLoginDto memberLoginDto){
+    public String memberLogin(@ModelAttribute MemberLoginDTO memberLoginDto){
 
         //실패시
         //return members/member-login
@@ -44,8 +44,8 @@ public class MemberController {
     }
 
     @PostMapping("/add")
-    public String addMember(@ModelAttribute MemberAddDto memberAddDto){
-        Member member = MemberAddDto.MemberAddDtoToMember(memberAddDto);
+    public String addMember(@ModelAttribute MemberAddDTO memberAddDTO){
+        Member member = MemberAddDTO.MemberAddDTOToMember(memberAddDTO);
         //서비스
         return "redirect:/members/add-success";
     }
@@ -68,7 +68,7 @@ public class MemberController {
     }
 
     @PostMapping("/admin")  //(완성 시, String타입으로 변경)
-    public void searchMembers(@ModelAttribute MemberSearchDto memberSearchDto){
+    public void searchMembers(@ModelAttribute MemberSearchDTO memberSearchDto){
 
     }
 
