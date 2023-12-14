@@ -1,5 +1,7 @@
 package com.example.shoppingmall.admin.repository;
 
-public interface AdminRepository {
+import com.example.shoppingmall.admin.domain.Admin;
 
+public interface AdminRepository {
+    void adminLogin(Admin admin);
 }
