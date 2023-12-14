@@ -22,7 +22,12 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String memberLogin(@ModelAttribute MemberLoginDTO memberLoginDto){
+    public String memberLogin(@ModelAttribute MemberLoginDTO memberLoginDTO){
+        Member member = MemberLoginDTO.MemberLoginDTOToMember(memberLoginDTO);
+        //service
+        //멤버서비스(멤버).회원가입
+        //성공 -> return "home"
+        //실패 -> return ="원래페이지"
 
         //실패시
         //return members/member-login
