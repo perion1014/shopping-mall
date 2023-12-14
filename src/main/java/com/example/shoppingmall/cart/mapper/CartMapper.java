@@ -1,4 +1,4 @@
 package com.example.shoppingmall.cart.mapper;
 
-public class Dummy {
+public interface CartMapper {
 }
