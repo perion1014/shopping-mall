@@ -1,0 +1,52 @@
+:root {
+    /*사이트 색상 선정*/
+    --color-primary: var(--color-white);
+    --color-primary-variant: var(--color-gray);
+    --color-accent: var(--color-yellow);
+    --color-error: var(--color-red);
+    --color-text: var(--color-black);
+
+    /*색상 선정*/
+    --color-white: #ffffff;
+    --color-black: #050a13;
+    --color-yellow: #ffb94f;
+    --color-gray: #666;
+    --color-red: #dc3545;
+
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+h1,
+h2,
+h3,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+button {
+    cursor: pointer;
+}
+
