@@ -3,19 +3,21 @@ package com.example.shoppingmall.admin.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class AdminLoginController {
+@RequestMapping("/admins")
+public class AdminController {
 
-    @GetMapping("/admins/login")
+    @GetMapping("/login")
     public String goToAdminLoginPage(){
         return "/admins/admin_login";
     }
-    @PostMapping("/admins/login")
+    @PostMapping("/login")
     public String adminLogin(){
-        return "/admins/admin_mainTest";
+        return "/admins/admin-homeTest";
     }
-    @PostMapping("/admins/logout")
+    @PostMapping("/logout")
     public String adminLogout(){
         return "/admins/admin_login";
     }

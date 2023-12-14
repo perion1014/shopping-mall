@@ -9,14 +9,14 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberLoginDto {
+public class MemberLoginDTO {
     private String memberId;
     private String memberPw;
 
-    public static Member MemberLoginDtoToMember(MemberLoginDto memberLoginDto){
+    public static Member MemberLoginDTOToMember(MemberLoginDTO memberLoginDTO){
         Member member = new Member();
-        member.setMemberId(memberLoginDto.getMemberId());
-        member.setMemberPw(memberLoginDto.getMemberPw());
+        member.setMemberId(memberLoginDTO.getMemberId());
+        member.setMemberPw(memberLoginDTO.getMemberPw());
         return member;
     }
 }

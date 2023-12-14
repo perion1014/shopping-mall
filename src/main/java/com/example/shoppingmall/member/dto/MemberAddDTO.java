@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberAddDto {
+public class MemberAddDTO {
 
     private String memberId;
     private String memberPw;
@@ -22,16 +22,16 @@ public class MemberAddDto {
     private String memberAddressDetail;
 
 
-    public static Member MemberAddDtoToMember(MemberAddDto memberAddDto){
+    public static Member MemberAddDTOToMember(MemberAddDTO memberAddDTO){
         Member member = new Member();
-        member.setMemberId(memberAddDto.getMemberId());
-        member.setMemberHp(memberAddDto.getMemberHp());
-        member.setMemberEmail(memberAddDto.getMemberEmail());
-        member.setMemberPw(memberAddDto.getMemberPw());
-        member.setMemberName(memberAddDto.getMemberName());
-        member.setMemberPostalCode(memberAddDto.getMemberPostalCode());
-        member.setMemberAddressBasic(memberAddDto.getMemberAddressBasic());
-        member.setMemberAddressDetail(memberAddDto.getMemberAddressDetail());
+        member.setMemberId(memberAddDTO.getMemberId());
+        member.setMemberHp(memberAddDTO.getMemberHp());
+        member.setMemberEmail(memberAddDTO.getMemberEmail());
+        member.setMemberPw(memberAddDTO.getMemberPw());
+        member.setMemberName(memberAddDTO.getMemberName());
+        member.setMemberPostalCode(memberAddDTO.getMemberPostalCode());
+        member.setMemberAddressBasic(memberAddDTO.getMemberAddressBasic());
+        member.setMemberAddressDetail(memberAddDTO.getMemberAddressDetail());
         return member;
     }
 }

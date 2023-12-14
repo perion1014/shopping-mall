@@ -1,19 +1,22 @@
 package com.example.shoppingmall.admin.dto;
 
 import com.example.shoppingmall.admin.domain.Admin;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class AdminLoginDTO {
     private String adminId;
     private String adminPw;
 
-    public static Admin AdminDTOtoAdmin(AdminLoginDTO adminDto) {
+    public static Admin AdminLoginDTOtoAdmin(AdminLoginDTO adminLoginDTO) {
         Admin admin = new Admin();
-        admin.setAdmin_id(adminDto.adminId);
-        admin.setAdmin_pw(adminDto.adminPw);
+        admin.setAdminId(adminLoginDTO.getAdminId());
+        admin.setAdminPw(adminLoginDTO.getAdminPw());
         return admin;
     }
 }
