@@ -21,11 +21,11 @@
         where member_id = #{memberId}
     </update>
 
-    <delete id="deleteById" parameterType="com.hyon01.minishop.domain.member.Member">
+    <delete id="deleteById" parameterType="com.example.shoppingmall.member.domain.Member">
         delete from member where member_id = #{memberId}
     </delete>
 
-    <select id="findAll" resultType="com.hyon01.minishop.domain.member.Member">
+    <select id="findAll" resultType="com.example.shoppingmall.member.domain.Member">
         select * from member order by member_no
     </select>
 
