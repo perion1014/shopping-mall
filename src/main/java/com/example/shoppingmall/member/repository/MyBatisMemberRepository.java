@@ -9,24 +9,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@RequiredArgsConstructor
 public class MyBatisMemberRepository implements MemberRepository {
-
-    private final MemberMapper memberMapper;
 
     @Override
     public void save(Member member) {
-       memberMapper.save(member);
     }
 
     @Override
     public void update(Member member) {
-
     }
 
     @Override
     public void deleteById(String memberId) {
-
     }
 
     @Override

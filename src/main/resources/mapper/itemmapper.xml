@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.shoppingmall.item.mapper.ItemMapper">
-    <select id="getAllItems" resultType="ItemDTO">
+    <select id="getAllItems" resultType="com.example.shoppingmall.item.domain.Item">
         SELECT `item`.`item_no`,
                `item`.`item_name`,
                `item`.`item_category`,
