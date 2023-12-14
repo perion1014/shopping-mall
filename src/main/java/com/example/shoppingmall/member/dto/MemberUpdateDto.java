@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberUpdateDto {
-    private Integer memberNo;
+    private String memberId;
     private String memberPw;
     private String memberPw2;
     private String memberHp;
@@ -21,6 +21,7 @@ public class MemberUpdateDto {
 
     public static Member MemberUpdateDtoToMember(MemberUpdateDto memberUpdateDto){
         Member member = new Member();
+        member.setMemberId(memberUpdateDto.getMemberId());
         member.setMemberPw(memberUpdateDto.getMemberPw());
         member.setMemberHp(memberUpdateDto.getMemberHp());
         member.setMemberName(memberUpdateDto.getMemberName());

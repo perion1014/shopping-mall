@@ -6,7 +6,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member {
-    private Integer memberNo;
+    private Long memberNo;
     private String memberId;
     private String memberHp;
     private String memberEmail;

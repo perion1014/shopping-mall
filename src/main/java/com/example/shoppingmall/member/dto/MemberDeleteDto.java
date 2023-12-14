@@ -10,12 +10,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberDeleteDto {
-    private Integer memberNo;
+    private String memberId;
     private String memberPw;
     private String memberPw2;
 
     public static Member MemberDeleteDtoToMember(MemberDeleteDto memberDeleteDto){
         Member member = new Member();
+        member.setMemberId(memberDeleteDto.getMemberId());
         member.setMemberPw(memberDeleteDto.getMemberPw());
         return member;
     }
