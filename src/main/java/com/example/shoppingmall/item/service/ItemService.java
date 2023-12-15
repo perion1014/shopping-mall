@@ -12,10 +12,16 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ItemService {
+
     private final ItemRepository itemRepository;
 
-    public List<ItemDTO> getAllItems() {
-        List<Item> itemList = itemRepository.getAllItems();
+    public void saveItem(ItemDTO itemDTO) {
+        Item item = Item.itemDTOToItemWithItemNo(itemDTO);
+        itemRepository.saveItem(item);
+    }
+
+    public List<ItemDTO> findAllItems() {
+        List<Item> itemList = itemRepository.findAllItems();
         List<ItemDTO> itemDTOList = new ArrayList<>();
         for (Item item: itemList) {
             itemDTOList.add(ItemDTO.ItemtoItemDTO(item));
@@ -23,23 +29,51 @@ public class ItemService {
         return itemDTOList;
     }
 
-    public void saveItem(ItemDTO itemDTO) {
-        Item item = Item.itemDTOToItemWithItemNo(itemDTO);
-        itemRepository.saveItem(item);
+    public List<ItemDTO> findAllItemsOnsale() {
+        List<Item> itemList = itemRepository.findAllItemsOnsale();
+        List<ItemDTO> itemDTOList = new ArrayList<>();
+        for (Item item: itemList) {
+            itemDTOList.add(ItemDTO.ItemtoItemDTO(item));
+        }
+        return itemDTOList;
     }
 
-    public ItemDTO findItemByName(ItemDTO itemDTO) {
-        Item item = itemRepository.findByItemName(Item.itemDTOToItemWithItemNo(itemDTO));
+    public List<ItemDTO> findAllItemsOffmarket() {
+        List<Item> itemList = itemRepository.findAllItemsOffmarket();
+        List<ItemDTO> itemDTOList = new ArrayList<>();
+        for (Item item: itemList) {
+            itemDTOList.add(ItemDTO.ItemtoItemDTO(item));
+        }
+        return itemDTOList;
+    }
+
+    public ItemDTO findItemByNo(Long itemNo) {
+        Item item =  itemRepository.findItemByNo(itemNo);
         return ItemDTO.ItemtoItemDTO(item);
     }
 
-    public void deleteItemById(ItemDTO itemDTO) {
+    public List<ItemDTO> findItemsByName(ItemDTO itemDTO) {
+        List<Item> itemList = itemRepository.findItemsByName(Item.itemDTOToItemWithItemNo(itemDTO));
+        List<ItemDTO> itemDTOList = new ArrayList<>();
+        for (Item item: itemList) {
+            itemDTOList.add(ItemDTO.ItemtoItemDTO(item));
+        }
+        return itemDTOList;
+    }
+
+    public void updateItemByNo(Long itemNo, ItemDTO itemDTO) {
         Item item = Item.itemDTOToItemWithItemNo(itemDTO);
-        itemRepository.deleteItemById(item);
+        itemRepository.updateItemByNo(itemNo, item);
+    }
+
+    public void deleteItemByNo(Long itemNo) {
+        itemRepository.deleteItemByNo(itemNo);
     }
 
     public void deleteItemByName(ItemDTO itemDTO) {
         Item item = Item.itemDTOToItemWithItemNo(itemDTO);
         itemRepository.deleteItemByName(item);
     }
+
+
 }
