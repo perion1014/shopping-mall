@@ -6,20 +6,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admins")
+@RequestMapping("/admins")/*절대경로*/
 public class AdminController {
 
     @GetMapping("/login")
     public String goToAdminLoginPage(){
-        return "admin-login";
+        return "admins/admin-login";/*상대경로*/
     }
     @PostMapping("/login")
     public String adminLogin(){
-        return "/admins/admin-homeTest";
+        return "admins/admin-homeTest";
     }
     @PostMapping("/logout")
     public String adminLogout(){
-        return "admin-login";
+        return "admins/admin-login";
     }
 
 }
