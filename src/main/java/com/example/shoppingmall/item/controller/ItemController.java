@@ -6,10 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,20 +16,35 @@ import java.util.List;
 public class ItemController {
 
     @Autowired
-    private final ItemService itemService;
+    private final ItemService itemService;  // 의존성 주입; @RequiredArgsConstructor 필요
 
     @GetMapping("/admin")
     public String showItemList(Model model) {
-        List<ItemDTO> itemDTOList = itemService.getAllItems();
+        List<ItemDTO> itemDTOList = itemService.findAllItems();
+        model.addAttribute("itemDTOList", itemDTOList);
+        return "admins/admin-item";
+    }
+
+    @GetMapping("/admin/onsale")
+    public String showItemListOnsale(Model model) {
+        List<ItemDTO> itemDTOList = itemService.findAllItemsOnsale();
+        model.addAttribute("itemDTOList", itemDTOList);
+        return "admins/admin-item";
+    }
+
+    @GetMapping("/admin/offmarket")
+    public String showItemListOffmarket(Model model) {
+        List<ItemDTO> itemDTOList = itemService.findAllItemsOffmarket();
         model.addAttribute("itemDTOList", itemDTOList);
         return "admins/admin-item";
     }
 
     @PostMapping("/admin/search")
-    public String searchItem(@ModelAttribute ItemDTO itemDTO) {
-        return null;
+    public String searchItem(@ModelAttribute ItemDTO itemDTO, Model model) {
+        List<ItemDTO> itemDTOList = itemService.findItemsByName(itemDTO);
+        model.addAttribute("itemDTOList", itemDTOList);
+        return "admins/admin-item";
     }
-
 
     @GetMapping("/admin/add")
     public String goToAddItemPage() {
@@ -46,23 +58,21 @@ public class ItemController {
     }
 
     @GetMapping("/admin/{itemNo}")
-    public String goToItemDetailPage() {
-        return null;
+    public String goToItemDetailPage(@PathVariable Long itemNo, Model model) {
+        ItemDTO itemDTO = itemService.findItemByNo(itemNo);
+        model.addAttribute("itemDTO", itemDTO);
+        return null;    // 수정 예정: html 파일 생성 후 해당 html 파일을 넣을 것임.
     }
 
     @PostMapping("/admin/{itemNo}/update")
-    public String updateItem(@ModelAttribute ItemDTO itemDTO) {
-        //itemService.updateItem(itemDTO);
+    public String updateItem(@PathVariable Long itemNo, @ModelAttribute ItemDTO itemDTO) {
+        itemService.updateItemByNo(itemNo, itemDTO);
         return "redirect:/items/admin";
     }
 
     @PostMapping("/admin/{itemNo}/delete")
-    public String deleteItem(@ModelAttribute ItemDTO itemDTO) {
-        if (itemDTO.getItemNo() != null) {
-            itemService.deleteItemById(itemDTO);
-        } else if (itemDTO.getItemName() != null) {
-            itemService.deleteItemByName(itemDTO);
-        }
+    public String deleteItem(@PathVariable Long itemNo) {
+        itemService.deleteItemByNo(itemNo);
         return "redirect:/items/admin";
     }
 

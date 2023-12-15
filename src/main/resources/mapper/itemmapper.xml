@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.shoppingmall.item.mapper.ItemMapper">
-    <select id="getAllItems" resultType="com.example.shoppingmall.item.domain.Item">
-        select * from item
-    </select>
-
-    <select id="findByItemName" resultType="com.example.shoppingmall.item.domain.Item">
-        select * from item where item_name = #{itemName}
-    </select>
 
     <insert id="saveItem" parameterType="com.example.shoppingmall.item.domain.Item">
         insert into item values (#{itemNo},#{itemName},#{itemCategory},#{itemGrade},#{itemDetail},#{itemPrice},#{itemOnsale},#{itemRegisteredTime})
     </insert>
 
-    <delete id="deleteItemById" parameterType="com.example.shoppingmall.item.domain.Item">
+    <select id="findAllItems" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item
+    </select>
+
+    <select id="findAllItemsOnsale" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_onsale = 1
+    </select>
+
+    <select id="findAllItemsOffmarket" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_onsale = 0
+    </select>
+
+    <select id="findItemByNo" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_no = #{itemNo}
+    </select>
+
+    <select id="findItemsByName" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_name = #{itemName}
+    </select>
+
+    <update id="updateItemByNo" parameterType="com.example.shoppingmall.item.domain.Item">
+        update item set item_name = #{itemName}, item_category=#{itemCategory}, item_detail=#{itemDetail}, item_onsale=#{itemOnsale} where item_no = #{itemNo}
+    </update>
+
+    <delete id="deleteItemByNo" parameterType="com.example.shoppingmall.item.domain.Item">
         delete from item where item_no = #{itemNo}
     </delete>
 
     <delete id="deleteItemByName" parameterType="com.example.shoppingmall.item.domain.Item">
         delete from item where item_name = #{itemName}
     </delete>
+
 </mapper>

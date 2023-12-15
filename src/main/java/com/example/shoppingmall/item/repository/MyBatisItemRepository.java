@@ -17,24 +17,46 @@ public class MyBatisItemRepository implements ItemRepository{
     private final ItemMapper itemMapper;
 
     @Override
-    public List<Item> getAllItems() {
-        List<Item> itemList = itemMapper.getAllItems();
-        return itemList;
-    }
-
-    @Override
-    public Item findByItemName(Item item) {
-        return itemMapper.findByItemName(item);
-    }
-
-    @Override
     public void saveItem(Item item) {
         itemMapper.saveItem(item);
     }
 
     @Override
-    public void deleteItemById(Item item) {
-        itemMapper.deleteItemById(item);
+    public List<Item> findAllItems() {
+        List<Item> itemList = itemMapper.findAllItems();
+        return itemList;
+    }
+
+    @Override
+    public List<Item> findAllItemsOnsale() {
+        List<Item> itemList = itemMapper.findAllItemsOnsale();
+        return itemList;
+    }
+
+    @Override
+    public List<Item> findAllItemsOffmarket() {
+        List<Item> itemList = itemMapper.findAllItemsOffmarket();
+        return itemList;
+    }
+
+    @Override
+    public Item findItemByNo(Long itemNo) {
+        return itemMapper.findItemByNo(itemNo);
+    }
+
+    @Override
+    public List<Item> findItemsByName(Item item) {
+        return itemMapper.findItemsByName(item);
+    }
+
+    @Override
+    public void updateItemByNo(Long itemNo, Item item) {
+        itemMapper.updateItemByNo(itemNo, item);
+    }
+
+    @Override
+    public void deleteItemByNo(Long itemNo) {
+        itemMapper.deleteItemByNo(itemNo);
     }
 
     @Override
