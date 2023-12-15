@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
+    <title>PERION-회원가입</title>
+    <meta name="description" content="20대 선호도 1위 쇼핑몰! 지금 가입하면 다양한 이벤트가 기다리고 있습니다.">
 </head>
 <body>
-
+<header th:replace="~{/fragments/header :: header}"></header>
+<img class=home__background-img src="/images/diego-sanchez-DEDhybzzBwc-unsplash.webp" alt="background-image"/>
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
 </body>
 </html>
