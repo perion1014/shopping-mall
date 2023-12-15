@@ -11,7 +11,7 @@ public class AdminController {
 
     @GetMapping("/login")
     public String goToAdminLoginPage(){
-        return "/admins/admin_login";
+        return "admin-login";
     }
     @PostMapping("/login")
     public String adminLogin(){
@@ -19,7 +19,7 @@ public class AdminController {
     }
     @PostMapping("/logout")
     public String adminLogout(){
-        return "/admins/admin_login";
+        return "admin-login";
     }
 
 }
