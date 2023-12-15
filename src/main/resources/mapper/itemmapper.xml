@@ -2,14 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.shoppingmall.item.mapper.ItemMapper">
     <select id="getAllItems" resultType="com.example.shoppingmall.item.domain.Item">
-        SELECT `item`.`item_no`,
-               `item`.`item_name`,
-               `item`.`item_category`,
-               `item`.`item_grade`,
-               `item`.`item_detail`,
-               `item`.`item_price`,
-               `item`.`item_onsale`,
-               `item`.`item_registered_time`
-        FROM `perion`.`item`;
+        select * from item
     </select>
+
+    <select id="findByItemName" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_name = #{itemName}
+    </select>
+
+    <insert id="saveItem" parameterType="com.example.shoppingmall.item.domain.Item">
+        insert into item values (#{itemNo},#{itemName},#{itemCategory},#{itemGrade},#{itemDetail},#{itemPrice},#{itemOnsale},#{itemRegisteredTime})
+    </insert>
+
+    <delete id="deleteItemById" parameterType="com.example.shoppingmall.item.domain.Item">
+        delete from item where item_no = #{itemNo}
+    </delete>
+
+    <delete id="deleteItemByName" parameterType="com.example.shoppingmall.item.domain.Item">
+        delete from item where item_name = #{itemName}
+    </delete>
 </mapper>
