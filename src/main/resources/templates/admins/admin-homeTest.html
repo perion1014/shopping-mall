@@ -5,7 +5,7 @@
     <title>admin_main</title>
 </head>
 <body>
-<h1>로그인 로그아웃 확인용 문구입니다.</h1>
+<header th:replace="~{/fragments/admin-login-header :: admin-login-header}"></header>
 이 html파일은 admin 메인페이지 제작필요시 수정/삭제 하셔도됩니다.
 <form th action method="post">
     <button>로그아웃</button>
