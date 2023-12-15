@@ -1,0 +1,51 @@
+@import "admin-style.css";
+@import "table.css";
+
+.main {
+  height: 1400px;
+}
+
+.order_table {
+  width:100%;
+  margin-top:50px;
+}
+
+.order_detail_table {
+  margin: 0 auto;
+}
+
+.admin_order {
+  margin-top: 132px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+
+.admin_order_search {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border-radius: 7px;
+}
+
+.admin_order_page {
+  text-align: center;
+  margin-top: 50px;
+}
+
+a {
+  color:black;
+}
+
+.admin_order_detail {
+  font-weight: bold;
+  font-size:20px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.admin_order_detail_search {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
