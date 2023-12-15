@@ -12,10 +12,15 @@ public class AdminController {
     @GetMapping("/login")
     public String goToAdminLoginPage(){
         return "admins/admin-login";/*상대경로*/
+
     }
+
     @PostMapping("/login")
-    public String adminLogin(){
+    public String adminLogin(String adminId, int adminPw){
+        System.out.print(adminId);
+        System.out.print(adminPw);
         return "admins/admin-homeTest";
+
     }
     @PostMapping("/logout")
     public String adminLogout(){

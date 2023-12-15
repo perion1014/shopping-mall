@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>admin</title>
-    <h1>perion</h1>
-    <form th:action method="post">
-        <div name="adminId">
-            <li>아이디</li>
-        </div>
-        <div>
-            <input>
-        </div>
-        <div name="adminPw">
-            <li>비밀번호</li>
-        </div>
-        <div>
-            <input type="password">
-        </div>
-        <button>관리자 로그인</button>
-    </form>
+    <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
+    <title>PERION-관리자 로그인 페이지</title>
+    <meta name="description" content="관리자 페이지">
 </head>
 <body>
-
+<header th:replace="~{/fragments/admin-login-header :: admin-login-header}"></header>
+<main>
+    <img class="main__logo" src="/images/spartan-helmet.svg">
+    <form th:action method="post">
+        <label class="label" for="memberId">
+            <h5 class="label__title">관리자 아이디</h5>
+            <input id="memberId" class="input" type="text"/>
+            <h6 class="label__error">에러메시지를 출력합니다.</h6>
+        </label>
+        <label class="label" for="memberPw">
+            <h5 class="label__title">관리자 비밀번호</h5>
+            <input id="memberPw" class="input" type="password"/>
+            <h6 class="label__error">에러메시지를 출력합니다.</h6>
+        </label>
+        <button class="btn__lg btn--black">관리자 로그인</button>
+    </form>
+</main>
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
 </body>
 </html>
