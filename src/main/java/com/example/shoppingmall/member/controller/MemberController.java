@@ -22,8 +22,8 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String memberLogin(@ModelAttribute MemberLoginDTO memberLoginDTO){
-        Member member = MemberLoginDTO.MemberLoginDTOToMember(memberLoginDTO);
+    public String memberLogin(){
+        //Member member = MemberLoginDTO.MemberLoginDTOToMember(memberLoginDTO);
         //service
         //멤버서비스(멤버).회원가입
         //성공 -> return "home"
@@ -49,13 +49,14 @@ public class MemberController {
     }
 
     @PostMapping("/add")
-    public String addMember(@ModelAttribute MemberAddDTO memberAddDTO){
-        Member member = MemberAddDTO.MemberAddDTOToMember(memberAddDTO);
+    public String addMember(){
+        //(@ModelAttribute MemberAddDTO memberAddDTO
+        //Member member = MemberAddDTO.MemberAddDTOToMember(memberAddDTO);
         //서비스
         return "redirect:/members/add-success";
     }
 
-    @GetMapping("add-success")
+    @GetMapping("/add-success")
     public String goToAddMemberSuccess(){
         return "members/add-member-success";
     }

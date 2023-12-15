@@ -2,14 +2,15 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
-    <title>PERION-로그인 페이지</title>
+    <title>PERION - 로그인 페이지</title>
     <meta name="description" content="20대 선호도 1위 쇼핑몰! 지금 로그인하면 다양한 이벤트 정보를 확인할 수 있습니다.">
+    <script type="module" src="/js/pages/login.js" defer></script>
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
-<main>
+<main class="main__container">
     <img class="main__logo" src="/images/spartan-helmet.svg">
-    <form>
+    <form th:action method="post" >
         <label class="label" for="memberId">
             <h5 class="label__title">아이디</h5>
             <input id="memberId" class="input" type="text"/>
@@ -21,12 +22,12 @@
             <h6 class="label__error">에러메시지를 출력합니다.</h6>
         </label>
     </form>
-    <button class="btn__lg btn--black">로그인</button>
-    <button class="btn__lg btn--white">회원가입</button>
+    <button type="submit" class="btn btn--black btn--member-login">로그인</button>
+    <button type="button"  class="btn btn--white btn--member-add">회원가입</button>
     <nav class="info__nav">
         <ul class="info__links">
-            <a>아이디/비밀번호 찾기</a>
-            <a>비회원 주문 조회하기</a>
+            <a href="/info">아이디/비밀번호 찾기</a>
+            <a href="/orders/non-members">비회원 주문 조회하기</a>
         </ul>
     </nav>
 </main>

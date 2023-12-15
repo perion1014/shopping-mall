@@ -17,6 +17,7 @@ public class MemberAddDTO {
     private String memberHp;
     private String memberName;
     private String memberEmail;
+    private Integer memberAddCode;
     private Integer memberPostalCode;
     private String memberAddressBasic;
     private String memberAddressDetail;
