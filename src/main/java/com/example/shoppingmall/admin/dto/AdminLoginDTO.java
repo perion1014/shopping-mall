@@ -17,6 +17,7 @@ public class AdminLoginDTO {
         Admin admin = new Admin();
         admin.setAdminId(adminLoginDTO.getAdminId());
         admin.setAdminPw(adminLoginDTO.getAdminPw());
+
         return admin;
     }
 }
