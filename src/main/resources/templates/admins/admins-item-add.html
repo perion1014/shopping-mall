@@ -1,0 +1,111 @@
+  <!DOCTYPE html>
+  <head>
+
+  <link rel="shortcut icon" href="#" type="image/x-icon" />
+
+  <!--폰트-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Sometype+Mono&display=swap" rel="stylesheet">
+  <!--CSS-->
+  <link rel="stylesheet" href="../../static/css/pages/admins/admins-item-add.css">
+  </head>
+  <body>
+    <header>
+    <a href="#" class="header__logo">PERION</a>
+    <nav class="header__nav">
+        <ul>
+            <li><a href="#">쇼핑몰</a></li>
+            <li><a href="#">로그아웃</a></li>
+        </ul>
+    </nav> 
+    </header>
+
+    <aside class="side-bar">
+      <div class="margin"></div>
+      <ul>
+        <li>
+          <a href="#"><i class="fa-solid fa-cat"></i>매출 조회</a>
+        </li>
+        <li>
+          <a href="#">회원 조회</a>
+        </li>
+        <li>
+          <a href="#">상품 조회</a>
+        </li>
+        <li>
+          <a href="#">상품 등록</a>
+        </li>
+        <li>
+          <a href="#">회원 주문 목록</a>
+        </li>
+        <li>
+          <a href="#">비회원 주문 목록</a>
+        </li>
+        <li>
+          <a href="#">공지사항</a>
+        </li>
+        <li>
+          <a href="#">Q&A</a>
+        </li>
+        <li>
+          <a href="#">Review</a>
+        </li>
+      </ul>
+
+    <div class="side-bar__icon"><img src="../../static/images/spartan-helmet-white.svg" alt="실패" /></div>
+    </aside>
+    
+    <main>
+      <div class="main">
+        <div class="admin_item"><a href="">상품 조회</a></div>
+        <div class="admin_item_add">상품 등록</div>
+
+        <div class="admin_item_container">
+          <div>
+            상품명
+            <input type="text" class="admin_item_name_input" />
+          </div>
+
+          <div>
+            <input type="file" name="" class="admin_item_thumb" />
+            <select name="sales_status">
+              <option value="onsale">onsale</option>
+              <option value="unsale">unsale</option>
+            </select>
+            <select name="item_category">
+              <option value="outer">outer</option>
+              <option value="top">top</option>
+              <option value="bottom">bottom</option>
+              <option value="accessary">accessary</option>
+            </select>
+          </div>
+
+          <div>
+            <input type="file" name="" class="admin_item_image" />
+            <input type="file" name="" class="admin_item_image" />
+            <input type="file" name="" class="admin_item_image" />
+          </div>
+
+          <div>
+            <select name="item_size">
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+            </select>
+            <input type="number" name="" />
+            금액: <input type="text" />
+          </div>
+
+          <div>
+            <textarea name=""></textarea>
+          </div>
+          <!-- container-->
+        </div>
+        <div class="btn_div"><button>등록</button></div>        
+      </div><!--main div-->
+    </main>
+   
+
+  </body>
+  </html>

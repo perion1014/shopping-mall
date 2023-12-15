@@ -1,0 +1,32 @@
+@import "admin-style.css";
+
+@import "table-notice.css";
+
+.main {
+  height: 900px;
+}
+
+a {
+  color: black;
+}
+
+/* 타이틀 */
+.admin_notice {
+  margin-top: 120px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+/* 검색 */
+.admin_notice_search {
+  text-align: right;
+  margin-top: 40px;
+  border-radius: 7px;
+}
+
+/* 페이징 */
+.admin_member_page {
+  text-align: center;
+  margin-top: 50px;
+}
