@@ -1,6 +1,6 @@
-@import "admin-style.css";
+@import "../../admins-style.css";
 
-@import "table-notice.css";
+@import "../../components/table-notice.css";
 
 .main {
   height: 900px;
@@ -29,4 +29,8 @@ a {
 .admin_member_page {
   text-align: center;
   margin-top: 50px;
+}
+
+.notice_btn {
+  text-align: right;
 }
