@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PERION Management</title>
+    <link rel="icon" href="../../static/images/spartan-helmet.svg" />
+    <link rel="stylesheet" href="../../static/css/pages/admins/admins-notice-modify.css" />
+  </head>
+  <body>
+    <header>
+      <a href="#" class="header__logo">PERION</a>
+      <nav class="header__nav">
+        <ul>
+          <li><a href="#">쇼핑몰</a></li>
+          <li><a href="#">로그아웃</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <aside class="side-bar">
+      <div class="margin"></div>
+      <ul>
+        <li>
+          <a href="#">매출 조회</a>
+        </li>
+        <li>
+          <a href="#">회원 조회</a>
+        </li>
+        <li>
+          <a href="#">상품 조회</a>
+        </li>
+        <li>
+          <a href="#">상품 등록</a>
+        </li>
+        <li>
+          <a href="#">회원 주문 목록</a>
+        </li>
+        <li>
+          <a href="#">비회원 주문 목록</a>
+        </li>
+        <li>
+          <a href="#">공지사항</a>
+        </li>
+        <li>
+          <a href="#">Q&A</a>
+        </li>
+        <li>
+          <a href="#">Review</a>
+        </li>
+      </ul>
+
+      <div class="side-bar__icon">
+        <img src="../../static/images/spartan-helmet-white.svg" alt="실패" />
+      </div>
+    </aside>
+
+    <main>
+      <div class="main">
+        <div class="admin_notice_modify">공지사항 수정</div>
+
+        <form class="notice_add_form" action="" method="">
+          <hr />
+          <div class="notice_elements">
+            <span class="notice_no">1</span>
+            <div class="notice_elements_right">
+              <span> 작성일자 2023-12-14 </span>
+              <span> 조회수 30 </span>
+            </div>
+          </div>
+          <hr />
+          <input
+            class="notice_title"
+            type="text"
+            maxlength="44"
+            placeholder="제목"
+          />
+          <hr />
+          <textarea
+            class="notice_contents"
+            name="detail"
+            rows="20"
+            cols="20"
+            maxlength="254"
+          ></textarea>
+          <hr />
+
+          <div class="notice_btn">
+            <button>수정</button> </form> <button>삭제</button>
+          </div>
+
+        <!--main div-->
+      </div>
+    </main>
+  </body>
+</html>

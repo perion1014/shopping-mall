@@ -1,7 +1,10 @@
-@import "admin-style.css";
+@import "../../admins-style.css";
 
-@import "table.css";
+@import "../../components/table.css";
 
+.main {
+  height: 800px;
+}
 table {
   width:100%;
   margin-top:50px;

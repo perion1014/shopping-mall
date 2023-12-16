@@ -1,5 +1,5 @@
-@import "admin-style.css";
-@import "table.css";
+@import "../../admins-style.css";
+@import "../../components/table.css";
 
 .main {
   height: 1400px;
