@@ -13,12 +13,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MyBatisItemRepository implements ItemRepository{
 
-    @Autowired
     private final ItemMapper itemMapper;
 
     @Override
-    public void saveItem(Item item) {
-        itemMapper.saveItem(item);
+    public boolean saveItem(Item item) {
+        int resultCount = itemMapper.saveItem(item);
+        if (resultCount == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -50,17 +54,32 @@ public class MyBatisItemRepository implements ItemRepository{
     }
 
     @Override
-    public void updateItemByNo(Long itemNo, Item item) {
-        itemMapper.updateItemByNo(itemNo, item);
+    public boolean updateItemByNo(Long itemNo, Item item) {
+        int resultCount = itemMapper.updateItemByNo(itemNo, item);
+        if (resultCount == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public void deleteItemByNo(Long itemNo) {
-        itemMapper.deleteItemByNo(itemNo);
+    public boolean deleteItemByNo(Long itemNo) {
+        int resultCount = itemMapper.deleteItemByNo(itemNo);
+        if (resultCount == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public void deleteItemByName(Item item) {
-        itemMapper.deleteItemByName(item);
+    public boolean deleteItemByName(Item item) {
+        int resultCount = itemMapper.deleteItemByName(item);
+        if (resultCount == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
