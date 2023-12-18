@@ -9,12 +9,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@RequiredArgsConstructor
 public class MyBatisMemberRepository implements MemberRepository {
 
+    private final MemberMapper memberMapper;
 
     @Override
     public void save(Member member) {
-
+        memberMapper.save(member);
     }
 
     @Override
@@ -27,7 +29,12 @@ public class MyBatisMemberRepository implements MemberRepository {
 
     @Override
     public Optional<Member> findById(String memberId) {
-        return Optional.empty();
+        return Optional.ofNullable(memberMapper.findById(memberId));
+    }
+
+    @Override
+    public Optional<Member> findByEmail(String memberEmail) {
+        return Optional.ofNullable(memberMapper.findByEmail(memberEmail));
     }
 
     @Override

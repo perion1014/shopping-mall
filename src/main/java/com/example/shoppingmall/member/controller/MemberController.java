@@ -4,6 +4,11 @@ import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.MemberAddDTO;
 import com.example.shoppingmall.member.dto.MemberLoginDTO;
 import com.example.shoppingmall.member.dto.MemberSearchDTO;
+import com.example.shoppingmall.member.service.MemberLoginService;
+import com.example.shoppingmall.member.service.MemberService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,7 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/members")
+@RequiredArgsConstructor
 public class MemberController {
+
+    private final MemberService memberService;
+    private final MemberLoginService memberLoginService;
 
     /*유저 로그인 기능*/
 
@@ -22,17 +31,16 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String memberLogin(){
-        //Member member = MemberLoginDTO.MemberLoginDTOToMember(memberLoginDTO);
-        //service
-        //멤버서비스(멤버).회원가입
-        //성공 -> return "home"
-        //실패 -> return ="원래페이지"
-
-        //실패시
+    public String memberLogin(@ModelAttribute MemberLoginDTO memberLoginDTO, HttpServletRequest request){
+        //실패 시
         //return members/member-login
 
         //성공 시
+        Member loginMember = memberLoginService.login(memberLoginDTO);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("loginMember",loginMember);
+        session.setMaxInactiveInterval(1800);
         return "redirect:/";
     }
 
@@ -49,10 +57,11 @@ public class MemberController {
     }
 
     @PostMapping("/add")
-    public String addMember(){
-        //(@ModelAttribute MemberAddDTO memberAddDTO
-        //Member member = MemberAddDTO.MemberAddDTOToMember(memberAddDTO);
-        //서비스
+    public String addMember(@ModelAttribute MemberAddDTO memberAddDTO){
+        //실패 시
+
+        //성공 시
+        memberService.join(memberAddDTO);
         return "redirect:/members/add-success";
     }
 
