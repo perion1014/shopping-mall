@@ -1,5 +1,4 @@
-@import "admins-style.css";
-
+@import "../../admins-style.css";
 .main {
   height: 900px;
 }

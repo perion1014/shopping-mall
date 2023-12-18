@@ -1,14 +1,8 @@
 @import "../../admins-style.css";
 
 
-.admin_item {
-  margin-top: 132px;
-  text-align: center;
-  font-size: 32px;
-}
-
 .admin_item_add {
-  margin-top: 30px;
+  margin-top: 15%;
   margin-bottom: 50px;
   text-align: center;
   font-size: 32px;
