@@ -1,9 +1,28 @@
 package com.example.shoppingmall.cart.service;
 
+import com.example.shoppingmall.cart.domain.Cart;
+import com.example.shoppingmall.cart.dto.CartReadDTO;
+import com.example.shoppingmall.cart.repository.CartRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
+@RequiredArgsConstructor
 public class CartService {
+
+    private final CartRepository cartRepository;
+
+    public ArrayList<CartReadDTO> getCartList(Long memberNo){
+    ArrayList<Cart> dbCartList = cartRepository.getCartList(memberNo);
+    ArrayList<CartReadDTO> readCart = new ArrayList<CartReadDTO>();
+    for(Cart cart: dbCartList ){
+        readCart.add(CartReadDTO.CartToCartDTO(cart));
+    }
+
+    return readCart;
+    }
 
     public static String getItemThumbnail(Long itemNo){
     String itemThumbnail = "";
@@ -11,7 +30,7 @@ public class CartService {
     return itemThumbnail;
     }
 
-    public static String getItemName(){
+    public static String getItemName(Long itemNo){
         String itemName = "";
 
         return itemName;
@@ -23,7 +42,7 @@ public class CartService {
         return itemSize;
     }
 
-    public static Integer getItemPrice(){
+    public static Integer getItemPrice(Long itemNo){
         Integer itemPrice = 0;
 
         return itemPrice;

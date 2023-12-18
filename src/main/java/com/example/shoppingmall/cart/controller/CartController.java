@@ -1,5 +1,6 @@
 package com.example.shoppingmall.cart.controller;
 
+import com.example.shoppingmall.cart.domain.Cart;
 import com.example.shoppingmall.cart.dto.CartReadDTO;
 import com.example.shoppingmall.cart.service.CartService;
 import lombok.RequiredArgsConstructor;
@@ -19,10 +20,9 @@ public class CartController {
     private ArrayList<CartReadDTO> cartList;
 
     @GetMapping("/{memberNo}")
-    public String showMemberCartList(@PathVariable Long memberNo){
+    public String showMemberCartList(@PathVariable Long memberNo) {
 
+    ArrayList<CartReadDTO> cartDTOList = cartService.getCartList(memberNo);
     return "/carts/member-cart-list";
     }
-
-
 }
