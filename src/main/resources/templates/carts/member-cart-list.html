@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
-    <title>장바구니 조회</title>
+    <title>회원 장바구니 조회</title>
 </head>
 <body>
 
-    <header>
-        <header th:replace="~{/fragments/admin-login-header :: admin-login-header}"></header>
-    </header>
+   <header th:replace="~{/fragments/login-header :: header}"></header>
+
 
     <main>
-
+        <h1 th:text="${session.loginMember.getMemberNo()}"></h1>
     </main>
 
     <footer>
