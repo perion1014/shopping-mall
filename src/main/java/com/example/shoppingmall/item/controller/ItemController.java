@@ -1,5 +1,6 @@
 package com.example.shoppingmall.item.controller;
 
+import com.example.shoppingmall.item.dto.ItemAddDTO;
 import com.example.shoppingmall.item.dto.ItemDTO;
 import com.example.shoppingmall.item.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +21,8 @@ public class ItemController {
 
     @GetMapping("/admin")
     public String showItemList(Model model) {
-        List<ItemDTO> itemDTOList = itemService.findAllItems();
-        model.addAttribute("itemDTOList", itemDTOList);
+        List<ItemAddDTO> itemAddDTOList = itemService.findAllItems();
+        model.addAttribute("itemDTOList", itemAddDTOList);
         return "admins/admin-item";
     }
 
@@ -66,8 +67,13 @@ public class ItemController {
 
     @PostMapping("/admin/{itemNo}/update")
     public String updateItem(@PathVariable Long itemNo, @ModelAttribute ItemDTO itemDTO) {
-        itemService.updateItemByNo(itemNo, itemDTO);
-        return "redirect:/items/admin";
+        if (itemService.updateItemByNo(itemNo, itemDTO) == true)  {
+            System.out.println("Succeeded to update item; redirect to '/items/admin'");
+            return "redirect:/items/admin";
+        } else {
+            System.out.println("Failed to update item; redirect to '/items/admin/{itemNo}'");
+            return "redirect:/items/admin/{itemNo}";
+        }
     }
 
     @PostMapping("/admin/{itemNo}/delete")

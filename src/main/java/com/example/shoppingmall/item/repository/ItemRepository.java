@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ItemRepository {
 
-    void saveItem(Item item);
+    boolean saveItem(Item item);
 
     List<Item> findAllItems();
 
@@ -19,10 +19,10 @@ public interface ItemRepository {
 
     List<Item> findAllItemsOffmarket();
 
-    void updateItemByNo(Long itemNo, Item item);
+    boolean updateItemByNo(Long itemNo, Item item);
 
-    void deleteItemByNo(Long itemNo);
+    boolean deleteItemByNo(Long itemNo);
 
-    void deleteItemByName(Item item);
+    boolean deleteItemByName(Item item);
 
 }

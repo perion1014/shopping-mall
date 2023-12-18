@@ -1,6 +1,9 @@
 package com.example.shoppingmall.item.domain;
 
+import com.example.shoppingmall.item.dto.ItemAddDTO;
 import com.example.shoppingmall.item.dto.ItemDTO;
+import com.example.shoppingmall.item.dto.ItemDeleteDTO;
+import com.example.shoppingmall.item.dto.ItemUpdateDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,4 +38,10 @@ public class Item {
         item.setItemRegisteredTime(itemDTO.getItemRegisteredTime());
         return item;
     }
+
+
+
+
+
+
 }

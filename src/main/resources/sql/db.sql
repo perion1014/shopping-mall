@@ -84,6 +84,7 @@ CREATE TABLE `cart` (
                         `member_no` int unsigned NOT NULL,
                         `item_no` int unsigned NOT NULL,
                         `cart_item_quantity` int NOT NULL,
+                        `item_size` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
                         PRIMARY KEY (`cart_no`),
                         KEY `item_no_fk_idx` (`item_no`),
                         KEY `member_no_fk_idx` (`member_no`),
@@ -104,7 +105,7 @@ CREATE TABLE `member_order` (
                                 `order_address_basic` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
                                 `order_address_detail` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
                                 `receiver_name` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
-                                `order_status` tinyint unsigned NOT NULL DEFAULT '0',
+                                `order_status` tinyint unsigned NOT NULL DEFAULT '1',
                                 PRIMARY KEY (`member_order_no`),
                                 KEY `member_no_fk2_idx` (`member_no`),
                                 CONSTRAINT `member_no_fk2` FOREIGN KEY (`member_no`) REFERENCES `member` (`member_no`) ON DELETE RESTRICT ON UPDATE CASCADE
