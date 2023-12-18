@@ -9,6 +9,10 @@
         select * from member where member_id = #{memberId}
     </select>
 
+    <select id="findByEmail" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member where member_email = #{memberEmail}
+    </select>
+
     <update id="update" parameterType="com.example.shoppingmall.member.domain.Member">
         UPDATE member
         SET
