@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface CartRepository {
 
-    ArrayList<Cart> showCartList();
+    ArrayList<Cart> getCartList(Long memberNo);
     ArrayList<String> getItemThumbnails();
     String getItemInfo();
     String getItemSize();
