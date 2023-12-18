@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping("/cart")
+@RequestMapping("/carts")
 @RequiredArgsConstructor
 public class CartController {
 
@@ -20,9 +20,9 @@ public class CartController {
     private ArrayList<CartReadDTO> cartList;
 
     @GetMapping("/{memberNo}")
-    public String showMemberCartList(@PathVariable Long memberNo) {
+    public String showMemberCartList(@PathVariable(name="memberNo") Long memberNo) {
 
-    ArrayList<CartReadDTO> cartDTOList = cartService.getCartList(memberNo);
-    return "/carts/member-cart-list";
+    //ArrayList<CartReadDTO> cartDTOList = cartService.getCartList(memberNo);
+    return "carts/member-cart-list";
     }
 }
