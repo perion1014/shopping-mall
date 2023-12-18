@@ -17,8 +17,6 @@ public class AdminController {
 
     @PostMapping("/login")
     public String adminLogin(String adminId, int adminPw){
-        System.out.print(adminId);
-        System.out.print(adminPw);
         return "admins/admin-homeTest";
 
     }
