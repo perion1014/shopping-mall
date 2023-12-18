@@ -4,16 +4,14 @@ import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.MemberAddDTO;
 import com.example.shoppingmall.member.dto.MemberLoginDTO;
 import com.example.shoppingmall.member.dto.MemberSearchDTO;
+import com.example.shoppingmall.member.dto.MemberUpdateDTO;
 import com.example.shoppingmall.member.service.MemberLoginService;
 import com.example.shoppingmall.member.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/members")
@@ -24,7 +22,6 @@ public class MemberController {
     private final MemberLoginService memberLoginService;
 
     /*유저 로그인 기능*/
-
     @GetMapping("/login")
     public String goToMemberLoginPage(){
         return "members/member-login";
@@ -44,6 +41,7 @@ public class MemberController {
         return "redirect:/";
     }
 
+    /*유저 로그아웃 기능*/
     @PostMapping("/logout")
     public String memberLogout(HttpServletRequest request){
         HttpSession session = request.getSession(false);
@@ -54,7 +52,6 @@ public class MemberController {
     }
 
     /*유저 회원가입 기능*/
-
     @GetMapping("/add")
     public String goToAddMemberPage(){
         return "members/add-member";
@@ -74,8 +71,17 @@ public class MemberController {
         return "members/add-member-success";
     }
 
-    /*유저 기능*/
 
+    /*유저 관련 기능*/
+    @GetMapping("/show-info")
+    public String showMemberInfo(){
+        return "members/member-info";
+    }
+
+    @GetMapping("/{memberNo}/update")
+    public String goToUpdateMemberPage(@PathVariable Long memberNo, @ModelAttribute MemberUpdateDTO memberUpdateDTO){
+        return "members/update-member";
+    }
 
 
     /*관리자 기능*/
