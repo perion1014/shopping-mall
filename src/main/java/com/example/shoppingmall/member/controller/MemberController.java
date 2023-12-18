@@ -73,8 +73,8 @@ public class MemberController {
 
 
     /*유저 관련 기능*/
-    @GetMapping("/show-info")
-    public String showMemberInfo(){
+    @GetMapping("/{memberNo}/show-info")
+    public String showMemberInfo(@PathVariable(name="memberNo") Long memberNo){
         return "members/member-info";
     }
 
