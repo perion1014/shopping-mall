@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PERION Management</title>
-    <link rel="icon" href="../../static/images/spartan-helmet.svg" />
-    <link rel="stylesheet" href="../../static/css/pages/admins/admins-notice-add.css" />
+    <link rel="icon" href="../../../static/images/spartan-helmet.svg" />
+    <link rel="stylesheet" href="../../../static/css/pages/admins/admins-notice-detail.css" />
   </head>
   <body>
     <header>
@@ -51,34 +51,33 @@
       </ul>
 
       <div class="side-bar__icon">
-        <img src="../../static/images/spartan-helmet-white.svg" alt="실패" />
+        <img src="../../../static/images/spartan-helmet-white.svg" alt="실패" />
       </div>
     </aside>
 
     <main>
       <div class="main">
-        <div class="admin_notice_add">공지사항 등록</div>
+        <div class="admin_notice_detail">공지 상세</div>
 
-        <form class="notice_add_form" action="" method="">
+        <div class="notice_detail">
           <hr />
-          <input
-            class="notice_title"
-            type="text"
-            maxlength="44"
-            placeholder="제목"
-          />
+          <div class="notice_elements">
+            <span class="notice_no">1</span>
+            <div class="notice_elements_right">
+              <span> 작성일자 2023-12-14 </span>
+              <span> 조회수 30 </span>
+            </div>
+          </div>
           <hr />
-          <textarea
-            class="notice_contents"
-            name="detail"
-            rows="20"
-            cols="20"
-            maxlength="254"
-          ></textarea>
+          <div class="notice_title">공지사항 제목이겠죠</div>
+          <hr />
+          <div class="notice_contents">공지 사항 내용입니다.</div>
           <hr />
 
-          <button>등록</button>
-        </form>
+          <div class="notice_btn">
+            <button>수정</button> <button>삭제</button>
+          </div>
+        </div>
 
         <!--main div-->
       </div>
