@@ -19,10 +19,16 @@ public class CartController {
     private final CartService cartService;
     private ArrayList<CartReadDTO> cartList;
 
+    @GetMapping("/")
+    public String test(){
+        System.out.println("http://localhost:8082/carts 진입 성공");
+        return "/carts/member-cart-list";
+    }
+
     @GetMapping("/{memberNo}")
     public String showMemberCartList(@PathVariable Long memberNo) {
-
-    ArrayList<CartReadDTO> cartDTOList = cartService.getCartList(memberNo);
-    return "/carts/member-cart-list";
+        System.out.println("/cart/memberNo 진입 성공");
+        ArrayList<CartReadDTO> cartDTOList = cartService.getCartList(memberNo);
+        return "/carts/member-cart-list";
     }
 }
