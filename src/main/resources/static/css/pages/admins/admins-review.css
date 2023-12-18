@@ -1,0 +1,52 @@
+@import "admins-style.css";
+
+.main {
+  height: 900px;
+}
+
+
+.admin_review {
+  text-align: center;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.admin_review_search {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom : 30px;
+}
+
+
+
+.review_container {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.review_info span{
+  padding-left : 20px;
+}
+
+.review_drop {
+  margin-right: 20px;
+  font-size:12px;
+}
+
+hr {
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+
+.review_content {
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+}
+
+.admin_review_page {
+  text-align: center;
+  margin-top: 50px;
+}
