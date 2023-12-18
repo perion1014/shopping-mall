@@ -45,7 +45,11 @@ public class MemberController {
     }
 
     @PostMapping("/logout")
-    public String memberLogout(){
+    public String memberLogout(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            session.invalidate();
+        }
         return "redirect:/";
     }
 

@@ -1,9 +1,11 @@
 'use strict'
-function logout() {
-    let f = document.createElement('form');
-    //폼태그로 감쌀 필요 없다.. 그냥 a태그 해도 됨..
-    f.setAttribute('method', 'post');
-    f.setAttribute('action', '/logout');
-    document.body.appendChild(f);
-    f.submit();
-}
+
+const memberLogoutLink = document.querySelector('.member__logout');
+
+memberLogoutLink.addEventListener('click',()=>{
+    const form = document.createElement('form');
+    form.setAttribute('method','post');
+    form.setAttribute('action','/members/logout');
+    document.body.appendChild(form);
+    form.submit();
+})
