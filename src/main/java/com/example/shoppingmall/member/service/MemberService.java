@@ -26,11 +26,17 @@ public class MemberService {
     }
 
     @Transactional(readOnly = true)
-    public Member getMemberInfo(Long memberNo){
-        return memberRepository.findByNo(memberNo)
-                .orElse(null);
+    public MemberUpdateDTO getMemberInfo(Long memberNo){
+        Member member = memberRepository.findByNo(memberNo)
+                        .orElse(null);
+        return MemberUpdateDTO.MemberToMemberUpdateDTO(member);
     }
 
+    @Transactional
+    public void update(MemberUpdateDTO memberUpdateDTO){
+        Member member = MemberUpdateDTO.MemberUpdateDTOToMember(memberUpdateDTO);
+        memberRepository.update(member);
+    }
 
 
 }

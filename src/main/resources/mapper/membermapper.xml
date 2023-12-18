@@ -10,7 +10,7 @@
     </select>
 
     <select id="findByNo" resultType="com.example.shoppingmall.member.domain.Member">
-        select #{memberNo},#{memberId},#{memberEmail},#{memberHp},#{memberName},#{memberPostalCode},#{memberAddressBasic},#{memberAddressDetail} from member where member_no = #{memberNo}
+        select * from member where member_no = #{memberNo}
     </select>
 
     <select id="findByEmail" resultType="com.example.shoppingmall.member.domain.Member">

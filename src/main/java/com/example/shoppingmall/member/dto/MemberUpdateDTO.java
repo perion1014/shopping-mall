@@ -24,7 +24,6 @@ public class MemberUpdateDTO {
     public static Member MemberUpdateDTOToMember(MemberUpdateDTO memberUpdateDTO){
         Member member = new Member();
         member.setMemberNo(memberUpdateDTO.getMemberNo());
-        member.setMemberId(memberUpdateDTO.getMemberId());
         member.setMemberPw(memberUpdateDTO.getMemberPw());
         member.setMemberHp(memberUpdateDTO.getMemberHp());
         member.setMemberName(memberUpdateDTO.getMemberName());
@@ -36,9 +35,7 @@ public class MemberUpdateDTO {
 
     public static MemberUpdateDTO MemberToMemberUpdateDTO(Member member){
         MemberUpdateDTO memberUpdateDTO = new MemberUpdateDTO();
-        memberUpdateDTO.setMemberEmail(member.getMemberEmail());
         memberUpdateDTO.setMemberNo(member.getMemberNo());
-        memberUpdateDTO.setMemberId(member.getMemberId());
         memberUpdateDTO.setMemberHp(member.getMemberHp());
         memberUpdateDTO.setMemberName(member.getMemberName());
         memberUpdateDTO.setMemberPostalCode(member.getMemberPostalCode());

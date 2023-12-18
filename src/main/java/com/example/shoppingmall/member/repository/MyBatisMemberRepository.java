@@ -21,6 +21,7 @@ public class MyBatisMemberRepository implements MemberRepository {
 
     @Override
     public void update(Member member) {
+        memberMapper.update(member);
     }
 
     @Override
