@@ -13,7 +13,7 @@ public class AdminLoginDTO {
     private String adminId;
     private String adminPw;
 
-    public static Admin AdminLoginDTOtoAdmin(AdminLoginDTO adminLoginDTO) {
+    public static Admin AdminLoginDTOToAdmin(AdminLoginDTO adminLoginDTO) {
         Admin admin = new Admin();
         admin.setAdminId(adminLoginDTO.getAdminId());
         admin.setAdminPw(adminLoginDTO.getAdminPw());

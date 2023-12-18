@@ -1,21 +1,14 @@
 package com.example.shoppingmall.admin.service;
 
-import com.example.shoppingmall.admin.domain.Admin;
-import com.example.shoppingmall.admin.dto.AdminLoginDTO;
-import com.example.shoppingmall.admin.mapper.AdminMapper;
 import com.example.shoppingmall.admin.repository.AdminRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class AdminService {
 
-    private final AdminMapper adminMapper;
+    private final AdminRepository adminRepository;
+//    로그인시 DB와 아이디 일치여부 확인 미구현
 
-//    public String adminAutority(String adminId){
-//        String resultId = adminMapper.adminLogin(adminId);
-//    return resultId;
-//    }
 }
