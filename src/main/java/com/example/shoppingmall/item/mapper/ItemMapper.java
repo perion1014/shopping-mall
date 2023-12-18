@@ -17,7 +17,7 @@ public interface ItemMapper {
 
     List<Item> findAllItemsOffmarket();
 
-    Optional<Item> findItemByNo(Long itemNo);
+    Item findItemByNo(Long itemNo);
 
     List<Item> findItemsByName(Item item);
 

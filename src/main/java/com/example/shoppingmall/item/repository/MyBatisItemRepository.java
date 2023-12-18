@@ -16,13 +16,8 @@ public class MyBatisItemRepository implements ItemRepository{
     private final ItemMapper itemMapper;
 
     @Override
-    public boolean saveItem(Item item) {
-        int resultCount = itemMapper.saveItem(item);
-        if (resultCount == 1) {
-            return true;
-        } else {
-            return false;
-        }
+    public void saveItem(Item item) {
+        itemMapper.saveItem(item);
     }
 
     @Override
@@ -54,32 +49,17 @@ public class MyBatisItemRepository implements ItemRepository{
     }
 
     @Override
-    public boolean updateItemByNo(Long itemNo, Item item) {
-        int resultCount = itemMapper.updateItemByNo(itemNo, item);
-        if (resultCount == 1) {
-            return true;
-        } else {
-            return false;
-        }
+    public void updateItemByNo(Long itemNo, Item item) {
+        itemMapper.updateItemByNo(itemNo, item);
     }
 
     @Override
-    public boolean deleteItemByNo(Long itemNo) {
-        int resultCount = itemMapper.deleteItemByNo(itemNo);
-        if (resultCount == 1) {
-            return true;
-        } else {
-            return false;
-        }
+    public void deleteItemByNo(Long itemNo) {
+        itemMapper.deleteItemByNo(itemNo);
     }
 
     @Override
-    public boolean deleteItemByName(Item item) {
-        int resultCount = itemMapper.deleteItemByName(item);
-        if (resultCount == 1) {
-            return true;
-        } else {
-            return false;
-        }
+    public void deleteItemByName(Item item) {
+        itemMapper.deleteItemByName(item);
     }
 }
