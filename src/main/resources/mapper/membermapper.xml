@@ -9,6 +9,10 @@
         select * from member where member_id = #{memberId}
     </select>
 
+    <select id="findByNo" resultType="com.example.shoppingmall.member.domain.Member">
+        select #{memberNo},#{memberId},#{memberEmail},#{memberHp},#{memberName},#{memberPostalCode},#{memberAddressBasic},#{memberAddressDetail} from member where member_no = #{memberNo}
+    </select>
+
     <select id="findByEmail" resultType="com.example.shoppingmall.member.domain.Member">
         select * from member where member_email = #{memberEmail}
     </select>
@@ -22,7 +26,7 @@
             member_postal_code = #{memberPostalCode},
             member_address_basic = #{memberAddressBasic},
             member_address_detail = #{memberAddressDetail}
-        where member_id = #{memberId}
+        where member_no = #{memberNo}
     </update>
 
     <delete id="deleteById" parameterType="com.example.shoppingmall.member.domain.Member">

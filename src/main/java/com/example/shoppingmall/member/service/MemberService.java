@@ -2,6 +2,7 @@ package com.example.shoppingmall.member.service;
 
 import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.MemberAddDTO;
+import com.example.shoppingmall.member.dto.MemberUpdateDTO;
 import com.example.shoppingmall.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,12 @@ public class MemberService {
         memberRepository.findByEmail(member.getMemberEmail())
                 .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 이메일입니다.");});
         memberRepository.save(member);
+    }
+
+    @Transactional(readOnly = true)
+    public Member getMemberInfo(Long memberNo){
+        return memberRepository.findByNo(memberNo)
+                .orElse(null);
     }
 
 

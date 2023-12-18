@@ -28,6 +28,11 @@ public class MyBatisMemberRepository implements MemberRepository {
     }
 
     @Override
+    public Optional<Member> findByNo(Long memberNo) {
+        return Optional.ofNullable(memberMapper.findByNo(memberNo));
+    }
+
+    @Override
     public Optional<Member> findById(String memberId) {
         return Optional.ofNullable(memberMapper.findById(memberId));
     }

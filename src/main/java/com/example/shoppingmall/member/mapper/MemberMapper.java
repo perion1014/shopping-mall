@@ -11,6 +11,7 @@ public interface MemberMapper {
     void save(Member member);
     void update(Member member);
     void deleteById(String memberId);
+    Member findByNo(Long memberNo);
     Member findById(String memberId);
     Member findByEmail(String memberEmail);
     List<Member> findAll();
