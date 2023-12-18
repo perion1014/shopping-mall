@@ -3,6 +3,8 @@ package com.example.shoppingmall.item.service;
 import com.example.shoppingmall.item.domain.Item;
 import com.example.shoppingmall.item.dto.ItemAddDTO;
 import com.example.shoppingmall.item.dto.ItemDTO;
+import com.example.shoppingmall.item.dto.ItemSearchDTO;
+import com.example.shoppingmall.item.dto.ItemUpdateDTO;
 import com.example.shoppingmall.item.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,16 +18,16 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
-    public boolean saveItem(ItemDTO itemDTO) {
-        Item item = Item.itemDTOToItemWithItemNo(itemDTO);
-        return itemRepository.saveItem(item);
+    public void saveItem(ItemAddDTO itemAddDTO) {
+        Item item = ItemAddDTO.itemAddDTOToItem(itemAddDTO);
+        itemRepository.saveItem(item);
     }
 
     public List<ItemAddDTO> findAllItems() {
         List<Item> itemList = itemRepository.findAllItems();
         List<ItemAddDTO> itemAddDTOList = new ArrayList<>();
         for (Item item: itemList) {
-            itemAddDTOList.add(Item.itemToItemAddDTO(item));
+            itemAddDTOList.add(ItemAddDTO.itemToItemAddDTO(item));
         }
         return itemAddDTOList;
     }
@@ -53,8 +55,8 @@ public class ItemService {
         return ItemDTO.ItemtoItemDTO(item);
     }
 
-    public List<ItemDTO> findItemsByName(ItemDTO itemDTO) {
-        List<Item> itemList = itemRepository.findItemsByName(Item.itemDTOToItemWithItemNo(itemDTO));
+    public List<ItemDTO> findItemsByName(ItemSearchDTO itemSearchDTO) {
+        List<Item> itemList = itemRepository.findItemsByName(ItemSearchDTO.itemSearchDTOToItem(itemSearchDTO));
         List<ItemDTO> itemDTOList = new ArrayList<>();
         for (Item item: itemList) {
             itemDTOList.add(ItemDTO.ItemtoItemDTO(item));
@@ -62,18 +64,18 @@ public class ItemService {
         return itemDTOList;
     }
 
-    public boolean updateItemByNo(Long itemNo, ItemDTO itemDTO) {
-        Item item = Item.itemDTOToItemWithItemNo(itemDTO);
-        return itemRepository.updateItemByNo(itemNo, item);
+    public void updateItemByNo(Long itemNo, ItemUpdateDTO itemUpdateDTO) {
+        Item item = ItemUpdateDTO.itemUpdateDTOToItem(itemUpdateDTO);
+        itemRepository.updateItemByNo(itemNo, item);
     }
 
     public void deleteItemByNo(Long itemNo) {
         itemRepository.deleteItemByNo(itemNo);
     }
 
-    public boolean deleteItemByName(ItemDTO itemDTO) {
+    public void deleteItemByName(ItemDTO itemDTO) {
         Item item = Item.itemDTOToItemWithItemNo(itemDTO);
-        return itemRepository.deleteItemByName(item);
+        itemRepository.deleteItemByName(item);
     }
 
 

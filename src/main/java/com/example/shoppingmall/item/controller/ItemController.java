@@ -2,6 +2,8 @@ package com.example.shoppingmall.item.controller;
 
 import com.example.shoppingmall.item.dto.ItemAddDTO;
 import com.example.shoppingmall.item.dto.ItemDTO;
+import com.example.shoppingmall.item.dto.ItemSearchDTO;
+import com.example.shoppingmall.item.dto.ItemUpdateDTO;
 import com.example.shoppingmall.item.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,6 @@ import java.util.List;
 @RequestMapping("/items")
 public class ItemController {
 
-    @Autowired
     private final ItemService itemService;  // 의존성 주입; @RequiredArgsConstructor 필요
 
     @GetMapping("/admin")
@@ -41,8 +42,8 @@ public class ItemController {
     }
 
     @PostMapping("/admin/search")
-    public String searchItem(@ModelAttribute ItemDTO itemDTO, Model model) {
-        List<ItemDTO> itemDTOList = itemService.findItemsByName(itemDTO);
+    public String searchItem(@ModelAttribute ItemSearchDTO itemSearchDTO, Model model) {
+        List<ItemDTO> itemDTOList = itemService.findItemsByName(itemSearchDTO);
         model.addAttribute("itemDTOList", itemDTOList);
         return "admins/admin-item";
     }
@@ -53,8 +54,8 @@ public class ItemController {
     }
 
     @PostMapping("/admin/add")
-    public String addItem(@ModelAttribute ItemDTO itemDTO) {
-        itemService.saveItem(itemDTO);
+    public String addItem(@ModelAttribute ItemAddDTO itemAddDTO) {
+        itemService.saveItem(itemAddDTO);
         return "redirect:/items/admin";
     }
 
@@ -66,14 +67,11 @@ public class ItemController {
     }
 
     @PostMapping("/admin/{itemNo}/update")
-    public String updateItem(@PathVariable Long itemNo, @ModelAttribute ItemDTO itemDTO) {
-        if (itemService.updateItemByNo(itemNo, itemDTO) == true)  {
-            System.out.println("Succeeded to update item; redirect to '/items/admin'");
-            return "redirect:/items/admin";
-        } else {
-            System.out.println("Failed to update item; redirect to '/items/admin/{itemNo}'");
-            return "redirect:/items/admin/{itemNo}";
-        }
+    public String updateItem(@PathVariable Long itemNo, @ModelAttribute ItemUpdateDTO itemUpdateDTO) {
+        itemService.updateItemByNo(itemNo, itemUpdateDTO);
+        // System.out.println("Succeeded to update item; redirect to '/items/admin'");
+        return "redirect:/items/admin";
+
     }
 
     @PostMapping("/admin/{itemNo}/delete")
