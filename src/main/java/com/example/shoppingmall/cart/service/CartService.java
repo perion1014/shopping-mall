@@ -15,13 +15,15 @@ public class CartService {
     private final CartRepository cartRepository;
 
     public ArrayList<CartReadDTO> getCartList(Long memberNo){
-    ArrayList<Cart> dbCartList = cartRepository.getCartList(memberNo);
-    ArrayList<CartReadDTO> readCart = new ArrayList<CartReadDTO>();
-    for(Cart cart: dbCartList ){
-        readCart.add(CartReadDTO.CartToCartDTO(cart));
-    }
-
-    return readCart;
+        System.out.println("Service단 진입");
+        ArrayList<Cart> dbCartList = cartRepository.getCartList(memberNo);
+        System.out.println("장바구니 조회 쿼리로 값을 받아왔나요? : " + dbCartList.isEmpty());
+        //ArrayList<CartReadDTO> readCart = new ArrayList<CartReadDTO>();
+        //for(Cart cart: dbCartList ){
+        //    readCart.add(CartReadDTO.CartToCartDTO(cart));
+        //}
+        //return readCart;
+        return null;
     }
 
     public static String getItemThumbnail(Long itemNo){
