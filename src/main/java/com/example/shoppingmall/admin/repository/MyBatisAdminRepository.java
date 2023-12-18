@@ -15,6 +15,6 @@ public class MyBatisAdminRepository implements AdminRepository{
     private final AdminMapper adminMapper;
     @Override
     public Optional<Admin> findByAdminId(String adminId){
-        return Optional.ofNullable((adminMapper.findByAdminId(adminId)));
+        return Optional.ofNullable((adminMapper.findById(adminId)));
     }
 }
