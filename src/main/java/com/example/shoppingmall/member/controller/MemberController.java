@@ -11,7 +11,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/members")
@@ -21,7 +23,7 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberLoginService memberLoginService;
 
-    /*유저 로그인 기능*/
+    /*유저 로그인*/
     @GetMapping("/login")
     public String goToMemberLoginPage(){
         return "members/member-login";
@@ -41,7 +43,7 @@ public class MemberController {
         return "redirect:/";
     }
 
-    /*유저 로그아웃 기능*/
+    /*유저 로그 아웃*/
     @PostMapping("/logout")
     public String memberLogout(HttpServletRequest request){
         HttpSession session = request.getSession(false);
@@ -51,7 +53,7 @@ public class MemberController {
         return "redirect:/";
     }
 
-    /*유저 회원가입 기능*/
+    /*유저 회원 가입 기능*/
     @GetMapping("/add")
     public String goToAddMemberPage(){
         return "members/add-member";
@@ -72,17 +74,31 @@ public class MemberController {
     }
 
 
-    /*유저 관련 기능*/
+    /*유저 회원 상세 정보 조회 페이지*/
     @GetMapping("/{memberNo}/show-info")
     public String showMemberInfo(@PathVariable(name="memberNo") Long memberNo){
         return "members/member-info";
     }
 
+    /*유저 회원 정보 조회*/
     @GetMapping("/{memberNo}/update")
-    public String goToUpdateMemberPage(@PathVariable Long memberNo, @ModelAttribute MemberUpdateDTO memberUpdateDTO){
+    public String goToUpdateMemberPage(@PathVariable(name="memberNo") Long memberNo, Model model){
+        model.addAttribute("memberUpdateDTO",memberService.getMemberInfo(memberNo));
         return "members/update-member";
     }
 
+    @PostMapping("/{memberNo}/update")
+    public String updateMemberInfo(@PathVariable Long memberNo, @ModelAttribute MemberUpdateDTO memberUpdateDTO, RedirectAttributes redirectAttributes){
+        memberService.update(memberUpdateDTO);
+        //redirectAttributes.addFlashAttribute("memberUpdateSuccess", "회원 정보가 업데이트되었습니다.");
+        return "redirect:/members/{memberNo}/update";
+    }
+
+    /*유저 회원 정보 탈퇴*/
+    @GetMapping("/{memberNo}/delete")
+    public String goToDeleteMemberPage(@PathVariable(name="memberNo") Long memberNo){
+        return "members/delete-member";
+    }
 
     /*관리자 기능*/
 

@@ -47,6 +47,10 @@
     width: 20rem;
 }
 
+.input--sm{
+    width: 17rem;
+}
+
 .btn{
     display: block;
     width: 23rem;
