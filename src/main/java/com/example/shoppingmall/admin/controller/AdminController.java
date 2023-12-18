@@ -16,21 +16,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admins")/*절대경로*/
 @RequiredArgsConstructor
 public class AdminController {
+
     private final AdminLoginService adminLoginService;
 
     @GetMapping("/login")
     public String goToAdminLoginPage(){
-        return "admins/admin-login";/*상대경로*/
+        return "admins/admin-login";
     }
     @PostMapping("/login")
     public String loginAdmin(@ModelAttribute AdminLoginDTO adminLoginDTO, HttpServletRequest request){
 
         Admin loginAdmin = adminLoginService.loginAdmin(adminLoginDTO);
 
-        HttpSession session = request.getSession();
-        session.setAttribute("loginAdmin", loginAdmin);
-        System.out.print(loginAdmin);
-        return "admins/admin-homeTest";
+        if(loginAdmin != null){
+            HttpSession session = request.getSession();
+            session.setAttribute("loginAdmin", loginAdmin);
+            return "admins/admin-homeTest";
+        }
+
+        return "admins/admin-login";
     }
     @PostMapping("/logout")
     public String adminLogout(HttpServletRequest request){
@@ -38,7 +42,7 @@ public class AdminController {
         if(session !=null){
             session.invalidate();
         }
-        return "redirect:/";
+        return "redirect:/admins/login";
     }
 
 }

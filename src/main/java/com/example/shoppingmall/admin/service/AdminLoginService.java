@@ -13,7 +13,7 @@ public class AdminLoginService {
 
     private final AdminRepository adminRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Admin loginAdmin(AdminLoginDTO adminLoginDTO){
         Admin admin = AdminLoginDTO.AdminLoginDTOToAdmin(adminLoginDTO);
         return adminRepository.findByAdminId(admin.getAdminId())
