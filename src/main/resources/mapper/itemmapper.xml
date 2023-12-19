@@ -2,47 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.shoppingmall.item.mapper.ItemMapper">
 
-    <resultMap id="itemResultMap" type="com.example.shoppingmall.order.domain.Item">
-        <id column="item_no" property="itemNo"/>
-        <result column="item_name" property="itemName"/>
-        <result column="item_category" property="itemCategory"/>
-        <result column="item_grade" property="itemGrade"/>
-        <result column="item_detail" property="itemDetail"/>
-        <result column="item_price" property="itemPrice"/>
-        <result column="item_onsale" property="itemOnsale"/>
-        <result column="item_registered_time" property="itemRegisteredTime"/>
-        <!--1:1 매핑 => association 사용-->
-<!--        <association property="itemPhoto" javaType="com.example.shoppingmall.order.domain.ItemPhoto">-->
-<!--            -->
-<!--        </association>-->
-        <!-- 1:N 매핑 => collection 사용 -->
-        <collection property="itemStockList" ofType="com.example.shoppingmall.order.domain.ItemStock">
-            <id column="item_stock_no" property="itemStockNo"/>
-            <result column="item_no" property="itemNo"/>
-            <result column="item_size" property="itemSize"/>
-            <result column="item_stock" property="itemStock"/>
-        </collection>
-    </resultMap>
+<!--    <resultMap id="itemResultMap" type="com.example.shoppingmall.order.domain.Item">-->
+<!--        <id column="item_no" property="itemNo"/>-->
+<!--        <result column="item_name" property="itemName"/>-->
+<!--        <result column="item_category" property="itemCategory"/>-->
+<!--        <result column="item_grade" property="itemGrade"/>-->
+<!--        <result column="item_detail" property="itemDetail"/>-->
+<!--        <result column="item_price" property="itemPrice"/>-->
+<!--        <result column="item_onsale" property="itemOnsale"/>-->
+<!--        <result column="item_registered_time" property="itemRegisteredTime"/>-->
+<!--        &lt;!&ndash;1:1 매핑 => association 사용&ndash;&gt;-->
+<!--&lt;!&ndash;        <association property="itemPhoto" javaType="com.example.shoppingmall.order.domain.ItemPhoto">&ndash;&gt;-->
+<!--&lt;!&ndash;            &ndash;&gt;-->
+<!--&lt;!&ndash;        </association>&ndash;&gt;-->
+<!--        &lt;!&ndash; 1:N 매핑 => collection 사용 &ndash;&gt;-->
+<!--        <collection property="itemStockList" ofType="com.example.shoppingmall.order.domain.ItemStock">-->
+<!--            <id column="item_stock_no" property="itemStockNo"/>-->
+<!--            <result column="item_no" property="itemNo"/>-->
+<!--            <result column="item_size" property="itemSize"/>-->
+<!--            <result column="item_stock" property="itemStock"/>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
 
-    <select id="joinItemByItemNo" resultMap="itemResultMap" parameterType="java.lang.Long">
-        select
-            a.item_no,
-            a.item_name,
-            a.item_category,
-            a.item_grade,
-            a.item_detail,
-            a.item_price,
-            a.item_onsale,
-            a.item_registered_time,
-            b.item_stock_no,
-            b.item_size,
-            b.item_stock
-        from item as a
-        join
-            item_stock as b
-            on a.item_no = b.item_no
-        where a.item_no = #{itemNo};
-    </select>
+<!--    <select id="joinItemByItemNo" resultMap="itemResultMap" parameterType="java.lang.Long">-->
+<!--        select-->
+<!--            a.item_no,-->
+<!--            a.item_name,-->
+<!--            a.item_category,-->
+<!--            a.item_grade,-->
+<!--            a.item_detail,-->
+<!--            a.item_price,-->
+<!--            a.item_onsale,-->
+<!--            a.item_registered_time,-->
+<!--            b.item_stock_no,-->
+<!--            b.item_size,-->
+<!--            b.item_stock-->
+<!--        from item as a-->
+<!--        join-->
+<!--            item_stock as b-->
+<!--            on a.item_no = b.item_no-->
+<!--        where a.item_no = #{itemNo};-->
+<!--    </select>-->
 
 
 
