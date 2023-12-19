@@ -117,8 +117,8 @@ public class MemberController {
 
     //회원 목록 조회(뷰 완성 시, String타입으로 변경)
     @GetMapping("/admin")
-    public void showMemberList(){
-        //return "admins/admin_member";
+    public String showMemberList(){
+        return "admins/admins-member";
     }
 
     @PostMapping("/admin")  //(완성 시, String타입으로 변경)
