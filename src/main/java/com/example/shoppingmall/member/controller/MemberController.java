@@ -88,7 +88,7 @@ public class MemberController {
     @PostMapping("/{memberNo}/update")
     public String updateMemberInfo(@ModelAttribute MemberUpdateDTO memberUpdateDTO, RedirectAttributes redirectAttributes){
         memberService.update(memberUpdateDTO);
-        //redirectAttributes.addFlashAttribute("memberUpdateSuccess", "회원 정보가 업데이트되었습니다.");
+        redirectAttributes.addFlashAttribute("memberUpdateSuccess", "회원 정보가 업데이트되었습니다.");
         return "redirect:/members/{memberNo}/update";
     }
 
@@ -104,6 +104,7 @@ public class MemberController {
         memberService.withdraw(memberNo, memberDeleteDTO);
         HttpSession session = request.getSession(false);
         session.invalidate();
+        redirectAttributes.addFlashAttribute("memberUpdateSuccess", "회원 탈퇴가 완료되었습니다.");
         return "redirect:/members/delete-success";
     }
 

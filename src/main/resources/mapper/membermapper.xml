@@ -30,7 +30,7 @@
     </update>
 
     <delete id="deleteByNo" parameterType="com.example.shoppingmall.member.domain.Member">
-        delete from member where member_id = #{memberNo}
+        delete from member where member_no = #{memberNo}
     </delete>
 
     <select id="findAll" resultType="com.example.shoppingmall.member.domain.Member">

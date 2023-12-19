@@ -41,10 +41,12 @@ public class MemberService {
 
     @Transactional
     public void withdraw(Long memberNo,MemberDeleteDTO memberDeleteDTO){
-        Optional<Member> entity = memberRepository.findByNo(memberNo)
-                .filter(m -> m.getMemberPw().equals(memberDeleteDTO.getMemberPw()));
-        entity.ifPresentOrElse(
-                member -> memberRepository.deleteByNo(memberNo),
+        Member member = MemberDeleteDTO.MemberDeleteDTOToMember(memberNo,memberDeleteDTO);
+
+        memberRepository.findByNo(member.getMemberNo())
+                .filter(m -> m.getMemberPw().equals(member.getMemberPw()))
+                .ifPresentOrElse(
+                m -> memberRepository.deleteByNo(member.getMemberNo()),
                 () -> { throw new IllegalStateException("비밀번호가 일치하지 않습니다."); }
         );
     }
