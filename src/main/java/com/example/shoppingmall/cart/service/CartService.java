@@ -35,7 +35,7 @@ public class CartService {
             cartReadDTO.setItemName(cartRepository.getItemName(cart.getItemNo()));
             System.out.println("상품 이름 : " + cartReadDTO.getItemName());
             cartReadDTO.setItemSize(cart.getItemSize());
-            System.out.println("상품 사이즈 : "cartReadDTO.getItemSize());
+            System.out.println("상품 사이즈 : " + cartReadDTO.getItemSize());
             cartReadDTO.setItemPrice(cartRepository.getItemPrice(cart.getItemNo()));
             System.out.println(cartReadDTO.getItemPrice());
             cartReadDTO.setItemQuantity(cart.getCartItemQuantity());
