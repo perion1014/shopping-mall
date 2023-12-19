@@ -46,6 +46,6 @@ public class MyBatisMemberRepository implements MemberRepository {
 
     @Override
     public List<Member> findAll() {
-        return null;
+         return memberMapper.findAll();
     }
 }
