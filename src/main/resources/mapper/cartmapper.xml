@@ -3,8 +3,19 @@
 <mapper namespace="com.example.shoppingmall.cart.mapper.CartMapper">
 
     <select id = "getCartList" resultType = "com.example.shoppingmall.cart.domain.Cart">
-    select item_no, cart_item_quantity, item_size from cart where member_no = #{memberNo}
+    select * from cart where member_no = #{memberNo}
     </select>
 
+    <select id = "getItemThumbnails" resultType = "java.lang.String">
+    select item_thumb_modified FROM item_photos where item_no = #{itemNo}
+    </select>
+
+    <select id = "getItemName" resultType = "java.lang.String">
+    select item_name FROM item where item_no = #{itemNo}
+    </select>
+
+    <select id ="getItemPrice" resultType= "java.lang.Integer">
+    select item_price FROM item where item_no = #{itemNo}
+    </select>
 
 </mapper>

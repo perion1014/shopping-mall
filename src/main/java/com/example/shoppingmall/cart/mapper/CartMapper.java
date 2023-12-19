@@ -10,7 +10,7 @@ import java.util.ArrayList;
 @Mapper
 public interface CartMapper {
     ArrayList<Cart> getCartList(@Param("memberNo") Long memberNo);
-    ArrayList<String> getItemThumbnails();
-    String getItemInfo();
-    String getItemSize();
+    String getItemThumbnails(@Param("itemNo") Long itemNo);
+    String getItemName(@Param("itemNo") Long itemNo);
+    Integer getItemPrice(@Param("itemNo") Long itemNo);
 }
