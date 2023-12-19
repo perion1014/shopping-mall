@@ -115,9 +115,10 @@ public class MemberController {
 
     /*관리자 기능*/
 
-    //회원 목록 조회(뷰 완성 시, String타입으로 변경)
+    //회원 목록 조회
     @GetMapping("/admin")
     public String showMemberList(){
+        memberService.getAllMemberInfo();
         return "admins/admins-member";
     }
 

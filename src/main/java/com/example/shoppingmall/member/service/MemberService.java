@@ -3,12 +3,15 @@ package com.example.shoppingmall.member.service;
 import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.MemberAddDTO;
 import com.example.shoppingmall.member.dto.MemberDeleteDTO;
+import com.example.shoppingmall.member.dto.MemberListDTO;
 import com.example.shoppingmall.member.dto.MemberUpdateDTO;
 import com.example.shoppingmall.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,6 +36,17 @@ public class MemberService {
         return MemberUpdateDTO.MemberToMemberUpdateDTO(member);
     }
 
+
+    @Transactional(readOnly = true)
+    public List<MemberListDTO> getAllMemberInfo(){
+        List<Member> memberList= memberRepository.findAll();
+        List<MemberListDTO> memberListDTOList = new ArrayList<>();
+        for(Member member : memberList){
+            MemberListDTO.MemberToMemberListDTO(member);
+        }
+        return memberListDTOList;
+    }
+
     @Transactional
     public void update(MemberUpdateDTO memberUpdateDTO){
         Member member = MemberUpdateDTO.MemberUpdateDTOToMember(memberUpdateDTO);
@@ -50,7 +64,6 @@ public class MemberService {
                 () -> { throw new IllegalStateException("비밀번호가 일치하지 않습니다."); }
         );
     }
-
 
 
 
