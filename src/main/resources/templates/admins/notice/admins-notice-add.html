@@ -59,9 +59,10 @@
       <div class="main">
         <div class="admin_notice_add">공지사항 등록</div>
 
-        <form class="notice_add_form" action="" method="">
+        <form class="notice_add_form" action="/notice/admin/add" method="post">
           <hr />
           <input
+            name="noticeTitle"
             class="notice_title"
             type="text"
             maxlength="44"
@@ -70,7 +71,7 @@
           <hr />
           <textarea
             class="notice_contents"
-            name="detail"
+            name="noticeContent"
             rows="20"
             cols="20"
             maxlength="254"
