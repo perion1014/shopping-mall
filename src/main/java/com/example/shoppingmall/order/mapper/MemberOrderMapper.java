@@ -5,5 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface MemberOrderMapper {
+
+    void saveMemberOrder(MemberOrder memberOrder);
     MemberOrder joinMemeberOrderByMemberOrderNo(Long orderNo);
 }

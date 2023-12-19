@@ -23,6 +23,11 @@ public class MyBatisItemRepository implements ItemRepository{
     }
 
     @Override
+    public void saveItemStock(ItemStock itemStock) {
+        itemMapper.saveItemStock(itemStock);
+    }
+
+    @Override
     public List<Item> findAllItems() {
         List<Item> itemList = itemMapper.findAllItems();
         return itemList;

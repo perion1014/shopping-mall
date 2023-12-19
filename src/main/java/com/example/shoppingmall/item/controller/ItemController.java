@@ -51,8 +51,9 @@ public class ItemController {
     }
 
     @PostMapping("/admin/add")
-    public String addItem(@ModelAttribute ItemAddDTO itemAddDTO) {
+    public String addItem(@ModelAttribute ItemAddDTO itemAddDTO, @ModelAttribute ItemStockAddDTO itemStockAddDTO) {
         itemService.saveItem(itemAddDTO);
+        itemService.saveItemStock(itemStockAddDTO);
         return "redirect:/items/admin";
     }
 

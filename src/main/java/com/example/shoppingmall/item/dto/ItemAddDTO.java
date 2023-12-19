@@ -18,8 +18,6 @@ public class ItemAddDTO {
     private String itemCategory;
     private Integer itemPrice;
     private Integer itemOnsale;
-    private String itemSize;
-    private Integer itemStock;
     private String itemDetail;
     private Timestamp itemRegisteredTime;
 

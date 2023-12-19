@@ -12,6 +12,8 @@ public interface ItemMapper {
 
     void saveItem(Item item);
 
+    void saveItemStock(ItemStock itemStock);
+
     List<Item> findAllItems();
 
     List<Item> findAllItemsOnsale();

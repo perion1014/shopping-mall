@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.shoppingmall.order.domain.MemberOrder">
+
+    <insert id="saveMemberOrder" parameterType="com.example.shoppingmall.order.domain.MemberOrder">
+        insert into member_order values (#{memberOrderNo}, #{memberNo}, #{orderTime}, #{orderHp}, #{orderPostalCode}, #{orderAddressBasic}, #{orderAddressDetail}, #{receiverName}, #{orderStatus})
+    </insert>
+
     <resultMap id="memberOrderResultMap" type="com.example.shoppingmall.order.domain.MemberOrder">
         <id column="member_order_no" property="memberOrderNo"/>
         <result column="member_no" property="memberNo"/>
