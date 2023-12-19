@@ -26,6 +26,8 @@ public class Item {
     private Integer itemOnsale;
     private Timestamp itemRegisteredTime;
 
+
+
     public static Item itemDTOToItemWithItemNo(ItemDTO itemDTO) {
         Item item = new Item();
         item.setItemNo(itemDTO.getItemNo());

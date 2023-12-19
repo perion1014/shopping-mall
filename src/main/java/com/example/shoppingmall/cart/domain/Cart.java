@@ -13,6 +13,6 @@ public class Cart {
     private Long cartNo;
     private Long memberNo;
     private Long itemNo;
-    private Integer itemQuantity;
-
+    private Integer cartItemQuantity;
+    private String itemSize;
 }

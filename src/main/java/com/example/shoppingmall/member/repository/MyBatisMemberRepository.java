@@ -25,7 +25,8 @@ public class MyBatisMemberRepository implements MemberRepository {
     }
 
     @Override
-    public void deleteById(String memberId) {
+    public void deleteByNo(Long memberNo) {
+        memberMapper.deleteByNo(memberNo);
     }
 
     @Override

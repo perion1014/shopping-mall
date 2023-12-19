@@ -2,6 +2,7 @@ package com.example.shoppingmall.member.service;
 
 import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.MemberAddDTO;
+import com.example.shoppingmall.member.dto.MemberDeleteDTO;
 import com.example.shoppingmall.member.dto.MemberUpdateDTO;
 import com.example.shoppingmall.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,18 @@ public class MemberService {
         Member member = MemberUpdateDTO.MemberUpdateDTOToMember(memberUpdateDTO);
         memberRepository.update(member);
     }
+
+    @Transactional
+    public void withdraw(Long memberNo,MemberDeleteDTO memberDeleteDTO){
+        Optional<Member> entity = memberRepository.findByNo(memberNo)
+                .filter(m -> m.getMemberPw().equals(memberDeleteDTO.getMemberPw()));
+        entity.ifPresentOrElse(
+                member -> memberRepository.deleteByNo(memberNo),
+                () -> { throw new IllegalStateException("비밀번호가 일치하지 않습니다."); }
+        );
+    }
+
+
 
 
 }

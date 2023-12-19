@@ -10,19 +10,23 @@
     <img class="main__logo" src="/images/spartan-helmet.svg">
     <h3>회원가입이 완료되었습니다.</h3>
     <h3>지금 로그인 하시겠어요?</h3>
-    <form th:action method="post" >
+    <form action="/members/login" method="post" >
         <label class="label" for="memberId">
             <h5 class="label__title">아이디</h5>
             <input id="memberId" class="input" type="text"/>
-            <h6 class="label__error">에러메시지를 출력합니다.</h6>
+            <div class="label__error-container">
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+            </div>
         </label>
         <label class="label" for="memberPw">
             <h5 class="label__title">비밀번호</h5>
             <input id="memberPw" class="input" type="password" />
-            <h6 class="label__error">에러메시지를 출력합니다.</h6>
+            <div class="label__error-container">
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+            </div>
         </label>
+        <button type="submit" class="btn btn--black btn--member-login">로그인</button>
     </form>
-    <button type="submit" class="btn btn--black btn--member-login">로그인</button>
     <nav class="info__nav">
         <ul class="info__links">
             <a href="/info">아이디/비밀번호 찾기</a>

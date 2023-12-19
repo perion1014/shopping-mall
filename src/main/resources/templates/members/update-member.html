@@ -9,46 +9,70 @@
 </header>
 <main class="main__container">
     <h1 class="main__title" th:text="|${session.loginMember.getMemberId()}님의 회원 정보|"></h1>
-    <form action method="post" th:object="${memberUpdateDTO}">
-        <label class="label">
+    <form th:action method="post" th:object="${memberUpdateDTO}">
+        <label class="label" for="memberPw">
+            <h5 class="label__title">아이디</h5>
+            <input id="memberId" name ="memberId" th:field="*{memberId}" class="input" type="text" readonly/>
+            <div class="label__error-container">
+                <h6 class="label__error"></h6>
+            </div>
+        </label>
+        <label class="label" for="memberEmail">
             <h5 class="label__title">이메일</h5>
-            <h4 class="label__title" th:text="${session.loginMember.getMemberEmail()}"></h4>
+            <input id="memberEmail" name ="memberEmail" th:field="*{memberEmail}" class="input" type="text" readonly/>
+            <div class="label__error-container">
+                <h6 class="label__error"></h6>
+            </div>
         </label>
         <label class="label" for="memberPw">
             <h5 class="label__title">비밀번호*</h5>
             <input id="memberPw" name ="memberPw" class="input" type="password" />
-            <h6 class="label__error">에러메시지를 출력합니다.</h6>
+            <div class="label__error-container">
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+            </div>
         </label>
         <label class="label" for="memberPw2">
             <h5 class="label__title">비밀번호 확인*</h5>
             <input id="memberPw2" name ="memberPw2" class="input" type="password" />
-            <h6 class="label__error">에러메시지를 출력합니다.</h6>
+            <div class="label__error-container">
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+            </div>
         </label>
         <label class="label" for="memberName">
             <h5 class="label__title">성명*</h5>
             <input id="memberName" th:field="*{memberName}" name ="memberName" class="input" type="text" />
-            <h6 class="label__error">에러메시지를 출력합니다.</h6>
+            <div class="label__error-container">
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+            </div>
         </label>
         <label class="label" for="memberHp">
             <h5 class="label__title">휴대폰 번호*</h5>
             <input id="memberHp" th:field="*{memberHp}" name="memberHp" class="input" type="text" />
-            <h6 class="label__error">에러메시지를 출력합니다.</h6>
+            <div class="label__error-container">
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+            </div>
         </label>
         <label class="label" for="memberPostalCode">
             <h5 class="label__title">우편번호*</h5>
             <input id="memberPostalCode" th:field="*{memberPostalCode}" name=memberPostalCode class="input input--sm" type="text" />
             <button type="button" class="btn btn--mi btn--black">우편번호 찾기</button>
-            <h6 class="label__error">에러메시지를 출력합니다.</h6>
+            <div class="label__error-container">
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+            </div>
         </label>
         <label class="label" for="memberAddressBasic">
             <h5 class="label__title">기본 주소*</h5>
             <input id="memberAddressBasic" th:field="*{memberAddressBasic}" name="memberAddressBasic" class="input" type="text" />
-            <h6 class="label__error">에러메시지를 출력합니다.</h6>
+            <div class="label__error-container">
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+            </div>
         </label>
         <label class="label" for="memberAddressDetail">
             <h5 class="label__title">상세 주소</h5>
             <input id="memberAddressDetail" th:field="*{memberAddressDetail}" name="memberAddressDetail" class="input" type="text" />
-            <h6 class="label__error">에러메시지를 출력합니다.</h6>
+            <div class="label__error-container">
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+            </div>
         </label>
         <button type="submit" class="btn btn--white btn--member-add-post">정보수정 하기</button>
     </form>

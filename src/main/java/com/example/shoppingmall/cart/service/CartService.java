@@ -4,6 +4,7 @@ import com.example.shoppingmall.cart.domain.Cart;
 import com.example.shoppingmall.cart.dto.CartReadDTO;
 import com.example.shoppingmall.cart.repository.CartRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,12 +13,40 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class CartService {
 
+    @Autowired
     private final CartRepository cartRepository;
 
     public ArrayList<CartReadDTO> getCartList(Long memberNo){
-        System.out.println("Service단 진입");
         ArrayList<Cart> dbCartList = cartRepository.getCartList(memberNo);
-        System.out.println("장바구니 조회 쿼리로 값을 받아왔나요? : " + dbCartList.isEmpty());
+        System.out.println("장바구니 조회 쿼리로 값을 받아왔나요? : " + !dbCartList.isEmpty());
+
+        ArrayList<CartReadDTO> cartDTOList = new ArrayList<CartReadDTO>();
+
+        for(Cart cart: dbCartList){
+//            System.out.println("cartNo : " + cart.getCartNo());
+//            System.out.println("memberNo : " + cart.getMemberNo());
+//            System.out.println("itemNo : " + cart.getItemNo());
+//            System.out.println("cartItemQuantity : " + cart.getCartItemQuantity());
+//            System.out.println("itemSize : " + cart.getItemSize());
+//            System.out.println("-------------------------------------------");
+            CartReadDTO cartReadDTO = new CartReadDTO();
+            cartReadDTO.setItemThumbnail(cartRepository.getItemThumbnails(cart.getItemNo()));
+            System.out.println("썸네일 : " + cartReadDTO.getItemThumbnail());
+            cartReadDTO.setItemName(cartRepository.getItemName(cart.getItemNo()));
+            System.out.println("상품 이름 : " + cartReadDTO.getItemName());
+            cartReadDTO.setItemSize(cart.getItemSize());
+            System.out.println("상품 사이즈 : " + cartReadDTO.getItemSize());
+            cartReadDTO.setItemPrice(cartRepository.getItemPrice(cart.getItemNo()));
+            System.out.println(cartReadDTO.getItemPrice());
+            cartReadDTO.setItemQuantity(cart.getCartItemQuantity());
+            System.out.println(cartReadDTO.getItemQuantity());
+            cartReadDTO.setItemPriceSum(cartReadDTO.getItemPrice() * cartReadDTO.getItemQuantity());
+            System.out.println(cartReadDTO.getItemPriceSum());
+            cartReadDTO.setOrderPriceSum((cartReadDTO.getItemPrice() * cartReadDTO.getItemQuantity()) - 1000);
+            System.out.println(cartReadDTO.getOrderPriceSum());
+            cartDTOList.add(cartReadDTO);
+        }
+
         //ArrayList<CartReadDTO> readCart = new ArrayList<CartReadDTO>();
         //for(Cart cart: dbCartList ){
         //    readCart.add(CartReadDTO.CartToCartDTO(cart));
@@ -26,43 +55,41 @@ public class CartService {
         return null;
     }
 
-    public static String getItemThumbnail(Long itemNo){
-    String itemThumbnail = "";
-
-    return itemThumbnail;
+    public String getItemThumbnail(Long itemNo){
+         return cartRepository.getItemThumbnails(itemNo);
     }
 
-    public static String getItemName(Long itemNo){
+    public String getItemName(Long itemNo){
         String itemName = "";
 
         return itemName;
     }
 
-    public static String getItemSize(){
+    public String getItemSize(){
         String itemSize = "";
 
         return itemSize;
     }
 
-    public static Integer getItemPrice(Long itemNo){
+    public Integer getItemPrice(Long itemNo){
         Integer itemPrice = 0;
 
         return itemPrice;
     }
 
-    public static Integer getItemQuantity(){
+    public Integer getItemQuantity(){
         Integer itemQuantity = 0;
 
         return itemQuantity;
     }
 
-    public static Integer getItemPriceSum(){
+    public Integer getItemPriceSum(){
         Integer itemPriceSum = 0;
 
         return itemPriceSum;
     }
 
-    public static Integer getOrderPriceSum(){
+    public Integer getOrderPriceSum(){
         Integer orderPriceSum = 0;
 
         return orderPriceSum;

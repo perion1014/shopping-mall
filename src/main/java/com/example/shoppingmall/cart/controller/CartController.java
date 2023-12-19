@@ -21,7 +21,6 @@ public class CartController {
 
     @GetMapping("/{memberNo}")
     public String showMemberCartList(@PathVariable(name = "memberNo") Long memberNo) {
-        System.out.println("/cart/memberNo 진입 성공");
         ArrayList<CartReadDTO> cartDTOList = cartService.getCartList(memberNo);
         return "carts/member-cart-list";
     }
