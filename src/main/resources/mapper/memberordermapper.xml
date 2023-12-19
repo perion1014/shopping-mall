@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.shoppingmall.order.domain.MemberOrder">
+    <resultMap id="memberOrderResultMap" type="com.example.shoppingmall.order.domain.MemberOrder">
+        <id column="member_order_no" property="memberOrderNo"/>
+        <result column="member_no" property="memberNo"/>
+        <result column="order_time" property="orderTime"/>
+        <result column="order_hp" property="orderHp"/>
+        <result column="order_postal_code" property="orderPostalCode"/>
+        <result column="order_address_basic" property="orderAddressBasic"/>
+        <result column="order_address_detail" property="orderAddressDetail"/>
+        <result column="receiver_name" property="receiverName"/>
+        <result column="order_status" property="orderStatus"/>
+        <!-- 1:1 매핑 => association 사용 -->
+        <association property="memberOrderDetail" javaType="com.example.shoppingmall.order.domain.MemberOrderDetail">
+            <id column="member_order_detail_no" property="memberOrderDetailNo"/>
+            <result column="member_order_no" property="memberOrderNo"/>
+            <result column="item_no" property="itemNo"/>
+            <result column="item_stock_no" property="itemStockNo"/>
+            <result column="item_quantity" property="itemQuantity"/>
+        </association>
+    </resultMap>
+
+    <select id="joinMemeberOrderByMemberOrderNo" resultMap="memberOrderResultMap">
+        select
+            a.member_order_no,
+            a.member_no,
+            a.order_time,
+            a.order_hp,
+            a.order_postal_code,
+            a.order_address_basic,
+            a.order_address_detail,
+            a.receiver_name,
+            a.order_status,
+            b.member_order_detail_no,
+            b.item_no,
+            b.item_stock_no,
+            b.item_quantity
+        from member_order as a
+        join
+            member_order_detail as b
+            on a.member_order_no = b.member_order_no
+        where a.member_order_no = #{memberOrderNo}
+    </select>
+</mapper>

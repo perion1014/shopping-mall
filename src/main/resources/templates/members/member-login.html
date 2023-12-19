@@ -14,12 +14,16 @@
         <label class="label" for="memberId">
             <h5 class="label__title">아이디</h5>
             <input id="memberId" name="memberId" class="input" type="text"/>
-            <h6 class="label__error">에러메시지를 출력합니다.</h6>
+            <div class="label__error-container">
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+            </div>
         </label>
         <label class="label" for="memberPw">
             <h5 class="label__title">비밀번호</h5>
             <input id="memberPw" name="memberPw" class="input" type="password" />
-            <h6 class="label__error">에러메시지를 출력합니다.</h6>
+            <div class="label__error-container">
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+            </div>
         </label>
         <button type="submit" class="btn btn--black btn--member-login">로그인</button>
         <button type="button" class="btn btn--white btn--member-add">회원가입</button>

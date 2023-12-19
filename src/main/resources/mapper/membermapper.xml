@@ -26,11 +26,11 @@
             member_postal_code = #{memberPostalCode},
             member_address_basic = #{memberAddressBasic},
             member_address_detail = #{memberAddressDetail}
-        where member_no = #{memberNo}
+        where member_id = #{memberId}
     </update>
 
-    <delete id="deleteById" parameterType="com.example.shoppingmall.member.domain.Member">
-        delete from member where member_id = #{memberId}
+    <delete id="deleteByNo" parameterType="com.example.shoppingmall.member.domain.Member">
+        delete from member where member_id = #{memberNo}
     </delete>
 
     <select id="findAll" resultType="com.example.shoppingmall.member.domain.Member">

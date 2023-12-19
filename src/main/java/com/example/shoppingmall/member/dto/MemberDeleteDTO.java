@@ -10,14 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberDeleteDTO {
-    private String memberId;
+    private Long memberNo;
     private String memberPw;
     private String memberPw2;
 
-    public static Member MemberDeleteDTOToMember(MemberDeleteDTO memberDeleteDTO){
-        Member member = new Member();
-        member.setMemberId(memberDeleteDTO.getMemberId());
-        member.setMemberPw(memberDeleteDTO.getMemberPw());
-        return member;
-    }
 }
