@@ -31,7 +31,7 @@ public class AdminController {
         if(loginAdmin != null){
             HttpSession session = request.getSession();
             session.setAttribute("loginAdmin", loginAdmin);
-            return "admins/admin-homeTest";
+            return "admins/admin-home";
         }
 
         return "admins/admin-login";
