@@ -8,18 +8,21 @@
 <body>
    <header th:replace="~{/fragments/login-header :: header}"></header>
 
-   <div th:each="cartDTO : ${cartDTOList}">
-       
-
-
-   </div>
-
-   <h1> member-cart-list.html입니다.</h1>
-
-
-
     <main>
+        <h1> member-cart-list.html입니다.</h1>
 
+        <div th:each="cartDTO : ${cartDTOList}">
+            <div th:text="'썸네일 : ' + ${cartDTO.itemThumbnail}"></div>
+            <div th:text="'상품명 : ' + ${cartDTO.itemName}"></div>
+            <div th:text="'상품 사이즈 : ' + ${cartDTO.itemSize}"></div>
+            <div th:text="'상품 가격 : ' + ${cartDTO.itemPrice}"></div>
+            <div th:text="'상품 총액 : ' + ${cartDTO.itemPriceSum}"></div>
+            <div th:text="'주문 총액 : ' + ${cartDTO.orderPriceSum}"></div>
+            상품 수량 <input th:value ="${cartDTO.itemQuantity}"></input>
+            <button onclick="updateQuantity(-1)"> - </button>
+            <button onclick="updateQuantity(1)"> + </button>
+            <hr>
+        </div>
     </main>
 
     <footer>

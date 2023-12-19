@@ -39,7 +39,6 @@ public class CartService {
             System.out.println("주문 총액 : " + cartReadDTO.getOrderPriceSum());
             cartDTOList.add(cartReadDTO);
         }
-
         return cartDTOList;
     }
 
