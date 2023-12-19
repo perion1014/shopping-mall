@@ -6,8 +6,8 @@
     <meta name="description" content="관리자 페이지">
 </head>
 <body>
-<header th:replace="~{/fragments/admin-login-header :: admin-login-header}"></header>
-<main>
+<header th:replace="~{/fragments/admin-header :: admin-header}"></header>
+<main class="main__container">
     <img class="main__logo" src="/images/spartan-helmet.svg">
     <form th:action method="post">
         <label class="label" for="adminId">
@@ -20,7 +20,7 @@
             <input id="adminPw" name="adminPw" class="input" type="password"/>
             <h6 class="label__error">에러메시지를 출력합니다.</h6>
         </label>
-        <button class="btn__lg btn--black">관리자 로그인</button>
+        <button class="btn btn__lg btn--black">관리자 로그인</button>
     </form>
 </main>
 <footer th:replace="~{/fragments/footer :: footer}"></footer>

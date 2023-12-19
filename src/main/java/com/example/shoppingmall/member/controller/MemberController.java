@@ -1,10 +1,7 @@
 package com.example.shoppingmall.member.controller;
 
 import com.example.shoppingmall.member.domain.Member;
-import com.example.shoppingmall.member.dto.MemberAddDTO;
-import com.example.shoppingmall.member.dto.MemberLoginDTO;
-import com.example.shoppingmall.member.dto.MemberSearchDTO;
-import com.example.shoppingmall.member.dto.MemberUpdateDTO;
+import com.example.shoppingmall.member.dto.*;
 import com.example.shoppingmall.member.service.MemberLoginService;
 import com.example.shoppingmall.member.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -87,8 +84,9 @@ public class MemberController {
         return "members/update-member";
     }
 
+    /*유저 회원 정보 수정*/
     @PostMapping("/{memberNo}/update")
-    public String updateMemberInfo(@PathVariable Long memberNo, @ModelAttribute MemberUpdateDTO memberUpdateDTO, RedirectAttributes redirectAttributes){
+    public String updateMemberInfo(@ModelAttribute MemberUpdateDTO memberUpdateDTO, RedirectAttributes redirectAttributes){
         memberService.update(memberUpdateDTO);
         //redirectAttributes.addFlashAttribute("memberUpdateSuccess", "회원 정보가 업데이트되었습니다.");
         return "redirect:/members/{memberNo}/update";
@@ -96,8 +94,22 @@ public class MemberController {
 
     /*유저 회원 정보 탈퇴*/
     @GetMapping("/{memberNo}/delete")
-    public String goToDeleteMemberPage(@PathVariable(name="memberNo") Long memberNo){
+    public String goToDeleteMemberPage(@PathVariable(name="memberNo") Long memberNo, Model model){
+        model.addAttribute("memberDeleteDTO",new MemberDeleteDTO());
         return "members/delete-member";
+    }
+
+    @PostMapping("/{memberNo}/delete")
+    public String deleteMember(@PathVariable(name="memberNo") Long memberNo,@ModelAttribute MemberDeleteDTO memberDeleteDTO, RedirectAttributes redirectAttributes, HttpServletRequest request){
+        memberService.withdraw(memberNo, memberDeleteDTO);
+        HttpSession session = request.getSession(false);
+        session.invalidate();
+        return "redirect:/members/delete-success";
+    }
+
+    @GetMapping("/delete-success")
+    public String goToDeleteMemberSuccess(){
+        return "members/delete-member-success";
     }
 
     /*관리자 기능*/
