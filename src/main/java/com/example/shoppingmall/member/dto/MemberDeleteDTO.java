@@ -14,4 +14,10 @@ public class MemberDeleteDTO {
     private String memberPw;
     private String memberPw2;
 
+    public static Member MemberDeleteDTOToMember(Long memberNo,MemberDeleteDTO memberDeleteDTO){
+        Member member = new Member();
+        member.setMemberNo(memberNo);
+        member.setMemberPw(memberDeleteDTO.getMemberPw());
+        return member;
+    }
 }
