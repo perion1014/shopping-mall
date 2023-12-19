@@ -14,8 +14,9 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class NoticeDTO {
     private int noticeNo;
+    private Integer adminNo;
     private String noticeTitle;
-    private Timestamp noticeCreateTime;
+    private String noticeCreateTime;
     private String noticeContent;
     private int viewCount;
 

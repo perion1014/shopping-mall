@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.shoppingmall.notify.mapper.NoticeMapper">
+
     <select id="findAllNotice" resultType="com.example.shoppingmall.notify.domain.Notice">
         select * from notice
     </select>
+
+    <insert id="addNotice" parameterType="com.example.shoppingmall.notify.domain.Notice">
+        insert into notice values (#{admin_no}, #{noticeTitle}, #{noticeCreateTime}, #{noticeContent}, #{noticeViewCount})
+    </insert>
+
+    <update id="updateNoticeByNo" parameterType="com.example.shoppingmall.notify.domain.Notice">
+        update notice set notice_title = #{noticeTitle}, notice_content = #{noticeContent} where notice_no
+    </update>
+
+    <delete id="deleteNoticeByNo" parameterType="com.example.shoppingmall.notify.domain.Notice">
+        delete from notice where notice_no = #{noticeNo}
+    </delete>
 
 </mapper>
