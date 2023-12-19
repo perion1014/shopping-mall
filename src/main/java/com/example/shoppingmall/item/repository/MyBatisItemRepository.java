@@ -1,7 +1,9 @@
 package com.example.shoppingmall.item.repository;
 
 import com.example.shoppingmall.item.domain.Item;
+import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.ItemDTO;
+import com.example.shoppingmall.item.dto.ItemStockDTO;
 import com.example.shoppingmall.item.mapper.ItemMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +41,19 @@ public class MyBatisItemRepository implements ItemRepository{
     }
 
     @Override
+    public List<ItemStock> joinItemByItemNo(Long itemNo) {
+        List<ItemStock> itemStockList = itemMapper.joinItemByItemNo(itemNo);
+        return itemStockList;
+    }
+
+    @Override
     public Item findItemByNo(Long itemNo) {
         return itemMapper.findItemByNo(itemNo);
     }
 
     @Override
-    public List<Item> findItemsByName(Item item) {
-        return itemMapper.findItemsByName(item);
+    public List<Item> findItemsByName(String itemName) {
+        return itemMapper.findItemsByName(itemName);
     }
 
     @Override

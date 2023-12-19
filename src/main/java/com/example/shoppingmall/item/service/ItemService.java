@@ -1,10 +1,8 @@
 package com.example.shoppingmall.item.service;
 
 import com.example.shoppingmall.item.domain.Item;
-import com.example.shoppingmall.item.dto.ItemAddDTO;
-import com.example.shoppingmall.item.dto.ItemDTO;
-import com.example.shoppingmall.item.dto.ItemSearchDTO;
-import com.example.shoppingmall.item.dto.ItemUpdateDTO;
+import com.example.shoppingmall.item.domain.ItemStock;
+import com.example.shoppingmall.item.dto.*;
 import com.example.shoppingmall.item.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -50,13 +48,22 @@ public class ItemService {
         return itemDTOList;
     }
 
+    public List<ItemStockDTO> joinItemByItemNo(Long itemNo) {
+        List<ItemStock> itemStockList = itemRepository.joinItemByItemNo(itemNo);
+        List<ItemStockDTO> itemStockDTOList = new ArrayList<>();
+        for (ItemStock itemStock: itemStockList) {
+            itemStockDTOList.add(ItemStockDTO.toItemStock(itemStock));
+        }
+        return itemStockDTOList;
+    }
+
     public ItemDTO findItemByNo(Long itemNo) {
         Item item =  itemRepository.findItemByNo(itemNo);
         return ItemDTO.ItemtoItemDTO(item);
     }
 
     public List<ItemDTO> findItemsByName(ItemSearchDTO itemSearchDTO) {
-        List<Item> itemList = itemRepository.findItemsByName(ItemSearchDTO.itemSearchDTOToItem(itemSearchDTO));
+        List<Item> itemList = itemRepository.findItemsByName(itemSearchDTO.getItemName());
         List<ItemDTO> itemDTOList = new ArrayList<>();
         for (Item item: itemList) {
             itemDTOList.add(ItemDTO.ItemtoItemDTO(item));
