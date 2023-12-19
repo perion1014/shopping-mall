@@ -1,8 +1,11 @@
 package com.example.shoppingmall.notify.controller;
 
+import com.example.shoppingmall.notify.dto.NoticeAddDTO;
+import com.example.shoppingmall.notify.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class NoticeController {
 
+    private final NoticeService noticeService;
     @GetMapping("/admin")
     public String showNoticeList(){
         return "admins/notice/admins-notice";
@@ -24,7 +28,8 @@ public class NoticeController {
         return "admins/notice/admins-notice-add";
     }
     @PostMapping("/admin/add")
-    public String registerNotice(){
+    public String registerNotice(@ModelAttribute NoticeAddDTO noticeAddDTO){
+        noticeService.addNotice( noticeAddDTO);
         return "admins/notice/admins-notice-add";
     }
     @GetMapping("/admin/{noticeNo}/update")

@@ -92,12 +92,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td name="noticeNo">1</td>
-              <td name="noticeTitle">2024년 용띠의 해 이벤트 입니다아!!</td>
+            <tr th:each=" notice : ${notice}" >
+              <td name="noticeNo" th:text="${notice.notice_no}">${notice.notice_no}</td>
+              <td name="noticeTitle" th:text="${notice.notice_content}">${notice.notice_content}</td>
               <td name="notice">admin</td>
-              <td name="noticeCreatedTime">2023-12-14</td>
-              <td name="noticeViewCount">123</td>
+              <td name="noticeCreatedTime" th:text="${notice.notice_create_time}">${notice.notice_create_time}</td>
+              <td name="noticeViewCount" th:text="${notice.notice_viewcount}">${notice.notice_viewcount}</td>
               <td name="noticeDelete"><a href="www.naver.com">삭제</a></td>
             </tr>
           </tbody>
