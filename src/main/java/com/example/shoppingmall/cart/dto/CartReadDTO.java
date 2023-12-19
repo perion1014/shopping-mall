@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -21,13 +22,7 @@ public class CartReadDTO {
 
     public static CartReadDTO CartToCartDTO(Cart cart){
     CartReadDTO cartReadDTO = new CartReadDTO();
-    cartReadDTO.setItemThumbnail(CartService.getItemThumbnail(cart.getItemNo())); // item_photos에서 가져옴
-    cartReadDTO.setItemName(CartService.getItemName(cart.getItemNo()));           // item에서 가져옴
-    cartReadDTO.setItemSize(CartService.getItemSize());           // cart에서 가져옴
-    cartReadDTO.setItemPrice(CartService.getItemPrice(cart.getItemNo()));         // item에서 가져옴
-    cartReadDTO.setItemQuantity(CartService.getItemQuantity());   // cart에서 가져옴
-    cartReadDTO.setItemPriceSum(CartService.getItemPriceSum());   // itemPrice로 계산
-    cartReadDTO.setOrderPriceSum(CartService.getOrderPriceSum()); // otemPriceSum으로 계산
+
     return cartReadDTO;
     }
 

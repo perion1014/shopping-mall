@@ -15,22 +15,22 @@ public class MyBatisCartRepository implements CartRepository{
 
     @Override
     public ArrayList<Cart> getCartList(Long memberNo) {
-        ArrayList<Cart> cartList = cartMapper.getCartList(memberNo);
-        return cartList;
+        return cartMapper.getCartList(memberNo);
     }
 
     @Override
-    public ArrayList<String> getItemThumbnails() {
-        return null;
+    public String getItemThumbnails(Long itemNo) {
+        return cartMapper.getItemThumbnails(itemNo);
     }
 
     @Override
-    public String getItemInfo() {
-        return null;
-    }
+    public String getItemName(Long itemNo) {
 
+        return cartMapper.getItemName(itemNo);
+
+    }
     @Override
-    public String getItemSize() {
-        return null;
+    public Integer getItemPrice(Long itemNo){
+        return cartMapper.getItemPrice(itemNo);
     }
 }
