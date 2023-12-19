@@ -50,6 +50,10 @@
         insert into item values (#{itemNo},#{itemName},#{itemCategory},#{itemGrade},#{itemDetail},#{itemPrice},#{itemOnsale},#{itemRegisteredTime})
     </insert>
 
+    <insert id="saveItemStock" parameterType="com.example.shoppingmall.item.domain.ItemStock">
+        insert into item_stock values (#{itemStockNo}, #{itemNo}, #{itemSize}, #{itemStock})
+    </insert>
+
     <select id="findAllItems" resultType="com.example.shoppingmall.item.domain.Item">
         select * from item
     </select>

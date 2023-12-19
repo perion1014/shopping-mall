@@ -2,14 +2,13 @@ package com.example.shoppingmall.item.repository;
 
 import com.example.shoppingmall.item.domain.Item;
 import com.example.shoppingmall.item.domain.ItemStock;
-import com.example.shoppingmall.item.dto.ItemDTO;
-import com.example.shoppingmall.item.dto.ItemStockDTO;
-
 import java.util.List;
 
 public interface ItemRepository {
 
     void saveItem(Item item);
+
+    void saveItemStock(ItemStock itemStock);
 
     List<Item> findAllItems();
 

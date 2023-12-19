@@ -21,6 +21,11 @@ public class ItemService {
         itemRepository.saveItem(item);
     }
 
+    public void saveItemStock(ItemStockAddDTO itemStockAddDTO) {
+        ItemStock itemStock = ItemStockAddDTO.toItemStock(itemStockAddDTO);
+        itemRepository.saveItemStock(itemStock);
+    }
+
     public List<ItemAddDTO> findAllItems() {
         List<Item> itemList = itemRepository.findAllItems();
         List<ItemAddDTO> itemAddDTOList = new ArrayList<>();
