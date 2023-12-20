@@ -117,9 +117,9 @@ public class MemberController {
 
     //회원 목록 조회
     @GetMapping("/admin")
-    public String showMemberList(){
-        memberService.getAllMemberInfo();
-        return "admins/admins-member";
+    public String showMemberList(Model model){
+        model.addAttribute("memberListDTOList",memberService.getAllMemberInfo());
+        return "admins/admin-member";
     }
 
     @PostMapping("/admin")  //(완성 시, String타입으로 변경)

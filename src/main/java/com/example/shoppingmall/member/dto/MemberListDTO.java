@@ -25,10 +25,10 @@ public class MemberListDTO {
         memberListDTO.setMemberId(member.getMemberId());
         memberListDTO.setMemberName(member.getMemberName());
         memberListDTO.setMemberHp(member.getMemberHp());
-        memberListDTO.setMemberEmail(memberListDTO.getMemberEmail());
-        memberListDTO.setMemberPostalCode(memberListDTO.getMemberPostalCode());
-        memberListDTO.setMemberAddressBasic(memberListDTO.getMemberAddressBasic());
-        memberListDTO.setMemberAddressDetail(memberListDTO.getMemberAddressDetail());
+        memberListDTO.setMemberEmail(member.getMemberEmail());
+        memberListDTO.setMemberPostalCode(member.getMemberPostalCode());
+        memberListDTO.setMemberAddressBasic(member.getMemberAddressBasic());
+        memberListDTO.setMemberAddressDetail(member.getMemberAddressDetail());
         return memberListDTO;
     }
 

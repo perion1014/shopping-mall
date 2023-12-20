@@ -19,6 +19,7 @@ import java.util.Optional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    //Dto -> Entitiy
     @Transactional
     public void join(MemberAddDTO memberAddDTO){
         Member member = MemberAddDTO.MemberAddDTOToMember(memberAddDTO);
@@ -42,7 +43,7 @@ public class MemberService {
         List<Member> memberList= memberRepository.findAll();
         List<MemberListDTO> memberListDTOList = new ArrayList<>();
         for(Member member : memberList){
-            MemberListDTO.MemberToMemberListDTO(member);
+            memberListDTOList.add(MemberListDTO.MemberToMemberListDTO(member));
         }
         return memberListDTOList;
     }
