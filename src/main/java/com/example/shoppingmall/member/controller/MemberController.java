@@ -128,8 +128,9 @@ public class MemberController {
     }
 
     @PostMapping("/delete")
-    public void deleteMembers(){
-
+    public String deleteMembers(@RequestParam Long memberNo){
+        memberService.drop(memberNo);
+        return "redirect:/members/admin";
     }
 
 

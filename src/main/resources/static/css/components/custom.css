@@ -76,6 +76,16 @@
     border-radius: 10px;
 }
 
+.btn--xs{
+    margin:0;
+    display: inline;
+    width: 2.5rem;
+    height: 1.5rem;
+    font-size: 0.6rem;
+    border-radius: 10px;
+}
+
+
 .btn--black{
     background-color: var(--color-text);
     color: var(--color-accent);
