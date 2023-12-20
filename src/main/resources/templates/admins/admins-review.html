@@ -1,63 +1,19 @@
-  <!DOCTYPE html>
-  <html lang="kr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PERION Management</title>
-    <link rel="icon" href="../../static/images/spartan-helmet.svg" />
-  <!--폰트-->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Sometype+Mono&display=swap" rel="stylesheet">
-  <!--CSS-->
-    <link rel="stylesheet" href="../../static/css/pages/admins/admins-review.css">
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head th:admin-head>
+    <div
+      th:remove="tag"
+      th:replace="~{/fragments/admin-head :: admin-head} "
+    ></div>
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/pages/admins/admins-review.css" />
   </head>
   <body>
-    <header>
-    <a href="#" class="header__logo">PERION</a>
-    <nav class="header__nav">
-        <ul>
-            <li><a href="#">쇼핑몰</a></li>
-            <li><a href="#">로그아웃</a></li>
-        </ul>
-    </nav> 
-    </header>
+    <header
+      th:replace="~{/fragments/admin-login-header :: admin-login-header}"
+    ></header>
 
-    <aside class="side-bar">
-      <div class="margin"></div>
-      <ul>
-        <li>
-          <a href="#"></i>매출 조회</a>
-        </li>
-        <li>
-          <a href="#">회원 조회</a>
-        </li>
-        <li>
-          <a href="#">상품 조회</a>
-        </li>
-        <li>
-          <a href="#">상품 등록</a>
-        </li>
-        <li>
-          <a href="#">회원 주문 목록</a>
-        </li>
-        <li>
-          <a href="#">비회원 주문 목록</a>
-        </li>
-        <li>
-          <a href="#">공지사항</a>
-        </li>
-        <li>
-          <a href="#">Q&A</a>
-        </li>
-        <li>
-          <a href="#">Review</a>
-        </li>
-      </ul>
-      
-      <div class="side-bar__icon"><img src="../../static/images/spartan-helmet-white.svg" alt="실패" /></div>
-      
-    </aside>
+    <aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}"></aside>
 
     <main>
       <div class="main">
@@ -73,90 +29,106 @@
           <button>검색</button>
         </div>
 
-        <hr>
+        <hr />
         <div class="review">
           <div class="review_container">
             <div class="review_info">
-            <span>perion1014</span>
-            <span>사이즈: M</span>
-            <span>★4</span>
+              <span>perion1014</span>
+              <span>사이즈: M</span>
+              <span>★4</span>
             </div>
             <div class="review_drop">
               <a href="#">삭제</a>
             </div>
           </div>
           <div class="review_content">일단 리뷰 내용</div>
-          <hr>
+          <hr />
         </div>
 
         <div class="review">
           <div class="review_container">
             <div class="review_info">
-            <span>perion1014</span>
-            <span>사이즈: M</span>
-            <span>★4</span>
+              <span>perion1014</span>
+              <span>사이즈: M</span>
+              <span>★4</span>
             </div>
             <div class="review_drop">
               <a href="#">삭제</a>
             </div>
           </div>
-          <div class="review_content">핏이 정말 좋습니다. 핏이 정말 좋습니다 핏이 정말 좋습니다 핏이 정말 좋습니다. 핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 핏이 정말
-            핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다</div>
-          <hr>
+          <div class="review_content">
+            핏이 정말 좋습니다. 핏이 정말 좋습니다 핏이 정말 좋습니다 핏이 정말
+            좋습니다. 핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이
+            정말 좋습니다핏이 정말 좋습니다핏이 핏이 정말 핏이 정말 좋습니다핏이
+            정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말
+            좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이
+            정말 좋습니다핏이 정말 좋습니다
+          </div>
+          <hr />
         </div>
 
         <div class="review">
           <div class="review_container">
             <div class="review_info">
-            <span>perion1014</span>
-            <span>사이즈: M</span>
-            <span>★4</span>
+              <span>perion1014</span>
+              <span>사이즈: M</span>
+              <span>★4</span>
             </div>
             <div class="review_drop">
               <a href="#">삭제</a>
             </div>
           </div>
           <div class="review_content">일단 리뷰 내용</div>
-          <hr>
+          <hr />
         </div>
 
         <div class="review">
           <div class="review_container">
             <div class="review_info">
-            <span>perion1014</span>
-            <span>사이즈: M</span>
-            <span>★4</span>
+              <span>perion1014</span>
+              <span>사이즈: M</span>
+              <span>★4</span>
             </div>
             <div class="review_drop">
               <a href="#">삭제</a>
             </div>
           </div>
-          <div class="review_content">핏이 정말 좋습니다. 핏이 정말 좋습니다 핏이 정말 좋습니다 핏이 정말 좋습니다. 핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 핏이 정말
-            핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다</div>
-          <hr>
+          <div class="review_content">
+            핏이 정말 좋습니다. 핏이 정말 좋습니다 핏이 정말 좋습니다 핏이 정말
+            좋습니다. 핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이
+            정말 좋습니다핏이 정말 좋습니다핏이 핏이 정말 핏이 정말 좋습니다핏이
+            정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말
+            좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이
+            정말 좋습니다핏이 정말 좋습니다
+          </div>
+          <hr />
         </div>
 
         <div class="review">
           <div class="review_container">
             <div class="review_info">
-            <span>perion1014</span>
-            <span>사이즈: M</span>
-            <span>★4</span>
+              <span>perion1014</span>
+              <span>사이즈: M</span>
+              <span>★4</span>
             </div>
             <div class="review_drop">
               <a href="#">삭제</a>
             </div>
           </div>
-          <div class="review_content">핏이 정말 좋습니다. 핏이 정말 좋습니다 핏이 정말 좋습니다 핏이 정말 좋습니다. 핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 핏이 정말
-            핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다</div>
-          <hr>
+          <div class="review_content">
+            핏이 정말 좋습니다. 핏이 정말 좋습니다 핏이 정말 좋습니다 핏이 정말
+            좋습니다. 핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이
+            정말 좋습니다핏이 정말 좋습니다핏이 핏이 정말 핏이 정말 좋습니다핏이
+            정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말
+            좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이 정말 좋습니다핏이
+            정말 좋습니다핏이 정말 좋습니다
+          </div>
+          <hr />
         </div>
 
         <div class="admin_review_page"><a href="1">1</a> <a href="2">2</a></div>
-
-      </div> <!--main div-->
-    </main> 
-   
-
+      </div>
+      <!--main div-->
+    </main>
   </body>
-  </html>
+</html>

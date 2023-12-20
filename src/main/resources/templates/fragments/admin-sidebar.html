@@ -1,33 +1,35 @@
 <aside class="side-bar" th:fragment="admin-sidebar">
-    <div class="margin"></div>
-    <ul>
-        <li>
-            <a href="#">매출 조회</a>
-        </li>
-        <li>
-            <a href="/members/admin">회원 조회</a>
-        </li>
-        <li>
-            <a href="#">상품 조회</a>
-        </li>
-        <li>
-            <a href="#">상품 등록</a>
-        </li>
-        <li>
-            <a href="#">회원 주문 목록</a>
-        </li>
-        <li>
-            <a href="#">비회원 주문 목록</a>
-        </li>
-        <li>
-            <a href="#">공지사항</a>
-        </li>
-        <li>
-            <a href="#">Q&A</a>
-        </li>
-        <li>
-            <a href="#">Review</a>
-        </li>
-    </ul>
-    <div class="side-bar__icon"><img src="/images/spartan-helmet-white.svg" alt="실패" /></div>
+  <div class="margin"></div>
+  <ul>
+    <li>
+      <a href="/sales">매출 조회</a>
+    </li>
+    <li>
+      <a href="/members/admin">회원 조회</a>
+    </li>
+    <li>
+      <a href="/items/admin">상품 조회</a>
+    </li>
+    <li>
+      <a href="/items/admin/add">상품 등록</a>
+    </li>
+    <li>
+      <a href="/orders/admin/members">회원 주문 목록</a>
+    </li>
+    <li>
+      <a href="/orders/admin/non-members">비회원 주문 목록</a>
+    </li>
+    <li>
+      <a href="/notice/admin">공지사항</a>
+    </li>
+    <li>
+      <a href="/qna">Q&A</a>
+    </li>
+    <li>
+      <a href="/reviews">Review</a>
+    </li>
+  </ul>
+  <div class="side-bar__icon">
+    <img src="/images/spartan-helmet-white.svg" alt="실패" />
+  </div>
 </aside>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 <head th:admin-head>
-  <div th:remove="tag" th:replace="~{/fragments/admin-head :: admin-head} "></div>
-  <!--CSS-->
-  <link rel="stylesheet" href="/css/pages/admins/admins-notice.css">
+    <div th:remove="tag" th:replace="~{/fragments/admin-head :: admin-head} "></div>
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/pages/admins/admins-notice.css">
 </head>
 <body>
 <header th:replace="~{/fragments/admin-login-header :: admin-login-header}">
@@ -13,49 +13,53 @@
 </aside>
 
 <main>
-  <div class="main">
-    <div class="admin_notice">공지사항</div>
+    <div class="main">
+        <div class="admin_notice">공지사항</div>
 
-        <option value="member_hp">전화번호</option>
+        <div class="admin_notice_search">
+            <select name="category">
+                <option value="member_id">아이디</option>
 
-        <option value="member_email">이메일</option>
+                <option value="member_hp">전화번호</option>
 
-        <option value="member_name">이름</option>
+                <option value="member_email">이메일</option>
 
-        <option value="member_address_basic">주소</option>
-      </select>
-      <input type="text" />
-      <button>검색</button>
-    </div>
+                <option value="member_name">이름</option>
 
-    <!-- table Ex-->
-    <table>
-      <thead>
-      <tr>
-        <th>No</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일자</th>
-        <th>조회수</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="noticeListDTO : ${noticeDTOList}">
-        <td name="noticeNo" th:text="${noticeListDTO.noticeNo}"></td>
-        <td name="noticeTitle" th:text="${noticeListDTO.noticeTitle}"></td>
-        <td name="notice">admin</td>
-        <td name="noticeCreatedTime" th:text="${noticeListDTO.noticeCreateTime}"></td>
-        <td name="noticeViewCount" th:text="${noticeListDTO.noticeViewcount}"></td>
-        <td name="noticeDelete"><a href="www.naver.com">삭제</a></td>
-      </tr>
-      </tbody>
-    </table>
-    <form action="admin/add" method="get">
-      <div class="notice_btn"><button>등록</button></div>
-    </form>
-    <div class="admin_member_page"><a href="1">1</a> <a href="2">2</a></div>
-  </div><!--main div-->
+                <option value="member_address_basic">주소</option>
+            </select>
+            <input type="text" />
+            <button>검색</button>
+        </div>
+
+        <!-- table Ex-->
+        <table>
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일자</th>
+                <th>조회수</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="noticeListDTO : ${noticeDTOList}">
+                <td name="noticeNo" th:text="${noticeListDTO.noticeNo}"></td>
+                <td name="noticeTitle" th:text="${noticeListDTO.noticeTitle}"></td>
+                <td name="notice">admin</td>
+                <td name="noticeCreatedTime" th:text="${noticeListDTO.noticeCreateTime}"></td>
+                <td name="noticeViewCount" th:text="${noticeListDTO.noticeViewcount}"></td>
+                <td name="noticeDelete"><a href="www.naver.com">삭제</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <form action="admin/add" method="get">
+            <div class="notice_btn"><button>등록</button></div>
+        </form>
+        <div class="admin_member_page"><a href="1">1</a> <a href="2">2</a></div>
+    </div><!--main div-->
 </main>
 
 
