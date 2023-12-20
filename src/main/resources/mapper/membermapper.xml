@@ -17,6 +17,31 @@
         select * from member where member_email = #{memberEmail}
     </select>
 
+    <select id="findByNoContaining" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member where member_no LIKE CONCAT ('%',#{memberNo},'%')
+    </select>
+
+    <select id="findByIdContaining" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member where member_id LIKE CONCAT ('%',#{memberId},'%')
+    </select>
+
+
+    <select id="findByEmailContaining" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member where member_email LIKE CONCAT ('%',#{memberEmail},'%')
+    </select>
+
+    <select id="findByNameContaining" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member where member_name LIKE CONCAT ('%',#{memberName},'%')
+    </select>
+
+    <select id="findByHpContaining" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member where member_hp LIKE CONCAT ('%',#{memberHp},'%')
+    </select>
+
+    <select id="findByAddressBasicContaining" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member where member_address_basic LIKE CONCAT ('%',#{memberAddressBasic},'%')
+    </select>
+
     <update id="update" parameterType="com.example.shoppingmall.member.domain.Member">
         UPDATE member
         SET

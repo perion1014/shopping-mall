@@ -27,12 +27,25 @@ td {
 td:first-child {
   border-left: 1px solid #c6c9cc;
 }
+
+
 tr:nth-child(even) td {
-  background: #eaeaed;
+  background-color: #eaeaed;
 }
+
+td:last-child {
+  background-color:var(--color-white);
+}
+
 tr:last-child td:first-child {
   border-bottom-left-radius: 6px;
 }
-tr:last-child td:last-child {
+.table__last-container{
   border-bottom-right-radius: 6px;
+}
+
+.members-delete__container{
+  background-color: #fff;
+  width: 4rem;
+  border: 0;
 }

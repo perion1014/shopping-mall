@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head th:admin-head>
+    <div th:remove="tag" th:replace="~{/fragments/admin-head :: admin-head} "></div>
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/pages/admins/admins-member.css">
+</head>
+<body>
+<header th:replace="~{/fragments/admin-login-header :: admin-login-header}">
+</header>
+
+<aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}">
+</aside>
+<main>
+    <div class="main">
+        <div class="admin_member">회원 목록</div>
+
+        <div class="admin_member_search">
+            <form action="/members/admin" method="post">
+                <select name="category">
+                    <option value="memberId">회원번호</option>
+                    <option value="memberId">아이디</option>
+                    <option value="memberHp">전화번호</option>
+                    <option value="memberEmail">이메일</option>
+                    <option value="memberName">이름</option>
+                    <option value="memberAddressBasic">주소</option>
+                </select>
+                <input name="keyword" type="text" />
+                <button>검색</button>
+            </form>
+        </div>
+
+        <!-- table Ex-->
+        <table>
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>회원 아이디</th>
+                <th>이름</th>
+                <th>전화번호</th>
+                <th>이메일</th>
+                <th>우편번호</th>
+                <th>기본주소</th>
+                <th>상세주소</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="memberListDTO : ${memberListDTOListResult}">
+                <td th:text="${memberListDTO.memberNo}"></td>
+                <td th:text="${memberListDTO.memberId}"></td>
+                <td th:text="${memberListDTO.memberName}"></td>
+                <td th:text="${memberListDTO.memberHp}"></td>
+                <td th:text="${memberListDTO.memberEmail}"></td>
+                <td th:text="${memberListDTO.memberPostalCode}"></td>
+                <td th:text="${memberListDTO.memberAddressBasic}"></td>
+                <td class="table__last-container" th:text="${memberListDTO.memberAddressDetail}"></td>
+                <td class="members-delete__container">
+                    <form action="/members/delete" method="post">
+                        <input type="hidden" name="memberNo" th:value="${memberListDTO.memberNo}" />
+                        <button class="btn btn--xs btn--black">삭제</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="admin_member_page"><a href="1">1</a> <a href="2">2</a></div>
+    </div> <!--main div-->
+</main>
+</body>
+</html>

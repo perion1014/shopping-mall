@@ -2,6 +2,7 @@ package com.example.shoppingmall.member.controller;
 
 import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.*;
+import com.example.shoppingmall.member.form.MemberSearchForm;
 import com.example.shoppingmall.member.service.MemberLoginService;
 import com.example.shoppingmall.member.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -118,20 +119,20 @@ public class MemberController {
     //회원 목록 조회
     @GetMapping("/admin")
     public String showMemberList(Model model){
-        model.addAttribute("memberListDTOList",memberService.getAllMemberInfo());
+        model.addAttribute("memberListDTOList",memberService.searchAllMemberInfo());
         return "admins/admin-member";
     }
 
-    @PostMapping("/admin")  //(완성 시, String타입으로 변경)
-    public void searchMembers(@ModelAttribute MemberSearchDTO memberSearchDto){
-
+    @PostMapping("/admin")
+    public String searchMembers(@ModelAttribute MemberSearchForm memberSearchForm, Model model){
+      model.addAttribute("memberListDTOListResult",memberService.searchMemberInfo(memberSearchForm));
+      return "admins/admin-member-result";
     }
 
     @PostMapping("/delete")
-    public String deleteMembers(@RequestParam Long memberNo){
+    public String deleteMembers(@RequestParam("memberNo")Long memberNo, RedirectAttributes redirectAttributes){
         memberService.drop(memberNo);
+        redirectAttributes.addFlashAttribute("memberUpdateSuccess", "회원 추방이 완료되었습니다.");
         return "redirect:/members/admin";
     }
-
-
 }

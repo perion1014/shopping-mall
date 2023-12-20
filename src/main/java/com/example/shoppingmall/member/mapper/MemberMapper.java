@@ -14,5 +14,14 @@ public interface MemberMapper {
     Member findByNo(Long memberNo);
     Member findById(String memberId);
     Member findByEmail(String memberEmail);
+
+    List<Member> findByNoContaining(Long memberNo);
+    List<Member> findByIdContaining(String memberId);
+    List<Member> findByHpContaining(String memberHp);
+    List<Member> findByEmailContaining(String memberEmail);
+    List<Member> findByNameContaining(String memberName);
+    List<Member> findByAddressBasicContaining(String memberAddressBasic);
+
+
     List<Member> findAll();
 }

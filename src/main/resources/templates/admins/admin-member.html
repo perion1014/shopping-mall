@@ -16,19 +16,18 @@
         <div class="admin_member">회원 목록</div>
 
         <div class="admin_member_search">
+          <form th:action method="post">
           <select name="category">
-            <option value="member_id">아이디</option>
-
-            <option value="member_hp">전화번호</option>
-
-            <option value="member_email">이메일</option>
-
-            <option value="member_name">이름</option>
-
-            <option value="member_address_basic">주소</option>
+            <option value="memberId">회원번호</option>
+            <option value="memberId">아이디</option>
+            <option value="memberHp">전화번호</option>
+            <option value="memberEmail">이메일</option>
+            <option value="memberName">이름</option>
+            <option value="memberAddressBasic">주소</option>
           </select>
-          <input type="text" />
+          <input name="keyword" type="text" />
           <button>검색</button>
+          </form>
         </div>
 
         <!-- table Ex-->
@@ -43,11 +42,10 @@
               <th>우편번호</th>
               <th>기본주소</th>
               <th>상세주소</th>
-              <th></th>
             </tr>
           </thead>
-          <tbody th:each="memberListDTO : ${memberListDTOList}">
-            <tr>
+          <tbody>
+            <tr th:each="memberListDTO : ${memberListDTOList}">
               <td th:text="${memberListDTO.memberNo}"></td>
               <td th:text="${memberListDTO.memberId}"></td>
               <td th:text="${memberListDTO.memberName}"></td>
@@ -55,16 +53,19 @@
               <td th:text="${memberListDTO.memberEmail}"></td>
               <td th:text="${memberListDTO.memberPostalCode}"></td>
               <td th:text="${memberListDTO.memberAddressBasic}"></td>
-              <td th:text="${memberListDTO.memberAddressDetail}"></td>
-              <td><form action="/members/delete" method="post"><button class="btn btn--xs btn--black">삭제</button></form></td>
+              <td class="table__last-container" th:text="${memberListDTO.memberAddressDetail}"></td>
+              <td class="members-delete__container">
+                <form action="/members/delete" method="post">
+                  <input type="hidden" name="memberNo" th:value="${memberListDTO.memberNo}" />
+                  <button class="btn btn--xs btn--black">삭제</button>
+                </form>
+              </td>
             </tr>
           </tbody>
         </table>
 
         <div class="admin_member_page"><a href="1">1</a> <a href="2">2</a></div>
       </div> <!--main div-->
-    </main> 
-   
-
+    </main>
   </body>
   </html>
