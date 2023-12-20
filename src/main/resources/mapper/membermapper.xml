@@ -18,7 +18,7 @@
     </select>
 
     <select id="findByNoContaining" resultType="com.example.shoppingmall.member.domain.Member">
-        select * from member where member_no LIKE CONCAT ('%',#{memberNo},'%')
+        select * from member where member_no = #{memberNo}
     </select>
 
     <select id="findByIdContaining" resultType="com.example.shoppingmall.member.domain.Member">
@@ -59,7 +59,7 @@
     </delete>
 
     <select id="findAll" resultType="com.example.shoppingmall.member.domain.Member">
-        select * from member order by member_no
+        select * from member order by member_no desc
     </select>
 
 </mapper>

@@ -47,7 +47,6 @@ public class MyBatisMemberRepository implements MemberRepository {
     @Override
     public List<Member> findByNoContaining(Long memberNo) {
         return memberMapper.findByNoContaining(memberNo);
-
     }
 
     @Override
