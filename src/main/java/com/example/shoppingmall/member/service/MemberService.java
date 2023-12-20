@@ -5,6 +5,7 @@ import com.example.shoppingmall.member.dto.MemberAddDTO;
 import com.example.shoppingmall.member.dto.MemberDeleteDTO;
 import com.example.shoppingmall.member.dto.MemberListDTO;
 import com.example.shoppingmall.member.dto.MemberUpdateDTO;
+import com.example.shoppingmall.member.form.MemberSearchForm;
 import com.example.shoppingmall.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ import java.util.Optional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    //Dto -> Entitiy
+
     @Transactional
     public void join(MemberAddDTO memberAddDTO){
         Member member = MemberAddDTO.MemberAddDTOToMember(memberAddDTO);
@@ -37,9 +38,8 @@ public class MemberService {
         return MemberUpdateDTO.MemberToMemberUpdateDTO(member);
     }
 
-
     @Transactional(readOnly = true)
-    public List<MemberListDTO> getAllMemberInfo(){
+    public List<MemberListDTO> searchAllMemberInfo(){
         List<Member> memberList= memberRepository.findAll();
         List<MemberListDTO> memberListDTOList = new ArrayList<>();
         for(Member member : memberList){
@@ -71,5 +71,40 @@ public class MemberService {
         memberRepository.deleteByNo(memberNo);
     }
 
+    @Transactional(readOnly = true)
+    public List<MemberListDTO> searchMemberInfo(MemberSearchForm memberSearchForm){
+        String category = memberSearchForm.getCategory();
+        String keyword = memberSearchForm.getKeyword();
 
+        List<Member> memberList = new ArrayList<>();
+        List<MemberListDTO> memberListDTOList = new ArrayList<>();
+
+        switch(category){
+            case "memberNo":
+                memberList = memberRepository.findByNoContaining(Long.parseLong(keyword));
+                break;
+            case "memberId":
+                memberList = memberRepository.findByIdContaining(keyword);
+                break;
+            case "memberHp":
+                memberList = memberRepository.findByHpContaining(keyword);
+                break;
+            case "memberEmail":
+                memberList = memberRepository.findByEmailContaining(keyword);
+                break;
+            case "memberName":
+                memberList = memberRepository.findByNameContaining(keyword);
+                break;
+            case "memberAddressBasic":
+                memberList = memberRepository.findByAddressBasicContaining(keyword);
+                break;
+        }
+
+        for(Member member : memberList){
+            memberListDTOList.add(MemberListDTO.MemberToMemberListDTO(member));
+            System.out.println("member = " + member);
+        }
+
+        return memberListDTOList;
+    }
 }

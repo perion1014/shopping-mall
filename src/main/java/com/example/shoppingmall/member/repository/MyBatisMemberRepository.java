@@ -41,7 +41,38 @@ public class MyBatisMemberRepository implements MemberRepository {
 
     @Override
     public Optional<Member> findByEmail(String memberEmail) {
-        return Optional.ofNullable(memberMapper.findByEmail(memberEmail));
+        return Optional.ofNullable(memberMapper.findById(memberEmail));
+    }
+
+    @Override
+    public List<Member> findByNoContaining(Long memberNo) {
+        return memberMapper.findByNoContaining(memberNo);
+
+    }
+
+    @Override
+    public List<Member> findByIdContaining(String memberId) {
+        return memberMapper.findByIdContaining(memberId);
+    }
+
+    @Override
+    public List<Member> findByHpContaining(String memberHp) {
+        return memberMapper.findByHpContaining(memberHp);
+    }
+
+    @Override
+    public List<Member> findByEmailContaining(String memberEmail) {
+        return memberMapper.findByEmailContaining(memberEmail);
+    }
+
+    @Override
+    public List<Member> findByNameContaining(String memberName) {
+        return memberMapper.findByNameContaining(memberName);
+    }
+
+    @Override
+    public List<Member> findByAddressBasicContaining(String memberAddressBasic) {
+        return memberMapper.findByAddressBasicContaining(memberAddressBasic);
     }
 
     @Override

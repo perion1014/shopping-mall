@@ -17,6 +17,9 @@ table {
   font-size: 32px;
 }
 
+tr:nth-child(even) td:last-child {
+  background-color: #ffffff;
+}
 
 .admin_member_search {
   text-align: center;
