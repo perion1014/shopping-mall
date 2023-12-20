@@ -6,6 +6,7 @@
 @import "components/custom.css";
 @import "components/icons.css";
 @import "components/footer.css";
+@import "components/section.css";
 
 /* 각 페이지 설정 */
 @import "pages/user/home.css";
