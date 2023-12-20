@@ -38,50 +38,12 @@ public class CartService {
         return cartDTOList;
     }
 
-    public String getItemThumbnail(Long itemNo){
-         return cartRepository.getItemThumbnails(itemNo);
+    public void updateCartItem(Long cartNo, Integer updateQuantity){
+    cartRepository.updateCartItem(cartNo, updateQuantity);
     }
 
-    public String getItemName(Long itemNo){
-        String itemName = "";
-
-        return itemName;
+    public void deleteCartItem(Long cartNo){
+        cartRepository.deleteCartItem(cartNo);
     }
 
-    public String getItemSize(){
-        String itemSize = "";
-
-        return itemSize;
-    }
-
-    public Integer getItemPrice(Long itemNo){
-        Integer itemPrice = 0;
-
-        return itemPrice;
-    }
-
-    public Integer getItemQuantity(){
-        Integer itemQuantity = 0;
-
-        return itemQuantity;
-    }
-
-    public Integer getItemPriceSum(){
-        Integer itemPriceSum = 0;
-
-        return itemPriceSum;
-    }
-
-    public Integer getOrderPriceSum(){
-        Integer orderPriceSum = 0;
-
-        return orderPriceSum;
-    }
-
-   // cartReadDTO.setItemName(CartService.getItemName());           // item에서 가져옴
-   // cartReadDTO.setItemSize(CartService.getItemSize());           // cart에서 가져옴
-   // cartReadDTO.setItemPrice(CartService.getItemPrice());         // item에서 가져옴
-   // cartReadDTO.setItemQuantity(CartService.getItemQuantity());   // cart에서 가져옴
-   // cartReadDTO.setItemPriceSum(CartService.getItemPriceSum());   // itemPrice로 계산
-   // cartReadDTO.setOrderPriceSum(CartService.getOrderPriceSum()); // otemPriceSum으로 계산
 }

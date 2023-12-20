@@ -33,4 +33,13 @@ public class MyBatisCartRepository implements CartRepository{
     public Integer getItemPrice(Long itemNo){
         return cartMapper.getItemPrice(itemNo);
     }
+
+    @Override
+    public void updateCartItem(Long cartNo, Integer updateQuantity){
+        cartMapper.updateCartItem(cartNo, updateQuantity);
+    }
+
+    public void deleteCartItem(Long cartNo){
+        cartMapper.deleteCartItem(cartNo);
+    }
 }

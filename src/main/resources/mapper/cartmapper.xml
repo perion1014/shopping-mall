@@ -18,4 +18,12 @@
     select item_price FROM item where item_no = #{itemNo}
     </select>
 
+    <update id = "updateCartItem">
+    UPDATE cart SET cart_item_quantity = #{updateQuantity} WHERE cart_no = #{cartNo}
+    </update>
+
+    <delete id = "deleteCartItem">
+    DELETE FROM cart WHERE cart_no = #{cartNo}
+    </delete>
+
 </mapper>

@@ -31,6 +31,11 @@
                     th:cartNo = "${cartDTO.cartNo}"
                     th:memberNo = "${cartDTO.memberNo}"
                     th:onclick="updateQuantity(1, this.getAttribute('index'), this.getAttribute('cartNo'), this.getAttribute('memberNo'))"> + </button>
+            <button th:id="'deleteButton_' + ${cartIndex.index}"
+                    th:index = "${cartIndex.index}"
+                    th:cartNo = "${cartDTO.cartNo}"
+                    th:memberNo = "${cartDTO.memberNo}"
+                    th:onclick="deleteCart(this.getAttribute('index'), this.getAttribute('cartNo'), this.getAttribute('memberNo'))"> 삭제 </button>
             <hr>
         </div>
     </main>

@@ -13,4 +13,8 @@ public interface CartMapper {
     String getItemThumbnails(@Param("itemNo") Long itemNo);
     String getItemName(@Param("itemNo") Long itemNo);
     Integer getItemPrice(@Param("itemNo") Long itemNo);
+
+    void updateCartItem(@Param("cartNo") Long cartNo, @Param("updateQuantity") Integer updateQuantity);
+
+    void deleteCartItem(@Param("cartNo") Long cartNo);
 }
