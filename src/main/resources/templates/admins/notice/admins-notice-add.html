@@ -1,59 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PERION Management</title>
-    <link rel="icon" href="../../../static/images/spartan-helmet.svg" />
-    <link rel="stylesheet" href="../../../static/css/pages/admins/admins-notice-add.css" />
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head th:admin-head>
+    <div
+      th:remove="tag"
+      th:replace="~{/fragments/admin-head :: admin-head} "
+    ></div>
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/pages/admins/admins-notice-add.css" />
   </head>
   <body>
-    <header>
-      <a href="#" class="header__logo">PERION</a>
-      <nav class="header__nav">
-        <ul>
-          <li><a href="#">쇼핑몰</a></li>
-          <li><a href="#">로그아웃</a></li>
-        </ul>
-      </nav>
-    </header>
+    <header
+      th:replace="~{/fragments/admin-login-header :: admin-login-header}"
+    ></header>
 
-    <aside class="side-bar">
-      <div class="margin"></div>
-      <ul>
-        <li>
-          <a href="#">매출 조회</a>
-        </li>
-        <li>
-          <a href="#">회원 조회</a>
-        </li>
-        <li>
-          <a href="#">상품 조회</a>
-        </li>
-        <li>
-          <a href="#">상품 등록</a>
-        </li>
-        <li>
-          <a href="#">회원 주문 목록</a>
-        </li>
-        <li>
-          <a href="#">비회원 주문 목록</a>
-        </li>
-        <li>
-          <a href="#">공지사항</a>
-        </li>
-        <li>
-          <a href="#">Q&A</a>
-        </li>
-        <li>
-          <a href="#">Review</a>
-        </li>
-      </ul>
-
-      <div class="side-bar__icon">
-        <img src="../../../static/images/spartan-helmet-white.svg" alt="실패" />
-      </div>
-    </aside>
+    <aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}"></aside>
 
     <main>
       <div class="main">
