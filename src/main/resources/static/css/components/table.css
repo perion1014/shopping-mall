@@ -6,13 +6,13 @@ table {
 }
 th,
 td {
-  text-align: center;
+  text-align: left;
   padding: 6px 15px;
 }
 th {
   background: #42444e;
   color: #fff;
-  text-align: center;
+  text-align: left;
 }
 tr:first-child th:first-child {
   border-top-left-radius: 6px;
