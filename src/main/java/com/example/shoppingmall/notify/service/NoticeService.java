@@ -6,7 +6,9 @@ import com.example.shoppingmall.notify.dto.NoticeListDTO;
 import com.example.shoppingmall.notify.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,9 +21,14 @@ public class NoticeService {
         Notice notice = NoticeAddDTO.noticeAddDTOToNotice(noticeAddDTO);
         noticeRepository.addNotice(notice);
     }
-
+    @Transactional(readOnly = true)
     public List<NoticeListDTO> findAllNotice(){
-    return null;
+        List<Notice> noticeList = noticeRepository.findAllNotice();
+        List<NoticeListDTO> noticeListDTOList = new ArrayList<>();
+        for(Notice notice : noticeList){
+            noticeListDTOList.add(NoticeListDTO.NoticeToNoticeListDTO(notice));
+        }
+    return noticeListDTOList;
     }
 
 

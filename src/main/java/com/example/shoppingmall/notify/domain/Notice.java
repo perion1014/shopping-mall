@@ -15,5 +15,5 @@ public class Notice {
     private String noticeTitle;
     private String noticeCreateTime;
     private String noticeContent;
-    private int viewCount;
+    private Integer viewCount;
 }

@@ -11,32 +11,18 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NoticeListDTO {
-    private int noticeNo;
+    private Integer noticeNo;
     private String noticeTitle;
     private String noticeCreateTime;
-    private String noticeContent;
-    private int viewCount;
+    private Integer viewCount;
 
-    public static Notice noticeDTOToNotice(NoticeListDTO noticeListDTO){
-        Notice notice = new Notice();
-        notice.setNoticeNo(noticeListDTO.getNoticeNo());
-        notice.setNoticeTitle(noticeListDTO.getNoticeTitle());
-        notice.setNoticeCreateTime(notice.getNoticeCreateTime());
-        notice.setNoticeContent(noticeListDTO.getNoticeContent());
-        notice.setViewCount(notice.getViewCount());
-        return notice;
+    public static NoticeListDTO NoticeToNoticeListDTO(Notice notice){
+        NoticeListDTO noticeListDTO = new NoticeListDTO();
+        noticeListDTO.setNoticeNo(notice.getNoticeNo());
+        noticeListDTO.setNoticeTitle(notice.getNoticeTitle());
+        noticeListDTO.setNoticeCreateTime(notice.getNoticeCreateTime());
+        noticeListDTO.setViewCount(notice.getViewCount());
+        return noticeListDTO;
     }
-/*public static MemberListDTO MemberToMemberListDTO(Member member){
-        MemberListDTO memberListDTO = new MemberListDTO();
-        memberListDTO.setMemberNo(member.getMemberNo());
-        memberListDTO.setMemberId(member.getMemberId());
-        memberListDTO.setMemberName(member.getMemberName());
-        memberListDTO.setMemberHp(member.getMemberHp());
-        memberListDTO.setMemberEmail(memberListDTO.getMemberEmail());
-        memberListDTO.setMemberPostalCode(memberListDTO.getMemberPostalCode());
-        memberListDTO.setMemberAddressBasic(memberListDTO.getMemberAddressBasic());
-        memberListDTO.setMemberAddressDetail(memberListDTO.getMemberAddressDetail());
-        return memberListDTO;
-    }*/
 
 }

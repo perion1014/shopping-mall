@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface NoticeMapper {//이곳의 이름과 쿼리 이름 동일
-    List<NoticeListDTO> findAllNotice();
+    List<Notice> findAllNotice();
     void addNotice(Notice notice);
     void updateNoticeByNo(int noticeNo);
     void deleteNoticeByNo(int noticeNo);
