@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartReadDTO {
+    private Long memberNo;
+    private Long cartNo;
     private String itemThumbnail;
     private String itemName;
     private String itemSize;
