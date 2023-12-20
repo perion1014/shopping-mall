@@ -23,22 +23,18 @@ public class CartService {
 
         for(Cart cart: dbCartList){
             CartReadDTO cartReadDTO = new CartReadDTO();
+            cartReadDTO.setMemberNo(cart.getMemberNo());
+            cartReadDTO.setCartNo(cart.getCartNo());
             cartReadDTO.setItemThumbnail(cartRepository.getItemThumbnails(cart.getItemNo()));
-            System.out.println("썸네일 : " + cartReadDTO.getItemThumbnail());
             cartReadDTO.setItemName(cartRepository.getItemName(cart.getItemNo()));
-            System.out.println("상품 이름 : " + cartReadDTO.getItemName());
             cartReadDTO.setItemSize(cart.getItemSize());
-            System.out.println("상품 사이즈 : " + cartReadDTO.getItemSize());
             cartReadDTO.setItemPrice(cartRepository.getItemPrice(cart.getItemNo()));
-            System.out.println("상품 가격 : " + cartReadDTO.getItemPrice());
             cartReadDTO.setItemQuantity(cart.getCartItemQuantity());
-            System.out.println("상품 수량 : " + cartReadDTO.getItemQuantity());
             cartReadDTO.setItemPriceSum(cartReadDTO.getItemPrice() * cartReadDTO.getItemQuantity());
-            System.out.println("상품 총액 : " + cartReadDTO.getItemPriceSum());
             cartReadDTO.setOrderPriceSum((cartReadDTO.getItemPrice() * cartReadDTO.getItemQuantity()) - 1000);
-            System.out.println("주문 총액 : " + cartReadDTO.getOrderPriceSum());
             cartDTOList.add(cartReadDTO);
         }
+
         return cartDTOList;
     }
 
