@@ -7,7 +7,7 @@
     </select>
 
     <insert id="addNotice" parameterType="com.example.shoppingmall.notify.domain.Notice">
-        insert into notice values (#{noiceNo}, #{adminNo}, #{noticeTitle}, #{noticeCreateTime}, #{noticeContent}, 0)
+        insert into notice values (#{noticeNo}, #{adminNo}, #{noticeTitle}, "1998-12-31 23:59:59", #{noticeContent}, 0)
     </insert>
 
     <update id="updateNoticeByNo" parameterType="com.example.shoppingmall.notify.domain.Notice">
