@@ -5,15 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Notice {
-    private Integer noticeNo;
-    private Integer adminNo;
+    private Long noticeNo;
+    private Long adminNo;
     private String noticeTitle;
-    private String noticeCreateTime;
+    private Timestamp noticeCreatedTime;
     private String noticeContent;
-    private Integer viewCount;
+    private Long noticeViewcount;
 }

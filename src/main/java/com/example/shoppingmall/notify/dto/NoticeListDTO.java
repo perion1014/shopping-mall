@@ -6,22 +6,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class NoticeListDTO {
-    private Integer noticeNo;
+    private Long noticeNo;
     private String noticeTitle;
-    private String noticeCreateTime;
-    private Integer viewCount;
+    private Timestamp noticeCreatedTime;
+    private Long noticeViewcount;
 
     public static NoticeListDTO NoticeToNoticeListDTO(Notice notice){
         NoticeListDTO noticeListDTO = new NoticeListDTO();
         noticeListDTO.setNoticeNo(notice.getNoticeNo());
         noticeListDTO.setNoticeTitle(notice.getNoticeTitle());
-        noticeListDTO.setNoticeCreateTime(notice.getNoticeCreateTime());
-        noticeListDTO.setViewCount(notice.getViewCount());
+        noticeListDTO.setNoticeCreatedTime(notice.getNoticeCreatedTime());
+        noticeListDTO.setNoticeViewcount(notice.getNoticeViewcount());
         return noticeListDTO;
     }
 

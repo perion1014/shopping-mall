@@ -3,11 +3,11 @@
 <mapper namespace="com.example.shoppingmall.notify.mapper.NoticeMapper">
 
     <select id="findAllNotice" resultType="com.example.shoppingmall.notify.domain.Notice">
-        select * from notice order by notice_no
+        select * from notice order by notice_no desc
     </select>
 
     <insert id="addNotice" parameterType="com.example.shoppingmall.notify.domain.Notice">
-        insert into notice values (#{admin_no}, #{noticeTitle}, #{noticeCreateTime}, #{noticeContent}, #{noticeViewCount})
+        insert into notice values (#{noiceNo}, #{adminNo}, #{noticeTitle}, #{noticeCreateTime}, #{noticeContent}, 0)
     </insert>
 
     <update id="updateNoticeByNo" parameterType="com.example.shoppingmall.notify.domain.Notice">
