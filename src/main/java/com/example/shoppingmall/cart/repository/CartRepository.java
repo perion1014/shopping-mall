@@ -11,4 +11,8 @@ public interface CartRepository {
     String getItemName(Long itemNo);
     Integer getItemPrice(Long itemNo);
 
+    void updateCartItem(Long cartNo, Integer updateQuantity);
+
+    void deleteCartItem(Long cartNo);
+
 }
