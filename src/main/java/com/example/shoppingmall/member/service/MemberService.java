@@ -102,7 +102,6 @@ public class MemberService {
 
         for(Member member : memberList){
             memberListDTOList.add(MemberListDTO.MemberToMemberListDTO(member));
-            System.out.println("member = " + member);
         }
 
         return memberListDTOList;

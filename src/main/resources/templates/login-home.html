@@ -8,7 +8,21 @@
 <body>
 <header th:replace="~{/fragments/login-header :: header}">
 </header>
-   <img class=home__background-img src="/images/diego-sanchez-DEDhybzzBwc-unsplash.webp" alt="background-image"/>
-   <footer th:replace="~{/fragments/footer :: footer}"></footer>
+<img class=home__background-img src="/images/diego-sanchez-DEDhybzzBwc-unsplash.webp" alt="background-image"/>
+<main class="section__container">
+   <section id="new-arrivals">
+      <h1 class="section__title">New Arrival</h1>
+   </section>
+   <section id="about-us">
+      <h1 class="section__title section__title--right">About Us</h1>
+   </section>
+   <section id="best-items">
+      <h1 class="section__title">Best Items</h1>
+   </section>
+   <section id="access">
+      <h1 class="section__title section__title--right">Access</h1>
+   </section>
+</main>
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
 </body>
 </html>

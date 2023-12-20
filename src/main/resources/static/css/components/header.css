@@ -8,7 +8,7 @@ header{
     height: 3.4375rem;
     padding: 0 15rem;
     background-color: var(--color-primary);
-    box-shadow: rgba(0, 0, 0,0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0,0.24) 0 3px 8px;
 }
 .header__logo{
     font-size: 1.5rem;
@@ -17,9 +17,31 @@ header{
 .header__nav{
     font-size: 0.75rem;
 }
-.header__nav ul{
+.header__lists{
     display:flex;
     font-weight:600;
     gap:1.75rem;
     color: var(--color-primary);
+}
+
+.header__lists li ul{
+    display: none;
+}
+
+.header__lists li:hover ul{
+    display: block;
+}
+
+.nav-shop__menus, .nav-search__menus {
+    position: absolute;
+    top: 100%;
+}
+
+.nav-shop__menus{
+    width: 5rem;
+    background-color: var(--color-primary);
+}
+
+.nav-shop__menu{
+    padding: 0.3rem 0.1rem;
 }
