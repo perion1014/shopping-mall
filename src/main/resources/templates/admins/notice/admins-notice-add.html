@@ -22,6 +22,11 @@
         <form class="notice_add_form" action="/notice/admin/add" method="post">
           <hr />
           <input
+            name="adminNo"
+            type="hidden"
+            th:value="${session.loginAdmin.getAdminNo()}"
+          />
+          <input
             name="noticeTitle"
             class="notice_title"
             type="text"
