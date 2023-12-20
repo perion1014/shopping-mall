@@ -23,11 +23,11 @@ public class NoticeController {
     public String showNoticeList(Model model){
         List<NoticeListDTO> noticeListDTO = noticeService.findAllNotice();
         model.addAttribute("noticeListDTO", noticeListDTO);
-        return "admin-notice";
+        return "admins-notice";
     }
     @GetMapping("/admin/{noticeNo}")
     public String showNoticeDetail(@PathVariable(name="noticeNo")Integer noticeNo, Model model){
-        return "admin-notice-detail";
+        return "admins-notice-detail";
     }
     @GetMapping("/admin/add")
     public String goToRegisterNoticePage(){
@@ -39,11 +39,11 @@ public class NoticeController {
     }
     @GetMapping("/admin/{noticeNo}/update")
     public String goToUpdateNoticePage(@PathVariable(name="noticeNo")Integer noticeNo, Model model){
-        return "admin-notice-modify";
+        return "admins-notice-modify";
     }
     @PostMapping("/admin/{noticeNo}/update")
     public String updateNotice(@PathVariable(name= "noticeNo") Integer noticeNo, Model model){
-        return "admin-notice-modify";
+        return "admins-notice-modify";
     }
     @PostMapping("/admin/{noticeNo}/delete")
     public String deleteNotice(@PathVariable(name= "noticeNo") Integer noticeNo, Model model){
