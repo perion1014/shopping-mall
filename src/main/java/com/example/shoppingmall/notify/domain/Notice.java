@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class Notice {
     private Long noticeNo;
-    private Long adminNo;
+    private Integer adminNo;
     private String noticeTitle;
     private Timestamp noticeCreatedTime;
     private String noticeContent;

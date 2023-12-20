@@ -15,9 +15,11 @@ public class NoticeAddDTO {
     private String noticeContent;
 
 
-    public static Notice NoticeAddDTOToNotice(Long adminNo,NoticeAddDTO noticeAddDTO){
+    public static Notice NoticeAddDTOToNotice(Integer adminNo,NoticeAddDTO noticeAddDTO){
         Notice notice = new Notice();
+        notice.setNoticeNo(notice.getNoticeNo());
         notice.setAdminNo(adminNo);
+        System.out.println("addDTOadminNo = " + adminNo);
         notice.setNoticeTitle(noticeAddDTO.getNoticeTitle());
         notice.setNoticeContent(noticeAddDTO.getNoticeContent());
         return notice;

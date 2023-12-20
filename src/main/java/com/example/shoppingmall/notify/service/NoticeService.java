@@ -19,10 +19,10 @@ import java.util.List;
 public class NoticeService {
 
     private final NoticeRepository noticeRepository;
-    @Transactional(readOnly = true)
-    public void addNotice(Long adminNo, NoticeAddDTO noticeAddDTO){
+    @Transactional
+    public void addNotice(Integer adminNo, NoticeAddDTO noticeAddDTO){
         Notice notice = NoticeAddDTO.NoticeAddDTOToNotice(adminNo, noticeAddDTO);
-        System.out.println("notice.getAdminNo() = " + notice.getAdminNo());
+        System.out.println("service_notice.getAdminNo() = " + notice.getAdminNo());
         noticeRepository.addNotice(notice);
     }
     @Transactional(readOnly = true)
