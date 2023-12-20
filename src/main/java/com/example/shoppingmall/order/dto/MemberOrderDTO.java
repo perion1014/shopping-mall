@@ -1,5 +1,6 @@
 package com.example.shoppingmall.order.dto;
 
+import com.example.shoppingmall.order.domain.MemberOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +23,18 @@ public class MemberOrderDTO {
     private String orderAddressDetail;
     private String receiverName;
     private Integer orderStatus;
+
+    public static MemberOrderDTO toMemberOrderDTO(MemberOrder memberOrder) {
+        MemberOrderDTO memberOrderDTO = new MemberOrderDTO();
+        memberOrderDTO.setMemberOrderNo(memberOrder.getMemberOrderNo());
+        memberOrderDTO.setMemberNo(memberOrder.getMemberNo());
+        memberOrderDTO.setOrderTime(memberOrder.getOrderTime());
+        memberOrderDTO.setOrderHp(memberOrder.getOrderHp());
+        memberOrderDTO.setOrderPostalCode(memberOrder.getOrderPostalCode());
+        memberOrderDTO.setOrderAddressBasic(memberOrder.getOrderAddressBasic());
+        memberOrderDTO.setOrderAddressDetail(memberOrder.getOrderAddressDetail());
+        memberOrderDTO.setReceiverName(memberOrderDTO.getReceiverName());
+        memberOrderDTO.setOrderStatus(memberOrderDTO.getOrderStatus());
+        return memberOrderDTO;
+    }
 }
