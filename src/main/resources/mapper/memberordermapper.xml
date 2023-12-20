@@ -6,6 +6,18 @@
         insert into member_order values (#{memberOrderNo}, #{memberNo}, #{orderTime}, #{orderHp}, #{orderPostalCode}, #{orderAddressBasic}, #{orderAddressDetail}, #{receiverName}, #{orderStatus})
     </insert>
 
+    <insert id="saveMemberOrderDetail" parameterType="com.example.shoppingmall.order.domain.MemberOrderDetail">
+        insert into member_order_detail values (#{memberOrderDetailNo}, #{memberOrderNo}, #{itemNo}, #{itemStockNo}, #{itemQuantity})
+    </insert>
+
+    <select id="getMemberOrderList" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order
+    </select>
+
+    <select id="getMemberOrderDetail" resultType="com.example.shoppingmall.order.domain.MemberOrderDetail">
+        select * from member_order_detail
+    </select>
+
     <resultMap id="memberOrderResultMap" type="com.example.shoppingmall.order.domain.MemberOrder">
         <id column="member_order_no" property="memberOrderNo"/>
         <result column="member_no" property="memberNo"/>
