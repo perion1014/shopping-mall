@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Notice {
-    private int noticeNo;
+    private Integer noticeNo;
     private Integer adminNo;
     private String noticeTitle;
     private String noticeCreateTime;
