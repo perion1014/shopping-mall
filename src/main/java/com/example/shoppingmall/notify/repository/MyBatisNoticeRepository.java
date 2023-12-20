@@ -1,6 +1,7 @@
 package com.example.shoppingmall.notify.repository;
 
 import com.example.shoppingmall.notify.domain.Notice;
+import com.example.shoppingmall.notify.dto.NoticeListDTO;
 import com.example.shoppingmall.notify.mapper.NoticeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,8 @@ public class MyBatisNoticeRepository implements NoticeRepository{
 
     private final NoticeMapper noticeMapper;
     @Override
-    public List<Notice> findAllNotice() {
-        List<Notice> noticeList = noticeMapper.findAllNotice();
+    public List<NoticeListDTO> findAllNotice() {//Notice
+        List<NoticeListDTO> noticeList = noticeMapper.findAllNotice();
         return noticeList;
     }
     @Override
@@ -23,12 +24,12 @@ public class MyBatisNoticeRepository implements NoticeRepository{
     }
 
     @Override
-    public void updateNoticeByNo(int noticeNo) {
+    public void updateNoticeByNo(Integer noticeNo) {
 
     }
 
     @Override
-    public void deleteNoticeByNo(int noticeNo) {
+    public void deleteNoticeByNo(Integer noticeNo) {
 
     }
 }
