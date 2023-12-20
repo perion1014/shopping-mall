@@ -51,9 +51,9 @@ public class ItemController {
     }
 
     @PostMapping("/admin/add")
-    public String addItem(@ModelAttribute ItemAddDTO itemAddDTO, @ModelAttribute ItemStockAddDTO itemStockAddDTO) {
+    public String addItem(@ModelAttribute ItemAddDTO itemAddDTO) {
         itemService.saveItem(itemAddDTO);
-        itemService.saveItemStock(itemStockAddDTO);
+        //itemService.saveItemStock(itemStockAddDTO);
         return "redirect:/items/admin";
     }
 
@@ -78,8 +78,8 @@ public class ItemController {
     }
 
     @PostMapping("/admin/{itemNo}/delete")
-    public String deleteItem(@PathVariable(name="itemNo") Long itemNo) {
-        itemService.deleteItemByNo(itemNo);
+    public String deleteItem(@PathVariable(name="itemNo") Long itemNo, @ModelAttribute ItemDeleteDTO itemDeleteDTO) {
+        itemService.deleteItemByNo(itemNo, itemDeleteDTO);
         return "redirect:/items/admin";
     }
 

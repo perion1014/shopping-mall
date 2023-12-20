@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemUpdateDTO {
+    private Long itemNo;
     private String itemName;
     private String itemCategory;
     private Double itemGrade;
@@ -21,8 +22,9 @@ public class ItemUpdateDTO {
     private Integer itemOnsale;
 
 
-    public static Item itemUpdateDTOToItem(ItemUpdateDTO itemUpdateDTO) {
+    public static Item itemUpdateDTOToItem(Long itemNo, ItemUpdateDTO itemUpdateDTO) {
         Item item = new Item();
+        item.setItemNo(itemNo);
         item.setItemName(itemUpdateDTO.getItemName());
         item.setItemCategory(itemUpdateDTO.getItemCategory());
         item.setItemGrade(itemUpdateDTO.getItemGrade());

@@ -1,6 +1,7 @@
 package com.example.shoppingmall.item.service;
 
 import com.example.shoppingmall.item.domain.Item;
+import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.*;
 import com.example.shoppingmall.item.repository.ItemRepository;
@@ -18,7 +19,11 @@ public class ItemService {
 
     public void saveItem(ItemAddDTO itemAddDTO) {
         Item item = ItemAddDTO.itemAddDTOToItem(itemAddDTO);
+        ItemPhotos itemPhotos = ItemAddDTO.itemAddDTOToItemPhotos(itemAddDTO);
+        ItemStock itemStock = ItemAddDTO.itemAddDTOToItemStock(itemAddDTO);
         itemRepository.saveItem(item);
+        itemRepository.saveItemPhotos(itemPhotos);
+        itemRepository.saveItemStock(itemStock);
     }
 
     public void saveItemStock(ItemStockAddDTO itemStockAddDTO) {
@@ -77,12 +82,20 @@ public class ItemService {
     }
 
     public void updateItemByNo(Long itemNo, ItemUpdateDTO itemUpdateDTO) {
-        Item item = ItemUpdateDTO.itemUpdateDTOToItem(itemUpdateDTO);
-        itemRepository.updateItemByNo(itemNo, item);
+        Item item = ItemUpdateDTO.itemUpdateDTOToItem(itemNo, itemUpdateDTO);
+        itemRepository.updateItemByNo(item);
     }
 
-    public void deleteItemByNo(Long itemNo) {
-        itemRepository.deleteItemByNo(itemNo);
+    public void deleteItemByNo(Long itemNo, ItemDeleteDTO itemDeleteDTO) {
+        Item item = ItemDeleteDTO.toItem(itemNo, itemDeleteDTO);
+        ItemPhotos itemPhotos = ItemDeleteDTO.toItemPhotos(itemNo, itemDeleteDTO);
+        List<ItemStock> itemStockList = itemRepository.findItemStocksByItemNo(itemNo);
+        //ItemStock itemStock = ItemDeleteDTO.toItemStockByItemNo(itemNo, itemDeleteDTO);
+        itemRepository.deleteItemByNo(item);
+        itemRepository.deleteItemPhotosByNo(itemPhotos);
+        for (ItemStock itemStock: itemStockList) {
+            itemRepository.deleteItemStockByStockNo(itemStock);
+        }
     }
 
     public void deleteItemByName(ItemDTO itemDTO) {

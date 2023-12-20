@@ -1,6 +1,7 @@
 package com.example.shoppingmall.item.mapper;
 
 import com.example.shoppingmall.item.domain.Item;
+import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,6 +12,8 @@ import java.util.Optional;
 public interface ItemMapper {
 
     void saveItem(Item item);
+
+    void saveItemPhotos(ItemPhotos itemPhotos);
 
     void saveItemStock(ItemStock itemStock);
 
@@ -27,10 +30,15 @@ public interface ItemMapper {
 
     List<Item> findItemsByName(String itemName);
 
-    void updateItemByNo(Long itemNo, Item item);
+    void updateItemByNo(Item item);
 
-    void deleteItemByNo(Long itemNo);
+    void deleteItemByNo(Item item);
 
     void deleteItemByName(Item item);
 
+    List<ItemStock> findItemStocksByItemNo(Long itemNo);
+
+    void deleteItemPhotosByNo(ItemPhotos itemPhotos);
+
+    void deleteItemStockByStockNo(ItemStock itemStock);
 }
