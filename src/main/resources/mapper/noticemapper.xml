@@ -3,7 +3,7 @@
 <mapper namespace="com.example.shoppingmall.notify.mapper.NoticeMapper">
 
     <select id="findAllNotice" resultType="com.example.shoppingmall.notify.domain.Notice">
-        select * from notice
+        select * from notice order by notice_no
     </select>
 
     <insert id="addNotice" parameterType="com.example.shoppingmall.notify.domain.Notice">

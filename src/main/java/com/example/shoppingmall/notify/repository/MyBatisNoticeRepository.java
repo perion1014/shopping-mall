@@ -14,9 +14,8 @@ public class MyBatisNoticeRepository implements NoticeRepository{
 
     private final NoticeMapper noticeMapper;
     @Override
-    public List<NoticeListDTO> findAllNotice() {//Notice
-        List<NoticeListDTO> noticeList = noticeMapper.findAllNotice();
-        return noticeList;
+    public List<Notice> findAllNotice() {//Notice
+        return noticeMapper.findAllNotice();
     }
     @Override
     public void addNotice(Notice notice){
