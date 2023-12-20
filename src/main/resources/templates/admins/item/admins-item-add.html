@@ -18,49 +18,52 @@
     <main>
       <div class="main">
         <div class="admin_item_add">상품 등록</div>
-
+        <form action="/items/admin/add" method="post">
         <div class="admin_item_container">
+
           <div>
             상품명
-            <input type="text" class="admin_item_name_input" />
+            <input type="text" name="itemName" class="admin_item_name_input" />
           </div>
 
           <div>
-            <input type="file" name="" class="admin_item_thumb" />
-            <select name="sales_status">
-              <option value="onsale">onsale</option>
-              <option value="unsale">unsale</option>
+            <input type="file" name="itemThumb" class="admin_item_thumb" />
+            <select name="itemOnsale">
+              <option value="1">On sale</option>
+              <option value="0">Not on sale</option>
             </select>
-            <select name="item_category">
+            <select name="itemCategory">
               <option value="outer">outer</option>
               <option value="top">top</option>
               <option value="bottom">bottom</option>
-              <option value="accessory">accessary</option>
+              <option value="accessory">accessory</option>
             </select>
           </div>
 
           <div>
-            <input type="file" name="" class="admin_item_image" />
-            <input type="file" name="" class="admin_item_image" />
-            <input type="file" name="" class="admin_item_image" />
+            <input type="file" name="itemImg1" class="admin_item_image" />
+            <input type="file" name="itemImg2" class="admin_item_image" />
+            <input type="file" name="itemImg3" class="admin_item_image" />
           </div>
 
           <div>
-            <select name="item_size">
+            <select name="itemSize">
               <option value="S">S</option>
               <option value="M">M</option>
               <option value="L">L</option>
             </select>
-            <input type="number" name="item_stock" />
-            금액: <input type="text" />
+            <input type="number" name="itemStock" />
+            금액: <input type="text" name="itemPrice"/>
           </div>
 
           <div>
-            <textarea name=""></textarea>
+            <textarea name="itemDetail"></textarea>
           </div>
           <!-- container-->
         </div>
         <div class="btn_div"><button>등록</button></div>
+
+        </form>
       </div>
       <!--main div-->
     </main>

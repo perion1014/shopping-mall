@@ -1,6 +1,7 @@
 package com.example.shoppingmall.item.repository;
 
 import com.example.shoppingmall.item.domain.Item;
+import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.ItemDTO;
 import com.example.shoppingmall.item.dto.ItemStockDTO;
@@ -20,6 +21,11 @@ public class MyBatisItemRepository implements ItemRepository{
     @Override
     public void saveItem(Item item) {
         itemMapper.saveItem(item);
+    }
+
+    @Override
+    public void saveItemPhotos(ItemPhotos itemPhotos) {
+        itemMapper.saveItemPhotos(itemPhotos);
     }
 
     @Override
@@ -62,17 +68,33 @@ public class MyBatisItemRepository implements ItemRepository{
     }
 
     @Override
-    public void updateItemByNo(Long itemNo, Item item) {
-        itemMapper.updateItemByNo(itemNo, item);
+    public void updateItemByNo(Item item) {
+        itemMapper.updateItemByNo(item);
     }
 
     @Override
-    public void deleteItemByNo(Long itemNo) {
-        itemMapper.deleteItemByNo(itemNo);
+    public void deleteItemByNo(Item item) {
+        itemMapper.deleteItemByNo(item);
     }
 
     @Override
     public void deleteItemByName(Item item) {
         itemMapper.deleteItemByName(item);
+    }
+
+    @Override
+    public List<ItemStock> findItemStocksByItemNo(Long itemNo) {
+        List<ItemStock> itemStockList = itemMapper.findItemStocksByItemNo(itemNo);
+        return itemStockList;
+    }
+
+    @Override
+    public void deleteItemPhotosByNo(ItemPhotos itemPhotos) {
+        itemMapper.deleteItemPhotosByNo(itemPhotos);
+    }
+
+    @Override
+    public void deleteItemStockByStockNo(ItemStock itemStock) {
+        itemMapper.deleteItemStockByStockNo(itemStock);
     }
 }

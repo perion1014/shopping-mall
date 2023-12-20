@@ -24,7 +24,7 @@
 <!--        </collection>-->
 <!--    </resultMap>-->
 
-<!--    <select id="joinItemByItemNo" resultMap="itemResultMap" parameterType="java.lang.Long">-->
+<!--    <select id="joinItemByItemNo" resultMap="itemResultMap">-->
 <!--        select-->
 <!--            a.item_no,-->
 <!--            a.item_name,-->
@@ -41,17 +41,24 @@
 <!--        join-->
 <!--            item_stock as b-->
 <!--            on a.item_no = b.item_no-->
-<!--        where a.item_no = #{itemNo};-->
+<!--        where a.item_no = #{itemNo}-->
 <!--    </select>-->
 
 
 
     <insert id="saveItem" parameterType="com.example.shoppingmall.item.domain.Item">
-        insert into item values (#{itemNo},#{itemName},#{itemCategory},#{itemGrade},#{itemDetail},#{itemPrice},#{itemOnsale},#{itemRegisteredTime})
+        insert into item
+        values (#{itemNo},#{itemName},#{itemCategory},#{itemGrade},#{itemDetail},#{itemPrice},#{itemOnsale},#{itemRegisteredTime})
+    </insert>
+
+    <insert id="saveItemPhotos" parameterType="com.example.shoppingmall.item.domain.ItemPhotos">
+        insert into item_photos
+        values (#{itemNo}, #{itemThumb}, #{itemImg1}, #{itemImg2}, #{itemImg3}, #{itemThumbModified}, #{itemImg1Modified}, #{itemImg2Modified}, #{itemImg3Modified})
     </insert>
 
     <insert id="saveItemStock" parameterType="com.example.shoppingmall.item.domain.ItemStock">
-        insert into item_stock values (#{itemStockNo}, #{itemNo}, #{itemSize}, #{itemStock})
+        insert into item_stock
+        values (#{itemStockNo}, #{itemNo}, #{itemSize}, #{itemStock})
     </insert>
 
     <select id="findAllItems" resultType="com.example.shoppingmall.item.domain.Item">
@@ -75,19 +82,38 @@
     </select>
 
     <update id="updateItemByNo" parameterType="com.example.shoppingmall.item.domain.Item">
-        update item set item_name = #{itemName}, item_category=#{itemCategory}, item_detail=#{itemDetail}, item_onsale=#{itemOnsale} where item_no = #{itemNo}
+        update item
+        set item_name = #{itemName},
+            item_category=#{itemCategory},
+            item_detail=#{itemDetail},
+            item_onsale=#{itemOnsale}
+        where item_no = #{itemNo}
     </update>
 
     <update id="updateItemStockByNo" parameterType="com.example.shoppingmall.item.domain.ItemStock">
-        update item_stock set item_stock = #{itemStock} where item_stock_no=#{item_stock_no}
+        update item_stock
+        set item_stock = #{itemStock}
+        where item_stock_no=#{item_stock_no}
     </update>
 
     <delete id="deleteItemByNo" parameterType="com.example.shoppingmall.item.domain.Item">
         delete from item where item_no = #{itemNo}
     </delete>
 
-    <delete id="deleteItemByName" parameterType="com.example.shoppingmall.item.domain.Item">
-        delete from item where item_name = #{itemName}
+    <delete id="deleteItemPhotosByNo" parameterType="com.example.shoppingmall.item.domain.ItemPhotos">
+        delete from item where item_no = #{itemNo}
     </delete>
+
+    <delete id="deleteItemStockByStockNo" parameterType="com.example.shoppingmall.item.domain.ItemStock">
+        delete from item where item_stock_no = #{itemStockNo}
+    </delete>
+
+<!--    <delete id="deleteItemByName" parameterType="com.example.shoppingmall.item.domain.Item">-->
+<!--        delete from item where item_name = #{itemName}-->
+<!--    </delete>-->
+
+    <select id="findItemStocksByItemNo" parameterType="com.example.shoppingmall.item.domain.Item" resultType="java.util.List">
+        select * from item_stock where item_no = #{itemNo}
+    </select>
 
 </mapper>
