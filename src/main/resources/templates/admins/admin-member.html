@@ -56,7 +56,7 @@
               <td th:text="${memberListDTO.memberPostalCode}"></td>
               <td th:text="${memberListDTO.memberAddressBasic}"></td>
               <td th:text="${memberListDTO.memberAddressDetail}"></td>
-              <td><a href="www.naver.com">삭제</a></td>
+              <td><form action="/members/delete" method="post"><button class="btn btn--xs btn--black">삭제</button></form></td>
             </tr>
           </tbody>
         </table>

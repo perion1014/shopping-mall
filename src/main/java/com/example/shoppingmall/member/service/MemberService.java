@@ -66,6 +66,10 @@ public class MemberService {
         );
     }
 
+    @Transactional
+    public void drop(Long memberNo){
+        memberRepository.deleteByNo(memberNo);
+    }
 
 
 }

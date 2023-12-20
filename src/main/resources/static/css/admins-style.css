@@ -1,3 +1,5 @@
+@import "components/custom.css";
+
 :root {
   /*사이트 색상 선정*/
   --color-primary: var(--color-white);
@@ -20,6 +22,7 @@
   --side-bar-width: 200px;
   --side-bar-height: 80vh;
 }
+
 
 a {
   text-decoration: none; 
