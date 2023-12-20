@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
+    <script src="/js/member-updatecart.js"></script>
     <title>회원 장바구니 조회</title>
 </head>
 <body>
@@ -11,16 +12,16 @@
     <main>
         <h1> member-cart-list.html입니다.</h1>
 
-        <div th:each="cartDTO : ${cartDTOList}">
+        <div th:each="cartDTO, cartIndex : ${cartDTOList}" th:data>
             <div th:text="'썸네일 : ' + ${cartDTO.itemThumbnail}"></div>
             <div th:text="'상품명 : ' + ${cartDTO.itemName}"></div>
             <div th:text="'상품 사이즈 : ' + ${cartDTO.itemSize}"></div>
             <div th:text="'상품 가격 : ' + ${cartDTO.itemPrice}"></div>
             <div th:text="'상품 총액 : ' + ${cartDTO.itemPriceSum}"></div>
             <div th:text="'주문 총액 : ' + ${cartDTO.orderPriceSum}"></div>
-            상품 수량 <input th:value ="${cartDTO.itemQuantity}"></input>
-            <button onclick="updateQuantity(-1)"> - </button>
-            <button onclick="updateQuantity(1)"> + </button>
+            상품 수량 <input th:id="'inputvalue_' + ${cartIndex.index}" th:value ="${cartDTO.itemQuantity}"></input>
+            <!--<button th:id="'decreaseButton_' + ${cartIndex.index}" th:onclick='"updateQuantity(-1, ' + ${cart}) + ')"'> - </button>-->
+            <!--<button th:id="'increaseButton_' + ${cartIndex.index}" th:onclick="updateQuantity(1, ${cartIndex.index})"> + </button>-->
             <hr>
         </div>
     </main>
