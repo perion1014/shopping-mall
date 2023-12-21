@@ -10,19 +10,18 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NoticeAddDTO {
+public class NoticeUpdateDTO {
 
     private String noticeTitle;
     private String noticeContent;
 
-
-    public static Notice NoticeAddDTOToNotice(Integer adminNo,NoticeAddDTO noticeAddDTO){
+    public static Notice noticeUpdateDTOToNotice(Long noticeNo,NoticeUpdateDTO noticeUpdateDTO){
         Notice notice = new Notice();
         notice.setNoticeNo(notice.getNoticeNo());
-        notice.setAdminNo(adminNo);
-        System.out.println("addDTOadminNo = " + adminNo);
-        notice.setNoticeTitle(noticeAddDTO.getNoticeTitle());
-        notice.setNoticeContent(noticeAddDTO.getNoticeContent());
+        notice.setNoticeTitle(noticeUpdateDTO.getNoticeTitle());
+        notice.setNoticeContent(noticeUpdateDTO.getNoticeContent());
         return notice;
+
     }
+
 }

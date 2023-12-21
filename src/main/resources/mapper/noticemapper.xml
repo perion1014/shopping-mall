@@ -10,8 +10,8 @@
         insert into notice values (#{noticeNo}, #{adminNo}, #{noticeTitle}, "1998-12-31 23:59:59", #{noticeContent}, 0)
     </insert>
 
-    <update id="updateNoticeByNo" parameterType="com.example.shoppingmall.notify.domain.Notice">
-        update notice set notice_title = #{noticeTitle}, notice_content = #{noticeContent} where notice_no
+    <update id="updateNotice" parameterType="com.example.shoppingmall.notify.domain.Notice">
+        update notice set notice_title = #{noticeTitle}, notice_content = #{noticeContent}
     </update>
 
     <delete id="deleteNoticeByNo" parameterType="com.example.shoppingmall.notify.domain.Notice">

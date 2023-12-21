@@ -41,6 +41,9 @@ public class NoticeController {
     @PostMapping("/admin/add")
     public String registerNotice(@RequestParam("adminNo") Integer adminNo, @ModelAttribute NoticeAddDTO noticeAddDTO){
         //adminId도 가져와야함 @RequestParam("adminId") String adminId
+        //추가구현
+        //해당 작성자admin아이디 출력
+        //작성일자 생성
         System.out.println("adminNo = " + adminNo);
         noticeService.addNotice(adminNo, noticeAddDTO);
         return "redirect:/notice/admin";
@@ -48,6 +51,7 @@ public class NoticeController {
     /*공지사항 수정페이지 Admin전용*/
     @GetMapping("/admin/{noticeNo}/update")
     public String goToUpdateNoticePage(@PathVariable(name="noticeNo")Long noticeNo, Model model){
+        model.addAttribute("noticeUpdateDTO", noticeService.updateNotice(noticeNo));
         return "admins/notice/admins-notice-modify";
     }
     /*공지사항 수정실행 Admin전용*/
@@ -57,8 +61,8 @@ public class NoticeController {
     }
     /*공지사항 삭제 Admin전용*/
     @PostMapping("/admin/{noticeNo}/delete")
-    public String deleteNotice(@PathVariable(name= "noticeNo") Long noticeNo, NoticeDeleteDTO noticeDeleteDTO, Model model){
-
-        return "admins/notice";
+    public String deleteNotice(@PathVariable(name= "noticeNo") Long noticeNo){
+        noticeService.deleteNotice(noticeNo);
+        return "redirect:/notice/admin";
     }
 }
