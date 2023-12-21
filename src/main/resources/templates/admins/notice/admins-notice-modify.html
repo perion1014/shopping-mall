@@ -16,7 +16,7 @@
       <div class="main">
         <div class="admin_notice_modify">공지사항 수정</div>
 
-        <form class="notice_add_form" action="" method="">
+        <form class="notice_add_form" action="/admin/{noticeNo}/update" method="post">
           <hr />
           <div class="notice_elements">
             <span class="notice_no">1</span>
@@ -43,7 +43,11 @@
           <hr />
 
           <div class="notice_btn">
-            <button>수정</button> </form> <button>삭제</button>
+            <button>수정</button>
+          </div>
+        </form>
+          <div class="notice_btn">
+            <button>삭제</button>
           </div>
 
         <!--main div-->

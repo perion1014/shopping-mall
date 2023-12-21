@@ -22,17 +22,14 @@ public class MyBatisNoticeRepository implements NoticeRepository{
     public void addNotice(Notice notice){
         noticeMapper.addNotice(notice);
     }
-
     @Override
-    public void updateNoticeByNo(Long noticeNo) {
-
+    public void updateNotice(Notice notice) {
+        noticeMapper.updateNotice(notice);
     }
-
     @Override
     public void deleteNoticeByNo(Long noticeNo) {
         noticeMapper.deleteNoticeByNo(noticeNo);
     }
-
     @Override
     public Optional<Notice> findByNo(Long noticeNo) {
         return Optional.ofNullable(noticeMapper.findByNo(noticeNo));

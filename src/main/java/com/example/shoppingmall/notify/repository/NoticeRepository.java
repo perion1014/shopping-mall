@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface NoticeRepository {
     List<Notice> findAllNotice();
     void addNotice(Notice notice);
-    void updateNoticeByNo(Long noticeNo);
+    void updateNotice(Notice notice);
     void deleteNoticeByNo(Long noticeNo);
     Optional<Notice> findByNo(Long noticeNo);
 

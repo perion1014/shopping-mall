@@ -51,7 +51,7 @@
                 <td name="writer">admin</td>
                 <td th:text="${noticeListDTO.noticeCreatedTime}"></td>
                 <td th:text="${noticeListDTO.noticeViewcount}"></td>
-                <td name="noticeDelete"><a href="www.naver.com">삭제</a></td>
+                <td name="noticeDelete"><a th:href="@{|/admin/${noticeListDTO.getNoticeNo()}/delete|}">삭제</a></td>
             </tr>
             </tbody>
         </table>
