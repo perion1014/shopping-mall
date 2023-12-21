@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
+    <title>Title</title>
+
+<script type = "text/javascript">
+
+    function changeCartAddQuantity(number){
+        let nowQuantityInput = document.getElementById("cartAddQuantityInput");
+        let nowQuantityValue = Number(nowQuantityInput.value);
+        if(Number(number) == 1){
+            if(nowQuantityValue != 99){
+                nowQuantityValue += Number(number);
+                nowQuantityInput.value = nowQuantityValue;
+            }
+        } else if(Number(number) == -1){
+            if(nowQuantityValue != 1){
+                nowQuantityValue += Number(number);
+                nowQuantityInput.value = nowQuantityValue;
+            }
+        }
+    }
+
+</script>
+
+</head>
+<body>
+<header th:replace="~{/fragments/login-header :: header}"></header>
+<br><br><br><br><br><br><br>
+<h1>여기는 itemInfo_Temp_CMS.html입니다.</h1>
+
+<form>
+    <input style = "display: none;">
+<div >상품 썸네일 : asdasfasd</div>
+<div >상품명 : 빨간셔츠</div>
+<div >평점 : 3.5</div>
+<div >상품 가격 : 100000원</div>
+<div >
+    상품 사이즈 :
+    <select name = "cartAddItemSize">
+        <option value = "S">S</option>
+        <option value = "M">M</option>
+        <option value = "L">L</option>
+    </select>
+</div>
+<div >
+    상품 수량 <button type = "button" onclick="changeCartAddQuantity(-1)"> - </button>
+    <input id = "cartAddQuantityInput" value = "1" readonly>
+    <button type="button" onclick = "changeCartAddQuantity(1)"> + </button>
+</div>
+<div>
+    <button>장바구니 추가</button>
+</div>
+
+</form>
+
+</body>
+</html>
