@@ -129,7 +129,6 @@ public class MemberController {
                          @RequestParam(value="page", required=false, defaultValue="1") int page) {
 
         List<MemberListDTO> pagingList = memberService.pagingList(page);
-        System.out.println("pagingList = " + pagingList);
 
         MemberPageDTO pageDTO = memberService.pagingParam(page);
         model.addAttribute("pagingList",pagingList);

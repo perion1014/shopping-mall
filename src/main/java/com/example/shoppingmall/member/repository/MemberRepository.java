@@ -26,5 +26,5 @@ public interface MemberRepository {
     // 김찬혁 페이징
     List<MemberListDTO> pagingList(Map<String, Integer> pagingParams);
 
-    int memberCount();
+    Long memberCount();
 }
