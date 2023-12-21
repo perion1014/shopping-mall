@@ -105,6 +105,10 @@
         select * from item
     </select>
 
+    <select id="findAllItemStocks" parameterType="Long" resultType="com.example.shoppingmall.item.domain.ItemStock">
+        select * from item_stock where item_no = #{itemNo}
+    </select>
+
     <select id="findAllItemsOnsale" resultType="com.example.shoppingmall.item.domain.Item">
         select * from item where item_onsale = 1
     </select>

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,6 +27,7 @@ public class Item {
     private Integer itemOnsale;
     private Timestamp itemRegisteredTime;
 
+    private List<ItemStock> itemStockList;
 
 
     public static Item itemDTOToItemWithItemNo(ItemDTO itemDTO) {

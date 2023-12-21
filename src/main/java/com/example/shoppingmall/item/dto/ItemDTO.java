@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -18,20 +19,19 @@ public class ItemDTO {
 
     private Long itemNo;
     private String itemName;
-    private String itemCategory;
-    private Double itemGrade;
-    private String itemDetail;
     private Integer itemPrice;
-    private Integer itemOnsale;
-    private Timestamp itemRegisteredTime;
-
-    //
-    private ItemStock itemStock;
-
     // 1:N 관계
     private List<ItemStockDTO> itemStockDTOList;
+    private String itemCategory;
+    private Double itemGrade;
+    private Integer itemOnsale;
 
-    public static ItemDTO ItemtoItemDTO(Item item) {
+
+    private String itemDetail; // 필요 x
+    private Timestamp itemRegisteredTime; // 필요 x
+
+
+    public static ItemDTO itemToItemDTO(Item item) {
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setItemNo(item.getItemNo());
         itemDTO.setItemName(item.getItemName());
@@ -43,4 +43,19 @@ public class ItemDTO {
         itemDTO.setItemRegisteredTime(item.getItemRegisteredTime());
         return itemDTO;
     }
+
+    public static List<ItemStockDTO> itemToItemStockDTOList(Long itemNo, Item item, List<ItemStock> itemStockList) {
+        List<ItemStockDTO> itemStockDTOList = new ArrayList<>();
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setItemNo(itemNo);
+        itemDTO.setItemName(item.getItemName());
+        itemDTO.setItemCategory(item.getItemCategory());
+        itemDTO.setItemGrade(item.getItemGrade());
+        itemDTO.setItemDetail(item.getItemDetail());
+        itemDTO.setItemPrice(item.getItemPrice());
+        itemDTO.setItemOnsale(item.getItemOnsale());
+        itemDTO.setItemRegisteredTime(item.getItemRegisteredTime());
+        return itemStockDTOList;
+    }
+
 }
