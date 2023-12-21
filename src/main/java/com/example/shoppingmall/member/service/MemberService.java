@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,11 +23,20 @@ public class MemberService {
     @Transactional
     public void join(MemberAddDTO memberAddDTO){
         Member member = MemberAddDTO.MemberAddDTOToMember(memberAddDTO);
-        memberRepository.findById(member.getMemberId())
-                .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 아이디입니다.");});
+        memberIdDuplicateCheck(member);
+        memberEmailDuplicateCheck(member);
+
+        memberRepository.save(member);
+    }
+
+    private void memberEmailDuplicateCheck(Member member) {
         memberRepository.findByEmail(member.getMemberEmail())
                 .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 이메일입니다.");});
-        memberRepository.save(member);
+    }
+
+    private void memberIdDuplicateCheck(Member member) {
+        memberRepository.findById(member.getMemberId())
+                .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 아이디입니다.");});
     }
 
     @Transactional(readOnly = true)

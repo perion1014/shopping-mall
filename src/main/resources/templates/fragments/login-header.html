@@ -2,12 +2,30 @@
     <a href="/" class="header__logo">PERION</a>
     <nav class="header__nav">
         <ul class="header__lists">
-            <li><a href="/items">쇼핑몰</a></li>
-            <li><a href="#">상품검색</a></li>
-            <li><a href="/notice">공지사항</a></li>
-            <li><a th:href="@{|/members/${session.loginMember.getMemberNo()}/show-info|}">마이페이지</a></li>
-            <li><a href="javascript:void(0)" class="member__logout">로그아웃</a></li>
-            <li><a th:href="@{|/carts/${session.loginMember.getMemberNo()}|}">장바구니</a></li>
+            <li class="header__list header__nav-shop">
+                <a  href="/items">쇼핑몰</a>
+                <ul class="nav-shop__menus">
+                    <li class="nav-shop__menu"><a class="nav-shop__menu--title" href="/items">All</a></li>
+                    <li class="nav-shop__menu"><a class="nav-shop__menu--title" href="#">Outer</a></li>
+                    <li class="nav-shop__menu"><a class="nav-shop__menu--title" href="#">Inner</a></li>
+                    <li class="nav-shop__menu"><a class="nav-shop__menu--title" href="#">Pants</a></li>
+                </ul>
+            </li>
+            <li class="header__list header__nav-search">
+                <a href="#">상품검색</a>
+                <ul class="nav-search__menus">
+                    <li class="nav-search__menu">
+                        <form>
+                            <input type="text" placeholder="상품명을 입력해주세요">
+                            <button class="btn btn--xs btn--white">검색</button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+            <li class="header__list"><a href="/notice">공지사항</a></li>
+            <li class="header__list"><a th:href="@{|/members/${session.loginMember.getMemberNo()}/show-info|}">마이페이지</a></li>
+            <li class="header__list"><a href="javascript:void(0)" class="member__logout">로그아웃</a></li>
+            <li class="header__list"><a th:href="@{|/carts/${session.loginMember.getMemberNo()}|}">장바구니</a></li>
         </ul>
     </nav>
 </header>
