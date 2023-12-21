@@ -3,6 +3,8 @@ package com.example.shoppingmall.cart.controller;
 import com.example.shoppingmall.cart.domain.Cart;
 import com.example.shoppingmall.cart.dto.CartReadDTO;
 import com.example.shoppingmall.cart.service.CartService;
+import com.example.shoppingmall.member.domain.Member;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,16 @@ public class CartController {
         model.addAttribute("cartDTOList", cartDTOList);
         return "carts/member-cart-list";
     }
+
+//    @PostMapping("/{memberNo}")
+//    public String addItemsToMemberCart(@PathVariable(name = "memberNo") Long memberNo,
+//                                       @RequestParam(name = "") Long ){
+//
+//
+//
+//
+//        return "carts/itemInfo_Temp_CMS";
+//    }
 
     @PostMapping("/{memberNo}/{cartNo}/update")
     public String updateItemsInMemberCart(@RequestBody Map<String, String> jsonData, Model model, RedirectAttributes rttr){
@@ -53,7 +65,9 @@ public class CartController {
     }
 
     @GetMapping("/carts/item_info_temp")
-    public String gotoItemInfo(){
+    public String gotoItemInfo(Model model, HttpSession session){
+        Long loginMemberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+        model.addAttribute("memberNo", loginMemberNo);
         return "carts/itemInfo_Temp_CMS";
     }
 

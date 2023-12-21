@@ -31,8 +31,10 @@
 <br><br><br><br><br><br><br>
 <h1>여기는 itemInfo_Temp_CMS.html입니다.</h1>
 
-<form>
-    <input style = "display: none;">
+<form th:action = "@{/carts/{memberNo}(memberNo=${memberNo})}" method = "post">
+<div><input style = "display: none;" name = "itemNo" value = "1"></div>
+    <div>
+    </div>
 <div >상품 썸네일 : asdasfasd</div>
 <div >상품명 : 빨간셔츠</div>
 <div >평점 : 3.5</div>
@@ -47,7 +49,7 @@
 </div>
 <div >
     상품 수량 <button type = "button" onclick="changeCartAddQuantity(-1)"> - </button>
-    <input id = "cartAddQuantityInput" value = "1" readonly>
+    <input id = "cartAddQuantityInput" name = "addCartItemQuantiy" value = "1" readonly>
     <button type="button" onclick = "changeCartAddQuantity(1)"> + </button>
 </div>
 <div>
