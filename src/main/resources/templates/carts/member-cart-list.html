@@ -10,8 +10,6 @@
    <header th:replace="~{/fragments/login-header :: header}"></header>
 
     <main>
-        <h1> member-cart-list.html입니다.</h1>
-
         <div th:each="cartDTO, cartIndex : ${cartDTOList}">
             <div th:text="'장바구니 번호 : ' + ${cartDTO.cartNo}"></div>
             <div th:text="'썸네일 : ' + ${cartDTO.itemThumbnail}"></div>
@@ -41,7 +39,9 @@
     </main>
 
     <footer>
-
+        <form action = "carts/item_info_temp" method = "GET">
+    <button> 상품 상세 정보 페이지로 이동(임시)</button>
+        </form>
     </footer>
 
 </body>
