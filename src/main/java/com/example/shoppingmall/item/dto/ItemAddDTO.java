@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
-import java.util.UUID;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Getter
 @Setter
@@ -24,7 +26,6 @@ public class ItemAddDTO {
     private Integer itemPrice;
     private Integer itemOnsale;
     private String itemDetail;
-    private Timestamp itemRegisteredTime;
 
     // ItemPhotos Fields
     private String itemThumb;
@@ -41,10 +42,12 @@ public class ItemAddDTO {
     private String itemSize;
     private Integer itemStockValue;
 
-
-    private ItemPhotos itemPhotos;
-
-    private ItemStock itemStock;
+    private String itemSize1;
+    private String itemSize2;
+    private String itemSize3;
+    private Integer itemStockValue1;
+    private Integer itemStockValue2;
+    private Integer itemStockValue3;
 
     public static String generateRandomFileName(String originalFilename) {
         UUID uuid = UUID.randomUUID();
@@ -59,7 +62,6 @@ public class ItemAddDTO {
         item.setItemPrice(itemAddDTO.getItemPrice());
         item.setItemOnsale(itemAddDTO.getItemOnsale());
         item.setItemDetail(itemAddDTO.getItemDetail());
-        item.setItemRegisteredTime(itemAddDTO.getItemRegisteredTime());
         return item;
     }
 
@@ -70,10 +72,6 @@ public class ItemAddDTO {
         itemPhotos.setItemImg1(itemAddDTO.getItemImg1());
         itemPhotos.setItemImg2(itemAddDTO.getItemImg2());
         itemPhotos.setItemImg3(itemAddDTO.getItemImg3());
-//        itemPhotos.setItemThumbModified(itemAddDTO.getItemThumbModified());
-//        itemPhotos.setItemImg1Modified(itemAddDTO.getItemImg1Modified());
-//        itemPhotos.setItemImg2Modified(itemAddDTO.getItemImg2Modified());
-//        itemPhotos.setItemImg3Modified(itemAddDTO.getItemImg3Modified());
         itemPhotos.setItemThumbModified(ItemAddDTO.generateRandomFileName(itemAddDTO.getItemThumbModified()));
         itemPhotos.setItemImg1Modified(ItemAddDTO.generateRandomFileName(itemAddDTO.getItemImg1Modified()));
         itemPhotos.setItemImg2Modified(ItemAddDTO.generateRandomFileName(itemAddDTO.getItemImg2Modified()));
@@ -81,13 +79,39 @@ public class ItemAddDTO {
         return itemPhotos;
     }
 
-    public static ItemStock itemAddDTOToItemStock(Long itemNo, ItemAddDTO itemAddDTO) {
+    public static ItemStock itemAddDTOToItemStock1(Long itemNo, ItemAddDTO itemAddDTO) {
         ItemStock itemStock = new ItemStock();
         itemStock.setItemStockNo(itemAddDTO.getItemStockNo());
         itemStock.setItemNo(itemNo);
-        itemStock.setItemSize(itemAddDTO.getItemSize());
-        itemStock.setItemStockValue(itemAddDTO.getItemStockValue());
+        itemStock.setItemSize(itemAddDTO.getItemSize1());
+        itemStock.setItemStockValue(itemAddDTO.getItemStockValue1());
         return itemStock;
+    }
+
+    public static ItemStock itemAddDTOToItemStock2(Long itemNo, ItemAddDTO itemAddDTO) {
+        ItemStock itemStock = new ItemStock();
+        itemStock.setItemStockNo(itemAddDTO.getItemStockNo());
+        itemStock.setItemNo(itemNo);
+        itemStock.setItemSize(itemAddDTO.getItemSize2());
+        itemStock.setItemStockValue(itemAddDTO.getItemStockValue2());
+        return itemStock;
+    }
+
+    public static ItemStock itemAddDTOToItemStock3(Long itemNo, ItemAddDTO itemAddDTO) {
+        ItemStock itemStock = new ItemStock();
+        itemStock.setItemStockNo(itemAddDTO.getItemStockNo());
+        itemStock.setItemNo(itemNo);
+        itemStock.setItemSize(itemAddDTO.getItemSize3());
+        itemStock.setItemStockValue(itemAddDTO.getItemStockValue3());
+        return itemStock;
+    }
+
+    public static List<ItemStock> itemAddToItemStockList(Long itemNo, ItemAddDTO itemAddDTO) {
+        List<ItemStock> itemStockList = new ArrayList<>();
+        itemStockList.add(ItemAddDTO.itemAddDTOToItemStock1(itemNo, itemAddDTO));
+        itemStockList.add(ItemAddDTO.itemAddDTOToItemStock2(itemNo, itemAddDTO));
+        itemStockList.add(ItemAddDTO.itemAddDTOToItemStock3(itemNo, itemAddDTO));
+        return itemStockList;
     }
 
     public static ItemAddDTO itemToItemAddDTO(Item item) {
@@ -98,7 +122,6 @@ public class ItemAddDTO {
         itemAddDTO.setItemPrice(item.getItemPrice());
         itemAddDTO.setItemPrice((item.getItemOnsale()));
         itemAddDTO.setItemDetail(item.getItemDetail());
-        itemAddDTO.setItemRegisteredTime(item.getItemRegisteredTime());
         return itemAddDTO;
     }
 

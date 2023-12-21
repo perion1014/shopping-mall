@@ -22,6 +22,7 @@ public class ItemService {
         System.out.println("itemService.saveItem(itemAddDTO) ==> item_no = " + itemAddDTO.getItemNo());
         System.out.println("itemService.saveItem(itemAddDTO) ==> item_name = " + itemAddDTO.getItemName());
         Item item = ItemAddDTO.itemAddDTOToItem(itemAddDTO);
+        System.out.println("itemService.saveItem(itemAddDTO) ==> item.item_registered_time = " + item.getItemRegisteredTime());
         itemRepository.saveItem(item);
     }
 
@@ -43,8 +44,11 @@ public class ItemService {
         System.out.println("itemService.saveItemStock(itemAddDTO) ==> item_stock_no = " + itemAddDTO.getItemStockNo());
         System.out.println("itemService.saveItemStock(itemAddDTO) ==> item_no = " + itemNo);
         System.out.println("itemService.saveItemStock(itemAddDTO) ==> item_stock_value = " + itemAddDTO.getItemStockValue());
-        ItemStock itemStock = ItemAddDTO.itemAddDTOToItemStock(itemNo, itemAddDTO);
-        itemRepository.saveItemStock(itemStock);
+        //ItemStock itemStock = ItemAddDTO.itemAddDTOToItemStock(itemNo, itemAddDTO);
+        List<ItemStock> itemStockList = ItemAddDTO.itemAddToItemStockList(itemNo, itemAddDTO);
+        for (ItemStock itemStock: itemStockList) {
+            itemRepository.saveItemStock(itemStock);
+        }
     }
 
     public List<ItemAddDTO> findAllItems() {
