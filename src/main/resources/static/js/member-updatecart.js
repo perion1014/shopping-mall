@@ -17,6 +17,7 @@ function updateQuantity(changeQuantity, index, cartNo, memberNo){
         }),
     }).then(response => response.text())
         .then(data => {
+            location.reload();
             //alert(currentQuantityNum);
             //alert('전송 결과 : ' + data);
         }).catch(error => {
@@ -39,8 +40,8 @@ function deleteCart(index, cartNo, memberNo){
             }),
         }).then(response => response.text())
             .then(date => {
-                alert("데이터 전송 성공");
-                //alert("삭제되었습니다.");
+                alert("삭제되었습니다.");
+                location.reload();
             }).catch(error =>{
                 alert("삭제에 실패하였습니다 - 사유 : " + error);
         })

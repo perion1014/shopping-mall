@@ -43,7 +43,7 @@ public class MyBatisMemberRepository implements MemberRepository {
 
     @Override
     public Optional<Member> findByEmail(String memberEmail) {
-        return Optional.ofNullable(memberMapper.findById(memberEmail));
+        return Optional.ofNullable(memberMapper.findByEmail(memberEmail));
     }
 
     @Override

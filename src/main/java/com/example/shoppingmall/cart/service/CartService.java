@@ -13,7 +13,6 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class CartService {
 
-    @Autowired
     private final CartRepository cartRepository;
 
     public ArrayList<CartReadDTO> getCartList(Long memberNo){

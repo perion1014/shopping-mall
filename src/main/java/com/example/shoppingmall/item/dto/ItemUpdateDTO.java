@@ -34,6 +34,8 @@ public class ItemUpdateDTO {
         return item;
     }
 
+
+
     public static ItemUpdateDTO itemToItemUpdateDTO(Item item) {
         ItemUpdateDTO itemUpdateDTO = new ItemUpdateDTO();
         itemUpdateDTO.setItemName(item.getItemName());

@@ -17,7 +17,7 @@ BEGIN
     DECLARE memberAddressDetail VARCHAR(50);
 
     WHILE i < 200 DO
-        SET memberId = CONCAT('user', i);
+    SET memberId = CONCAT('user', i);
     SET memberHp = CONCAT('0101234', LPAD(i, 3, '0'));
     SET memberEmail = CONCAT('user', i, '@example.com');
     SET memberPw = 'password123';
