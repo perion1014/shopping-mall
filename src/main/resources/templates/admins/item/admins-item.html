@@ -19,7 +19,7 @@
       <div class="main">
         <div class="admin_item">상품 조회</div>
         <div class="admin_item_sale">onsale | unsale</div>
-        <div class="admin_item_category">top | bottom | outer | accessary</div>
+        <div class="admin_item_category">top | bottom | outer</div>
         <div class="admin_item_search">
           <select name="category">
             <option value="member_id">상품 번호</option>
@@ -38,132 +38,26 @@
               <th>상품 이름</th>
               <th>상품 가격</th>
               <th>상품 재고</th>
-              <th>상품 설명</th>
-              <th>판매</th>
-              <th></th>
-              <th></th>
+              <th>상품 카테고리</th>
+              <th>판매 여부</th>
+              <th>수정</th>
+              <th>삭제</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>빨간머리 앤이 버린 빨간 옷</td>
-              <td>50000</td>
-              <td>S10 / M 12 / L 9</td>
-              <td>성냥 팔이 소녀의 망토를 뺏어서 만들었다.</td>
-              <td>sale</td>
+            <tr th:each="item: ${itemDTOList}">
+              <td th:text="${item.itemNo}"></td>
+              <td th:text="${item.itemName}"></td>
+              <td th:text="${item.itemPrice}"></td>
+              <td>
+                <ul>
+                  <li th:each="itemStock: ${item.itemStockDTOList}" th:text="${itemStock.itemSize} ${itemStock.itemStockValue}"></li>
+                </ul>
+              </td>
+              <td th:text="${item.itemCategory}"></td>
+              <td th:text="${item.itemOnsale}"></td>
               <td>수정</td>
-              <td><a href="www.naver.com">탈퇴</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>빨간머리 앤이 버린 빨간 옷</td>
-              <td>50000</td>
-              <td>S10 / M 12 / L 9</td>
-              <td>성냥 팔이 소녀의 망토를 뺏어서 만들었다.</td>
-              <td>sale</td>
-              <td>수정</td>
-              <td><a href="www.naver.com">탈퇴</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>빨간머리 앤이 버린 빨간 옷</td>
-              <td>50000</td>
-              <td>S10 / M 12 / L 9</td>
-              <td>성냥 팔이 소녀의 망토를 뺏어서 만들었다.</td>
-              <td>sale</td>
-              <td>수정</td>
-              <td><a href="www.naver.com">탈퇴</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>빨간머리 앤이 버린 빨간 옷</td>
-              <td>50000</td>
-              <td>S10 / M 12 / L 9</td>
-              <td>성냥 팔이 소녀의 망토를 뺏어서 만들었다.</td>
-              <td>sale</td>
-              <td>수정</td>
-              <td><a href="www.naver.com">탈퇴</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>빨간머리 앤이 버린 빨간 옷</td>
-              <td>50000</td>
-              <td>S10 / M 12 / L 9</td>
-              <td>성냥 팔이 소녀의 망토를 뺏어서 만들었다.</td>
-              <td>sale</td>
-              <td>수정</td>
-              <td><a href="www.naver.com">탈퇴</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>빨간머리 앤이 버린 빨간 옷</td>
-              <td>50000</td>
-              <td>S10 / M 12 / L 9</td>
-              <td>성냥 팔이 소녀의 망토를 뺏어서 만들었다.</td>
-              <td>sale</td>
-              <td>수정</td>
-              <td><a href="www.naver.com">탈퇴</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>빨간머리 앤이 버린 빨간 옷</td>
-              <td>50000</td>
-              <td>S10 / M 12 / L 9</td>
-              <td>성냥 팔이 소녀의 망토를 뺏어서 만들었다.</td>
-              <td>sale</td>
-              <td>수정</td>
-              <td><a href="www.naver.com">탈퇴</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>빨간머리 앤이 버린 빨간 옷</td>
-              <td>50000</td>
-              <td>S10 / M 12 / L 9</td>
-              <td>성냥 팔이 소녀의 망토를 뺏어서 만들었다.</td>
-              <td>sale</td>
-              <td>수정</td>
-              <td><a href="www.naver.com">탈퇴</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>빨간머리 앤이 버린 빨간 옷</td>
-              <td>50000</td>
-              <td>S10 / M 12 / L 9</td>
-              <td>성냥 팔이 소녀의 망토를 뺏어서 만들었다.</td>
-              <td>sale</td>
-              <td>수정</td>
-              <td><a href="www.naver.com">탈퇴</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>빨간머리 앤이 버린 빨간 옷</td>
-              <td>50000</td>
-              <td>S10 / M 12 / L 9</td>
-              <td>성냥 팔이 소녀의 망토를 뺏어서 만들었다.</td>
-              <td>sale</td>
-              <td>수정</td>
-              <td><a href="www.naver.com">탈퇴</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>빨간머리 앤이 버린 빨간 옷</td>
-              <td>50000</td>
-              <td>S10 / M 12 / L 9</td>
-              <td>성냥 팔이 소녀의 망토를 뺏어서 만들었다.</td>
-              <td>sale</td>
-              <td>수정</td>
-              <td><a href="www.naver.com">탈퇴</a></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>빨간머리 앤이 버린 빨간 옷</td>
-              <td>50000</td>
-              <td>S10 / M 12 / L 9</td>
-              <td>성냥 팔이 소녀의 망토를 뺏어서 만들었다.</td>
-              <td>sale</td>
-              <td>수정</td>
-              <td><a href="www.naver.com">탈퇴</a></td>
+              <td><a th:href="@{/items/admin/{itemNo}/delete(itemNo=${item.itemNo})}">삭제</a></td>
             </tr>
           </tbody>
         </table>

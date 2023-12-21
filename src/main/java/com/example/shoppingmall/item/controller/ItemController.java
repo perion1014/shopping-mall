@@ -15,12 +15,12 @@ import java.util.List;
 @RequestMapping("/items")
 public class ItemController {
 
-    private final ItemService itemService;  // 의존성 주입; @RequiredArgsConstructor 필요
+    private final ItemService itemService;
 
     @GetMapping("/admin")
     public String showItemList(Model model) {
-        List<ItemAddDTO> itemAddDTOList = itemService.findAllItems();
-        model.addAttribute("itemDTOList", itemAddDTOList);
+        List<ItemDTO> itemDTOList = itemService.findAllItems();
+        //model.addAttribute("itemDTOList", itemAddDTOList);
         return "admins/item/admins-item";
     }
 
@@ -74,7 +74,6 @@ public class ItemController {
     @PostMapping("/admin/{itemNo}/update")
     public String updateItem(@PathVariable(name="itemNo") Long itemNo, @ModelAttribute ItemUpdateDTO itemUpdateDTO) {
         itemService.updateItemByNo(itemNo, itemUpdateDTO);
-        // System.out.println("Succeeded to update item; redirect to '/items/admin'");
         return "redirect:/items/admin/{itemNo}";
 
     }

@@ -21,6 +21,8 @@ public interface ItemMapper {
 
     List<Item> findAllItems();
 
+    List<ItemStock> findAllItemStocks(Long itemNo);
+
     List<Item> findAllItemsOnsale();
 
     List<Item> findAllItemsOffmarket();
@@ -43,4 +45,6 @@ public interface ItemMapper {
     void deleteItemPhotosByNo(ItemPhotos itemPhotos);
 
     void deleteItemStockByStockNo(ItemStock itemStock);
+
+
 }
