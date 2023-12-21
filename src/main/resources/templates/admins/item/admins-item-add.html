@@ -35,7 +35,6 @@
               <option value="outer">outer</option>
               <option value="top">top</option>
               <option value="bottom">bottom</option>
-              <option value="accessory">accessory</option>
             </select>
           </div>
 
@@ -46,12 +45,18 @@
           </div>
 
           <div>
-            <select name="itemSize">
-              <option value="S">S</option>
-              <option value="M">M</option>
-              <option value="L">L</option>
-            </select>
-            <input type="number" name="itemStockValue" />
+<!--            <select name="itemSize">-->
+<!--              <option value="S">S</option>-->
+<!--              <option value="M">M</option>-->
+<!--              <option value="L">L</option>-->
+<!--            </select>-->
+            S<input type="hidden" name="itemSize1" value="S">
+            <input type="number" name="itemStockValue1" />
+            M<input type="hidden" name="itemSize2" value="M">
+            <input type="number" name="itemStockValue2" />
+            L<input type="hidden" name="itemSize3" value="L">
+            <input type="number" name="itemStockValue3" />
+            <br>
             금액: <input type="text" name="itemPrice"/>
           </div>
 

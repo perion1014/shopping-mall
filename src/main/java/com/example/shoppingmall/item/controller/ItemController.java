@@ -66,8 +66,8 @@ public class ItemController {
         // model.addAttribute("itemDTO", itemDTO);
 
         // ItemStock 클래스 생성 후
-        List<ItemStockDTO> joinedItemDTOList = itemService.joinItemByItemNo(itemNo);
-        model.addAttribute("joinedItemDTOList", joinedItemDTOList);
+//        List<ItemStockDTO> joinedItemDTOList = itemService.joinItemByItemNo(itemNo);
+//        model.addAttribute("joinedItemDTOList", joinedItemDTOList);
         return "admins/item/admins-item-detail";
     }
 
