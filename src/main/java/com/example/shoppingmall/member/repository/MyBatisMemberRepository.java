@@ -52,33 +52,8 @@ public class MyBatisMemberRepository implements MemberRepository {
     }
 
     @Override
-    public List<Member> findByIdContaining(String memberId) {
-        return memberMapper.findByIdContaining(memberId);
-    }
-
-    @Override
-    public List<Member> findByHpContaining(String memberHp) {
-        return memberMapper.findByHpContaining(memberHp);
-    }
-
-    @Override
-    public List<Member> findByEmailContaining(String memberEmail) {
-        return memberMapper.findByEmailContaining(memberEmail);
-    }
-
-    @Override
-    public List<Member> findByNameContaining(String memberName) {
-        return memberMapper.findByNameContaining(memberName);
-    }
-
-    @Override
-    public List<Member> findByAddressBasicContaining(String memberAddressBasic) {
-        return memberMapper.findByAddressBasicContaining(memberAddressBasic);
-    }
-
-    @Override
-    public List<Member> findAll() {
-         return memberMapper.findAll();
+    public List<Member> findByKeyword(Map<String, String> searchingKeyword) {
+        return memberMapper.findByKeyword(searchingKeyword);
     }
 
     @Override
@@ -91,5 +66,8 @@ public class MyBatisMemberRepository implements MemberRepository {
         return memberMapper.countAll();
     }
 
-
+    @Override
+    public Long countAllByKeyword(Map<String, String> searchingKeyword) {
+        return memberMapper.countAllByKeyword(searchingKeyword);
+    }
 }
