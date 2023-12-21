@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.shoppingmall.item.mapper.ItemMapper">
 
-<!--    <resultMap id="itemResultMap" type="com.example.shoppingmall.order.domain.Item">-->
+
+
+<!--    <resultMap id="itemPhotosResultMap" type="com.example.shoppingmall.order.domain.Item">-->
 <!--        <id column="item_no" property="itemNo"/>-->
 <!--        <result column="item_name" property="itemName"/>-->
 <!--        <result column="item_category" property="itemCategory"/>-->
@@ -11,19 +13,53 @@
 <!--        <result column="item_price" property="itemPrice"/>-->
 <!--        <result column="item_onsale" property="itemOnsale"/>-->
 <!--        <result column="item_registered_time" property="itemRegisteredTime"/>-->
-<!--        &lt;!&ndash;1:1 매핑 => association 사용&ndash;&gt;-->
-<!--&lt;!&ndash;        <association property="itemPhoto" javaType="com.example.shoppingmall.order.domain.ItemPhoto">&ndash;&gt;-->
-<!--&lt;!&ndash;            &ndash;&gt;-->
-<!--&lt;!&ndash;        </association>&ndash;&gt;-->
-<!--        &lt;!&ndash; 1:N 매핑 => collection 사용 &ndash;&gt;-->
-<!--        <collection property="itemStockList" ofType="com.example.shoppingmall.order.domain.ItemStock">-->
-<!--            <id column="item_stock_no" property="itemStockNo"/>-->
+<!--&lt;!&ndash;&lt;!&ndash;        1:1 매핑 => association 사용&ndash;&gt;&ndash;&gt;-->
+<!--        <association property="itemPhotos" javaType="com.example.shoppingmall.item.domain.ItemPhotos">-->
 <!--            <result column="item_no" property="itemNo"/>-->
-<!--            <result column="item_size" property="itemSize"/>-->
-<!--            <result column="item_stock" property="itemStock"/>-->
-<!--        </collection>-->
+<!--            <result column="item_thumb" property="itemThumb"/>-->
+<!--            <result column="item_img1" property="itemImg1"/>-->
+<!--            <result column="item_img2" property="itemImg2"/>-->
+<!--            <result column="item_img3" property="itemImg3"/>-->
+<!--            <result column="item_thumb_modified" property="itemThumbModified"/>-->
+<!--            <result column="item_img1_modified" property="itemImg1Modified"/>-->
+<!--            <result column="item_img2_modified" property="itemImg2Modified"/>-->
+<!--            <result column="item_img3_modified" property="itemImg3Modified"/>-->
+<!--        </association>-->
+
 <!--    </resultMap>-->
 
+<!--    <select id="joinItemItemPhotos" parameterType="Integer" resultMap="itemPhotosResultMap">-->
+<!--        select a.*, b.*-->
+<!--        from item as a-->
+<!--        join item_photos as b-->
+<!--        on a.item_no = b.item_no-->
+<!--        where a.item_no = #{itemNo}-->
+<!--    </select>-->
+
+
+
+
+
+
+    <!--    <resultMap id="itemPhotos" type="com.example.shoppingmall.item.domain.ItemPhotos">-->
+    <!--        <result column="item_no" property="itemNo"/>-->
+    <!--        <result column="item_thumb" property="itemThumb"/>-->
+    <!--        <result column="item_img1" property="itemImg1"/>-->
+    <!--        <result column="item_img2" property="itemImg2"/>-->
+    <!--        <result column="item_img3" property="itemImg3"/>-->
+    <!--        <result column="item_thumb_modified" property="itemThumbModified"/>-->
+    <!--        <result column="item_img1_modified" property="itemImg1Modified"/>-->
+    <!--        <result column="item_img2_modified" property="itemImg2Modified"/>-->
+    <!--        <result column="item_img3_modified" property="itemImg3Modified"/>-->
+    <!--    </resultMap>-->
+
+    <!-- 1:N 매핑 => collection 사용 -->
+    <!--        <collection property="itemStockList" ofType="com.example.shoppingmall.order.domain.ItemStock">-->
+    <!--            <id column="item_stock_no" property="itemStockNo"/>-->
+    <!--            <result column="item_no" property="itemNo"/>-->
+    <!--            <result column="item_size" property="itemSize"/>-->
+    <!--            <result column="item_stock" property="itemStock"/>-->
+    <!--        </collection>-->
 <!--    <select id="joinItemByItemNo" resultMap="itemResultMap">-->
 <!--        select-->
 <!--            a.item_no,-->
@@ -48,8 +84,12 @@
 
     <insert id="saveItem" parameterType="com.example.shoppingmall.item.domain.Item">
         insert into item
-        values (#{itemNo},#{itemName},#{itemCategory},#{itemGrade},#{itemDetail},#{itemPrice},#{itemOnsale},#{itemRegisteredTime})
+        values (#{itemNo},#{itemName},#{itemCategory},#{itemGrade},#{itemDetail},#{itemPrice},#{itemOnsale},"1998-01-01 12:04:01")
     </insert>
+
+    <select id="getMaxItemNo" resultType="Long">
+        select max(item_no) from item
+    </select>
 
     <insert id="saveItemPhotos" parameterType="com.example.shoppingmall.item.domain.ItemPhotos">
         insert into item_photos
@@ -58,7 +98,7 @@
 
     <insert id="saveItemStock" parameterType="com.example.shoppingmall.item.domain.ItemStock">
         insert into item_stock
-        values (#{itemStockNo}, #{itemNo}, #{itemSize}, #{itemStock})
+        values (#{itemStockNo}, #{itemNo}, #{itemSize}, #{itemStockValue})
     </insert>
 
     <select id="findAllItems" resultType="com.example.shoppingmall.item.domain.Item">
@@ -92,7 +132,7 @@
 
     <update id="updateItemStockByNo" parameterType="com.example.shoppingmall.item.domain.ItemStock">
         update item_stock
-        set item_stock = #{itemStock}
+        set item_stock = #{itemStockValue}
         where item_stock_no=#{item_stock_no}
     </update>
 

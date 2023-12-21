@@ -18,16 +18,32 @@ public class ItemService {
     private final ItemRepository itemRepository;
 
     public void saveItem(ItemAddDTO itemAddDTO) {
+        //Debugging
+        System.out.println("itemService.saveItem(itemAddDTO) ==> item_no = " + itemAddDTO.getItemNo());
+        System.out.println("itemService.saveItem(itemAddDTO) ==> item_name = " + itemAddDTO.getItemName());
         Item item = ItemAddDTO.itemAddDTOToItem(itemAddDTO);
-        ItemPhotos itemPhotos = ItemAddDTO.itemAddDTOToItemPhotos(itemAddDTO);
-        ItemStock itemStock = ItemAddDTO.itemAddDTOToItemStock(itemAddDTO);
         itemRepository.saveItem(item);
-        itemRepository.saveItemPhotos(itemPhotos);
-        itemRepository.saveItemStock(itemStock);
     }
 
-    public void saveItemStock(ItemStockAddDTO itemStockAddDTO) {
-        ItemStock itemStock = ItemStockAddDTO.toItemStock(itemStockAddDTO);
+    public Long getMaxItemNo() {
+        Long maxItemNo = itemRepository.getMaxItemNo();
+        return maxItemNo;
+    }
+
+    public void saveItemPhotos(Long itemNo, ItemAddDTO itemAddDTO) {
+        //Debugging
+        System.out.println("itemService.saveItemPhotos(itemAddDTO) ==> item_no = " + itemNo);
+        System.out.println("itemService.saveItemPhotos(itemAddDTO) ==> item_thumb = " + itemAddDTO.getItemThumb());
+        ItemPhotos itemPhotos = ItemAddDTO.itemAddDTOToItemPhotos(itemNo, itemAddDTO);
+        itemRepository.saveItemPhotos(itemPhotos);
+    }
+
+    public void saveItemStock(Long itemNo, ItemAddDTO itemAddDTO) {
+        //Debugging
+        System.out.println("itemService.saveItemStock(itemAddDTO) ==> item_stock_no = " + itemAddDTO.getItemStockNo());
+        System.out.println("itemService.saveItemStock(itemAddDTO) ==> item_no = " + itemNo);
+        System.out.println("itemService.saveItemStock(itemAddDTO) ==> item_stock_value = " + itemAddDTO.getItemStockValue());
+        ItemStock itemStock = ItemAddDTO.itemAddDTOToItemStock(itemNo, itemAddDTO);
         itemRepository.saveItemStock(itemStock);
     }
 

@@ -24,6 +24,12 @@ public class MyBatisItemRepository implements ItemRepository{
     }
 
     @Override
+    public Long getMaxItemNo() {
+        Long maxItemNo = itemMapper.getMaxItemNo();
+        return maxItemNo;
+    }
+
+    @Override
     public void saveItemPhotos(ItemPhotos itemPhotos) {
         itemMapper.saveItemPhotos(itemPhotos);
     }
