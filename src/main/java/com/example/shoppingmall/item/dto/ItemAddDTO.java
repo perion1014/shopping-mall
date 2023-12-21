@@ -26,11 +26,6 @@ public class ItemAddDTO {
     private String itemDetail;
     private Timestamp itemRegisteredTime;
 
-    // ItemStock Fields
-    private Long itemStockNo;
-    private String itemSize;
-    private Integer itemStock;
-
     // ItemPhotos Fields
     private String itemThumb;
     private String itemImg1;
@@ -41,13 +36,23 @@ public class ItemAddDTO {
     private String itemImg2Modified;
     private String itemImg3Modified;
 
+    // ItemStock Fields
+    private Long itemStockNo;
+    private String itemSize;
+    private Integer itemStockValue;
+
+
+    private ItemPhotos itemPhotos;
+
+    private ItemStock itemStock;
+
     public static String generateRandomFileName(String originalFilename) {
         UUID uuid = UUID.randomUUID();
         return uuid.toString().replace("-", "");
     }
 
     public static Item itemAddDTOToItem(ItemAddDTO itemAddDTO) {
-        Item item = new Item();
+        Item item = new Item(); 
         item.setItemNo(itemAddDTO.getItemNo());
         item.setItemName(itemAddDTO.getItemName());
         item.setItemCategory(itemAddDTO.getItemCategory());
@@ -58,9 +63,9 @@ public class ItemAddDTO {
         return item;
     }
 
-    public static ItemPhotos itemAddDTOToItemPhotos(ItemAddDTO itemAddDTO) {
+    public static ItemPhotos itemAddDTOToItemPhotos(Long itemNo, ItemAddDTO itemAddDTO) {
         ItemPhotos itemPhotos = new ItemPhotos();
-        itemPhotos.setItemNo(itemAddDTO.getItemNo());
+        itemPhotos.setItemNo(itemNo);
         itemPhotos.setItemThumb(itemAddDTO.getItemThumb());
         itemPhotos.setItemImg1(itemAddDTO.getItemImg1());
         itemPhotos.setItemImg2(itemAddDTO.getItemImg2());
@@ -76,12 +81,12 @@ public class ItemAddDTO {
         return itemPhotos;
     }
 
-    public static ItemStock itemAddDTOToItemStock(ItemAddDTO itemAddDTO) {
+    public static ItemStock itemAddDTOToItemStock(Long itemNo, ItemAddDTO itemAddDTO) {
         ItemStock itemStock = new ItemStock();
         itemStock.setItemStockNo(itemAddDTO.getItemStockNo());
-        itemStock.setItemNo(itemAddDTO.getItemNo());
+        itemStock.setItemNo(itemNo);
         itemStock.setItemSize(itemAddDTO.getItemSize());
-        itemStock.setItemStock(itemAddDTO.getItemStock());
+        itemStock.setItemStockValue(itemAddDTO.getItemStockValue());
         return itemStock;
     }
 

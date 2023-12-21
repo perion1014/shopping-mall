@@ -14,6 +14,6 @@ public class ItemStock {
     private Long itemStockNo;
     private Long itemNo;
     private String itemSize;
-    private Integer itemStock;
+    private Integer itemStockValue;
 
 }

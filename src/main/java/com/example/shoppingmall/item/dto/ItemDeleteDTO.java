@@ -20,7 +20,7 @@ public class ItemDeleteDTO {
     private Long itemStockNo;
     private String itemName;
     private String itemThumb;
-    private Integer itemStock;
+    private Integer itemStockValue;
 
     public static Item toItem(Long itemNo, ItemDeleteDTO itemDeleteDTO) {
         Item item = new Item();
@@ -40,7 +40,7 @@ public class ItemDeleteDTO {
     public static ItemStock toItemStockByItemStockNo(Long itemStockNo, ItemDeleteDTO itemDeleteDTO) {
         ItemStock itemStock = new ItemStock();
         itemStock.setItemStockNo(itemStockNo);
-        itemStock.setItemStock(itemDeleteDTO.getItemStock());
+        itemStock.setItemStockValue(itemDeleteDTO.getItemStockValue());
         return itemStock;
     }
 
@@ -48,7 +48,7 @@ public class ItemDeleteDTO {
     public static ItemStock toItemStockByItemNo(Long itemNo, ItemDeleteDTO itemDeleteDTO) {
         ItemStock itemStock = new ItemStock();
         itemStock.setItemNo(itemNo);
-        itemStock.setItemStock(itemDeleteDTO.getItemStock());
+        itemStock.setItemStockValue(itemDeleteDTO.getItemStockValue());
         return itemStock;
     }
 

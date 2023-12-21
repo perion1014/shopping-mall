@@ -13,6 +13,8 @@ public interface ItemMapper {
 
     void saveItem(Item item);
 
+    Long getMaxItemNo();
+
     void saveItemPhotos(ItemPhotos itemPhotos);
 
     void saveItemStock(ItemStock itemStock);

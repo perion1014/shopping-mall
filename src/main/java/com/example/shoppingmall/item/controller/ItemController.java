@@ -53,7 +53,9 @@ public class ItemController {
     @PostMapping("/admin/add")
     public String addItem(@ModelAttribute ItemAddDTO itemAddDTO) {
         itemService.saveItem(itemAddDTO);
-        //itemService.saveItemStock(itemStockAddDTO);
+        Long itemNo = itemService.getMaxItemNo();
+        itemService.saveItemPhotos(itemNo, itemAddDTO);
+        itemService.saveItemStock(itemNo, itemAddDTO);
         return "redirect:/items/admin";
     }
 
