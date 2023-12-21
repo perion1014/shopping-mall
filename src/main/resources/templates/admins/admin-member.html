@@ -6,15 +6,11 @@
     <link rel="stylesheet" href="/css/pages/admins/admins-member.css">
   </head>
   <body>
-    <header th:replace="~{/fragments/admin-login-header :: admin-login-header}">
-    </header>
-
-    <aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}">
-    </aside>
+    <header th:replace="~{/fragments/admin-login-header :: admin-login-header}"></header>
+    <aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}"></aside>
     <main>
       <div class="main">
         <div class="admin_member">회원 목록</div>
-
         <div class="admin_member_search">
           <form th:action method="post">
           <select name="category">
@@ -45,18 +41,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr th:each="memberListDTO : ${memberListDTOList}">
-              <td th:text="${memberListDTO.memberNo}"></td>
-              <td th:text="${memberListDTO.memberId}"></td>
-              <td th:text="${memberListDTO.memberName}"></td>
-              <td th:text="${memberListDTO.memberHp}"></td>
-              <td th:text="${memberListDTO.memberEmail}"></td>
-              <td th:text="${memberListDTO.memberPostalCode}"></td>
-              <td th:text="${memberListDTO.memberAddressBasic}"></td>
-              <td class="table__last-container" th:text="${memberListDTO.memberAddressDetail}"></td>
+            <tr th:each="memberSearchDTO : ${memberListByPaging}">
+              <td th:text="${memberSearchDTO.memberNo}"></td>
+              <td th:text="${memberSearchDTO.memberId}"></td>
+              <td th:text="${memberSearchDTO.memberName}"></td>
+              <td th:text="${memberSearchDTO.memberHp}"></td>
+              <td th:text="${memberSearchDTO.memberEmail}"></td>
+              <td th:text="${memberSearchDTO.memberPostalCode}"></td>
+              <td th:text="${memberSearchDTO.memberAddressBasic}"></td>
+              <td class="table__last-container" th:text="${memberSearchDTO.memberAddressDetail}"></td>
               <td class="members-delete__container">
                 <form action="/members/delete" method="post">
-                  <input type="hidden" name="memberNo" th:value="${memberListDTO.memberNo}" />
+                  <input type="hidden" name="memberNo" th:value="${memberSearchDTO.memberNo}" />
                   <button class="btn btn--xs btn--black">삭제</button>
                 </form>
               </td>
@@ -64,8 +60,27 @@
           </tbody>
         </table>
 
-        <div class="admin_member_page"><a href="1">1</a> <a href="2">2</a></div>
-      </div> <!--main div-->
+        <div class="admin_member_page">
+          <span th:if="${pageSettings.page &lt;= 1}">이전</span>
+          <span th:unless="${pageSettings.page &lt;= 1}">
+            <a th:href="@{/members/admin(page=${pageSettings.page - 1})}">이전</a>
+          </span>
+
+          <span th:each="i : ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
+            <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
+            <a th:unless="${i == pageSettings.page}"
+               th:href="@{/members/admin(page=${i})}"
+               th:text="${i}"></a>
+          </span>
+
+          <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
+          <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
+             th:href="@{/members/admin(page=${pageSettings.page + 1})}"
+          >다음</a
+          >
+        </div>
+      </div>
+       <!--main div-->
     </main>
   </body>
   </html>

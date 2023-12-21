@@ -62,12 +62,11 @@
         select * from member order by member_no desc
     </select>
 
-<!--    김찬혁 페이징-->
-    <select id="pagingList" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.member.dto.MemberListDTO">
-    select * from member order by member_no desc limit #{start}, #{limit}
+    <select id="findAllByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.member.domain.Member">
+    select * from member order by member_no desc limit #{startPage}, #{pagePerMember}
     </select>
 
-    <select id="memberCount" resultType="Long">
+    <select id="countAll" resultType="Long">
         select count(member_no) from member
     </select>
 </mapper>

@@ -1,4 +1,4 @@
-package com.example.shoppingmall.member.dto;
+package com.example.shoppingmall.member.form;
 
 
 import lombok.AllArgsConstructor;
@@ -10,9 +10,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberPageDTO {
+public class MemberPageForm {
     private int page; // 현재 페이지
-    private int maxPage; // 전체 필요한 페이지 갯수
+    private int totalPage; // 전체 필요한 페이지 갯수
     private int startPage; // 현제 페이지 기준 시작 페이지 값
     private int endPage; // 현제 페이지 기준 시작 페이지 값
 }

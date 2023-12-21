@@ -1,7 +1,7 @@
 package com.example.shoppingmall.member.repository;
 
 import com.example.shoppingmall.member.domain.Member;
-import com.example.shoppingmall.member.dto.MemberListDTO;
+import com.example.shoppingmall.member.dto.MemberSearchDTO;
 import com.example.shoppingmall.member.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -81,15 +81,14 @@ public class MyBatisMemberRepository implements MemberRepository {
          return memberMapper.findAll();
     }
 
-    // 김찬혁 페이징
     @Override
-    public List<MemberListDTO> pagingList(Map<String, Integer> pagingParams) {
-        return memberMapper.pagingList(pagingParams);
+    public List<Member> findAllByPaging(Map<String, Integer> pagingSettings) {
+        return memberMapper.findAllByPaging(pagingSettings);
     }
 
     @Override
-    public Long memberCount() {
-        return memberMapper.memberCount();
+    public Long countAll() {
+        return memberMapper.countAll();
     }
 
 

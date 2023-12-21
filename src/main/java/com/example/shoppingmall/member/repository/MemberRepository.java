@@ -1,7 +1,7 @@
 package com.example.shoppingmall.member.repository;
 
 import com.example.shoppingmall.member.domain.Member;
-import com.example.shoppingmall.member.dto.MemberListDTO;
+import com.example.shoppingmall.member.dto.MemberSearchDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -23,8 +23,7 @@ public interface MemberRepository {
 
     List<Member> findAll();
 
-    // 김찬혁 페이징
-    List<MemberListDTO> pagingList(Map<String, Integer> pagingParams);
+    List<Member> findAllByPaging(Map<String, Integer> pagingSettings);
 
-    Long memberCount();
+    Long countAll();
 }
