@@ -62,6 +62,7 @@ header{
 }
 
 .header__search{
+    padding-inline-start: 0.3rem;
     transition: all 200ms ease-in;
 }
 
@@ -70,6 +71,9 @@ header{
     color: var(--color-primary);
 }
 
+.header__search::placeholder:focus{
+    opacity: 0;
+}
 
 .active{
     display: block;
