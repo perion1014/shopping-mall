@@ -1,25 +1,23 @@
 package com.example.shoppingmall.member.service;
 
 import com.example.shoppingmall.member.domain.Member;
-import com.example.shoppingmall.member.dto.MemberAddDTO;
-import com.example.shoppingmall.member.dto.MemberDeleteDTO;
-import com.example.shoppingmall.member.dto.MemberListDTO;
-import com.example.shoppingmall.member.dto.MemberUpdateDTO;
+import com.example.shoppingmall.member.dto.*;
 import com.example.shoppingmall.member.form.MemberSearchForm;
 import com.example.shoppingmall.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService {
 
     private final MemberRepository memberRepository;
+
+    int pageLimit = 12;
+    int blockLimit = 5 ;
 
     @Transactional
     public void join(MemberAddDTO memberAddDTO){
@@ -106,4 +104,45 @@ public class MemberService {
 
         return memberListDTOList;
     }
+
+    @Transactional
+    public List<MemberListDTO> pagingList(int page) {
+
+        int pagingStart = (page-1) * 12;
+
+        Map<String, Integer> pagingParams = new HashMap<>();
+        pagingParams.put("start", pagingStart);
+        pagingParams.put("limit", pageLimit);
+
+        List<MemberListDTO> pagingList = memberRepository.pagingList(pagingParams);
+
+        return pagingList;
+    }
+
+    @Transactional
+    public MemberPageDTO pagingParam(int page) {
+
+        // 전체 글 갯수 조회
+        int memberCount = memberRepository.memberCount();
+
+        // 전체 페이지 갯수 계산(10/3=3.33333 => 4)
+        int maxPage = (int) (Math.ceil((double) memberCount / pageLimit));
+
+        // 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
+        int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+
+        // 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
+        int endPage = startPage + blockLimit - 1;
+        if (endPage > maxPage) {
+            endPage = maxPage;
+        }
+
+        MemberPageDTO pageDTO = new MemberPageDTO();
+        pageDTO.setPage(page);
+        pageDTO.setMaxPage(maxPage);
+        pageDTO.setStartPage(startPage);
+        pageDTO.setEndPage(endPage);
+        return pageDTO;
+    }
 }
+
