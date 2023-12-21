@@ -67,7 +67,7 @@
     select * from member order by member_no desc limit #{start}, #{limit}
     </select>
 
-    <select id="memberCount" resultType="Integer">
+    <select id="memberCount" resultType="Long">
         select count(member_no) from member
     </select>
 </mapper>

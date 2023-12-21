@@ -124,10 +124,10 @@ public class MemberService {
     @Transactional
     public MemberPageDTO pagingParam(int page) {
         int pageLimit = 12; // 보여줄 멤버 수
-        int blockLimit = 5; // 하단 페이징 번호 갯수
+        int blockLimit = 10; // 하단 페이징 번호 갯수
 
         // 전체 글 갯수 조회
-        int memberCount = memberRepository.memberCount();
+        Long memberCount = memberRepository.memberCount();
 
         // 전체 페이지 갯수 계산(10/3=3.33333 => 4)
         int maxPage = (int) (Math.ceil((double) memberCount / pageLimit));

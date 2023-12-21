@@ -88,7 +88,7 @@ public class MyBatisMemberRepository implements MemberRepository {
     }
 
     @Override
-    public int memberCount() {
+    public Long memberCount() {
         return memberMapper.memberCount();
     }
 
