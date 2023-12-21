@@ -105,3 +105,7 @@
     display: flex;
     justify-content: space-between;
 }
+
+.now__page{
+    color: var(--color-accent);
+}
