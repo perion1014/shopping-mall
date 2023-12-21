@@ -16,8 +16,6 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    int pageLimit = 12;
-    int blockLimit = 5 ;
 
     @Transactional
     public void join(MemberAddDTO memberAddDTO){
@@ -110,6 +108,8 @@ public class MemberService {
 
         int pagingStart = (page-1) * 12;
 
+        int pageLimit = 12; // 멤버 수
+
         Map<String, Integer> pagingParams = new HashMap<>();
         pagingParams.put("start", pagingStart);
         pagingParams.put("limit", pageLimit);
@@ -121,6 +121,8 @@ public class MemberService {
 
     @Transactional
     public MemberPageDTO pagingParam(int page) {
+        int pageLimit = 12; // 보여줄 멤버 수
+        int blockLimit = 5; // 하단 페이징 번호 갯수
 
         // 전체 글 갯수 조회
         int memberCount = memberRepository.memberCount();
