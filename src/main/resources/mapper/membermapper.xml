@@ -21,25 +21,58 @@
         select * from member where member_no = #{memberNo}
     </select>
 
-    <select id="findByIdContaining" resultType="com.example.shoppingmall.member.domain.Member">
-        select * from member where member_id LIKE CONCAT ('%',#{memberId},'%')
+    <select id="findByKeyword" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member
+        <where>
+            <if test="category.equals('memberId')">
+                AND member_id LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="category.equals('memberHp')">
+                AND member_hp LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="category.equals('memberEmail')">
+                AND member_email LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="category.equals('memberName')">
+                AND member_name LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="category.equals('memberAddressBasic')">
+                AND member_address_basic LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
     </select>
 
-
-    <select id="findByEmailContaining" resultType="com.example.shoppingmall.member.domain.Member">
-        select * from member where member_email LIKE CONCAT ('%',#{memberEmail},'%')
+    <select id="findAll" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member order by member_no desc
     </select>
 
-    <select id="findByNameContaining" resultType="com.example.shoppingmall.member.domain.Member">
-        select * from member where member_name LIKE CONCAT ('%',#{memberName},'%')
+    <select id="findAllByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member order by member_no desc limit #{startPage}, #{pagePerMember}
     </select>
 
-    <select id="findByHpContaining" resultType="com.example.shoppingmall.member.domain.Member">
-        select * from member where member_hp LIKE CONCAT ('%',#{memberHp},'%')
+    <select id="countAll" resultType="Long">
+        select count(member_no) from member
     </select>
 
-    <select id="findByAddressBasicContaining" resultType="com.example.shoppingmall.member.domain.Member">
-        select * from member where member_address_basic LIKE CONCAT ('%',#{memberAddressBasic},'%')
+    <select id="countAllByKeyword" parameterType="java.util.HashMap" resultType="Long">
+        select count(member_no) from member
+        <where>
+            <if test="category.equals('memberId')">
+                AND member_id LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="category.equals('memberHp')">
+                AND member_hp LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="category.equals('memberEmail')">
+                AND member_email LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="category.equals('memberName')">
+                AND member_name LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="category.equals('memberAddressBasic')">
+                AND member_address_basic LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
     </select>
 
     <update id="update" parameterType="com.example.shoppingmall.member.domain.Member">
@@ -58,15 +91,4 @@
         delete from member where member_no = #{memberNo}
     </delete>
 
-    <select id="findAll" resultType="com.example.shoppingmall.member.domain.Member">
-        select * from member order by member_no desc
-    </select>
-
-    <select id="findAllByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.member.domain.Member">
-    select * from member order by member_no desc limit #{startPage}, #{pagePerMember}
-    </select>
-
-    <select id="countAll" resultType="Long">
-        select count(member_no) from member
-    </select>
 </mapper>

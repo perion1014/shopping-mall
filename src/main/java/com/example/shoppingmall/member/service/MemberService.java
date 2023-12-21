@@ -65,56 +65,6 @@ public class MemberService {
         memberRepository.deleteByNo(memberNo);
     }
 
-    /*관리자 회원 검색*/
-    @Transactional(readOnly = true)
-    public List<MemberSearchDTO> searchMemberInfo(MemberSearchForm memberSearchForm){
-        String category = memberSearchForm.getCategory();
-        String keyword = memberSearchForm.getKeyword();
-
-        List<Member> memberList = new ArrayList<>();
-        List<MemberSearchDTO> resultList = new ArrayList<>();
-
-        switch(category){
-            case "memberNo":
-                memberList = memberRepository.findByNoContaining(Long.parseLong(keyword));
-                break;
-            case "memberId":
-                memberList = memberRepository.findByIdContaining(keyword);
-                break;
-            case "memberHp":
-                memberList = memberRepository.findByHpContaining(keyword);
-                break;
-            case "memberEmail":
-                memberList = memberRepository.findByEmailContaining(keyword);
-                break;
-            case "memberName":
-                memberList = memberRepository.findByNameContaining(keyword);
-                break;
-            case "memberAddressBasic":
-                memberList = memberRepository.findByAddressBasicContaining(keyword);
-                break;
-        }
-
-        for(Member member : memberList){
-            resultList.add(MemberSearchDTO.fromEntity(member));
-        }
-
-        return resultList;
-    }
-
-
-    /*관리자 회원 조회(전원)*/
-//    @Transactional(readOnly = true)
-//    public List<MemberListDTO> searchAllMemberInfo(){
-//        List<Member> memberList= memberRepository.findAll();
-//        List<MemberListDTO> memberListDTOList = new ArrayList<>();
-//        for(Member member : memberList){
-//            memberListDTOList.add(MemberListDTO.MemberToMemberListDTO(member));
-//        }
-//        return memberListDTOList;
-//    }
-
-
     /*관리자 회원 조회 페이지 설정 (보여줄 엔티티 수, 페이지 당 페이지 수) */
     @Transactional(readOnly = true)
     public MemberPageForm setMemberListPage(int page) {
@@ -156,6 +106,8 @@ public class MemberService {
          * Repository에서 반환받은 Member를  MemberListDTO로 변환하는 로직 추가
          * for-each문에서 MemberListDTO의 static 메소드로 변환 후
          * 빈 List<MemberListDto> 에 add한다.
+         *
+         * @author HyonHyon
          * @return List<Member> -> List<MemberListDTO>
          */
 
@@ -168,5 +120,31 @@ public class MemberService {
         return resultList;
     }
 
+
+    /*관리자 회원 검색*/
+    @Transactional(readOnly = true)
+    public List<MemberSearchDTO> searchMemberInfo(MemberSearchForm memberSearchForm){
+        String category = memberSearchForm.getCategory();
+        String keyword = memberSearchForm.getKeyword();
+
+        List<Member> memberList = new ArrayList<>();
+        List<MemberSearchDTO> resultList = new ArrayList<>();
+
+        if(!category.equals("memberNo")){
+            Map<String,String> searchingKeyword = new HashMap<>();
+            searchingKeyword.put("category", category);
+            searchingKeyword.put("keyword", keyword);
+            memberList = memberRepository.findByKeyword(searchingKeyword);
+        }
+        else{
+            memberList = memberRepository.findByNoContaining(Long.parseLong(keyword));
+        }
+
+        for(Member member : memberList){
+            resultList.add(MemberSearchDTO.fromEntity(member));
+        }
+
+        return resultList;
+    }
 }
 
