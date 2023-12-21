@@ -11,13 +11,15 @@
                     <li class="nav-shop__menu"><a class="nav-shop__menu--title" href="#">Pants</a></li>
                 </ul>
             </li>
-            <li class="header__list header__nav-search">
-                <a href="#">상품검색</a>
+            <li class="header__list">
+                <a class="header__nav-search" href='javascript:void(0)'>상품검색</a>
                 <ul class="nav-search__menus">
                     <li class="nav-search__menu">
                         <form>
-                            <input type="text" placeholder="상품명을 입력해주세요">
-                            <button class="btn btn--xs btn--white">검색</button>
+                            <label for="header__search">
+                                 <input id="header__search" class="header__search" type="text" placeholder="상품명을 입력해주세요">
+                                 <button class="btn btn--xs btn--white">검색</button>
+                            </label>
                         </form>
                     </li>
                 </ul>

@@ -27,7 +27,7 @@ header{
     padding: 2rem 0;
 }
 
-.header__lists li ul{
+.nav-shop__menus, .nav-search__menus{
     display: none;
 }
 
@@ -48,7 +48,7 @@ header{
 
 .nav-shop__menu{
     padding: 0.3rem 0.1rem;
-
+    transition: all 100ms ease-in;
 }
 
 .nav-shop__menu--title{
@@ -60,3 +60,18 @@ header{
     background-color: var(--color-text);
     color: var(--color-accent);
 }
+
+.header__search{
+    transition: all 200ms ease-in;
+}
+
+.header__search:focus{
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+}
+
+
+.active{
+    display: block;
+}
+
