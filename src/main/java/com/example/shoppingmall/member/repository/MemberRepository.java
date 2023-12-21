@@ -1,8 +1,10 @@
 package com.example.shoppingmall.member.repository;
 
 import com.example.shoppingmall.member.domain.Member;
+import com.example.shoppingmall.member.dto.MemberListDTO;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface MemberRepository {
@@ -20,4 +22,9 @@ public interface MemberRepository {
     List<Member> findByAddressBasicContaining(String memberAddressBasic);
 
     List<Member> findAll();
+
+    // 김찬혁 페이징
+    List<MemberListDTO> pagingList(Map<String, Integer> pagingParams);
+
+    int memberCount();
 }

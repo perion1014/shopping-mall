@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/members")
 @RequiredArgsConstructor
@@ -115,11 +117,28 @@ public class MemberController {
 
 
     /* 관리자 회원 목록 조회(모두 조회인 상태) */
+//    @GetMapping("/admin")
+//    public String showMemberList(Model model){
+//        model.addAttribute("memberListDTOList",memberService.searchAllMemberInfo());
+//        return "admins/admin-member";
+//    }
+
+    /* 관리자 회원 목록 조회(페이징) */
     @GetMapping("/admin")
-    public String showMemberList(Model model){
-        model.addAttribute("memberListDTOList",memberService.searchAllMemberInfo());
-        return "admins/admin-member";
+    public String paging(Model model,
+                         @RequestParam(value="page", required=false, defaultValue="1") int page) {
+
+        List<MemberListDTO> pagingList = memberService.pagingList(page);
+        System.out.println("pagingList = " + pagingList);
+
+        MemberPageDTO pageDTO = memberService.pagingParam(page);
+        model.addAttribute("pagingList",pagingList);
+        model.addAttribute("memberList", pagingList);
+        model.addAttribute("paging", pageDTO);
+
+        return "admins/admin-member-paging";
     }
+
 
     /* 관리자 회원 검색*/
     @PostMapping("/admin")

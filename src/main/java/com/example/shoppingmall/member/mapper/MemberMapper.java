@@ -1,9 +1,11 @@
 package com.example.shoppingmall.member.mapper;
 
 import com.example.shoppingmall.member.domain.Member;
+import com.example.shoppingmall.member.dto.MemberListDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Mapper
@@ -23,4 +25,8 @@ public interface MemberMapper {
 
 
     List<Member> findAll();
+
+    // 김찬혁 페이징
+    List<MemberListDTO> pagingList(Map<String, Integer> pagingParams);
+    int memberCount();
 }
