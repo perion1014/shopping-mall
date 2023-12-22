@@ -2,6 +2,7 @@ package com.example.shoppingmall.member.controller;
 
 import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.*;
+import com.example.shoppingmall.member.form.MemberPageForm;
 import com.example.shoppingmall.member.form.MemberSearchForm;
 import com.example.shoppingmall.member.service.MemberLoginService;
 import com.example.shoppingmall.member.service.MemberService;
@@ -116,33 +117,28 @@ public class MemberController {
     }
 
 
-    /* 관리자 회원 목록 조회(모두 조회인 상태) */
-//    @GetMapping("/admin")
-//    public String showMemberList(Model model){
-//        model.addAttribute("memberListDTOList",memberService.searchAllMemberInfo());
-//        return "admins/admin-member";
+    /* 관리자 회원 목록 조회(모두 조회인 상태)*/
+//  @GetMapping("/admin")
+//  public String showMemberList(Model model){
+//      model.addAttribute("memberListDTOList",memberService.searchAllMemberInfo());
+//      return "admins/admin-member";
 //    }
 
-    /* 관리자 회원 목록 조회(페이징) */
+    /* 관리자 회원 목록 조회(페이징 처리 완료)*/
     @GetMapping("/admin")
-    public String paging(Model model,
+    public String showMemberList(Model model,
                          @RequestParam(value="page", required=false, defaultValue="1") int page) {
 
-        List<MemberListDTO> pagingList = memberService.pagingList(page);
+        model.addAttribute("pageSettings", memberService.setMemberListPage(page));
+        model.addAttribute("memberListByPaging",memberService.getMemberListPage(page));
 
-        MemberPageDTO pageDTO = memberService.pagingParam(page);
-        model.addAttribute("pagingList",pagingList);
-        model.addAttribute("memberList", pagingList);
-        model.addAttribute("paging", pageDTO);
-
-        return "admins/admin-member-paging";
+        return "admins/admin-member";
     }
-
 
     /* 관리자 회원 검색*/
     @PostMapping("/admin")
     public String searchMembers(@ModelAttribute MemberSearchForm memberSearchForm, Model model){
-      model.addAttribute("memberListDTOListResult",memberService.searchMemberInfo(memberSearchForm));
+      model.addAttribute("resultList",memberService.searchMemberInfo(memberSearchForm));
       return "admins/admin-member-result";
     }
 

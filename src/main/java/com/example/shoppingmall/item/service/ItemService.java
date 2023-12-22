@@ -53,14 +53,33 @@ public class ItemService {
 
     public List<ItemDTO> findAllItems() {
         List<Item> itemList = itemRepository.findAllItems();
+        for (Item item: itemList) {
+            Long itemNo = item.getItemNo();
+            //System.out.println("itemService.findAllItems() ==> item.itemNo = " + itemNo);
+            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
+            for (ItemStock itemStock: itemStockList) {
+                //System.out.println(itemStock.getItemSize() + ": " + itemStock.getItemStockValue());
+            }
+            item.setItemStockList(itemStockList);
+        }
+        //System.out.println("===================================================");
         List<ItemDTO> itemDTOList = new ArrayList<>();
         for (Item item: itemList) {
-            /*
-            구현 필요
-             */
-            Long itemNo = item.getItemNo();
-            item.setItemStockList(itemRepository.findAllItemStocks(itemNo));
+            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
+            for (ItemStockDTO itemStockDTO: itemStockDTOList) {
+                //System.out.println(itemStockDTO.getItemSize() + ": " + itemStockDTO.getItemStockValue());
+            }
+            item.setItemStockDTOList(itemStockDTOList);
+            //System.out.println(item.getItemStockDTOList());
             itemDTOList.add(ItemDTO.itemToItemDTO(item));
+        }
+
+        for (ItemDTO itemDTO: itemDTOList) {
+            System.out.print("itemDTO.getItemNo(): " + itemDTO.getItemNo() + " / ");
+            for (ItemStockDTO itemStockDTO: itemDTO.getItemStockDTOList()) {
+                System.out.print(itemStockDTO.getItemSize() + ": " + itemStockDTO.getItemStockValue() + " ");
+            }
+            System.out.println();
         }
         return itemDTOList;
     }
@@ -68,6 +87,9 @@ public class ItemService {
     public List<ItemStockDTO> findAllItemStocks(Long itemNo) {
         List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
         List<ItemStockDTO> itemStockDTOList = new ArrayList<>();
+        for (ItemStock itemStock: itemStockList) {
+            itemStockDTOList.add(ItemStockDTO.toItemStockDTO(itemStock));
+        }
         return itemStockDTOList;
     }
 
@@ -93,7 +115,7 @@ public class ItemService {
         List<ItemStock> itemStockList = itemRepository.joinItemByItemNo(itemNo);
         List<ItemStockDTO> itemStockDTOList = new ArrayList<>();
         for (ItemStock itemStock: itemStockList) {
-            itemStockDTOList.add(ItemStockDTO.toItemStock(itemStock));
+            itemStockDTOList.add(ItemStockDTO.toItemStockDTO(itemStock));
         }
         return itemStockDTOList;
     }
@@ -129,7 +151,7 @@ public class ItemService {
     }
 
     public void deleteItemByName(ItemDTO itemDTO) {
-        Item item = Item.itemDTOToItemWithItemNo(itemDTO);
+        Item item = ItemDTO.itemDTOToItemWithItemNo(itemDTO);
         itemRepository.deleteItemByName(item);
     }
 

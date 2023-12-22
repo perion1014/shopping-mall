@@ -18,7 +18,7 @@
     <main>
       <div class="main">
         <div class="admin_item">상품 조회</div>
-        <div class="admin_item_sale">onsale | unsale</div>
+        <div class="admin_item_sale">On sale | Not on sale</div>
         <div class="admin_item_category">top | bottom | outer</div>
         <div class="admin_item_search">
           <select name="category">
@@ -49,13 +49,15 @@
               <td th:text="${item.itemNo}"></td>
               <td th:text="${item.itemName}"></td>
               <td th:text="${item.itemPrice}"></td>
+
               <td>
                 <ul>
                   <li th:each="itemStock: ${item.itemStockDTOList}" th:text="${itemStock.itemSize} ${itemStock.itemStockValue}"></li>
                 </ul>
               </td>
               <td th:text="${item.itemCategory}"></td>
-              <td th:text="${item.itemOnsale}"></td>
+              <td th:if="${item.itemOnsale == 1}">On sale</td>
+              <td th:unless="${item.itemOnsale == 1}">Not on sale</td>
               <td>수정</td>
               <td><a th:href="@{/items/admin/{itemNo}/delete(itemNo=${item.itemNo})}">삭제</a></td>
             </tr>

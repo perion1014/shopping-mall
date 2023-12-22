@@ -1,7 +1,7 @@
 package com.example.shoppingmall.member.repository;
 
 import com.example.shoppingmall.member.domain.Member;
-import com.example.shoppingmall.member.dto.MemberListDTO;
+import com.example.shoppingmall.member.dto.MemberSearchDTO;
 import com.example.shoppingmall.member.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -52,45 +52,22 @@ public class MyBatisMemberRepository implements MemberRepository {
     }
 
     @Override
-    public List<Member> findByIdContaining(String memberId) {
-        return memberMapper.findByIdContaining(memberId);
+    public List<Member> findByKeyword(Map<String, String> searchingKeyword) {
+        return memberMapper.findByKeyword(searchingKeyword);
     }
 
     @Override
-    public List<Member> findByHpContaining(String memberHp) {
-        return memberMapper.findByHpContaining(memberHp);
+    public List<Member> findAllByPaging(Map<String, Integer> pagingSettings) {
+        return memberMapper.findAllByPaging(pagingSettings);
     }
 
     @Override
-    public List<Member> findByEmailContaining(String memberEmail) {
-        return memberMapper.findByEmailContaining(memberEmail);
+    public Long countAll() {
+        return memberMapper.countAll();
     }
 
     @Override
-    public List<Member> findByNameContaining(String memberName) {
-        return memberMapper.findByNameContaining(memberName);
+    public Long countAllByKeyword(Map<String, String> searchingKeyword) {
+        return memberMapper.countAllByKeyword(searchingKeyword);
     }
-
-    @Override
-    public List<Member> findByAddressBasicContaining(String memberAddressBasic) {
-        return memberMapper.findByAddressBasicContaining(memberAddressBasic);
-    }
-
-    @Override
-    public List<Member> findAll() {
-         return memberMapper.findAll();
-    }
-
-    // 김찬혁 페이징
-    @Override
-    public List<MemberListDTO> pagingList(Map<String, Integer> pagingParams) {
-        return memberMapper.pagingList(pagingParams);
-    }
-
-    @Override
-    public Long memberCount() {
-        return memberMapper.memberCount();
-    }
-
-
 }

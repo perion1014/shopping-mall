@@ -45,18 +45,18 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="memberListDTO : ${memberListDTOListResult}">
-                <td th:text="${memberListDTO.memberNo}"></td>
-                <td th:text="${memberListDTO.memberId}"></td>
-                <td th:text="${memberListDTO.memberName}"></td>
-                <td th:text="${memberListDTO.memberHp}"></td>
-                <td th:text="${memberListDTO.memberEmail}"></td>
-                <td th:text="${memberListDTO.memberPostalCode}"></td>
-                <td th:text="${memberListDTO.memberAddressBasic}"></td>
-                <td class="table__last-container" th:text="${memberListDTO.memberAddressDetail}"></td>
+            <tr th:each="memberSearchDTO : ${resultList}">
+                <td th:text="${memberSearchDTO.memberNo}"></td>
+                <td th:text="${memberSearchDTO.memberId}"></td>
+                <td th:text="${memberSearchDTO.memberName}"></td>
+                <td th:text="${memberSearchDTO.memberHp}"></td>
+                <td th:text="${memberSearchDTO.memberEmail}"></td>
+                <td th:text="${memberSearchDTO.memberPostalCode}"></td>
+                <td th:text="${memberSearchDTO.memberAddressBasic}"></td>
+                <td class="table__last-container" th:text="${memberSearchDTO.memberAddressDetail}"></td>
                 <td class="members-delete__container">
                     <form action="/members/delete" method="post">
-                        <input type="hidden" name="memberNo" th:value="${memberListDTO.memberNo}" />
+                        <input type="hidden" name="memberNo" th:value="${memberSearchDTO.memberNo}" />
                         <button class="btn btn--xs btn--black">삭제</button>
                     </form>
                 </td>

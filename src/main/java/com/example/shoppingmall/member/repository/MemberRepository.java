@@ -1,7 +1,7 @@
 package com.example.shoppingmall.member.repository;
 
 import com.example.shoppingmall.member.domain.Member;
-import com.example.shoppingmall.member.dto.MemberListDTO;
+import com.example.shoppingmall.member.dto.MemberSearchDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -15,16 +15,8 @@ public interface MemberRepository {
     Optional<Member> findById(String memberId);
     Optional<Member> findByEmail(String memberEmail);
     List<Member> findByNoContaining(Long memberNo);
-    List<Member> findByIdContaining(String memberId);
-    List<Member> findByHpContaining(String memberHp);
-    List<Member> findByEmailContaining(String memberEmail);
-    List<Member> findByNameContaining(String memberName);
-    List<Member> findByAddressBasicContaining(String memberAddressBasic);
-
-    List<Member> findAll();
-
-    // 김찬혁 페이징
-    List<MemberListDTO> pagingList(Map<String, Integer> pagingParams);
-
-    Long memberCount();
+    List<Member> findByKeyword(Map<String, String> searchingKeyword);
+    List<Member> findAllByPaging(Map<String, Integer> pagingSettings);
+    Long countAll();
+    Long countAllByKeyword(Map<String, String> searchingKeyword);
 }
