@@ -28,7 +28,10 @@ public class NoticeDetailDTO {
 
     public static NoticeDetailDTO noticeToNoticeDetailDTO(Notice notice){
         NoticeDetailDTO noticeDetailDTO = new NoticeDetailDTO();
-//        noticeDetailDTO.setNoticeNo();
+        noticeDetailDTO.setNoticeNo(notice.getNoticeNo());
+        noticeDetailDTO.setNoticeTitle(notice.getNoticeTitle());
+        noticeDetailDTO.setNoticeContent(notice.getNoticeContent());
+        noticeDetailDTO.setNoticeViewCount(notice.getNoticeViewcount());
         return noticeDetailDTO;
     }
 
