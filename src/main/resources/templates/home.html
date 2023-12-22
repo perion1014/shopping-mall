@@ -10,17 +10,21 @@
 </header>
 <img class=home__background-img src="/images/diego-sanchez-DEDhybzzBwc-unsplash.webp" alt="background-image"/>
 <main class="section__container">
-   <section id="new-arrivals">
+   <section class="section" id="new-arrivals">
       <h1 class="section__title">New Arrival</h1>
    </section>
-   <section id="about-us">
-      <h1 class="section__title section__title--right">About Us</h1>
+   <section id="about-us" th:style=" 'background-image: url(/images/clay-banks-hi_52O-h5G8-unsplash.webp)' ">
+      <section class="section section--banner">
+         <h1 class="section__title section__title--right">About Us</h1>
+      </section>
    </section>
-   <section id="best-items">
+   <section class="section" id="best-items">
       <h1 class="section__title">Best Items</h1>
    </section>
    <section id="access">
-      <h1 class="section__title section__title--right">Access</h1>
+      <section class="section">
+         <h1 class="section__title section__title--right">Access</h1>
+      </section>
    </section>
 </main>
 <footer th:replace="~{/fragments/footer :: footer}"></footer>

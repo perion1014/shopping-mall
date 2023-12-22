@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 0 15rem;
     box-sizing: border-box;
 }
 
@@ -14,5 +13,20 @@
 
 .section__title--right{
     text-align: right;
-    color: var(--color-accent);
+    color: var(--color-primary);
+}
+.section--banner .section__title{
+    margin:3rem 0 0.75rem 0;
+}
+
+.section{
+    height: 50rem;
+    padding: 0 15rem;
+}
+.section--banner{
+    height: 25rem;
+}
+
+#access{
+    background-color: var(--color-text);
 }
