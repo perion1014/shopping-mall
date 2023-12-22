@@ -15,4 +15,6 @@ public interface CartRepository {
 
     void deleteCartItem(Long cartNo);
 
+    void addCartItem(Cart cart);
+
 }
