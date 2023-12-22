@@ -22,10 +22,4 @@ public class CartReadDTO {
     private Integer itemPriceSum;
     private Integer orderPriceSum;
 
-    public static CartReadDTO CartToCartDTO(Cart cart){
-    CartReadDTO cartReadDTO = new CartReadDTO();
-
-    return cartReadDTO;
-    }
-
 }
