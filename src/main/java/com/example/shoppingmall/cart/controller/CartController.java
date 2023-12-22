@@ -30,15 +30,21 @@ public class CartController {
         return "carts/member-cart-list";
     }
 
-//    @PostMapping("/{memberNo}")
-//    public String addItemsToMemberCart(@PathVariable(name = "memberNo") Long memberNo,
-//                                       @RequestParam(name = "") Long ){
-//
-//
-//
-//
-//        return "carts/itemInfo_Temp_CMS";
-//    }
+    @PostMapping("/{memberNo}")
+    public String addItemsToMemberCart(@PathVariable(name = "memberNo") Long memberNo,
+                                       @RequestParam(name = "itemNo") Long itemNo,
+                                       @RequestParam(name = "cartAddItemSize") String cartAddItemSize,
+                                       @RequestParam(name = "addCartItemQuantiy") Integer addCartItemQuantiy){
+
+        System.out.println("페이지에서 받아온 회원 번호 : " + memberNo);
+        System.out.println("페이지에서 받아온 상품 번호 : " + itemNo);
+        System.out.println("페이지에서 받아온 상품 사이즈 : " + cartAddItemSize);
+        System.out.println("페이지에서 받아온 상품 수량 : " + addCartItemQuantiy);
+
+        cartService.addCartItem(memberNo, itemNo, cartAddItemSize, addCartItemQuantiy);
+
+        return "carts/itemInfo_Temp_CMS";
+    }
 
     @PostMapping("/{memberNo}/{cartNo}/update")
     public String updateItemsInMemberCart(@RequestBody Map<String, String> jsonData, Model model, RedirectAttributes rttr){

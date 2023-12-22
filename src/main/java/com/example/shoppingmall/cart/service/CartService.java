@@ -45,4 +45,13 @@ public class CartService {
         cartRepository.deleteCartItem(cartNo);
     }
 
+    public void addCartItem(Long memberNo, Long itemNo, String cartAddItemSize, Integer addCartItemQuantiy){
+    Cart cart = new Cart();
+    cart.setMemberNo(memberNo);
+    cart.setItemNo(itemNo);
+    cart.setItemSize(cartAddItemSize);
+    cart.setCartItemQuantity(addCartItemQuantiy);
+    cartRepository.addCartItem(cart);
+    }
+
 }

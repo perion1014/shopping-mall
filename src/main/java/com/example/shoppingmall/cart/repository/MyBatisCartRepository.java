@@ -42,4 +42,6 @@ public class MyBatisCartRepository implements CartRepository{
     public void deleteCartItem(Long cartNo){
         cartMapper.deleteCartItem(cartNo);
     }
+
+    public void addCartItem(Cart cart) { cartMapper.addCartItem(cart);}
 }
