@@ -41,6 +41,7 @@ public class ItemDTO {
         itemDTO.setItemPrice(item.getItemPrice());
         itemDTO.setItemOnsale(item.getItemOnsale());
         itemDTO.setItemRegisteredTime(item.getItemRegisteredTime());
+        itemDTO.setItemStockDTOList(ItemStockDTO.toItemStockDTOList(item.getItemStockList()));
         return itemDTO;
     }
 
@@ -56,6 +57,20 @@ public class ItemDTO {
         itemDTO.setItemOnsale(item.getItemOnsale());
         itemDTO.setItemRegisteredTime(item.getItemRegisteredTime());
         return itemStockDTOList;
+    }
+
+    public static Item itemDTOToItemWithItemNo(ItemDTO itemDTO) {
+        Item item = new Item();
+        item.setItemNo(itemDTO.getItemNo());
+        item.setItemName(itemDTO.getItemName());
+        item.setItemCategory(itemDTO.getItemCategory());
+        item.setItemGrade(itemDTO.getItemGrade());
+        item.setItemDetail(itemDTO.getItemDetail());
+        item.setItemPrice(itemDTO.getItemPrice());
+        item.setItemOnsale(itemDTO.getItemOnsale());
+        item.setItemRegisteredTime(itemDTO.getItemRegisteredTime());
+        //item.setItemStockList(itemDTO.getItemStockList());
+        return item;
     }
 
 }
