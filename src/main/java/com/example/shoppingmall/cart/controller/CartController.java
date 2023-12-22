@@ -72,8 +72,8 @@ public class CartController {
 
     @GetMapping("/carts/item_info_temp")
     public String gotoItemInfo(Model model, HttpSession session){
-        Long loginMemberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
-        model.addAttribute("memberNo", loginMemberNo);
+        //Long loginMemberNo = ((Member)session.getAttribute("loginMember")).getMemberNo();
+        //model.addAttribute("memberNo", loginMemberNo);
         return "carts/itemInfo_Temp_CMS";
     }
 
