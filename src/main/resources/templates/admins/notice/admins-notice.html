@@ -45,9 +45,9 @@
             </tr>
             </thead>
             <tbody th:each="noticeListDTO : ${noticeListDTOList}">
-            <tr>
+            <tr th:onclick="|location.href='@{|/notice/admin/${noticeListDTO.getNoticeNo()}/update|}'|">
                 <td th:text="${noticeListDTO.noticeNo}"></td>
-                <td th:text="${noticeListDTO.noticeTitle}"></td>
+                <td th:text="${noticeListDTO.noticeTitle}"><a th:href="@{|/admin/${noticeListDTO.getNoticeNo()}/update|}"></a></td>
                 <td name="writer">admin</td>
                 <td th:text="${noticeListDTO.noticeCreatedTime}"></td>
                 <td th:text="${noticeListDTO.noticeViewcount}"></td>

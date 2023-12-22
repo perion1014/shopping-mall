@@ -23,6 +23,10 @@ public class MyBatisNoticeRepository implements NoticeRepository{
         noticeMapper.addNotice(notice);
     }
     @Override
+    public Optional<Notice> findByNo(Long noticeNo) {
+        return Optional.ofNullable(noticeMapper.findByNo(noticeNo));
+    }
+    @Override
     public void updateNotice(Notice notice) {
         noticeMapper.updateNotice(notice);
     }
@@ -30,8 +34,5 @@ public class MyBatisNoticeRepository implements NoticeRepository{
     public void deleteNoticeByNo(Long noticeNo) {
         noticeMapper.deleteNoticeByNo(noticeNo);
     }
-    @Override
-    public Optional<Notice> findByNo(Long noticeNo) {
-        return Optional.ofNullable(noticeMapper.findByNo(noticeNo));
-    }
+
 }

@@ -37,8 +37,15 @@ public class NoticeService {
         noticeRepository.addNotice(notice);
     }
     @Transactional
-    public NoticeUpdateDTO updateNotice(Long noticeNo){
-       return null;
+    public NoticeUpdateDTO getNoticeInfo(Long noticeNo){
+        Notice notice = noticeRepository.findByNo(noticeNo).orElse(null);
+        return NoticeUpdateDTO.NoticeToNoticeUpdateDTO(notice);
+
+    }
+
+    @Transactional
+    public void update(){
+
     }
     @Transactional
     public void deleteNotice(Long noticeNo){

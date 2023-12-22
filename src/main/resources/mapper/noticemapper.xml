@@ -6,8 +6,12 @@
         select * from notice order by notice_no desc
     </select>
 
+    <select id="findByNo" resultType="com.example.shoppingmall.notify.domain.Notice">
+        select * from notice where notice_no = #{noticeNo}
+    </select>
+
     <insert id="addNotice" parameterType="com.example.shoppingmall.notify.domain.Notice">
-        insert into notice values (#{noticeNo}, #{adminNo}, #{noticeTitle}, "1998-12-31 23:59:59", #{noticeContent}, 0)
+        insert into notice values (#{noticeNo}, #{adminNo}, #{noticeTitle}, DATE_ADD(NOW(), INTERVAL 0 HOUR), #{noticeContent}, 0)
     </insert>
 
     <update id="updateNotice" parameterType="com.example.shoppingmall.notify.domain.Notice">

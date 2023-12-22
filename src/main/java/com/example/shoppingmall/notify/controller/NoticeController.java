@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Controller
@@ -43,15 +44,16 @@ public class NoticeController {
         //adminId도 가져와야함 @RequestParam("adminId") String adminId
         //추가구현
         //해당 작성자admin아이디 출력
-        //작성일자 생성
+        //작성일자 생성 셀렉트문으로 DB에 있는 글들을 끌어올떄는 Timestamp DATE_ADD(NOW(), INTERVAL 0 HOUR) 9시간 차이
         System.out.println("adminNo = " + adminNo);
+
         noticeService.addNotice(adminNo, noticeAddDTO);
         return "redirect:/notice/admin";
     }
-    /*공지사항 수정페이지 Admin전용*/
+    /*공지사항 수정페이지 Admin전용*///공지 리스트에서 해당 게시물 클릭하면 수정페이지가 나오고 작성된 내용 그대로 출력
     @GetMapping("/admin/{noticeNo}/update")
     public String goToUpdateNoticePage(@PathVariable(name="noticeNo")Long noticeNo, Model model){
-        model.addAttribute("noticeUpdateDTO", noticeService.updateNotice(noticeNo));
+        model.addAttribute("noticeUpdateDTO", noticeService.getNoticeInfo(noticeNo));
         return "admins/notice/admins-notice-modify";
     }
     /*공지사항 수정실행 Admin전용*/
