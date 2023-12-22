@@ -102,7 +102,7 @@
     </insert>
 
     <select id="findAllItems" resultType="com.example.shoppingmall.item.domain.Item">
-        select * from item
+        select * from item order by item_no desc
     </select>
 
     <select id="findAllItemStocks" parameterType="Long" resultType="com.example.shoppingmall.item.domain.ItemStock">

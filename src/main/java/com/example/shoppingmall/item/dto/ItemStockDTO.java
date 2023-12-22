@@ -8,6 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,13 +22,30 @@ public class ItemStockDTO {
     private String itemSize;
     private Integer itemStockValue;
 
-    public static ItemStockDTO toItemStock(ItemStock itemStock) {
+    public static ItemStockDTO toItemStockDTO(ItemStock itemStock) {
         ItemStockDTO itemStockDTO = new ItemStockDTO();
         itemStockDTO.setItemStockNo(itemStock.getItemStockNo());
         itemStockDTO.setItemNo(itemStock.getItemNo());
         itemStockDTO.setItemSize(itemStock.getItemSize());
         itemStockDTO.setItemStockValue(itemStock.getItemStockValue());
         return itemStockDTO;
+    }
+
+    public static ItemStock toItemStock(ItemStockDTO itemStockDTO) {
+        ItemStock itemStock = new ItemStock();
+        itemStock.setItemStockNo(itemStockDTO.getItemStockNo());
+        itemStock.setItemNo(itemStockDTO.getItemNo());
+        itemStock.setItemSize(itemStockDTO.getItemSize());
+        itemStock.setItemStockValue(itemStockDTO.getItemStockValue());
+        return itemStock;
+    }
+
+    public static List<ItemStockDTO> toItemStockDTOList(List<ItemStock> itemStockList) {
+        List<ItemStockDTO> itemStockDTOList = new ArrayList<>();
+        for (ItemStock itemStock: itemStockList) {
+            itemStockDTOList.add(ItemStockDTO.toItemStockDTO(itemStock));
+        }
+        return itemStockDTOList;
     }
 
 }

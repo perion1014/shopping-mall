@@ -20,7 +20,7 @@ public class ItemController {
     @GetMapping("/admin")
     public String showItemList(Model model) {
         List<ItemDTO> itemDTOList = itemService.findAllItems();
-        //model.addAttribute("itemDTOList", itemAddDTOList);
+        model.addAttribute("itemDTOList", itemDTOList);
         return "admins/item/admins-item";
     }
 
@@ -56,7 +56,7 @@ public class ItemController {
         Long itemNo = itemService.getMaxItemNo();
         itemService.saveItemPhotos(itemNo, itemAddDTO);
         itemService.saveItemStock(itemNo, itemAddDTO);
-        return "redirect:/items/admin";
+        return "redirect:/items/admin/add";
     }
 
     @GetMapping("/admin/{itemNo}")
