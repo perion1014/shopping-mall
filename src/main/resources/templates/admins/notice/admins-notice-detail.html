@@ -21,20 +21,23 @@
         <div class="notice_detail">
           <hr />
           <div class="notice_elements">
-            <span class="notice_no">1</span>
+            <span th:text="${noticeDetailDTO.getNoticeNo()}" class="notice_no" ></span>
             <div class="notice_elements_right">
-              <span> 작성일자 2023-12-14 </span>
-              <span> 조회수 30 </span>
+              <span > 작성일자 2023-12-14 </span>
+              <span th:text="${noticeDetailDTO.getNoticeViewcount()}"></span>
             </div>
           </div>
           <hr />
-          <div class="notice_title">공지사항 제목이겠죠</div>
+          <div th:text="${noticeDetailDTO.getNoticeTitle()}" class="notice_title"></div>
           <hr />
-          <div class="notice_contents">공지 사항 내용입니다.</div>
+          <div th:text="${noticeDetailDTO.getNoticeContent()}" class="notice_contents"></div>
           <hr />
 
           <div class="notice_btn">
-            <button>수정</button> <button>삭제</button>
+            <form th:action="@{|/notice/admin/${noticeDetailDTO.getNoticeNo()}/update|}" method="get">
+              <button>수정</button>
+            </form>
+            <button>삭제</button>
           </div>
         </div>
 

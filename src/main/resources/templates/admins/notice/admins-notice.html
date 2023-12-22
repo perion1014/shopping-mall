@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head th:admin-head>
     <div th:remove="tag" th:replace="~{/fragments/admin-head :: admin-head} "></div>
     <!--CSS-->
@@ -28,7 +28,7 @@
 
                 <option value="member_address_basic">주소</option>
             </select>
-            <input type="text" />
+            <input type="text"/>
             <button>검색</button>
         </div>
 
@@ -45,18 +45,41 @@
             </tr>
             </thead>
             <tbody th:each="noticeListDTO : ${noticeListDTOList}">
-            <tr th:onclick="|location.href='@{|/notice/admin/${noticeListDTO.getNoticeNo()}/update|}'|">
+            <tr th:onclick="|location.href='@{|/notice/admin/${noticeListDTO.getNoticeNo()}|}'|">
                 <td th:text="${noticeListDTO.noticeNo}"></td>
-                <td th:text="${noticeListDTO.noticeTitle}"><a th:href="@{|/admin/${noticeListDTO.getNoticeNo()}/update|}"></a></td>
+                <td th:text="${noticeListDTO.noticeTitle}">
+                    <a th:href="@{|/admin/${notice}/update|}"></a>
+                </td>
                 <td name="writer">admin</td>
                 <td th:text="${noticeListDTO.noticeCreatedTime}"></td>
                 <td th:text="${noticeListDTO.noticeViewcount}"></td>
                 <td name="noticeDelete"><a th:href="@{|/admin/${noticeListDTO.getNoticeNo()}/delete|}">삭제</a></td>
             </tr>
             </tbody>
+<!--            <div class="admin_member_page">-->
+<!--                <span th:if="${pageSettings.page &lt;= 1}">이전</span>-->
+<!--                <span th:unless="${pageSettings.page &lt;= 1}">-->
+<!--            <a th:href="@{/members/admin(page=${pageSettings.page - 1})}">이전</a>-->
+<!--          </span>-->
+
+<!--                <span th:each="i : ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">-->
+<!--            <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>-->
+<!--            <a th:unless="${i == pageSettings.page}"-->
+<!--               th:href="@{/members/admin(page=${i})}"-->
+<!--               th:text="${i}"></a>-->
+<!--          </span>-->
+
+<!--                <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>-->
+<!--                <a th:unless="${pageSettings.page >= pageSettings.totalPage}"-->
+<!--                   th:href="@{/members/admin(page=${pageSettings.page + 1})}"-->
+<!--                >다음</a-->
+<!--                >-->
+<!--            </div>-->
         </table>
         <form action="admin/add" method="get">
-            <div class="notice_btn"><button>등록</button></div>
+            <div class="notice_btn">
+                <button>등록</button>
+            </div>
         </form>
         <div class="admin_member_page"><a href="1">1</a> <a href="2">2</a></div>
     </div><!--main div-->

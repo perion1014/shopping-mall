@@ -14,7 +14,7 @@ public class NoticeUpdateDTO {
     private Long noticeNo;
     private String noticeTitle;
     private String noticeContent;
-    //private Timestamp noticeCreatedTime;수정시간이 notice-modify.html로 전달해야함
+    //private Timestamp noticeCreatedTime;//수정시간이 notice-modify.html로 전달해야함
     private Long noticeViewcount;
 
     public static Notice noticeUpdateDTOToNotice(Long noticeNo,NoticeUpdateDTO noticeUpdateDTO){
