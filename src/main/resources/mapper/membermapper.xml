@@ -93,24 +93,7 @@
 
 <!--    2023-12-22-->
     <select id="findByKeyword2" parameterType="com.example.shoppingmall.member.form.MemberSearchForm" resultType="com.example.shoppingmall.member.domain.Member">
-        <where>
-            <if test="category.equals('memberId')">
-                AND member_id LIKE CONCAT('%', #{keyword}, '%')
-            </if>
-            <if test="category.equals('memberHp')">
-                AND member_hp LIKE CONCAT('%', #{keyword}, '%')
-            </if>
-            <if test="category.equals('memberEmail')">
-                AND member_email LIKE CONCAT('%', #{keyword}, '%')
-            </if>
-            <if test="category.equals('memberName')">
-                AND member_name LIKE CONCAT('%', #{keyword}, '%')
-            </if>
-            <if test="category.equals('memberAddressBasic')">
-                AND member_address_basic LIKE CONCAT('%', #{keyword}, '%')
-            </if>
-        </where>
-        LIMIT #{start}, #{limit}
+       select * from member where ${category} LIKE CONCAT('%', #{keyword}, '%') LIMIT #{start}, #{limit}
     </select>
 
     <select id="countAllByKeyword2" parameterType="com.example.shoppingmall.member.form.MemberSearchForm" resultType="Long">

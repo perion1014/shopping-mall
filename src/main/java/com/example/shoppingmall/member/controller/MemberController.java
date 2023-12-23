@@ -136,11 +136,11 @@ public class MemberController {
     }
 
     /* 관리자 회원 검색*/
-    @PostMapping("/admin")
-    public String searchMembers(@ModelAttribute MemberSearchForm memberSearchForm, Model model){
-      model.addAttribute("resultList",memberService.searchMemberInfo(memberSearchForm));
-      return "admins/admin-member-result";
-    }
+//    @PostMapping("/admin")
+//    public String searchMembers(@ModelAttribute MemberSearchForm memberSearchForm, Model model){
+//      model.addAttribute("resultList",memberService.searchMemberInfo(memberSearchForm));
+//      return "admins/admin-member-result";
+//    }
 
     /*관리자 회원 추방*/
     @PostMapping("/delete")
@@ -151,14 +151,14 @@ public class MemberController {
     }
 
     // 2023-12-23 Search
-//    @PostMapping("/admin")
-//    public String searchMembers(@ModelAttribute MemberSearchForm memberSearchForm, Model model,
-//                                @RequestParam(value="page", required=false, defaultValue="1") int page){
-//        model.addAttribute("pageSettings", memberService.setMemberListPage2(page,memberSearchForm));
-//        model.addAttribute("memberListByPaging",memberService.getSearchMemberListPage(page,memberSearchForm));
-//        System.out.println(memberSearchForm.getCategory());
-//        System.out.println(memberSearchForm.getKeyword());
-//
-//        return "admins/admin-member";
-//    }
+    @PostMapping("/admin")
+    public String searchMembers(@ModelAttribute MemberSearchForm memberSearchForm, Model model,
+                                @RequestParam(value="page", required=false, defaultValue="1") int page){
+        model.addAttribute("pageSettings", memberService.setMemberListPage2(page,memberSearchForm));
+        model.addAttribute("memberListByPaging",memberService.getSearchMemberListPage(page,memberSearchForm));
+        System.out.println(memberSearchForm.getCategory());
+        System.out.println(memberSearchForm.getKeyword());
+
+        return "admins/admin-member";
+    }
 }
