@@ -146,5 +146,52 @@ public class MemberService {
 
         return resultList;
     }
+
+    // 2023-12-22
+    @Transactional(readOnly = true)
+    public List<MemberSearchDTO> getSearchMemberListPage(int page, MemberSearchForm memberSearchForm) {
+
+        int startPage = (page-1) * 12; //시작 페이지
+        int pagePerMember = 12; // 멤버 수
+
+        memberSearchForm.setStart(startPage);
+        memberSearchForm.setLimit(pagePerMember);
+        List<Member> memberList = memberRepository.findByKeyword2(memberSearchForm);
+        System.out.println(memberSearchForm.getKeyword());
+        System.out.println("memberSearchForm.getCategory() = " + memberSearchForm.getCategory());
+        List<MemberSearchDTO> resultList = new ArrayList<>();
+
+
+        for(Member member : memberList){
+            resultList.add(MemberSearchDTO.fromEntity(member));
+        }
+
+        return resultList;
+    }
+
+    @Transactional(readOnly = true)
+    public MemberPageForm setMemberListPage2(int page, MemberSearchForm memberSearchForm) {
+
+        int pagePerMember = 12; // 보여줄 멤버 수
+        int pageLimit = 10; // 하단 페이징 번호 갯수
+
+        // 전체 멤버 조회
+        Long memberCount = memberRepository.countAllByKeyword2(memberSearchForm);
+
+        // 전체 페이지 갯수 계산 (10/3=3.33333 => 4)
+        int totalPage = (int) (Math.ceil((double) memberCount / pagePerMember));
+
+        // 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
+        int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
+
+        // 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
+        int endPage = startPage + pageLimit - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        return new MemberPageForm(page,totalPage,startPage,endPage);
+    }
+
 }
 

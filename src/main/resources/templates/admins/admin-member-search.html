@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head th:admin-head>
+    <div th:remove="tag" th:replace="~{/fragments/admin-head :: admin-head} "></div>
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/pages/admins/admins-member.css">
+</head>
+<body>
+<header th:replace="~{/fragments/admin-login-header :: admin-login-header}"></header>
+<aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}"></aside>
+<main>
+    <div class="main">
+        <div class="admin_member">회원 목록</div>
+        <div class="admin_member_search">
+            <form th:action method="get">
+                <select name="category">
+                    <option value="memberNo" >회원번호</option>
+                    <option value="memberId" >아이디</option>
+                    <option value="memberHp" >전화번호</option>
+                    <option value="memberEmail" >이메일</option>
+                    <option value="memberName" >이름</option>
+                    <option value="memberAddressBasic" >주소</option>
+                </select>
+                <input name="keyword" type="text" />
+                <button>검색</button>
+            </form>
+        </div>
+
+        <!-- table Ex-->
+        <table>
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>회원 아이디</th>
+                <th>이름</th>
+                <th>전화번호</th>
+                <th>이메일</th>
+                <th>우편번호</th>
+                <th>기본주소</th>
+                <th>상세주소</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="memberSearchDTO : ${memberListByPaging}">
+                <td th:text="${memberSearchDTO.memberNo}"></td>
+                <td th:text="${memberSearchDTO.memberId}"></td>
+                <td th:text="${memberSearchDTO.memberName}"></td>
+                <td th:text="${memberSearchDTO.memberHp}"></td>
+                <td th:text="${memberSearchDTO.memberEmail}"></td>
+                <td th:text="${memberSearchDTO.memberPostalCode}"></td>
+                <td th:text="${memberSearchDTO.memberAddressBasic}"></td>
+                <td class="table__last-container" th:text="${memberSearchDTO.memberAddressDetail}"></td>
+                <td class="members-delete__container">
+                    <form action="/members/delete" method="post">
+                        <input type="hidden" name="memberNo" th:value="${memberSearchDTO.memberNo}" />
+                        <button class="btn btn--xs btn--black">삭제</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="admin_member_page">
+            <span th:if="${pageSettings.page &lt;= 1}">이전</span>
+            <span th:unless="${pageSettings.page &lt;= 1}">
+            <a th:href="@{/members/admin(page=${pageSettings.page - 1})}">이전</a>
+          </span>
+
+            <span th:each="i : ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
+            <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
+            <a th:unless="${i == pageSettings.page}"
+               th:href="@{/members/admin(page=${i})}"
+               th:text="${i}"></a>
+          </span>
+
+            <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
+            <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
+               th:href="@{/members/admin(page=${pageSettings.page + 1})}"
+            >다음</a
+            >
+        </div>
+    </div>
+    <!--main div-->
+</main>
+</body>
+</html>

@@ -149,4 +149,16 @@ public class MemberController {
         redirectAttributes.addFlashAttribute("memberUpdateSuccess", "회원 추방이 완료되었습니다.");
         return "redirect:/members/admin";
     }
+
+    // 2023-12-23 Search
+//    @PostMapping("/admin")
+//    public String searchMembers(@ModelAttribute MemberSearchForm memberSearchForm, Model model,
+//                                @RequestParam(value="page", required=false, defaultValue="1") int page){
+//        model.addAttribute("pageSettings", memberService.setMemberListPage2(page,memberSearchForm));
+//        model.addAttribute("memberListByPaging",memberService.getSearchMemberListPage(page,memberSearchForm));
+//        System.out.println(memberSearchForm.getCategory());
+//        System.out.println(memberSearchForm.getKeyword());
+//
+//        return "admins/admin-member";
+//    }
 }
