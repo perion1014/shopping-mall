@@ -1,6 +1,7 @@
 package com.example.shoppingmall.item.mapper;
 
 import com.example.shoppingmall.item.domain.Item;
+import com.example.shoppingmall.item.domain.ItemItemStock;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import org.apache.ibatis.annotations.Mapper;
@@ -26,9 +27,6 @@ public interface ItemMapper {
     List<Item> findAllItemsOnsale();
 
     List<Item> findAllItemsOffmarket();
-
-    // item_no 칼럼을 통해 Item 테이블과 ItemStock 테이블을 join
-    List<ItemStock> joinItemByItemNo(Long itemNo);
 
     Item findItemByNo(Long itemNo);
 

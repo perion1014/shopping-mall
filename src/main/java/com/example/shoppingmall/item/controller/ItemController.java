@@ -1,5 +1,6 @@
 package com.example.shoppingmall.item.controller;
 
+import com.example.shoppingmall.item.domain.ItemItemStock;
 import com.example.shoppingmall.item.dto.*;
 import com.example.shoppingmall.item.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ public class ItemController {
     @GetMapping("/admin")
     public String showItemList(Model model) {
         List<ItemDTO> itemDTOList = itemService.findAllItems();
+        //List<ItemItemStock> itemDTOList = itemService.findAll();
         model.addAttribute("itemDTOList", itemDTOList);
         return "admins/item/admins-item";
     }

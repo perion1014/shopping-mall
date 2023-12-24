@@ -1,6 +1,7 @@
 package com.example.shoppingmall.item.repository;
 
 import com.example.shoppingmall.item.domain.Item;
+import com.example.shoppingmall.item.domain.ItemItemStock;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.ItemStockDTO;
@@ -20,8 +21,6 @@ public interface ItemRepository {
     List<Item> findAllItems();
 
     List<ItemStock> findAllItemStocks(Long itemNo);
-
-    List<ItemStock> joinItemByItemNo(Long itemNo);
 
     Item findItemByNo(Long itemNo);
 
