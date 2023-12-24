@@ -50,10 +50,9 @@
               <td th:text="${item.itemName}"></td>
               <td th:text="${item.itemPrice}"></td>
 
-              <td>
-                <ul>
-                  <li th:each="itemStock: ${item.itemStockDTOList}" th:text="${itemStock.itemSize} ${itemStock.itemStockValue}"></li>
-                </ul>
+              <td th:text="${item.itemStockDTOList[0].itemSize} + ' ' + ${item.itemStockDTOList[0].itemStockValue} + ' / ' + ${item.itemStockDTOList[1].itemSize} + ' ' + ${item.itemStockDTOList[1].itemStockValue} + ' / ' + ${item.itemStockDTOList[2].itemSize} + ' ' + ${item.itemStockDTOList[2].itemStockValue}">
+
+
               </td>
               <td th:text="${item.itemCategory}"></td>
               <td th:if="${item.itemOnsale == 1}">On sale</td>

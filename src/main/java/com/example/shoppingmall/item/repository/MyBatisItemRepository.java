@@ -1,6 +1,7 @@
 package com.example.shoppingmall.item.repository;
 
 import com.example.shoppingmall.item.domain.Item;
+import com.example.shoppingmall.item.domain.ItemItemStock;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.ItemDTO;
@@ -61,12 +62,6 @@ public class MyBatisItemRepository implements ItemRepository{
     public List<Item> findAllItemsOffmarket() {
         List<Item> itemList = itemMapper.findAllItemsOffmarket();
         return itemList;
-    }
-
-    @Override
-    public List<ItemStock> joinItemByItemNo(Long itemNo) {
-        List<ItemStock> itemStockList = itemMapper.joinItemByItemNo(itemNo);
-        return itemStockList;
     }
 
     @Override

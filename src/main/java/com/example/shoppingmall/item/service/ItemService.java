@@ -1,6 +1,7 @@
 package com.example.shoppingmall.item.service;
 
 import com.example.shoppingmall.item.domain.Item;
+import com.example.shoppingmall.item.domain.ItemItemStock;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.*;
@@ -84,15 +85,6 @@ public class ItemService {
         return itemDTOList;
     }
 
-    public List<ItemStockDTO> findAllItemStocks(Long itemNo) {
-        List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
-        List<ItemStockDTO> itemStockDTOList = new ArrayList<>();
-        for (ItemStock itemStock: itemStockList) {
-            itemStockDTOList.add(ItemStockDTO.toItemStockDTO(itemStock));
-        }
-        return itemStockDTOList;
-    }
-
     public List<ItemDTO> findAllItemsOnsale() {
         List<Item> itemList = itemRepository.findAllItemsOnsale();
         List<ItemDTO> itemDTOList = new ArrayList<>();
@@ -111,14 +103,14 @@ public class ItemService {
         return itemDTOList;
     }
 
-    public List<ItemStockDTO> joinItemByItemNo(Long itemNo) {
+/*    public List<ItemStockDTO> joinItemByItemNo(Long itemNo) {
         List<ItemStock> itemStockList = itemRepository.joinItemByItemNo(itemNo);
         List<ItemStockDTO> itemStockDTOList = new ArrayList<>();
         for (ItemStock itemStock: itemStockList) {
             itemStockDTOList.add(ItemStockDTO.toItemStockDTO(itemStock));
         }
         return itemStockDTOList;
-    }
+    }*/
 
     public ItemDTO findItemByNo(Long itemNo) {
         Item item =  itemRepository.findItemByNo(itemNo);
