@@ -17,8 +17,9 @@ public class NoticeUpdateDTO {
     //private Timestamp noticeCreatedTime;//수정시간이 notice-modify.html로 전달해야함
     private Long noticeViewcount;
 
-    public static Notice noticeUpdateDTOToNotice(Long noticeNo,NoticeUpdateDTO noticeUpdateDTO){
+    public static Notice NoticeUpdateDTOToNotice(NoticeUpdateDTO noticeUpdateDTO){
         Notice notice = new Notice();
+//        notice.setAdminNo(adminNo);
         notice.setNoticeNo(notice.getNoticeNo());
         notice.setNoticeTitle(noticeUpdateDTO.getNoticeTitle());
         notice.setNoticeContent(noticeUpdateDTO.getNoticeContent());

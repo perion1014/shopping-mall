@@ -47,13 +47,11 @@
             <tbody th:each="noticeListDTO : ${noticeListDTOList}">
             <tr th:onclick="|location.href='@{|/notice/admin/${noticeListDTO.getNoticeNo()}|}'|">
                 <td th:text="${noticeListDTO.noticeNo}"></td>
-                <td th:text="${noticeListDTO.noticeTitle}">
-                    <a th:href="@{|/admin/${notice}/update|}"></a>
-                </td>
+                <td th:text="${noticeListDTO.noticeTitle}"></td>
                 <td name="writer">admin</td>
                 <td th:text="${noticeListDTO.noticeCreatedTime}"></td>
                 <td th:text="${noticeListDTO.noticeViewcount}"></td>
-                <td name="noticeDelete"><a th:href="@{|/admin/${noticeListDTO.getNoticeNo()}/delete|}">삭제</a></td>
+                <td name="noticeDelete"><a th:href="@{|/notice/admin/${noticeListDTO.getNoticeNo()}/delete|}">삭제</a></td>
             </tr>
             </tbody>
 <!--            <div class="admin_member_page">-->

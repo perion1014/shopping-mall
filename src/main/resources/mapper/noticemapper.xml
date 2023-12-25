@@ -11,11 +11,14 @@
     </select>
 
     <insert id="addNotice" parameterType="com.example.shoppingmall.notify.domain.Notice">
-        insert into notice values (#{noticeNo}, #{adminNo}, #{noticeTitle}, DATE_ADD(NOW(), INTERVAL 0 HOUR), #{noticeContent}, 0)
+        insert into notice values (#{noticeNo}, #{adminNo}, #{noticeTitle}, DATE_ADD(NOW(), INTERVAL -9 HOUR), #{noticeContent}, 0)
     </insert>
 
     <update id="updateNotice" parameterType="com.example.shoppingmall.notify.domain.Notice">
-        update notice set notice_title = #{noticeTitle}, notice_content = #{noticeContent}
+        update notice
+        set notice_title   = #{noticeTitle},
+            notice_content = #{noticeContent}
+        where notice_no = #{noticeNo}
     </update>
 
     <delete id="deleteNoticeByNo" parameterType="com.example.shoppingmall.notify.domain.Notice">

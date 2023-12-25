@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-  <head th:admin-head>
+<head th:admin-head>
     <div
-      th:remove="tag"
-      th:replace="~{/fragments/admin-head :: admin-head} "
+            th:remove="tag"
+            th:replace="~{/fragments/admin-head :: admin-head} "
     ></div>
-    <link rel="stylesheet" href="/css/pages/admins/admins-notice-detail.css" />
-  </head>
-  <body>
-    <header
-      th:replace="~{/fragments/admin-login-header :: admin-login-header}"
-    ></header>
+    <link rel="stylesheet" href="/css/pages/admins/admins-notice-detail.css"/>
+</head>
+<body>
+<header
+        th:replace="~{/fragments/admin-login-header :: admin-login-header}"
+></header>
 
-    <aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}"></aside>
+<aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}"></aside>
 
-    <main>
-      <div class="main">
+<main>
+    <div class="main">
         <div class="admin_notice_detail">공지 상세</div>
+        <form th:action="@{|/notice/admin/${noticeUpdateDTO.getNoticeNo()}/update|}" method="get">
+            <div class="notice_detail">
+                <hr/>
+                <div class="notice_elements">
+                    <span th:text="${noticeUpdateDTO.getNoticeNo()}" class="notice_no"></span>
+                    <div class="notice_elements_right">
+                        <span> 작성일자 2023-12-14 </span>
+                        <span th:text="${noticeUpdateDTO.getNoticeViewcount()}"></span>
+                    </div>
+                </div>
+                <hr/>
+                <div th:text="${noticeUpdateDTO.getNoticeTitle()}" class="notice_title"></div>
+                <hr/>
+                <div th:text="${noticeUpdateDTO.getNoticeContent()}" class="notice_contents"></div>
+                <hr/>
 
-        <div class="notice_detail">
-          <hr />
-          <div class="notice_elements">
-            <span th:text="${noticeDetailDTO.getNoticeNo()}" class="notice_no" ></span>
-            <div class="notice_elements_right">
-              <span > 작성일자 2023-12-14 </span>
-              <span th:text="${noticeDetailDTO.getNoticeViewcount()}"></span>
+                <div class="notice_btn">
+                    <button>수정</button>
+                </div>
             </div>
-          </div>
-          <hr />
-          <div th:text="${noticeDetailDTO.getNoticeTitle()}" class="notice_title"></div>
-          <hr />
-          <div th:text="${noticeDetailDTO.getNoticeContent()}" class="notice_contents"></div>
-          <hr />
-
-          <div class="notice_btn">
-            <form th:action="@{|/notice/admin/${noticeDetailDTO.getNoticeNo()}/update|}" method="get">
-              <button>수정</button>
-            </form>
+        </form>
+        <div>
             <button>삭제</button>
-          </div>
         </div>
-
-        <!--main div-->
-      </div>
-    </main>
-  </body>
+    </div>
+    <!--main div-->
+    </div>
+</main>
+</body>
 </html>

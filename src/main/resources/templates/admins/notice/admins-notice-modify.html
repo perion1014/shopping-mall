@@ -16,9 +16,10 @@
       <div class="main">
         <div class="admin_notice_modify">공지사항 수정</div>
 
-        <form class="notice_add_form" action="/admin/{noticeNo}/update" method="post">
+        <form class="notice_add_form" th:action="@{|/notice/admin/${noticeUpdateDTO.getNoticeNo()}/update|}" method="post">
           <hr />
           <div class="notice_elements">
+
             <span class="notice_no" th:text="${noticeUpdateDTO.getNoticeNo()}"></span>
             <div class="notice_elements_right">
               <span> 작성일자 2023-12-14 </span>
@@ -26,7 +27,7 @@
             </div>
           </div>
           <hr />
-          <input
+          <textarea
             th:text="${noticeUpdateDTO.getNoticeTitle()}"
             class="notice_title"
             type="text"
