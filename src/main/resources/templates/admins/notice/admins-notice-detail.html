@@ -39,7 +39,9 @@
             </div>
         </form>
         <div>
-            <button>삭제</button>
+            <form name="deleteNotice" th:action="@{|/notice/admin/${noticeUpdateDTO.getNoticeNo()}/delete|}" method="post">
+                <button>삭제</button>
+            </form>
         </div>
     </div>
     <!--main div-->

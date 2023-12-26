@@ -5,6 +5,7 @@ import com.example.shoppingmall.item.domain.ItemItemStock;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.ItemStockDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -41,4 +42,5 @@ public interface ItemRepository {
     void deleteItemByItemNo(Long itemNo);
 
     ItemPhotos findItemPhotosByItemNo(Long itemNo);
+
 }

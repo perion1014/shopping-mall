@@ -10,6 +10,14 @@
         select * from notice where notice_no = #{noticeNo}
     </select>
 
+    <select id="countAllNotice" resultType="Long">
+        select count(notice_no) from notice
+    </select>
+
+    <select id="findAllNoticeByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.notice.domain.Notice">
+        select * from notice order by notice_no desc limit #{startPage}, #{pagePerNotice}
+    </select>
+
     <insert id="addNotice" parameterType="com.example.shoppingmall.notice.domain.Notice">
         insert into notice values (#{noticeNo}, #{adminNo}, #{noticeTitle}, DATE_ADD(NOW(), INTERVAL -9 HOUR), #{noticeContent}, 0)
     </insert>
