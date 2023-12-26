@@ -13,17 +13,18 @@
 <header th:unless="${session.loginMember == null}" th:replace="~{/fragments/header :: header}">
 </header>
 <section class="main__container item-list__container">
-    <h1 class="main__title">All</h1>
+    <h1 class="main__title">Pants</h1>
     <ul class="item__sorts">
         <li class="item__sort"><a href="">등록순</a></li>
         <li class="item__sort"><a href="">가격순</a></li>
         <li class="item__sort"><a href="">평점순</a></li>
     </ul>
     <ul class="item__filters">
-        <li class="item__filter"><a class="now__page">All</a></li>
-        <li class="item__filter"><a href="/items/outer">Outer</a></li>
+        <li class="item__filter"><a href="/items">All</a></li>
+        <li class="item__filter"><a class="items/outer">Outer</a></li>
         <li class="item__filter"><a href="/items/inner">Inner</a></li>
-        <li class="item__filter"><a href="/items/pants">Pants</a></li>
+        <li class="item__filter"><a class="now__page">Pants</a></li>
+    </ul>
     </ul>
 </section>
 <main class="items__container">
