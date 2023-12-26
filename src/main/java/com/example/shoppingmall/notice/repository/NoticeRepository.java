@@ -14,6 +14,7 @@ public interface NoticeRepository {
     Optional<Notice> findByNo(Long noticeNo);
     void updateNotice(Notice notice);
     void deleteNoticeByNo(Long noticeNo);
+    void updateViewCount(Long noticeNo );
 
 
 }
