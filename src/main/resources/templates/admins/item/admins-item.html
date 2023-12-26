@@ -23,7 +23,6 @@
         <div class="admin_item_search">
           <select name="category">
             <option value="member_id">상품 번호</option>
-
             <option value="member_address_basic" selected>상품명</option>
           </select>
           <input type="text" />
@@ -57,7 +56,7 @@
               <td th:text="${item.itemCategory}"></td>
               <td th:if="${item.itemOnsale == 1}">On sale</td>
               <td th:unless="${item.itemOnsale == 1}">Not on sale</td>
-              <td><a th:href="@{/items/admin/{itemNo}/delete(itemNo=${item.itemNo})}">수정</a></td>
+              <td><a th:href="@{/items/admin/{itemNo}(itemNo=${item.itemNo})}">수정</a></td>
               <td><a th:href="@{/items/admin/{itemNo}/delete(itemNo=${item.itemNo})}">삭제</a></td>
             </tr>
           </tbody>
