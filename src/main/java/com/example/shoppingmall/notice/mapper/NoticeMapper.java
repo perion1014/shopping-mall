@@ -15,4 +15,5 @@ public interface NoticeMapper {//이곳의 이름과 쿼리 이름 동일
     void updateNotice(Notice notice);
     void deleteNoticeByNo(Long noticeNo);
     Notice findByNo(Long memberNo);
+    void updateViewCount(Long noticeNo );
 }
