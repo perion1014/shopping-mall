@@ -5,6 +5,7 @@ import com.example.shoppingmall.item.domain.ItemItemStock;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.ItemStockDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -34,16 +35,12 @@ public interface ItemRepository {
 
     void updateItemByNo(Item item);
 
-    void deleteItemByNo(Item item);
-
-    void deleteItemPhotosByNo(ItemPhotos itemPhotos);
-
-    void deleteItemStockByStockNo(ItemStock itemStock);
-
-
     void deleteItemStockByItemNo(Long itemNo);
 
     void deleteItemPhotosByItemNo(Long itemNo);
 
     void deleteItemByItemNo(Long itemNo);
+
+    ItemPhotos findItemPhotosByItemNo(Long itemNo);
+
 }

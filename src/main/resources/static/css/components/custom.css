@@ -109,3 +109,22 @@
 .now__page{
     color: var(--color-accent);
 }
+
+.item__card{
+    height: 100%;
+    text-align: center;
+}
+.item__card-img{
+    display: block;
+    width: 100%;
+}
+.item__card-name, .item__card-price{
+    margin: 0.5rem 0;
+    font-weight: 400;
+}
+.item__card-name--rank{
+    margin:2rem 0;
+}
+.item__card-price{
+    color: var(--color-primary-variant);
+}

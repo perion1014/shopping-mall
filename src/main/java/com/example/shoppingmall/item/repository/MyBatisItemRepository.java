@@ -6,10 +6,12 @@ import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.ItemDTO;
 import com.example.shoppingmall.item.dto.ItemStockDTO;
+import com.example.shoppingmall.item.exceptions.StorageException;
 import com.example.shoppingmall.item.mapper.ItemMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -80,24 +82,9 @@ public class MyBatisItemRepository implements ItemRepository{
     }
 
     @Override
-    public void deleteItemByNo(Item item) {
-        itemMapper.deleteItemByNo(item);
-    }
-
-    @Override
     public List<ItemStock> findItemStocksByItemNo(Long itemNo) {
         List<ItemStock> itemStockList = itemMapper.findItemStocksByItemNo(itemNo);
         return itemStockList;
-    }
-
-    @Override
-    public void deleteItemPhotosByNo(ItemPhotos itemPhotos) {
-        itemMapper.deleteItemPhotosByNo(itemPhotos);
-    }
-
-    @Override
-    public void deleteItemStockByStockNo(ItemStock itemStock) {
-        itemMapper.deleteItemStockByStockNo(itemStock);
     }
 
     @Override
@@ -114,4 +101,12 @@ public class MyBatisItemRepository implements ItemRepository{
     public void deleteItemByItemNo(Long itemNo) {
         itemMapper.deleteItemByItemNo(itemNo);
     }
+
+    @Override
+    public ItemPhotos findItemPhotosByItemNo(Long itemNo) {
+        ItemPhotos itemPhotos = itemMapper.findItemPhotosByItemNo(itemNo);
+        return itemPhotos;
+    }
+
+
 }

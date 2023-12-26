@@ -4,6 +4,7 @@
    <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
    <title>PERION 공식 온라인 쇼핑몰</title>
    <meta name="description" content="웹페이지 설명">
+   <script type="module" src="/js/pages/home.js" defer></script>
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}">
@@ -12,18 +13,137 @@
 <main class="section__container">
    <section class="section" id="new-arrivals">
       <h1 class="section__title">New Arrival</h1>
+      <div class="new-items__container">
+         <a href="#">
+         <div class="item__card">
+            <img class="item__card-img" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
+            <h3 class="item__card-name">상품명을 입력해주세요</h3>
+            <h3 class="item__card-price">100,000원</h3>
+         </div>
+         </a>
+         <a href="#">
+         <div class="item__card">
+            <img class="item__card-img" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
+            <h3 class="item__card-name">상품명을 입력해주세요</h3>
+            <h3 class="item__card-price">100,000원</h3>
+         </div>
+         </a>
+         <a href="#">
+         <div class="item__card">
+            <img class="item__card-img" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
+            <h3 class="item__card-name">상품명을 입력해주세요</h3>
+            <h3 class="item__card-price">100,000원</h3>
+         </div>
+         </a>
+         <a href="#">
+         <div class="item__card">
+            <img class="item__card-img" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
+            <h3 class="item__card-name">상품명을 입력해주세요</h3>
+            <h3 class="item__card-price">100,000원</h3>
+         </div>
+         </a>
+      </div>
    </section>
-   <section id="about-us" th:style=" 'background-image: url(/images/clay-banks-hi_52O-h5G8-unsplash.webp)' ">
+   <section id="about-us" th:style=" 'background-image: url(/images/clay-banks-hi_52O-h5G8-unsplash-mod.webp); background-size:cover' ">
       <section class="section section--banner">
          <h1 class="section__title section__title--right">About Us</h1>
+         <div class="banner__container">
+            <div class="banner__info">
+               <img class="banner__logo" src="/images/spartan-helmet-white.svg">
+               <div class="banner__text">
+                 회원가입 후, <br>
+                  더 많은 혜택과 정보를 만나보세요.
+               </div>
+            </div>
+            <div class="banner__btns">
+               <button class="btn btn--index btn--black btn--member-add">회원가입</button>
+               <button class="btn btn--index btn--black btn--notice">공지사항</button>
+               <button class="btn btn--index btn--black btn--items">상품 보기</button>
+            </div>
+         </div>
       </section>
    </section>
    <section class="section" id="best-items">
       <h1 class="section__title">Best Items</h1>
+      <div class="slide__wrap">
+         <div class="slide__container clearfix">
+            <div id="top1" class="slide__box">
+               <button type="button" class="btn--slide slide__prev "><img class="btn--slide-img" alt="back" src="/images/icons/left-arrow.svg"></button>
+               <img src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
+               <div class="slide__info">
+                  <h2 class="item__card-name item__card-name--rank" >1위</h2>
+                  <h2 class="item__card-name">상품명을 입력해주세요</h2>
+                  <h2 class="item__card-price">100,000원</h2>
+                  <div class="item__rank">
+                     <img class="item__star" src="/images/icons/star.svg">
+                     <img class="item__star" src="/images/icons/star.svg">
+                     <img class="item__star" src="/images/icons/star.svg">
+                     <img class="item__star" src="/images/icons/star.svg">
+                     <img class="item__star" src="/images/icons/star.svg">
+                  </div>
+                  <div class="slide__btns">
+                     <button class="btn btn--index btn--white">장바구니 추가</button>
+                     <button class="btn btn--index btn--black">상품 자세히 보기</button>
+                  </div>
+               </div>
+               <button type="button" class="btn--slide slide__next"><img class="btn--slide-img" alt="forward" src="/images/icons/right-arrow.svg"></button>
+            </div>
+            <div id="top2" class="slide__box">
+               <button type="button" class="btn--slide slide__prev "><img class="btn--slide-img" alt="back" src="/images/icons/left-arrow.svg"></button>
+               <img src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
+               <div class="slide__info">
+                  <h2 class="item__card-name item__card-name--rank" >2위</h2>
+                  <h2 class="item__card-name">상품명을 입력해주세요</h2>
+                  <h2 class="item__card-price">100,000원</h2>
+                  <div class="item__rank">
+                     <img class="item__star" src="/images/icons/star.svg">
+                     <img class="item__star" src="/images/icons/star.svg">
+                     <img class="item__star" src="/images/icons/star.svg">
+                     <img class="item__star" src="/images/icons/star.svg">
+                     <img class="item__star" src="/images/icons/star.svg">
+                  </div>
+                  <div class="slide__btns">
+                     <button class="btn btn--index btn--white">장바구니 추가</button>
+                     <button class="btn btn--index btn--black">상품 자세히 보기</button>
+                  </div>
+               </div>
+               <button type="button" class="btn--slide slide__next"><img class="btn--slide-img" alt="forward" src="/images/icons/right-arrow.svg"></button>
+            </div>
+            <div id="top3" class="slide__box">
+               <button type="button" class="btn--slide slide__prev "><img class="btn--slide-img" alt="back" src="/images/icons/left-arrow.svg"></button>
+               <img src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
+               <div class="slide__info">
+                  <h2 class="item__card-name item__card-name--rank" >3위</h2>
+                  <h2 class="item__card-name">상품명을 입력해주세요</h2>
+                  <h2 class="item__card-price">100,000원</h2>
+                  <div class="item__rank">
+                     <img class="item__star" src="/images/icons/star.svg">
+                     <img class="item__star" src="/images/icons/star.svg">
+                     <img class="item__star" src="/images/icons/star.svg">
+                     <img class="item__star" src="/images/icons/star.svg">
+                     <img class="item__star" src="/images/icons/star.svg">
+                  </div>
+                  <div class="slide__btns">
+                     <button class="btn btn--index btn--white">장바구니 추가</button>
+                     <button class="btn btn--index btn--black">상품 자세히 보기</button>
+                  </div>
+               </div>
+               <button type="button" class="btn--slide slide__next"><img class="btn--slide-img" alt="forward" src="/images/icons/right-arrow.svg"></button>
+            </div>
+         </div>
+      </div>
    </section>
    <section id="access">
       <section class="section">
          <h1 class="section__title section__title--right">Access</h1>
+         <div class="api__container">
+            지도 API
+         </div>
+         <address>
+            서울특별시 종로구 종로12길 15 (관철동 13-13)<br>
+            1호선 종각역 4번 출구로부터 약 240m <br>
+            <span class="address__time">영업시간: 오전 11시~ 오후 9시 (월요일 휴무)</span>
+         </address>
       </section>
    </section>
 </main>

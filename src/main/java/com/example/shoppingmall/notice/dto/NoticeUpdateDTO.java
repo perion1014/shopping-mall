@@ -1,10 +1,12 @@
-package com.example.shoppingmall.notify.dto;
+package com.example.shoppingmall.notice.dto;
 
-import com.example.shoppingmall.notify.domain.Notice;
+import com.example.shoppingmall.notice.domain.Notice;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -14,13 +16,12 @@ public class NoticeUpdateDTO {
     private Long noticeNo;
     private String noticeTitle;
     private String noticeContent;
-    //private Timestamp noticeCreatedTime;//수정시간이 notice-modify.html로 전달해야함
+    private Timestamp noticeCreatedTime;
     private Long noticeViewcount;
 
     public static Notice NoticeUpdateDTOToNotice(NoticeUpdateDTO noticeUpdateDTO){
         Notice notice = new Notice();
-//        notice.setAdminNo(adminNo);
-        notice.setNoticeNo(notice.getNoticeNo());
+        notice.setNoticeNo(noticeUpdateDTO.getNoticeNo());
         notice.setNoticeTitle(noticeUpdateDTO.getNoticeTitle());
         notice.setNoticeContent(noticeUpdateDTO.getNoticeContent());
         notice.setNoticeViewcount(noticeUpdateDTO.getNoticeViewcount());
@@ -32,7 +33,7 @@ public class NoticeUpdateDTO {
         noticeUpdateDTO.setNoticeNo(notice.getNoticeNo());
         noticeUpdateDTO.setNoticeTitle(notice.getNoticeTitle());
         noticeUpdateDTO.setNoticeContent(notice.getNoticeContent());
-        //수정시간이 들어가야됨
+        noticeUpdateDTO.setNoticeCreatedTime(notice.getNoticeCreatedTime());
         noticeUpdateDTO.setNoticeViewcount(notice.getNoticeViewcount());
         return noticeUpdateDTO;
     }

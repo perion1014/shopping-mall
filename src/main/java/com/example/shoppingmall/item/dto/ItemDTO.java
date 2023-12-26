@@ -26,7 +26,6 @@ public class ItemDTO {
     private Double itemGrade;
     private Integer itemOnsale;
 
-
     private String itemDetail; // 필요 x
     private Timestamp itemRegisteredTime; // 필요 x
 
@@ -42,6 +41,19 @@ public class ItemDTO {
         itemDTO.setItemOnsale(item.getItemOnsale());
         itemDTO.setItemRegisteredTime(item.getItemRegisteredTime());
         itemDTO.setItemStockDTOList(ItemStockDTO.toItemStockDTOList(item.getItemStockList()));
+        return itemDTO;
+    }
+
+    public static ItemDTO itemToItemDTO2(Item item) {
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setItemNo(item.getItemNo());
+        itemDTO.setItemName(item.getItemName());
+        itemDTO.setItemCategory(item.getItemCategory());
+        itemDTO.setItemGrade(item.getItemGrade());
+        itemDTO.setItemDetail(item.getItemDetail());
+        itemDTO.setItemPrice(item.getItemPrice());
+        itemDTO.setItemOnsale(item.getItemOnsale());
+        itemDTO.setItemRegisteredTime(item.getItemRegisteredTime());
         return itemDTO;
     }
 

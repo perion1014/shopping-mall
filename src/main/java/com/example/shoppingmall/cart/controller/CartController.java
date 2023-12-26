@@ -61,4 +61,36 @@ public class CartController {
         return "carts/itemInfo_Temp_CMS";
     }
 
+    @GetMapping("")
+    public String showNonMemberCartList(){
+        return "carts/nonmember-cart-list";
+    }
+
+    @PostMapping("")
+    public String addItemsToNonMemberCart(@RequestParam(name = "nonMemberCartThumbnail") String itemThumbnail,
+                                          @RequestParam(name = "nonMemberCartItemName") String itemName,
+                                          @RequestParam(name = "nonMemberCartItemSize") String itemSize,
+                                          @RequestParam(name = "nonMemberCartItemPrice") Integer itemPrice,
+                                          @RequestParam(name = "nonMemberAddCartItemQuantiy") Integer itemQuantity){
+
+        System.out.println("페이지에서 받아온 썸네일 : " + itemThumbnail);
+        System.out.println("페이지에서 받아온 이름 : " + itemName);
+        System.out.println("페이지에서 받아온 사이즈 : " + itemSize);
+        System.out.println("페이지에서 받아온 가격 : " + itemPrice);
+        System.out.println("페이지에서 받아온 수량 : " + itemQuantity);
+
+        return "carts/itemInfo_Temp_CMS";
+    }
+
 }
+
+
+
+//@Controller
+//@RequiredArgsConstructor
+//public class ItemControllerTemp{
+//    @GetMapping("/items/1")
+//    public String gotoItemInfoTemp(){
+//    return "carts/itemInfo_Temp_CMS";
+//    }
+//}
