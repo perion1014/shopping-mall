@@ -48,16 +48,6 @@ public class MyBatisMemberRepository implements MemberRepository {
     }
 
     @Override
-    public List<Member> findByNoContaining(Long memberNo) {
-        return memberMapper.findByNoContaining(memberNo);
-    }
-
-    @Override
-    public List<Member> findByKeyword(Map<String, String> searchingKeyword) {
-        return memberMapper.findByKeyword(searchingKeyword);
-    }
-
-    @Override
     public List<Member> findAllByPaging(Map<String, Integer> pagingSettings) {
         return memberMapper.findAllByPaging(pagingSettings);
     }
@@ -68,19 +58,13 @@ public class MyBatisMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Long countAllByKeyword(Map<String, String> searchingKeyword) {
-        return memberMapper.countAllByKeyword(searchingKeyword);
-    }
-
-    // kch-> search
-    @Override
-    public Long countAllByKeyword2(MemberSearchForm memberSearchForm) {
-        return memberMapper.countAllByKeyword2(memberSearchForm);
+    public Long countAllByKeyword(MemberSearchForm memberSearchForm) {
+        return memberMapper.countAllByKeyword(memberSearchForm);
     }
 
     @Override
-    public List<Member> findByKeyword2(MemberSearchForm memberSearchForm) {
-        return memberMapper.findByKeyword2(memberSearchForm);
+    public List<Member> findAllByKeyword(MemberSearchForm memberSearchForm) {
+        return memberMapper.findAllByKeyword(memberSearchForm);
     }
 
 

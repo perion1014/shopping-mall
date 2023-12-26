@@ -117,13 +117,6 @@ public class MemberController {
     }
 
 
-    /* 관리자 회원 목록 조회(모두 조회인 상태)*/
-//  @GetMapping("/admin")
-//  public String showMemberList(Model model){
-//      model.addAttribute("memberListDTOList",memberService.searchAllMemberInfo());
-//      return "admins/admin-member";
-//    }
-
     /* 관리자 회원 목록 조회(페이징 처리 완료)*/
     @GetMapping("/admin")
     public String showMemberList(Model model,
@@ -135,13 +128,6 @@ public class MemberController {
         return "admins/admin-member";
     }
 
-    /* 관리자 회원 검색*/
-//    @PostMapping("/admin")
-//    public String searchMembers(@ModelAttribute MemberSearchForm memberSearchForm, Model model){
-//      model.addAttribute("resultList",memberService.searchMemberInfo(memberSearchForm));
-//      return "admins/admin-member-result";
-//    }
-
     /*관리자 회원 추방*/
     @PostMapping("/delete")
     public String deleteMembers(@RequestParam("memberNo")Long memberNo, RedirectAttributes redirectAttributes){
@@ -150,13 +136,12 @@ public class MemberController {
         return "redirect:/members/admin";
     }
 
-    // 2023-12-23 Search
     /* 관리자 회원 검색(페이징 완료)*/
     @GetMapping("/admin/search")
     public String searchMembers(@ModelAttribute MemberSearchForm memberSearchForm, Model model,
                                 @RequestParam(value="page", required=false, defaultValue="1") int page){
         model.addAttribute("memberSearchForm", memberSearchForm);
-        model.addAttribute("pageSettings", memberService.setMemberListPage2(page,memberSearchForm));
+        model.addAttribute("pageSettings", memberService.setSearchMemberListPage(page,memberSearchForm));
         model.addAttribute("memberListByPaging",memberService.getSearchMemberListPage(page,memberSearchForm));
 
         return "admins/admin-member-search";

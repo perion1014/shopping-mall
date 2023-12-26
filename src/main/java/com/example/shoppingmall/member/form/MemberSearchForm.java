@@ -11,7 +11,7 @@ import lombok.Setter;
 public class MemberSearchForm {
     private String category;
     private String keyword;
-    private Integer start;
-    private Integer limit;
+    private Integer startPage;
+    private Integer pagePerMember;
 }
 

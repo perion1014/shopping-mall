@@ -17,15 +17,11 @@ public interface MemberMapper {
     Member findByNo(Long memberNo);
     Member findById(String memberId);
     Member findByEmail(String memberEmail);
-
-    List<Member> findByNoContaining(Long memberNo);
-    List<Member> findByKeyword(Map<String, String> searchingKeyword);
     List<Member> findAllByPaging(Map<String, Integer> pagingSettings);
+    List<Member> findAllByKeyword(MemberSearchForm memberSearchForm);
     Long countAll();
-    Long countAllByKeyword(Map<String, String> searchingKeyword);
+    Long countAllByKeyword(MemberSearchForm memberSearchForm);
 
-    List<Member> findByKeyword2(MemberSearchForm memberSearchForm);
 
-    Long countAllByKeyword2(MemberSearchForm memberSearchForm);
 
 }
