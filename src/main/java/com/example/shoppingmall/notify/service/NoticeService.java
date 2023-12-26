@@ -1,9 +1,9 @@
 package com.example.shoppingmall.notify.service;
 
 import com.example.shoppingmall.member.dto.MemberDeleteDTO;
-import com.example.shoppingmall.notify.domain.Notice;
-import com.example.shoppingmall.notify.dto.*;
-import com.example.shoppingmall.notify.repository.NoticeRepository;
+import com.example.shoppingmall.notice.domain.Notice;
+import com.example.shoppingmall.notice.dto.*;
+import com.example.shoppingmall.notice.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

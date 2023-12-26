@@ -8,6 +8,7 @@ import com.example.shoppingmall.item.dto.*;
 import com.example.shoppingmall.item.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,15 +88,6 @@ public class ItemService {
         return itemDTOList;
     }
 
-/*    public List<ItemStockDTO> joinItemByItemNo(Long itemNo) {
-        List<ItemStock> itemStockList = itemRepository.joinItemByItemNo(itemNo);
-        List<ItemStockDTO> itemStockDTOList = new ArrayList<>();
-        for (ItemStock itemStock: itemStockList) {
-            itemStockDTOList.add(ItemStockDTO.toItemStockDTO(itemStock));
-        }
-        return itemStockDTOList;
-    }*/
-
     public ItemDTO findItemByNo(Long itemNo) {
         Item item =  itemRepository.findItemByNo(itemNo);
         return ItemDTO.itemToItemDTO(item);
@@ -142,4 +134,5 @@ public class ItemService {
         List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
         return ItemStockDTO.toItemStockDTOList(itemStockList);
     }
+
 }

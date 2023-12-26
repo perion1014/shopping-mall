@@ -1,4 +1,4 @@
-package com.example.shoppingmall.notify.domain;
+package com.example.shoppingmall.notice.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
