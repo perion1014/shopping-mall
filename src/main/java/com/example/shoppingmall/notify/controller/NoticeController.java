@@ -64,8 +64,8 @@ public class NoticeController {
     @PostMapping("/admin/{noticeNo}/update")
     public String updateNotice(@ModelAttribute NoticeUpdateDTO noticeUpdateDTO){
         noticeService.update(noticeUpdateDTO);
-        return "admins/notice/admins-notice-modify";
-//        return "redirect:/notice/admin/{noticeNo}";
+//        return "admins/notice/admins-notice-modify";
+        return "redirect:/notice/admin/{noticeNo}";
     }
     /*공지사항 삭제 Admin전용*/
     @PostMapping("/admin/{noticeNo}/delete")
