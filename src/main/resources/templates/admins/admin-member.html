@@ -12,7 +12,7 @@
       <div class="main">
         <div class="admin_member">회원 목록</div>
         <div class="admin_member_search">
-          <form th:action method="post">
+          <form th:action="@{admin/search}" method="get">
             <select name="category">
               <option value="member_no" >회원번호</option>
               <option value="member_id" >아이디</option>
