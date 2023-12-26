@@ -19,32 +19,33 @@ itemsBtn.addEventListener('click',()=>{
 
 /*Best 상품 섹션 캐러셀 이벤트*/
 
-
-
-const slidePrev = document.querySelector('.slide__prev');
-const slideNext = document.querySelector('.slide__next');
+const slidePrev1 = document.querySelector('.slide__prev1');
+const slidePrev2 = document.querySelector('.slide__prev2');
+const slidePrev3 = document.querySelector('.slide__prev3');
+const slideNext1 = document.querySelector('.slide__next1');
+const slideNext2 = document.querySelector('.slide__next2');
+const slideNext3 = document.querySelector('.slide__next3');
 const slideContainer = document.querySelector('.slide__container');
 
-let slideNum = 0;
-
-function slideMove(){
-    slideContainer.style.transform = `translateX(-${33.333333 * slideNum}%)`;
-}
-
-slidePrev.addEventListener('click', () => {
-    //slideContainer.style.transform = `translateX(-${33.333333 * slideNum}%)`;
-    slideContainer.style.transform='translateX(0)'
+slidePrev1.addEventListener('click', () => {
+    slideContainer.style.transform='translateX(-66.666666%)';
 });
 
-slideNext.addEventListener('click', () =>{
-    //slideContainer.style.transform = `translateX(-${33.333333 * slideNum}%)`;
+slideNext1.addEventListener('click', () =>{
+    slideContainer.style.transform = 'translateX(-33.333333%)';
+});
 
-    if(slideNum == 2){
-        slideNum = 0;
-    }
-    else{
-        slideNum++;
-    }
-    slideContainer.style.transform = `translateX(-${33.333333 * slideNum}%)`;
+slidePrev2.addEventListener('click', () => {
+    slideContainer.style.transform='translateX(0%)';
+});
+
+slideNext2.addEventListener('click', () =>{
+    slideContainer.style.transform = 'translateX(-66.666666%)';
+});
+slidePrev3.addEventListener('click', () => {
+    slideContainer.style.transform='translateX(-33.333333%)';
+});
+slideNext3.addEventListener('click', () =>{
+    slideContainer.style.transform = 'translateX(0%)';
 });
 

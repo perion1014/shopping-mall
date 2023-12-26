@@ -1,14 +1,12 @@
 package com.example.shoppingmall.item.service;
 
 import com.example.shoppingmall.item.domain.Item;
-import com.example.shoppingmall.item.domain.ItemItemStock;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.*;
 import com.example.shoppingmall.item.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;

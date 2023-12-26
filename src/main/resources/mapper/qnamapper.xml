@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.shoppingmall.qna.mapper.QnaMapper">
+
+    <select id="findByItemNo" parameterType="Long" resultType="com.example.shoppingmall.qna.domain.Qna">
+        SELECT *
+        FROM qna
+        WHERE item_no = #{itemNo}
+        ORDER BY qna_no DESC
+    </select>
+
+    <select id="getMemberIdByNo" parameterType="Long" resultType="String">
+        select member_id
+        from member
+        where member_no = #{member_no}
+    </select>
+
+</mapper>
