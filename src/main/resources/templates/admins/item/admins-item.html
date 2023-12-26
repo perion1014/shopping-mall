@@ -57,7 +57,7 @@
               <td th:text="${item.itemCategory}"></td>
               <td th:if="${item.itemOnsale == 1}">On sale</td>
               <td th:unless="${item.itemOnsale == 1}">Not on sale</td>
-              <td>수정</td>
+              <td><a th:href="@{/items/admin/{itemNo}/delete(itemNo=${item.itemNo})}">수정</a></td>
               <td><a th:href="@{/items/admin/{itemNo}/delete(itemNo=${item.itemNo})}">삭제</a></td>
             </tr>
           </tbody>

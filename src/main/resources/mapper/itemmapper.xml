@@ -102,12 +102,20 @@
         delete from item where item_stock_no = #{itemStockNo}
     </delete>
 
-<!--    <delete id="deleteItemByName" parameterType="com.example.shoppingmall.item.domain.Item">-->
-<!--        delete from item where item_name = #{itemName}-->
-<!--    </delete>-->
-
     <select id="findItemStocksByItemNo" parameterType="com.example.shoppingmall.item.domain.Item" resultType="java.util.List">
         select * from item_stock where item_no = #{itemNo}
     </select>
+
+    <delete id="deleteItemStockByItemNo" parameterType="long">
+        delete from item_stock where item_no = #{itemNo}
+    </delete>
+
+    <delete id="deleteItemPhotosByItemNo" parameterType="long">
+        delete from item_photos where item_no = #{itemNo}
+    </delete>
+
+    <delete id="deleteItemByItemNo" parameterType="long">
+        delete from item where item_no = #{itemNo}
+    </delete>
 
 </mapper>

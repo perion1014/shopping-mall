@@ -56,31 +56,14 @@ public class ItemService {
         List<Item> itemList = itemRepository.findAllItems();
         for (Item item: itemList) {
             Long itemNo = item.getItemNo();
-            //System.out.println("itemService.findAllItems() ==> item.itemNo = " + itemNo);
             List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
-            for (ItemStock itemStock: itemStockList) {
-                //System.out.println(itemStock.getItemSize() + ": " + itemStock.getItemStockValue());
-            }
             item.setItemStockList(itemStockList);
         }
-        //System.out.println("===================================================");
         List<ItemDTO> itemDTOList = new ArrayList<>();
         for (Item item: itemList) {
             List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
-            for (ItemStockDTO itemStockDTO: itemStockDTOList) {
-                //System.out.println(itemStockDTO.getItemSize() + ": " + itemStockDTO.getItemStockValue());
-            }
             item.setItemStockDTOList(itemStockDTOList);
-            //System.out.println(item.getItemStockDTOList());
             itemDTOList.add(ItemDTO.itemToItemDTO(item));
-        }
-
-        for (ItemDTO itemDTO: itemDTOList) {
-            System.out.print("itemDTO.getItemNo(): " + itemDTO.getItemNo() + " / ");
-            for (ItemStockDTO itemStockDTO: itemDTO.getItemStockDTOList()) {
-                System.out.print(itemStockDTO.getItemSize() + ": " + itemStockDTO.getItemStockValue() + " ");
-            }
-            System.out.println();
         }
         return itemDTOList;
     }
@@ -141,11 +124,15 @@ public class ItemService {
             itemRepository.deleteItemStockByStockNo(itemStock);
         }
     }
-
-    public void deleteItemByName(ItemDTO itemDTO) {
-        Item item = ItemDTO.itemDTOToItemWithItemNo(itemDTO);
-        itemRepository.deleteItemByName(item);
+    public void deleteItemStockByItemNo(Long itemNo) {
+        itemRepository.deleteItemStockByItemNo(itemNo);
     }
 
+    public void deleteItemPhotosByItemNo(Long itemNo) {
+        itemRepository.deleteItemPhotosByItemNo(itemNo);
+    }
 
+    public void deleteItemPyItemNo(Long itemNo) {
+        itemRepository.deleteItemByItemNo(itemNo);
+    }
 }
