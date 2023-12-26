@@ -21,6 +21,7 @@
           <div class="notice_elements">
 
             <span class="notice_no" th:text="${noticeUpdateDTO.getNoticeNo()}"></span>
+            <input name="noticeNo" th:value="${noticeUpdateDTO.getNoticeNo()}">
             <div class="notice_elements_right">
               <span> 작성일자 2023-12-14 </span>
               <span th:text="${noticeUpdateDTO.getNoticeViewcount()}"></span>
@@ -29,6 +30,7 @@
           <hr />
           <textarea
             th:text="${noticeUpdateDTO.getNoticeTitle()}"
+            name="noticeTitle"
             class="notice_title"
             type="text"
             maxlength="44"
@@ -36,8 +38,8 @@
           <hr />
           <textarea
             th:text="${noticeUpdateDTO.getNoticeContent()}"
+            name="noticeContent"
             class="notice_contents"
-            name="detail"
             rows="20"
             cols="20"
             maxlength="254"

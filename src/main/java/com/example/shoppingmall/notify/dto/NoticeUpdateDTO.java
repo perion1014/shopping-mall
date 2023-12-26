@@ -20,7 +20,7 @@ public class NoticeUpdateDTO {
     public static Notice NoticeUpdateDTOToNotice(NoticeUpdateDTO noticeUpdateDTO){
         Notice notice = new Notice();
 //        notice.setAdminNo(adminNo);
-        notice.setNoticeNo(notice.getNoticeNo());
+        notice.setNoticeNo(noticeUpdateDTO.getNoticeNo());
         notice.setNoticeTitle(noticeUpdateDTO.getNoticeTitle());
         notice.setNoticeContent(noticeUpdateDTO.getNoticeContent());
         notice.setNoticeViewcount(noticeUpdateDTO.getNoticeViewcount());

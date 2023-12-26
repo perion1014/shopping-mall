@@ -64,6 +64,8 @@ public class NoticeController {
     @PostMapping("/admin/{noticeNo}/update")
     public String updateNotice(@ModelAttribute NoticeUpdateDTO noticeUpdateDTO){
         noticeService.update(noticeUpdateDTO);
+        System.out.println("noticeUpdateDTO.getNoticeTitle() = " + noticeUpdateDTO.getNoticeTitle());
+        System.out.println("noticeUpdateDTO.getNoticeContent() = " + noticeUpdateDTO.getNoticeContent());
 //        return "admins/notice/admins-notice-modify";
         return "redirect:/notice/admin/{noticeNo}";
     }
