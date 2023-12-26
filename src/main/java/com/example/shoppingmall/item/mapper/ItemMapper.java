@@ -36,8 +36,6 @@ public interface ItemMapper {
 
     void deleteItemByNo(Item item);
 
-    void deleteItemByName(Item item);
-
     List<ItemStock> findItemStocksByItemNo(Long itemNo);
 
     void deleteItemPhotosByNo(ItemPhotos itemPhotos);
@@ -45,4 +43,9 @@ public interface ItemMapper {
     void deleteItemStockByStockNo(ItemStock itemStock);
 
 
+    void deleteItemStockByItemNo(Long itemNo);
+
+    void deleteItemPhotosByItemNo(Long itemNo);
+
+    void deleteItemByItemNo(Long itemNo);
 }

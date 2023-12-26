@@ -80,9 +80,12 @@ public class ItemController {
 
     }
 
-    @PostMapping("/admin/{itemNo}/delete")
-    public String deleteItem(@PathVariable(name="itemNo") Long itemNo, @ModelAttribute ItemDeleteDTO itemDeleteDTO) {
-        itemService.deleteItemByNo(itemNo, itemDeleteDTO);
+    @GetMapping("/admin/{itemNo}/delete")
+    public String deleteItem(@PathVariable(name="itemNo") Long itemNo) {
+        itemService.deleteItemStockByItemNo(itemNo);
+        itemService.deleteItemPhotosByItemNo(itemNo);
+        itemService.deleteItemPyItemNo(itemNo);
+        //itemService.deleteItemByNo(itemNo, itemDeleteDTO);
         return "redirect:/items/admin";
     }
 
