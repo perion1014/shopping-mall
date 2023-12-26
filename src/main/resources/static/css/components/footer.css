@@ -1,71 +1,42 @@
-@import "../base.css";
-
-footer {
+footer{
     display: flex;
-    width: 100%;
+    flex-direction: column;
     padding: 0 15rem;
-    box-sizing: border-box;
-    bottom:0;
-    position: relative;
 }
-
-.A {
-    width: 47.5%;
-    padding-right: 2.5%;
-    margin-top: 1%;
-}
-
-.B {
-    width: 47.5%;
-    padding-left: 2.5%;
-    text-align: right;
-    font-weight: bold;
-    font-size: 1.5rem;
-    margin-top: 1%;
-}
-
-.a {
+.footer__infos-logo{
+    margin-top: 6rem;
     display: flex;
+    justify-content: space-between;
+}
+.footer__info{
+    display: flex;
+    gap:2rem
+}
+
+.footer__info h4{
+    margin-bottom: 0.75rem;
+}
+.footer__info span, .footer__info a{
+    display: block;
     font-size: 0.75rem;
 }
 
-.a div {
-    margin-right: 10%;
+.footer__logo{
+    margin-right: 1rem;
 }
-
-.a span {
-    font-size: 0.9rem;
-    font-weight: 600;
+.footer__logo-img{
+    width: 7.5rem;
 }
-
-.b {
-    margin: 2% 0;
-    font-weight: 600;
-}
-
-.perionLogo {
-    width: 9rem;
-    height: 7rem;
-}
-
-.logo {
-    width: 9rem;
+.footer__logo-title{
     text-align: center;
-    position:absolute;
-    right: 15rem;
 }
-
-.logo p {
-    margin: 0;
+.footer__copyright-sns{
+    display: flex;
+    justify-content: space-between;
+    padding: 4rem 0 6rem 0;
+    align-items: end;
 }
-
-.sns {
-    position:absolute;
-    right: 15rem;
-    bottom: 3rem;
-}
-.sns img {
-    width: 40px;
-    margin-top: 40px;
-    margin-left: 20px;
+.footer__sns{
+    width: 3rem;
+    margin-left: 1.5rem;
 }

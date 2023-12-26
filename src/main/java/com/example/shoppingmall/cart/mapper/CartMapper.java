@@ -17,4 +17,6 @@ public interface CartMapper {
     void updateCartItem(@Param("cartNo") Long cartNo, @Param("updateQuantity") Integer updateQuantity);
 
     void deleteCartItem(@Param("cartNo") Long cartNo);
+
+    void addCartItem(Cart cart);
 }
