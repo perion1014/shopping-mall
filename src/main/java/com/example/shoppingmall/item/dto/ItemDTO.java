@@ -45,6 +45,19 @@ public class ItemDTO {
         return itemDTO;
     }
 
+    public static ItemDTO itemToItemDTO2(Item item) {
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setItemNo(item.getItemNo());
+        itemDTO.setItemName(item.getItemName());
+        itemDTO.setItemCategory(item.getItemCategory());
+        itemDTO.setItemGrade(item.getItemGrade());
+        itemDTO.setItemDetail(item.getItemDetail());
+        itemDTO.setItemPrice(item.getItemPrice());
+        itemDTO.setItemOnsale(item.getItemOnsale());
+        itemDTO.setItemRegisteredTime(item.getItemRegisteredTime());
+        return itemDTO;
+    }
+
     public static List<ItemStockDTO> itemToItemStockDTOList(Long itemNo, Item item, List<ItemStock> itemStockList) {
         List<ItemStockDTO> itemStockDTOList = new ArrayList<>();
         ItemDTO itemDTO = new ItemDTO();

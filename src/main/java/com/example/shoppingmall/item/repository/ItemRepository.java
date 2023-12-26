@@ -34,16 +34,11 @@ public interface ItemRepository {
 
     void updateItemByNo(Item item);
 
-    void deleteItemByNo(Item item);
-
-    void deleteItemPhotosByNo(ItemPhotos itemPhotos);
-
-    void deleteItemStockByStockNo(ItemStock itemStock);
-
-
     void deleteItemStockByItemNo(Long itemNo);
 
     void deleteItemPhotosByItemNo(Long itemNo);
 
     void deleteItemByItemNo(Long itemNo);
+
+    ItemPhotos findItemPhotosByItemNo(Long itemNo);
 }
