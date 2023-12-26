@@ -1,6 +1,6 @@
-package com.example.shoppingmall.notify.dto;
+package com.example.shoppingmall.notice.dto;
 
-import com.example.shoppingmall.notify.domain.Notice;
+import com.example.shoppingmall.notice.domain.Notice;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +20,7 @@ public class NoticeUpdateDTO {
     public static Notice NoticeUpdateDTOToNotice(NoticeUpdateDTO noticeUpdateDTO){
         Notice notice = new Notice();
 //        notice.setAdminNo(adminNo);
-        notice.setNoticeNo(notice.getNoticeNo());
+        notice.setNoticeNo(noticeUpdateDTO.getNoticeNo());
         notice.setNoticeTitle(noticeUpdateDTO.getNoticeTitle());
         notice.setNoticeContent(noticeUpdateDTO.getNoticeContent());
         notice.setNoticeViewcount(noticeUpdateDTO.getNoticeViewcount());

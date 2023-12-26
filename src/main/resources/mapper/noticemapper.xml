@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.shoppingmall.notify.mapper.NoticeMapper">
+<mapper namespace="com.example.shoppingmall.notice.mapper.NoticeMapper">
 
-    <select id="findAllNotice" resultType="com.example.shoppingmall.notify.domain.Notice">
+    <select id="findAllNotice" resultType="com.example.shoppingmall.notice.domain.Notice">
         select * from notice order by notice_no desc
     </select>
 
-    <select id="findByNo" resultType="com.example.shoppingmall.notify.domain.Notice">
+    <select id="findByNo" resultType="com.example.shoppingmall.notice.domain.Notice">
         select * from notice where notice_no = #{noticeNo}
     </select>
 
-    <insert id="addNotice" parameterType="com.example.shoppingmall.notify.domain.Notice">
+    <select id="countAllNotice" resultType="Long">
+        select count(notice_no) from notice
+    </select>
+
+    <select id="findAllNoticeByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.notice.domain.Notice">
+        select * from notice order by notice_no desc limit #{startPage}, #{pagePerNotice}
+    </select>
+
+    <insert id="addNotice" parameterType="com.example.shoppingmall.notice.domain.Notice">
         insert into notice values (#{noticeNo}, #{adminNo}, #{noticeTitle}, DATE_ADD(NOW(), INTERVAL -9 HOUR), #{noticeContent}, 0)
     </insert>
 
-    <update id="updateNotice" parameterType="com.example.shoppingmall.notify.domain.Notice">
+    <update id="updateNotice" parameterType="com.example.shoppingmall.notice.domain.Notice">
         update notice
         set notice_title   = #{noticeTitle},
             notice_content = #{noticeContent}
         where notice_no = #{noticeNo}
     </update>
 
-    <delete id="deleteNoticeByNo" parameterType="com.example.shoppingmall.notify.domain.Notice">
+    <delete id="deleteNoticeByNo" parameterType="com.example.shoppingmall.notice.domain.Notice">
         delete from notice where notice_no = #{noticeNo}
     </delete>
 

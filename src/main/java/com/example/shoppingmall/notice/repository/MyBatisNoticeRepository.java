@@ -1,12 +1,12 @@
-package com.example.shoppingmall.notify.repository;
+package com.example.shoppingmall.notice.repository;
 
-import com.example.shoppingmall.member.domain.Member;
-import com.example.shoppingmall.notify.domain.Notice;
-import com.example.shoppingmall.notify.mapper.NoticeMapper;
+import com.example.shoppingmall.notice.domain.Notice;
+import com.example.shoppingmall.notice.mapper.NoticeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -17,6 +17,14 @@ public class MyBatisNoticeRepository implements NoticeRepository{
     @Override
     public List<Notice> findAllNotice() {//Notice
         return noticeMapper.findAllNotice();
+    }
+    @Override
+    public Long countAllNotice(){
+        return noticeMapper.countAllNotice();
+    }
+    @Override
+    public List<Notice>findAllNoticeByPaging(Map<String, Integer> pagingSettings){
+        return noticeMapper.findAllNoticeByPaging(pagingSettings);
     }
     @Override
     public void addNotice(Notice notice){
