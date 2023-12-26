@@ -2,10 +2,7 @@ package com.example.shoppingmall.notify.service;
 
 import com.example.shoppingmall.member.dto.MemberDeleteDTO;
 import com.example.shoppingmall.notify.domain.Notice;
-import com.example.shoppingmall.notify.dto.NoticeAddDTO;
-import com.example.shoppingmall.notify.dto.NoticeDeleteDTO;
-import com.example.shoppingmall.notify.dto.NoticeListDTO;
-import com.example.shoppingmall.notify.dto.NoticeUpdateDTO;
+import com.example.shoppingmall.notify.dto.*;
 import com.example.shoppingmall.notify.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +18,7 @@ public class NoticeService {
 
     private final NoticeRepository noticeRepository;
 
+    //전체 공지 조회
     @Transactional(readOnly = true)
     public List<NoticeListDTO> findAllNotice(){
         List<Notice> noticeList = noticeRepository.findAllNotice();
@@ -30,23 +28,28 @@ public class NoticeService {
         }
         return noticeListDTOList;
     }
+    //공지 추가
     @Transactional
     public void addNotice(Integer adminNo, NoticeAddDTO noticeAddDTO){
         Notice notice = NoticeAddDTO.NoticeAddDTOToNotice(adminNo, noticeAddDTO);
         System.out.println("service_notice.getAdminNo() = " + notice.getAdminNo());
         noticeRepository.addNotice(notice);
     }
+    //공지내용
     @Transactional
     public NoticeUpdateDTO getNoticeInfo(Long noticeNo){
         Notice notice = noticeRepository.findByNo(noticeNo).orElse(null);
         return NoticeUpdateDTO.NoticeToNoticeUpdateDTO(notice);
 
     }
-
+    //공지 수정
     @Transactional
-    public void update(){
+    public void update(NoticeUpdateDTO noticeUpdateDTO){
+        Notice notice = NoticeUpdateDTO.NoticeUpdateDTOToNotice(noticeUpdateDTO);
+        noticeRepository.updateNotice(notice);
 
     }
+    //공지 삭제
     @Transactional
     public void deleteNotice(Long noticeNo){
         noticeRepository.deleteNoticeByNo(noticeNo);
