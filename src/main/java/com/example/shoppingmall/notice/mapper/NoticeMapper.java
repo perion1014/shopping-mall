@@ -1,8 +1,6 @@
-package com.example.shoppingmall.notify.mapper;
+package com.example.shoppingmall.notice.mapper;
 
-import com.example.shoppingmall.member.domain.Member;
-import com.example.shoppingmall.notify.domain.Notice;
-import com.example.shoppingmall.notify.dto.NoticeListDTO;
+import com.example.shoppingmall.notice.domain.Notice;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

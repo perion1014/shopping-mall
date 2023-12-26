@@ -1,20 +1,12 @@
-package com.example.shoppingmall.notify.controller;
+package com.example.shoppingmall.notice.controller;
 
-import com.example.shoppingmall.notify.dto.NoticeAddDTO;
-import com.example.shoppingmall.notify.dto.NoticeDeleteDTO;
-import com.example.shoppingmall.notify.dto.NoticeListDTO;
-import com.example.shoppingmall.notify.dto.NoticeUpdateDTO;
-import com.example.shoppingmall.notify.service.NoticeService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
+import com.example.shoppingmall.notice.dto.NoticeAddDTO;
+import com.example.shoppingmall.notice.dto.NoticeUpdateDTO;
+import com.example.shoppingmall.notice.service.NoticeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.jms.JmsProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.Timestamp;
-import java.util.List;
 
 @Controller
 @RequestMapping("/notice")//절대경로

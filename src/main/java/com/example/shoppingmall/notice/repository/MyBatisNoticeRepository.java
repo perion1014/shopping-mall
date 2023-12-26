@@ -1,8 +1,7 @@
-package com.example.shoppingmall.notify.repository;
+package com.example.shoppingmall.notice.repository;
 
-import com.example.shoppingmall.member.domain.Member;
-import com.example.shoppingmall.notify.domain.Notice;
-import com.example.shoppingmall.notify.mapper.NoticeMapper;
+import com.example.shoppingmall.notice.domain.Notice;
+import com.example.shoppingmall.notice.mapper.NoticeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
