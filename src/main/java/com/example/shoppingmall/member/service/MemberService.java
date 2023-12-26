@@ -19,7 +19,6 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-
     /*회원 가입*/
     @Transactional
     public void join(MemberAddDTO memberAddDTO){
@@ -120,63 +119,15 @@ public class MemberService {
         return resultList;
     }
 
-
-    /*관리자 회원 검색*/
+    /*관리자 회원 검색 페이지 설정 (보여줄 엔티티 수, 페이지 당 페이지 수) */
     @Transactional(readOnly = true)
-    public List<MemberSearchDTO> searchMemberInfo(MemberSearchForm memberSearchForm){
-        String category = memberSearchForm.getCategory();
-        String keyword = memberSearchForm.getKeyword();
-
-        List<Member> memberList = new ArrayList<>();
-        List<MemberSearchDTO> resultList = new ArrayList<>();
-
-        if(!category.equals("memberNo")){
-            Map<String,String> searchingKeyword = new HashMap<>();
-            searchingKeyword.put("category", category);
-            searchingKeyword.put("keyword", keyword);
-            memberList = memberRepository.findByKeyword(searchingKeyword);
-        }
-        else{
-            memberList = memberRepository.findByNoContaining(Long.parseLong(keyword));
-        }
-
-        for(Member member : memberList){
-            resultList.add(MemberSearchDTO.fromEntity(member));
-        }
-
-        return resultList;
-    }
-
-    // 2023-12-22
-    @Transactional(readOnly = true)
-    public List<MemberSearchDTO> getSearchMemberListPage(int page, MemberSearchForm memberSearchForm) {
-
-        int startPage = (page-1) * 12; //시작 페이지
-        int pagePerMember = 12; // 멤버 수
-
-        memberSearchForm.setStart(startPage);
-        memberSearchForm.setLimit(pagePerMember);
-        List<Member> memberList = memberRepository.findByKeyword2(memberSearchForm);
-        System.out.println(memberSearchForm.getKeyword());
-        System.out.println("memberSearchForm.getCategory() = " + memberSearchForm.getCategory());
-        List<MemberSearchDTO> resultList = new ArrayList<>();
-
-
-        for(Member member : memberList){
-            resultList.add(MemberSearchDTO.fromEntity(member));
-        }
-
-        return resultList;
-    }
-
-    @Transactional(readOnly = true)
-    public MemberPageForm setMemberListPage2(int page, MemberSearchForm memberSearchForm) {
+    public MemberPageForm setSearchMemberListPage(int page, MemberSearchForm memberSearchForm) {
 
         int pagePerMember = 12; // 보여줄 멤버 수
         int pageLimit = 10; // 하단 페이징 번호 갯수
 
         // 전체 멤버 조회
-        Long memberCount = memberRepository.countAllByKeyword2(memberSearchForm);
+        Long memberCount = memberRepository.countAllByKeyword(memberSearchForm);
 
         // 전체 페이지 갯수 계산 (10/3=3.33333 => 4)
         int totalPage = (int) (Math.ceil((double) memberCount / pagePerMember));
@@ -192,6 +143,27 @@ public class MemberService {
 
         return new MemberPageForm(page,totalPage,startPage,endPage);
     }
+
+    /*관리자 회원 검색 페이지 생성 */
+    // 2023-12-22
+    @Transactional(readOnly = true)
+    public List<MemberSearchDTO> getSearchMemberListPage(int page, MemberSearchForm memberSearchForm) {
+
+        int startPage = (page-1) * 12; //시작 페이지
+        int pagePerMember = 12; // 멤버 수
+
+        memberSearchForm.setStartPage(startPage);
+        memberSearchForm.setPagePerMember(pagePerMember);
+        List<Member> memberList = memberRepository.findAllByKeyword(memberSearchForm);
+        List<MemberSearchDTO> resultList = new ArrayList<>();
+
+        for(Member member : memberList){
+            resultList.add(MemberSearchDTO.fromEntity(member));
+        }
+
+        return resultList;
+    }
+    
 
 }
 
