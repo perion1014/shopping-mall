@@ -37,6 +37,7 @@ public class ItemService {
         System.out.println("itemService.saveItemPhotos(itemAddDTO) ==> item_no = " + itemNo);
         System.out.println("itemService.saveItemPhotos(itemAddDTO) ==> item_thumb = " + itemAddDTO.getItemThumb());
         ItemPhotos itemPhotos = ItemAddDTO.itemAddDTOToItemPhotos(itemNo, itemAddDTO);
+
         itemRepository.saveItemPhotos(itemPhotos);
     }
 
@@ -114,16 +115,6 @@ public class ItemService {
         itemRepository.updateItemByNo(item);
     }
 
-    public void deleteItemByNo(Long itemNo, ItemDeleteDTO itemDeleteDTO) {
-        Item item = ItemDeleteDTO.toItem(itemNo, itemDeleteDTO);
-        ItemPhotos itemPhotos = ItemDeleteDTO.toItemPhotos(itemNo, itemDeleteDTO);
-        List<ItemStock> itemStockList = itemRepository.findItemStocksByItemNo(itemNo);
-        itemRepository.deleteItemByNo(item);
-        itemRepository.deleteItemPhotosByNo(itemPhotos);
-        for (ItemStock itemStock: itemStockList) {
-            itemRepository.deleteItemStockByStockNo(itemStock);
-        }
-    }
     public void deleteItemStockByItemNo(Long itemNo) {
         itemRepository.deleteItemStockByItemNo(itemNo);
     }
@@ -134,5 +125,21 @@ public class ItemService {
 
     public void deleteItemPyItemNo(Long itemNo) {
         itemRepository.deleteItemByItemNo(itemNo);
+    }
+
+    public ItemDTO findItemByNo2(Long itemNo) {
+        Item item =  itemRepository.findItemByNo(itemNo);
+        return ItemDTO.itemToItemDTO2(item);
+    }
+
+    public ItemPhotosDTO findItemPhotosByNo(Long itemNo) {
+        ItemPhotos itemPhotos = itemRepository.findItemPhotosByItemNo(itemNo);
+        ItemPhotosDTO itemPhotosDTO = ItemPhotosDTO.toItemPhotosDTO(itemPhotos);
+        return itemPhotosDTO;
+    }
+
+    public List<ItemStockDTO> findItemStockListByNo(Long itemNo) {
+        List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
+        return ItemStockDTO.toItemStockDTOList(itemStockList);
     }
 }

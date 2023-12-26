@@ -3,3 +3,49 @@
     display: block;
     width: 100%;
 }
+.btn--index{
+    display: inline;
+    width: 9rem;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+.banner__container{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.banner__info{
+    display: flex;
+    justify-content: right;
+    color: var(--color-primary);
+}
+
+.banner__logo{
+    width: 5rem;
+}
+.banner__text{
+    font-size: 1.6rem;
+}
+.banner__dot{
+    color: var(--color-error);
+    font-size: 2.5rem;
+}
+.api__container{
+    margin: 4rem 0;
+    width: 100%;
+    height: 50%;
+    background-color: var(--color-primary);
+    font-size: 5rem;
+}
+address{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    color: var(--color-accent);
+    text-align: center;
+}
+.address__time{
+    color: var(--color-primary);
+    font-size: 0.75rem;
+}

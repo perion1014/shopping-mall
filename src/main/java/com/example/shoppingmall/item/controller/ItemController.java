@@ -63,13 +63,12 @@ public class ItemController {
 
     @GetMapping("/admin/{itemNo}")
     public String goToItemDetailPage(@PathVariable(name="itemNo") Long itemNo, Model model) {
-        // ItemStock 클래스 생성 전
-        // ItemDTO itemDTO = itemService.findItemByNo(itemNo);
-        // model.addAttribute("itemDTO", itemDTO);
-
-        // ItemStock 클래스 생성 후
-//        List<ItemStockDTO> joinedItemDTOList = itemService.joinItemByItemNo(itemNo);
-//        model.addAttribute("joinedItemDTOList", joinedItemDTOList);
+        ItemDTO itemDTO = itemService.findItemByNo2(itemNo);
+        ItemPhotosDTO itemPhotosDTO = itemService.findItemPhotosByNo(itemNo);
+        List<ItemStockDTO> itemStockDTOList = itemService.findItemStockListByNo(itemNo);
+        model.addAttribute("itemDTO", itemDTO);
+        model.addAttribute("itemPhotosDTO", itemPhotosDTO);
+        model.addAttribute("itemStockDTOList", itemStockDTOList);
         return "admins/item/admins-item-detail";
     }
 
@@ -85,7 +84,6 @@ public class ItemController {
         itemService.deleteItemStockByItemNo(itemNo);
         itemService.deleteItemPhotosByItemNo(itemNo);
         itemService.deleteItemPyItemNo(itemNo);
-        //itemService.deleteItemByNo(itemNo, itemDeleteDTO);
         return "redirect:/items/admin";
     }
 

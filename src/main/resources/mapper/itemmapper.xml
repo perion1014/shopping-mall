@@ -55,7 +55,7 @@
         select * from item order by item_no desc
     </select>
 
-    <select id="findAllItemStocks" parameterType="Long" resultType="com.example.shoppingmall.item.domain.ItemStock">
+    <select id="findAllItemStocks" parameterType="long" resultType="com.example.shoppingmall.item.domain.ItemStock">
         select * from item_stock where item_no = #{itemNo}
     </select>
 
@@ -90,18 +90,6 @@
         where item_stock_no=#{item_stock_no}
     </update>
 
-    <delete id="deleteItemByNo" parameterType="com.example.shoppingmall.item.domain.Item">
-        delete from item where item_no = #{itemNo}
-    </delete>
-
-    <delete id="deleteItemPhotosByNo" parameterType="com.example.shoppingmall.item.domain.ItemPhotos">
-        delete from item where item_no = #{itemNo}
-    </delete>
-
-    <delete id="deleteItemStockByStockNo" parameterType="com.example.shoppingmall.item.domain.ItemStock">
-        delete from item where item_stock_no = #{itemStockNo}
-    </delete>
-
     <select id="findItemStocksByItemNo" parameterType="com.example.shoppingmall.item.domain.Item" resultType="java.util.List">
         select * from item_stock where item_no = #{itemNo}
     </select>
@@ -117,5 +105,9 @@
     <delete id="deleteItemByItemNo" parameterType="long">
         delete from item where item_no = #{itemNo}
     </delete>
+
+    <select id="findItemPhotosByItemNo" parameterType="long" resultType="com.example.shoppingmall.item.domain.ItemPhotos">
+        select * from item_photos where item_no = #{itemNo}
+    </select>
 
 </mapper>
