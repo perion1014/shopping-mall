@@ -21,5 +21,4 @@ public class CartReadDTO {
     private Integer itemQuantity;
     private Integer itemPriceSum;
     private Integer orderPriceSum;
-
 }
