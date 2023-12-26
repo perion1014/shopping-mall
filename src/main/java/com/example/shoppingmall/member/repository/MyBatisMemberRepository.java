@@ -2,6 +2,7 @@ package com.example.shoppingmall.member.repository;
 
 import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.MemberSearchDTO;
+import com.example.shoppingmall.member.form.MemberSearchForm;
 import com.example.shoppingmall.member.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -70,4 +71,18 @@ public class MyBatisMemberRepository implements MemberRepository {
     public Long countAllByKeyword(Map<String, String> searchingKeyword) {
         return memberMapper.countAllByKeyword(searchingKeyword);
     }
+
+    // kch-> search
+    @Override
+    public Long countAllByKeyword2(MemberSearchForm memberSearchForm) {
+        return memberMapper.countAllByKeyword2(memberSearchForm);
+    }
+
+    @Override
+    public List<Member> findByKeyword2(MemberSearchForm memberSearchForm) {
+        return memberMapper.findByKeyword2(memberSearchForm);
+    }
+
+
+
 }

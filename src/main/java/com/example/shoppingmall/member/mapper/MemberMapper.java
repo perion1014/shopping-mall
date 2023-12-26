@@ -2,10 +2,12 @@ package com.example.shoppingmall.member.mapper;
 
 import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.MemberSearchDTO;
+import com.example.shoppingmall.member.form.MemberSearchForm;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
+
 
 @Mapper
 public interface MemberMapper {
@@ -21,4 +23,9 @@ public interface MemberMapper {
     List<Member> findAllByPaging(Map<String, Integer> pagingSettings);
     Long countAll();
     Long countAllByKeyword(Map<String, String> searchingKeyword);
+
+    List<Member> findByKeyword2(MemberSearchForm memberSearchForm);
+
+    Long countAllByKeyword2(MemberSearchForm memberSearchForm);
+
 }
