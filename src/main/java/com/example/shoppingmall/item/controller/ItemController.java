@@ -1,27 +1,15 @@
 package com.example.shoppingmall.item.controller;
 
-import com.example.shoppingmall.item.domain.ItemItemStock;
-import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.dto.*;
-import com.example.shoppingmall.item.exceptions.StorageFileNotFoundException;
 import com.example.shoppingmall.item.service.ItemService;
-import com.example.shoppingmall.item.service.StorageService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,10 +17,9 @@ import java.util.UUID;
 public class ItemController {
 
     private final ItemService itemService;
-    private final StorageService storageService;
 
     @GetMapping("/admin")
-    public String showItemList(Model model) {
+    public String getItemList(Model model) {
         List<ItemDTO> itemDTOList = itemService.findAllItems();
         model.addAttribute("itemDTOList", itemDTOList);
         return "admins/item/admins-item";
@@ -72,16 +59,10 @@ public class ItemController {
         itemService.saveItemPhotos(itemNo, itemAddDTO);
         itemService.saveItemStock(itemNo, itemAddDTO);
 
-        // 파일 처리
-        storageService.store(itemThumb);
 
         return "redirect:/items/admin/add";
     }
 
-    @ExceptionHandler(StorageFileNotFoundException.class)
-    public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
-        return ResponseEntity.notFound().build();
-    }
 
 
 
@@ -93,12 +74,6 @@ public class ItemController {
         model.addAttribute("itemDTO", itemDTO);
         model.addAttribute("itemPhotosDTO", itemPhotosDTO);
         model.addAttribute("itemStockDTOList", itemStockDTOList);
-
-        Resource file = storageService.loadAsResource(itemPhotosDTO.getItemThumb());
-        model.addAttribute("file", file);
-        if (file == null) {
-            //return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
-        }
         return "admins/item/admins-item-detail";
     }
 
@@ -106,7 +81,6 @@ public class ItemController {
     public String updateItem(@PathVariable(name="itemNo") Long itemNo, @ModelAttribute ItemUpdateDTO itemUpdateDTO) {
         itemService.updateItemByNo(itemNo, itemUpdateDTO);
         return "redirect:/items/admin/{itemNo}";
-
     }
 
     @GetMapping("/admin/{itemNo}/delete")
@@ -115,6 +89,11 @@ public class ItemController {
         itemService.deleteItemPhotosByItemNo(itemNo);
         itemService.deleteItemPyItemNo(itemNo);
         return "redirect:/items/admin";
+    }
+
+    @GetMapping("")
+    public String showItemList() {
+        return "items/item-list";
     }
 
 }
