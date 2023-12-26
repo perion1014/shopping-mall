@@ -3,6 +3,8 @@ package com.example.shoppingmall.item.controller;
 import com.example.shoppingmall.item.domain.ItemItemStock;
 import com.example.shoppingmall.item.dto.*;
 import com.example.shoppingmall.item.service.ItemService;
+import com.example.shoppingmall.qna.dto.QnaDTO;
+import com.example.shoppingmall.qna.service.QnaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,7 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
-
+    private final QnaService qnaService;
     @GetMapping("/admin")
     public String showItemList(Model model) {
         List<ItemDTO> itemDTOList = itemService.findAllItems();
@@ -87,6 +89,16 @@ public class ItemController {
         itemService.deleteItemPyItemNo(itemNo);
         //itemService.deleteItemByNo(itemNo, itemDeleteDTO);
         return "redirect:/items/admin";
+    }
+
+    // kch QnA test
+    @GetMapping("/{itemNo}")
+    public  String showItemDetail(@PathVariable(name = "itemNo") Long itemNo, Model model) {
+        model.addAttribute("itemNo", itemNo);
+        List<QnaDTO> qnaByItemNo = qnaService.getQnaByItemNo(itemNo);
+
+        model.addAttribute("qnaByItemNo",qnaByItemNo);
+        return "items/item-detail-qna-test";
     }
 
 }
