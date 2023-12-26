@@ -50,9 +50,11 @@
             <button>수정</button>
           </div>
         </form>
+        <form th:action="@{|/notice/admin/${noticeUpdateDTO.getNoticeNo()}/delete|}" method="post">
           <div class="notice_btn">
             <button>삭제</button>
           </div>
+        </form>
 
         <!--main div-->
       </div>

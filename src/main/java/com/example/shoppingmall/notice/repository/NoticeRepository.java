@@ -1,8 +1,6 @@
-package com.example.shoppingmall.notify.repository;
+package com.example.shoppingmall.notice.repository;
 
-import com.example.shoppingmall.member.domain.Member;
-import com.example.shoppingmall.notify.domain.Notice;
-import com.example.shoppingmall.notify.dto.NoticeListDTO;
+import com.example.shoppingmall.notice.domain.Notice;
 
 import java.util.List;
 import java.util.Optional;

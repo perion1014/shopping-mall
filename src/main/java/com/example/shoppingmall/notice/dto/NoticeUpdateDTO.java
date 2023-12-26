@@ -1,6 +1,6 @@
-package com.example.shoppingmall.notify.dto;
+package com.example.shoppingmall.notice.dto;
 
-import com.example.shoppingmall.notify.domain.Notice;
+import com.example.shoppingmall.notice.domain.Notice;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

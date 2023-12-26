@@ -51,7 +51,11 @@
                 <td name="writer">admin</td>
                 <td th:text="${noticeListDTO.noticeCreatedTime}"></td>
                 <td th:text="${noticeListDTO.noticeViewcount}"></td>
-                <td name="noticeDelete"><a th:href="@{|/notice/admin/${noticeListDTO.getNoticeNo()}/delete|}">삭제</a></td>
+                <td>
+                <form name="deleteNotice" th:action="@{|/notice/admin/${noticeListDTO.getNoticeNo()}/delete|}" method="post">
+                    <button>삭제</button>
+                </form>
+                </td>
             </tr>
             </tbody>
 <!--            <div class="admin_member_page">-->
