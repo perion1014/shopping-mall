@@ -17,8 +17,10 @@ public class NoticeController {
 
     /*공지사항 리스트 출력*/
     @GetMapping("/admin")
-    public String showNoticeList(Model model){
-        model.addAttribute("noticeListDTOList", noticeService.findAllNotice());
+    public String showNoticeList(Model model,
+                                 @RequestParam(value="page", required = false, defaultValue = "1") int page){
+        model.addAttribute("pageSettings", noticeService.setNoticeListPage(page));
+//        model.addAttribute("noticeListDTOList", noticeService.findAllNotice());
         return "admins/notice/admins-notice";
     }
     /*공지사항 디테일 Admin전용*/
@@ -67,4 +69,5 @@ public class NoticeController {
         noticeService.deleteNotice(noticeNo);
         return "redirect:/notice/admin";
     }
+
 }

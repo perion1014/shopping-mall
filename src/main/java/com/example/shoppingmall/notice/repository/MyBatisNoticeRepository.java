@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -16,6 +17,14 @@ public class MyBatisNoticeRepository implements NoticeRepository{
     @Override
     public List<Notice> findAllNotice() {//Notice
         return noticeMapper.findAllNotice();
+    }
+    @Override
+    public Long countAllNotice(){
+        return noticeMapper.countAllNotice();
+    }
+    @Override
+    public List<Notice>findAllNoticeByPaging(Map<String, Integer> pagingSettings){
+        return noticeMapper.findAllNoticeByPaging(pagingSettings);
     }
     @Override
     public void addNotice(Notice notice){
