@@ -47,13 +47,10 @@ public class NoticeService {
     public void update(NoticeUpdateDTO noticeUpdateDTO){
         Notice notice = NoticeUpdateDTO.NoticeUpdateDTOToNotice(noticeUpdateDTO);
         noticeRepository.updateNotice(notice);
-
     }
     //공지 삭제
     @Transactional
     public void deleteNotice(Long noticeNo){
         noticeRepository.deleteNoticeByNo(noticeNo);
     }
-
-
 }
