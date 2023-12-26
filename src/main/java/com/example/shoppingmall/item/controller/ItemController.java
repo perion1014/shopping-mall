@@ -2,6 +2,10 @@ package com.example.shoppingmall.item.controller;
 
 import com.example.shoppingmall.item.dto.*;
 import com.example.shoppingmall.item.service.ItemService;
+
+import com.example.shoppingmall.qna.dto.QnaDTO;
+import com.example.shoppingmall.qna.service.QnaService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +20,13 @@ import java.util.List;
 @RequestMapping("/items")
 public class ItemController {
 
+
     private final ItemService itemService;
+
+
+    private final QnaService qnaService;
+
+
 
     @GetMapping("/admin")
     public String getItemList(Model model) {
@@ -91,9 +101,21 @@ public class ItemController {
         return "redirect:/items/admin";
     }
 
+
     @GetMapping("")
     public String showItemList() {
         return "items/item-list";
+    }
+
+    // kch QnA test
+    @GetMapping("/{itemNo}")
+    public  String showItemDetail(@PathVariable(name="itemNo") Long itemNo, Model model) {
+        model.addAttribute("itemNo", itemNo);
+        List<QnaDTO> qnaByItemNo = qnaService.getQnaByItemNo(itemNo);
+
+        model.addAttribute("qnaByItemNo",qnaByItemNo);
+        return "items/item-detail-qna-test";
+
     }
 
 }
