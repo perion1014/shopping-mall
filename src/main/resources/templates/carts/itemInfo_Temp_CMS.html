@@ -7,8 +7,8 @@
 
 <script type = "text/javascript">
 
-    function changeCartAddQuantity(number){
-        let nowQuantityInput = document.getElementById("cartAddQuantityInput");
+    function changeCartAddQuantity(number, inputname){
+        let nowQuantityInput = document.getElementById(inputname);
         let nowQuantityValue = Number(nowQuantityInput.value);
         if(Number(number) == 1){
             if(nowQuantityValue != 99){
@@ -29,35 +29,71 @@
 <body>
 <header th:replace="~{/fragments/login-header :: header}"></header>
 <br><br><br><br><br><br><br>
-<h1>여기는 itemInfo_Temp_CMS.html입니다.</h1>
+<div th:if="${session.loginMember != null}">
+    <h1>여기는 로그인 상태의 itemInfo_Temp_CMS.html입니다.</h1>
+</div>
+<div th:unless="${session.loginMember != null}">
+    <h1>여기는 비로그인 상태의 itemInfo_Temp_CMS.html입니다.</h1>
+</div>
 
-<form th:action = "@{/carts/{memberNo}(memberNo=${session.loginMember.getMemberNo()})}" method = "post">
-<div><input style = "display: none;" name = "itemNo" value = "5"></div>
-    <div>
-
+<div th:if="${session.loginMember != null}">
+    <form th:action = "${session.loginMember != null} ? @{/carts/{memberNo}(memberNo=${session.loginMember.getMemberNo()})} : @{/carts}" method = "post">
+    <div><input style = "display: none;" name = "itemNo" value = "5"></div>
+    <div >상품 썸네일 : asdasfasd</div>
+    <div >상품명 : 빨간셔츠</div>
+    <div >평점 : 3.5</div>
+    <div >상품 가격 : 100000원</div>
+    <div >
+        상품 사이즈 :
+        <select name = "cartAddItemSize">
+            <option value = "S">S</option>
+            <option value = "M">M</option>
+            <option value = "L">L</option>
+        </select>
     </div>
-<div >상품 썸네일 : asdasfasd</div>
-<div >상품명 : 빨간셔츠</div>
-<div >평점 : 3.5</div>
-<div >상품 가격 : 100000원</div>
-<div >
-    상품 사이즈 :
-    <select name = "cartAddItemSize">
-        <option value = "S">S</option>
-        <option value = "M">M</option>
-        <option value = "L">L</option>
-    </select>
-</div>
-<div >
-    상품 수량 <button type = "button" onclick="changeCartAddQuantity(-1)"> - </button>
-    <input id = "cartAddQuantityInput" name = "addCartItemQuantiy" value = "1" readonly>
-    <button type="button" onclick = "changeCartAddQuantity(1)"> + </button>
-</div>
-<div>
-    <button>장바구니 추가</button>
+    <div >
+        상품 수량 <button type = "button" onclick="changeCartAddQuantity(-1, 'memberCartAddQuantityInput')"> - </button>
+        <input id = "memberCartAddQuantityInput" name = "addCartItemQuantiy" value = "1" readonly>
+        <button type="button" onclick = "changeCartAddQuantity(1, 'memberCartAddQuantityInput')"> + </button>
+    </div>
+    <div>
+        <button>장바구니 추가</button>
+    </div>
+
+    </form>
 </div>
 
-</form>
+<div th:unless="${session.loginMember != null}">
+
+    <form action ="/carts" method = "post">
+        <input name = "nonMemberCartThumbnail" style="display: none;" value = "testthumb1">
+        <input name = "nonMemberCartItemName" style="display: none;" value = "red Shirt">
+        <input name = "nonMemberCartItemPrice" style="display: none;" value = "22000">
+
+        <div >상품 썸네일 : asdasfasd</div>
+        <div >상품명 : 빨간셔츠</div>
+        <div >평점 : 3.5</div>
+        <div >상품 가격 : 100000원</div>
+        <div >
+            상품 사이즈 :
+            <select name = "nonMemberCartItemSize">
+                <option value = "S">S</option>
+                <option value = "M">M</option>
+                <option value = "L">L</option>
+            </select>
+        </div>
+        <div>
+            상품 수량 <button type = "button" onclick="changeCartAddQuantity(-1, 'nonMemberCartAddQuantityInput')"> - </button>
+            <input id = "nonMemberCartAddQuantityInput" name = "nonMemberAddCartItemQuantiy" value = "1" readonly>
+            <button type="button" onclick = "changeCartAddQuantity(1, 'nonMemberCartAddQuantityInput')"> + </button>
+        </div>
+        <div>
+            <button>장바구니 추가</button>
+        </div>
+
+    </form>
+
+</div>
 
 </body>
 </html>

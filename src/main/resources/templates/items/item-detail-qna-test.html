@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    상품 디테일 입니다.
+    <p th:text="${itemNo}"></p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>답변여부</th>
+            <th>구분</th>
+            <th>내용</th>
+            <th>작성자</th>
+            <th>등록일자</th>
+        </tr>
+        </thead>
+        <tbody th:each="QnaDTO,itemQnaNo : ${qnaByItemNo}">
+        <tr>
+            <td th:text="${itemQnaNo.count}"></td>
+<!--            <td th:text="${itemQnaDTO.qnaNo}"></td>-->
+
+            <td>
+                <span th:if="${QnaDTO.qnaAnswer != null}" >답변완료</span>
+                <span th:unless="${QnaDTO.qnaAnswer != null}">답변확인중</span>
+            </td>
+
+            <td th:text="${QnaDTO.qnaClassification}"></td>
+            <td th:text="${QnaDTO.qnaTitle}"></td>
+            <td th:text="${#strings.substring(QnaDTO.memberId, 0, #strings.length(QnaDTO.memberId) - 2)} + '***'"></td>
+            <td th:text="${#dates.format(QnaDTO.qnaQuestionCreatedTime, 'yyyy-MM-dd')}"></td>
+        </tr>
+        <tr>
+            <td colspan="6" th:text="${QnaDTO.qnaQuestion}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <button th:onclick="|window.location.href='/qna/' + ${itemNo}+ '/add'|">qna등록</button>
+</body>
+</html>
