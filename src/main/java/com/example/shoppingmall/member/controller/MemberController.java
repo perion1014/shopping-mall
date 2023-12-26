@@ -151,14 +151,14 @@ public class MemberController {
     }
 
     // 2023-12-23 Search
-    @PostMapping("/admin")
+    /* 관리자 회원 검색(페이징 완료)*/
+    @GetMapping("/admin/search")
     public String searchMembers(@ModelAttribute MemberSearchForm memberSearchForm, Model model,
                                 @RequestParam(value="page", required=false, defaultValue="1") int page){
+        model.addAttribute("memberSearchForm", memberSearchForm);
         model.addAttribute("pageSettings", memberService.setMemberListPage2(page,memberSearchForm));
         model.addAttribute("memberListByPaging",memberService.getSearchMemberListPage(page,memberSearchForm));
-        System.out.println(memberSearchForm.getCategory());
-        System.out.println(memberSearchForm.getKeyword());
 
-        return "admins/admin-member";
+        return "admins/admin-member-search";
     }
 }

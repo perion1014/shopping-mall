@@ -63,19 +63,21 @@
         <div class="admin_member_page">
             <span th:if="${pageSettings.page &lt;= 1}">이전</span>
             <span th:unless="${pageSettings.page &lt;= 1}">
-            <a th:href="@{/members/admin(page=${pageSettings.page - 1})}">이전</a>
+            <a th:href="@{/members/admin/search(page=${pageSettings.page - 1},category=${memberSearchForm.category}, keyword=${memberSearchForm.keyword})}">이전</a>
           </span>
+
 
             <span th:each="i : ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
             <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
             <a th:unless="${i == pageSettings.page}"
-               th:href="@{/members/admin(page=${i})}"
+               th:href="@{/members/admin/search(page=${i},category=${memberSearchForm.category}, keyword=${memberSearchForm.keyword})}"
                th:text="${i}"></a>
-          </span>
+           </span>
+
 
             <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
             <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
-               th:href="@{/members/admin(page=${pageSettings.page + 1})}"
+               th:href="@{/members/admin/search(page=${pageSettings.page + 1},category=${memberSearchForm.category}, keyword=${memberSearchForm.keyword})}"
             >다음</a
             >
         </div>
