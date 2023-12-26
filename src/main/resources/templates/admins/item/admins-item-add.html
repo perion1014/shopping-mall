@@ -18,7 +18,7 @@
     <main>
       <div class="main">
         <div class="admin_item_add">상품 등록</div>
-        <form action="/items/admin/add" method="post" enctype="multipart/form-data">
+        <form action="/items/admin/add" method="post" enctype="multipart/form-data" id="itemAddForm">
         <div class="admin_item_container">
           <div>
             상품명
@@ -65,11 +65,14 @@
           </div>
           <!-- container-->
         </div>
-        <div class="btn_div"><button>등록</button></div>
+        <div class="btn_div"><button class="add_btn">등록</button></div>
 
         </form>
       </div>
       <!--main div-->
     </main>
+
   </body>
 </html>
+
+

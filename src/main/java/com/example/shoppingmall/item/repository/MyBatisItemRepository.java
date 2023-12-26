@@ -1,18 +1,11 @@
 package com.example.shoppingmall.item.repository;
 
 import com.example.shoppingmall.item.domain.Item;
-import com.example.shoppingmall.item.domain.ItemItemStock;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
-import com.example.shoppingmall.item.dto.ItemDTO;
-import com.example.shoppingmall.item.dto.ItemStockDTO;
-import com.example.shoppingmall.item.exceptions.StorageException;
 import com.example.shoppingmall.item.mapper.ItemMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.util.List;
 
 @Repository
