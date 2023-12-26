@@ -44,15 +44,15 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody th:each="noticeListDTO : ${noticeListDTOList}">
-            <tr th:onclick="|location.href='@{|/notice/admin/${noticeListDTO.getNoticeNo()}|}'|">
-                <td th:text="${noticeListDTO.noticeNo}"></td>
-                <td th:text="${noticeListDTO.noticeTitle}"></td>
+            <tbody th:each="noticeSearchDTO : ${noticeListByPaging}">
+            <tr th:onclick="|location.href='@{|/notice/admin/${noticeSearchDTO.noticeNo}|}'|">
+                <td th:text="${noticeSearchDTO.noticeNo}"></td>
+                <td th:text="${noticeSearchDTO.noticeTitle}"></td>
                 <td name="writer">admin</td>
-                <td th:text="${noticeListDTO.noticeCreatedTime}"></td>
-                <td th:text="${noticeListDTO.noticeViewcount}"></td>
+                <td th:text="${noticeSearchDTO.noticeCreatedTime}"></td>
+                <td th:text="${noticeSearchDTO.noticeViewcount}"></td>
                 <td>
-                <form name="deleteNotice" th:action="@{|/notice/admin/${noticeListDTO.getNoticeNo()}/delete|}" method="post">
+                <form name="deleteNotice" th:action="@{|/notice/admin/${noticeSearchDTO.noticeNo}/delete|}" method="post">
                     <button>삭제</button>
                 </form>
                 </td>

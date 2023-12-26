@@ -15,7 +15,7 @@
     </select>
 
     <select id="findAllNoticeByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.notice.domain.Notice">
-        select *from notice order by notice_no desc limit #{startPage}, #{pagePerNotice}
+        select * from notice order by notice_no desc limit #{startPage}, #{pagePerNotice}
     </select>
 
     <insert id="addNotice" parameterType="com.example.shoppingmall.notice.domain.Notice">

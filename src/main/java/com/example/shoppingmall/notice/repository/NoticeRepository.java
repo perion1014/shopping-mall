@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface NoticeRepository {
     List<Notice> findAllNotice();
     Long countAllNotice();
-    List<Notice> findAllNoticeByPaging(Map<String, Integer> pagingSetting);
+    List<Notice> findAllNoticeByPaging(Map<String, Integer> pagingSettings);
     void addNotice(Notice notice);
     Optional<Notice> findByNo(Long noticeNo);
     void updateNotice(Notice notice);

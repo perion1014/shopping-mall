@@ -62,8 +62,10 @@ public class NoticeService {
         noticeRepository.deleteNoticeByNo(noticeNo);
     }
 
+    //공지 조회 페이지 설정(보여줄 엔테티티 수 , 페이지 당 페이지수)
     @Transactional(readOnly = true)
     public NoticePageForm setNoticeListPage(int page) {
+
         int pagePerNotice = 12;//보여줄 공지 수
         int pageLimit = 10;//하단 페이징 번호 갯수
 
@@ -83,17 +85,29 @@ public class NoticeService {
         }
         return new NoticePageForm(page, totalPage, startPage, endPage);
     }
+
+    //공지 조회 페이지 설정
     @Transactional(readOnly = true)
-    public List<NoticeListDTO> getNoticeListPage(int page){
+    public List<NoticeSearchDTO> getNoticeListPage(int page){
 
         int startPage = (page-1) * 12;//시작페이지
         int pagePerNotice = 12;//멤버 수
 
         Map<String, Integer> pagingSettings = new HashMap<>();
         pagingSettings.put("startPage", startPage);
-        pagingSettings.put("pagePerMember", pagePerNotice);
+        pagingSettings.put("pagePerNotice", pagePerNotice);
+
+        System.out.println("startPage = " + startPage);
+        System.out.println("pagePerNotice = " + pagePerNotice);
+
         List<Notice> noticeList = noticeRepository.findAllNoticeByPaging(pagingSettings);
-        return null;///////게시글 출력페이지
+
+        List<NoticeSearchDTO> resultList = new ArrayList<>();
+
+        for(Notice notice : noticeList){
+            resultList.add(NoticeSearchDTO.NoticeToNoticeSearchDTO(notice));
+        }
+        return resultList;
     }
 }
 

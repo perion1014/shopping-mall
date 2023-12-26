@@ -21,7 +21,8 @@
           <div class="notice_elements">
 
             <span class="notice_no" th:text="${noticeUpdateDTO.getNoticeNo()}"></span>
-            <input name="noticeNo" th:value="${noticeUpdateDTO.getNoticeNo()}">
+              <!--span에서는 form으로 데이터전달을 안해주기때문에 input을 만들어서 test-->
+              <!--<input name="noticeNo" th:value="${noticeUpdateDTO.getNoticeNo()}">-->
             <div class="notice_elements_right">
               <span> 작성일자 2023-12-14 </span>
               <span th:text="${noticeUpdateDTO.getNoticeViewcount()}"></span>
