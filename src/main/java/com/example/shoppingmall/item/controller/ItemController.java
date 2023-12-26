@@ -5,6 +5,8 @@ import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.dto.*;
 import com.example.shoppingmall.item.exceptions.StorageFileNotFoundException;
 import com.example.shoppingmall.item.service.ItemService;
+import com.example.shoppingmall.qna.dto.QnaDTO;
+import com.example.shoppingmall.qna.service.QnaService;
 import com.example.shoppingmall.item.service.StorageService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -28,8 +30,11 @@ import java.util.UUID;
 @RequestMapping("/items")
 public class ItemController {
 
-    private final ItemService itemService;
-    private final StorageService storageService;
+        private final ItemService itemService;
+
+        private final QnaService qnaService;
+
+        private final StorageService storageService;
 
     @GetMapping("/admin")
     public String showItemList(Model model) {
@@ -115,6 +120,16 @@ public class ItemController {
         itemService.deleteItemPhotosByItemNo(itemNo);
         itemService.deleteItemPyItemNo(itemNo);
         return "redirect:/items/admin";
+    }
+
+    // kch QnA test
+    @GetMapping("/{itemNo}")
+    public  String showItemDetail(@PathVariable(name = "itemNo") Long itemNo, Model model) {
+        model.addAttribute("itemNo", itemNo);
+        List<QnaDTO> qnaByItemNo = qnaService.getQnaByItemNo(itemNo);
+
+        model.addAttribute("qnaByItemNo",qnaByItemNo);
+        return "items/item-detail-qna-test";
     }
 
 }
