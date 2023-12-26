@@ -19,7 +19,7 @@
       <div class="main">
         <div class="admin_item_detail">상품 상세</div>
 
-        <form th:action="@{/items/admin/{itemNo}/update(itemNo=${itemDTO.itemNo})}" method="post">
+        <form th:action="@{/items/admin/{itemNo}/update(itemNo=${itemDTO.itemNo})}" method="post" enctype="multipart/form-data">
 
         </form>
         <div class="item_detail_container">

@@ -6,10 +6,12 @@ import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.ItemDTO;
 import com.example.shoppingmall.item.dto.ItemStockDTO;
+import com.example.shoppingmall.item.exceptions.StorageException;
 import com.example.shoppingmall.item.mapper.ItemMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -105,4 +107,6 @@ public class MyBatisItemRepository implements ItemRepository{
         ItemPhotos itemPhotos = itemMapper.findItemPhotosByItemNo(itemNo);
         return itemPhotos;
     }
+
+
 }
