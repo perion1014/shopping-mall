@@ -26,7 +26,6 @@ public class ItemDTO {
     private Double itemGrade;
     private Integer itemOnsale;
 
-
     private String itemDetail; // 필요 x
     private Timestamp itemRegisteredTime; // 필요 x
 
