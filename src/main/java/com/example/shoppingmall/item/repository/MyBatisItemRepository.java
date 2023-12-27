@@ -101,5 +101,9 @@ public class MyBatisItemRepository implements ItemRepository{
         return itemPhotos;
     }
 
+    @Override
+    public String selectItemThumbByItemNo(Long itemNo) {
+        return itemMapper.selectItemThumbByItemNo(itemNo);
+    }
 
 }

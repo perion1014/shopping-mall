@@ -133,4 +133,7 @@ public class ItemService {
         return ItemStockDTO.toItemStockDTOList(itemStockList);
     }
 
+    public String selectItemThumbByItemNo(Long itemNo) {
+        return itemRepository.selectItemThumbByItemNo(itemNo);
+    }
 }
