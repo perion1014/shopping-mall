@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
@@ -25,5 +26,20 @@ public class MyBatisQnaRepository implements QnaRepository {
 
     @Override
     public void addQna(Qna qna) { qnaMapper.addQna(qna); }
+
+    @Override
+    public List<Qna> findAllByPaging(Map<String, Integer> pagingSettings){
+       return qnaMapper.findAllByPaging(pagingSettings);
+    }
+
+    @Override
+    public Long countAll() {
+        return qnaMapper.countAll();
+    }
+
+    @Override
+    public Qna findByQnaNo(Long qnaNo) {
+        return qnaMapper.findByQnaNo(qnaNo);
+    }
 
 }

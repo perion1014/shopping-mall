@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    번호 <span th:text="${qnaDetail.qnaNo}"></span> <p>
+    제목 <span th:text="${qnaDetail.qnaTitle}"></span> <p>
+    작성시간 <span th:text="${qnaDetail.qnaQuestionCreatedTime}"></span><p>
+    <p></p>
+    상품 번호 <span th:text="${qnaDetail.ItemNo}"></span><p>
+    구분 <span th:text="${qnaDetail.qnaClassification}"></span><p>
+    <p></p>
+    내용 <span th:text="${qnaDetail.qnaQuestion}"></span><p>
+
+    <div th:if="${qnaDetail.qnaAnswer != null}">
+        <p th:text="${qnaDetail.qnaAnswer}"></p>
+    </div>
+    <div th:unless="${qnaDetail.qnaAnswer != null}">
+        <form th:action="@{'/qna/' + ${qnaDetail.qnaNo}}" method="post" >
+            <textarea th:attr="placeholder=${'답변쓰는곳'}"></textarea>
+            <button>등록</button>
+        </form>
+    </div>
+
+
+
+
+</body>
+</html>

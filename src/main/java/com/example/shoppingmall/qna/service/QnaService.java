@@ -1,8 +1,13 @@
 package com.example.shoppingmall.qna.service;
 
+import com.example.shoppingmall.member.domain.Member;
+import com.example.shoppingmall.member.dto.MemberSearchDTO;
+import com.example.shoppingmall.member.form.MemberPageForm;
+import com.example.shoppingmall.member.form.MemberSearchForm;
 import com.example.shoppingmall.qna.domain.Qna;
 import com.example.shoppingmall.qna.dto.QnaAddDTO;
 import com.example.shoppingmall.qna.dto.QnaDTO;
+import com.example.shoppingmall.qna.form.QnaPageForm;
 import com.example.shoppingmall.qna.repository.QnaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,8 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 
 @Service
@@ -45,4 +51,67 @@ public class QnaService {
     public void addQna(Long itemNo, Long memberNo, QnaAddDTO qnaAddDTO) {
         qnaRepository.addQna(QnaAddDTO.QnaAddDTOToQna(memberNo,itemNo,qnaAddDTO));
     }
+
+
+    @Transactional(readOnly = true)
+    public List<QnaDTO> getQnaListPage(int page) {
+
+        int startPage = (page-1) * 12; //시작 페이지
+        int pagePerMember = 12; // 멤버 수
+
+        Map<String, Integer> pagingSettings = new HashMap<>();
+        pagingSettings.put("startPage", startPage);
+        pagingSettings.put("pagePerMember", pagePerMember);
+        List<Qna> qnaList = qnaRepository.findAllByPaging(pagingSettings);
+
+
+        List<QnaDTO> resultList = new ArrayList<>();
+
+        for(Qna qna : qnaList){
+
+            Long memberNo = qna.getMemberNo();
+            String memberId = qnaRepository.getMemberIdByNo(memberNo);
+
+            resultList.add(QnaDTO.fromEntity(qna,memberId));
+        }
+
+        return resultList;
+    }
+
+    @Transactional(readOnly = true)
+    public QnaPageForm setQnaListPage(int page) {
+
+        int pagePerMember = 12; // 보여줄 멤버 수
+        int pageLimit = 10; // 하단 페이징 번호 갯수
+
+        // 전체 멤버 조회
+        Long memberCount = qnaRepository.countAll();
+
+        int totalPage = (int) (Math.ceil((double) memberCount / pagePerMember));
+
+        int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
+
+        int endPage = startPage + pageLimit - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        return new QnaPageForm(page,totalPage,startPage,endPage);
+    }
+
+    public QnaDTO getQnaInfo(Long qnaNo) {
+
+        QnaDTO qnaDetail = new QnaDTO();
+
+        Qna qna = qnaRepository.findByQnaNo(qnaNo);
+
+        Long memberNo = qna.getMemberNo();
+        String memberId = qnaRepository.getMemberIdByNo(memberNo);
+
+        qnaDetail = QnaDTO.fromEntity(qna,memberId);
+
+        return qnaDetail;
+    }
+
+//    public void replyQna
 }

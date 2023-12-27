@@ -20,4 +20,21 @@
         INSERT INTO qna
         VALUES (null,#{memberNo},#{itemNo},#{qnaClassification},#{qnaTitle},#{qnaQuestion},null,DATE_ADD(NOW(), INTERVAL -9 HOUR))
     </insert>
+
+    <select id="findAllByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.qna.domain.Qna">
+        SELECT *
+        FROM qna
+        order by qna_no desc
+        limit #{startPage}, #{pagePerMember}
+    </select>
+
+    <select id="countAll" resultType="Long">
+        SELECT count(qna_no) FROM qna
+    </select>
+
+    <select id="findByQnaNo" parameterType="Long" resultType="com.example.shoppingmall.qna.domain.Qna">
+        SELECT *
+        FROM qna
+        WHERE qna_no = #{qnaNo}
+    </select>
 </mapper>

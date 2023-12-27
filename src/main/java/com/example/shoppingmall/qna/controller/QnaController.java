@@ -37,4 +37,27 @@ public class QnaController {
 
         return "redirect:/items/{itemNo}";
     }
+
+    @GetMapping("")
+    public String showQnaList(@RequestParam(value="page", required=false, defaultValue="1") int page
+                                            ,Model model, HttpServletRequest request) {
+
+        HttpSession session = request.getSession(false);
+
+        if (session == null || session.getAttribute("loginAdmin") == null) {
+            return "redirect:/admins/login";
+        }
+
+        model.addAttribute("pageSettings", qnaService.setQnaListPage(page));
+        model.addAttribute("qnaListByPaging",qnaService.getQnaListPage(page));
+
+        return "admins/qna/admin-qna";
+    }
+
+    @GetMapping("/{qnaNo}")
+    public String showQnaDetail(@PathVariable(name="qnaNo") Long qnaNo, Model model){
+
+        model.addAttribute("qnaDetail", qnaService.getQnaInfo(qnaNo));
+        return "admins/qna/admin-qna-detail";
+    }
 }
