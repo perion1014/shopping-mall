@@ -3,8 +3,8 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
-    <title>PERION - 모든 상품들</title>
-    <meta name="description" content="최신 트렌드의 아우터, 이너, 팬츠 등 다양한 상품이 있습니다. 트렌디한 상품을 원하시는 남성분들에게 추천합니다  ">
+    <title>PERION - 팬츠</title>
+    <meta name="description" content="가장 트렌디한 팬츠들이 있습니다. 와이드팬츠, 슬렉스, 청바지, 반바지 등 다양한 남성 상품들을 지금 확인하세요.">
     <link rel="stylesheet" href="/css/pages/user/items.css">
 </head>
 <body>
@@ -13,17 +13,18 @@
 <header th:unless="${session.loginMember == null}" th:replace="~{/fragments/header :: header}">
 </header>
 <section class="main__container item-list__container">
-    <h1 class="main__title">All</h1>
+    <h1 class="main__title">Pants</h1>
     <ul class="item__sorts">
         <li class="item__sort"><a href="">등록순</a></li>
         <li class="item__sort"><a href="">가격순</a></li>
         <li class="item__sort"><a href="">평점순</a></li>
     </ul>
     <ul class="item__filters">
-        <li class="item__filter"><a class="now__page">All</a></li>
-        <li class="item__filter"><a href="/items/outer">Outer</a></li>
+        <li class="item__filter"><a href="/items">All</a></li>
+        <li class="item__filter"><a class="items/outer">Outer</a></li>
         <li class="item__filter"><a href="/items/inner">Inner</a></li>
-        <li class="item__filter"><a href="/items/pants">Pants</a></li>
+        <li class="item__filter"><a class="now__page">Pants</a></li>
+    </ul>
     </ul>
 </section>
 <main class="items__container">

@@ -22,11 +22,32 @@ public class ItemController {
 
 
     private final ItemService itemService;
-
-
     private final QnaService qnaService;
 
 
+    /*유저 쇼핑몰 조회*/
+    @GetMapping("")
+    public String showItemList() {
+        return "items/item-list";
+    }
+
+    @GetMapping("/outer")
+    public String showOuterList() {
+        return "items/item-list-outer";
+    }
+
+    @GetMapping("/inner")
+    public String showInnerList() {
+        return "items/item-list-inner";
+    }
+
+    @GetMapping("/pants")
+    public String showPantsList() {
+        return "items/item-list-pants";
+    }
+
+    @GetMapping("/search")
+    public String showSearchResult(){return "items/item-list-result";}
 
     @GetMapping("/admin")
     public String getItemList(Model model) {
@@ -101,11 +122,6 @@ public class ItemController {
         return "redirect:/items/admin";
     }
 
-
-    @GetMapping("")
-    public String showItemList() {
-        return "items/item-list";
-    }
 
     // kch QnA test
     @GetMapping("/{itemNo}")
