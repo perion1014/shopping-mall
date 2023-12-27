@@ -4,6 +4,7 @@ import com.example.shoppingmall.qna.domain.Qna;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Mapper
@@ -15,4 +16,10 @@ public interface QnaMapper {
     Long getmemberNoById(String memberId);
 
     void addQna(Qna qna);
+
+    List<Qna> findAllByPaging(Map<String, Integer> pagingSettings);
+
+    Long countAll();
+
+    Qna findByQnaNo(Long qnaNo);
 }

@@ -1,5 +1,7 @@
 package com.example.shoppingmall.qna.dto;
 
+import com.example.shoppingmall.member.domain.Member;
+import com.example.shoppingmall.member.dto.MemberSearchDTO;
 import com.example.shoppingmall.qna.domain.Qna;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,6 +35,23 @@ public class QnaDTO {
         qnaDTO.setQnaClassification(qna.getQnaClassification());
         qnaDTO.setQnaTitle(qna.getQnaTitle());
         qnaDTO.setQnaQuestion(qna.getQnaQuestion());
+        qnaDTO.setQnaAnswer(qna.getQnaAnswer());
+        qnaDTO.setQnaQuestionCreatedTime(qna.getQnaQuestionCreatedTime());
+
+        return qnaDTO;
+    }
+
+    public static QnaDTO fromEntity(Qna qna, String memberId){
+
+        QnaDTO qnaDTO = new QnaDTO();
+
+        qnaDTO.setQnaNo(qna.getQnaNo());
+        qnaDTO.setMemberNo(qna.getMemberNo());
+        qnaDTO.setItemNo(qna.getItemNo());
+        qnaDTO.setMemberId(memberId);
+        qnaDTO.setQnaClassification(qna.getQnaClassification());
+        qnaDTO.setQnaQuestion(qna.getQnaQuestion());
+        qnaDTO.setQnaTitle(qna.getQnaTitle());
         qnaDTO.setQnaAnswer(qna.getQnaAnswer());
         qnaDTO.setQnaQuestionCreatedTime(qna.getQnaQuestionCreatedTime());
 
