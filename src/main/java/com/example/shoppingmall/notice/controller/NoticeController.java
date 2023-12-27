@@ -29,6 +29,7 @@ public class NoticeController {
     @GetMapping("/admin/{noticeNo}")
     public String showNoticeDetail(@PathVariable(name="noticeNo")Long noticeNo, Model model){
         model.addAttribute("noticeUpdateDTO", noticeService.getNoticeInfo(noticeNo));
+        /////조회수 구현
         return "admins/notice/admins-notice-detail";
     }
     /*공지사항 작성 페이지 이동 Admin전용*/

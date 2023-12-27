@@ -43,6 +43,8 @@ public class NoticeService {
     @Transactional
     public NoticeUpdateDTO getNoticeInfo(Long noticeNo) {
         Notice notice = noticeRepository.findByNo(noticeNo).orElse(null);
+//        notice.setNoticeViewcount(notice.getNoticeViewcount());
+        noticeRepository.updateViewCount(noticeNo);
         return NoticeUpdateDTO.NoticeToNoticeUpdateDTO(notice);
 
     }
