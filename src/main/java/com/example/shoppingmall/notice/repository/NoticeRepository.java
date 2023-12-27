@@ -13,8 +13,8 @@ public interface NoticeRepository {
     void addNotice(Notice notice);
     Optional<Notice> findByNo(Long noticeNo);
     void updateNotice(Notice notice);
+    void updateViewCount(Long noticeNo);
     void deleteNoticeByNo(Long noticeNo);
-    void updateViewCount(Long noticeNo );
 
 
 }

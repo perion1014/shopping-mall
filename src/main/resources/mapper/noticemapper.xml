@@ -29,6 +29,10 @@
         where notice_no = #{noticeNo}
     </update>
 
+    <update id="updateViewCount" parameterType="com.example.shoppingmall.notice.domain.Notice">
+        update notice set notice_viewcount = notice_viewcount + 1 where notice_no = #{noticeNo}
+    </update>
+
     <delete id="deleteNoticeByNo" parameterType="com.example.shoppingmall.notice.domain.Notice">
         delete from notice where notice_no = #{noticeNo}
     </delete>

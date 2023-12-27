@@ -43,18 +43,11 @@ public class NoticeService {
     @Transactional
     public NoticeUpdateDTO getNoticeInfo(Long noticeNo) {
         Notice notice = noticeRepository.findByNo(noticeNo).orElse(null);
-        notice.setNoticeViewcount(notice.getNoticeViewcount()+1);
-        System.out.println("notice.getNoticeViewcount() = " + notice.getNoticeViewcount());
-
+//        notice.setNoticeViewcount(notice.getNoticeViewcount());
+        noticeRepository.updateViewCount(noticeNo);
         return NoticeUpdateDTO.NoticeToNoticeUpdateDTO(notice);
 
     }
-
-//    public void increaseViewCount(Long postId) {
-//        Post post = postRepository.findById(postId).get();
-//        post.setViewCount(post.getViewCount() + 1);
-//        postRepository.save(post);
-//    }
 
     //공지 수정
     @Transactional

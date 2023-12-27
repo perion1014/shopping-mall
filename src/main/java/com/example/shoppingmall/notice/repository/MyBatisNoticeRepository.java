@@ -39,12 +39,13 @@ public class MyBatisNoticeRepository implements NoticeRepository{
         noticeMapper.updateNotice(notice);
     }
     @Override
+    public void updateViewCount(Long noticeNo){
+        noticeMapper.updateViewCount(noticeNo);
+    }
+    @Override
     public void deleteNoticeByNo(Long noticeNo) {
         noticeMapper.deleteNoticeByNo(noticeNo);
     }
-    @Override
-    public void updateViewCount(Long noticeNo){
-        noticeMapper.updateViewCount(noticeNo);
-    };
+
 
 }
