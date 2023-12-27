@@ -43,4 +43,6 @@ public interface ItemMapper {
     void deleteItemByItemNo(Long itemNo);
 
     ItemPhotos findItemPhotosByItemNo(Long itemNo);
+
+    String selectItemThumbByItemNo(Long itemNo);
 }
