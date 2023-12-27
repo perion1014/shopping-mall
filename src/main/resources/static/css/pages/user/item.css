@@ -66,8 +66,18 @@
 .item__text{
     margin:3rem 0 5rem 0;
 }
+.item__btns{
+    display: flex;
+    gap:1rem;
+}
 .review__header{
     display: inline-block;
-    margin-right: 3rem;
+    margin: 1rem 3rem 0 0;
     font-weight: 600;
+}
+.review{
+    border-bottom: 1px solid var(--color-text);
+}
+.review__page{
+    margin-top:3rem;
 }
