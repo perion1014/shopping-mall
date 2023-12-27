@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
     <script defer src="/js/member-updatecart.js"></script>
+    <script defer src="/js/nonmember-getjsondata.js"></script>
     <title>비회원 장바구니 조회</title>
 </head>
 <body>
@@ -11,9 +12,17 @@
 
 <main>
     <h1>여기는 nonmember-cart-list입니다.</h1>
-
-
-
+        <div th:if="${session.nonmemberCartList != null}">
+            <div th:each = "nonMemberCartDTO : ${session.nonmemberCartList}">
+                <div th:text ="'장바구니 번호 : ' + ${nonMemberCartDTO.cartNo}"> </div>
+                <div th:text ="'썸네일 : ' + ${nonMemberCartDTO.itemThumbnail}"></div>
+                <div th:text ="'상품명 : ' + ${nonMemberCartDTO.itemName}"></div>
+                <div th:text ="'상품 사이즈 : ' + ${nonMemberCartDTO.itemSize}"></div>
+                <div th:text ="'상품 가격 : ' + ${nonMemberCartDTO.itemPrice}"></div>
+                <div th:text ="'상품 수량 : ' + ${nonMemberCartDTO.itemQuantity}"></div>
+                <hr>
+            </div>
+        </div>
 </main>
 
 <footer>
