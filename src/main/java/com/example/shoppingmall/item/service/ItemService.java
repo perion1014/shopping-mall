@@ -50,6 +50,7 @@ public class ItemService {
         // 파일 처리 (추가)
         String myPath = "D:/intellij/workspace/";
         String fullPath = "";
+        //D:/intellij/workspace/shopping-mall/src/main/resources/static/images/itemImages/
         String createdDirPath = myPath + fileDir + itemNo + "/";
         Files.createDirectories(Path.of(createdDirPath));
         Files.createDirectories(Path.of(createdDirPath + "thumb/"));

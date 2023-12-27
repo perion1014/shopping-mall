@@ -48,8 +48,10 @@
 
           <div class="middle">
             <div class="photo">
-<!--              <img th:src="@{images/itemImages/} + ${itemDTO.itemNo} + '/thumb/' + ${itemPhotosDTO.itemThumb}">-->
-<!--              <img th:src="/images/itemImages/23/thumb/five.png">-->
+              <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/thumb/__${itemPhotosDTO.itemThumb}__}"/>
+              <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg1}__}"/>
+              <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg2}__}"/>
+              <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg3}__}"/>
             </div>
 
             <div class="contents">
@@ -64,13 +66,10 @@
                   <div>thumbnail: <a th:text="${itemPhotosDTO.itemThumb}"></a></div>
                   <p></p>
                   <span th:if="${itemPhotosDTO.itemImg1} != null" th:text="'image1: ' + ${itemPhotosDTO.itemImg1}"></span>
-                  <button>수정</button> <button>삭제</button>
                   <br>
                   <span th:if="${itemPhotosDTO.itemImg2} != null" th:text="'image2: ' + ${itemPhotosDTO.itemImg2}"></span>
-                  <button>수정</button> <button>삭제</button>
                   <br>
                   <span th:if="${itemPhotosDTO.itemImg3} != null" th:text="'image3: ' + ${itemPhotosDTO.itemImg3}"></span>
-                  <button>수정</button> <button>삭제</button>
                   <br>
                 </div>
 

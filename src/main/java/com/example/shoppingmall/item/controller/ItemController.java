@@ -7,7 +7,6 @@ import com.example.shoppingmall.qna.dto.QnaDTO;
 import com.example.shoppingmall.qna.service.QnaService;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
