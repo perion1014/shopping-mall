@@ -1,0 +1,41 @@
+.item__container{
+    display:flex;
+    width: 100%;
+    justify-content: space-between;
+    height: 45rem;
+    padding: 6rem 15rem 0 15rem;
+    gap:2rem;
+}
+.item__img{
+    width: 45%;
+}
+.item__info{
+    width: 50%;
+}
+.item__price{
+    margin-bottom: 3rem;
+}
+.input--item{
+    margin: 0;
+    width: 4rem;
+    height: 2.5rem;
+    border-width: 1px 0 1px 0;
+    border-radius: 0;
+}
+.item__countbtns{
+    display: flex;
+    align-items: end;
+}
+.item__info-title{
+    margin-top: 1rem;
+}
+.btn--item{
+    height: 2.5rem;
+    font-size: 1.5rem;
+    border-radius: 0;
+    text-align: center;
+}
+.item__delivery--price{
+    font-size: 0.8rem;
+    color: var(--color-primary-variant);
+}

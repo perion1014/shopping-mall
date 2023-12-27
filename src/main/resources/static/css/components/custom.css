@@ -128,3 +128,7 @@
 .item__card-price{
     color: var(--color-primary-variant);
 }
+.item__container{
+    display: flex;
+    justify-content: space-between;
+}

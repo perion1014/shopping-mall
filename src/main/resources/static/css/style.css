@@ -7,8 +7,12 @@
 @import "components/icons.css";
 @import "components/footer.css";
 @import "components/section.css";
+@import "components/table.css";
+@import "components/table-notice.css";
 
 /* 각 페이지 설정 */
 @import "pages/user/home.css";
 @import "pages/user/myinfo.css";
 @import "pages/user/update-member.css";
+@import "pages/user/items.css";
+@import "pages/user/item.css";
