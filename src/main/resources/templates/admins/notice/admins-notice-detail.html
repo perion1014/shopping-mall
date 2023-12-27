@@ -23,7 +23,7 @@
                 <div class="notice_elements">
                     <span th:text="${noticeUpdateDTO.getNoticeNo()}" class="notice_no"></span>
                     <div class="notice_elements_right">
-                        <span th:text="${noticeUpdateDTO.getNoticeCreatedTime()}"></span>
+                        <span th:text="${#dates.format(noticeUpdateDTO.getNoticeCreatedTime(), 'yyyy-MM-dd')}"></span>
                         <span th:text="${noticeUpdateDTO.getNoticeViewcount()}"></span>
                     </div>
                 </div>
