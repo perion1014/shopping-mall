@@ -2,8 +2,10 @@ package com.example.shoppingmall.cart.controller;
 
 import com.example.shoppingmall.cart.domain.Cart;
 import com.example.shoppingmall.cart.dto.CartReadDTO;
+import com.example.shoppingmall.cart.dto.nonMemberCartAddDTO;
 import com.example.shoppingmall.cart.service.CartService;
 import com.example.shoppingmall.member.domain.Member;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,7 +23,7 @@ import java.util.Map;
 public class CartController {
 
     private final CartService cartService;
-    private ArrayList<CartReadDTO> cartList;
+
 
     @GetMapping("/{memberNo}")
     public String showMemberCartList(@PathVariable(name = "memberNo") Long memberNo, Model model) {
@@ -71,13 +73,17 @@ public class CartController {
                                           @RequestParam(name = "nonMemberCartItemName") String itemName,
                                           @RequestParam(name = "nonMemberCartItemSize") String itemSize,
                                           @RequestParam(name = "nonMemberCartItemPrice") Integer itemPrice,
-                                          @RequestParam(name = "nonMemberAddCartItemQuantiy") Integer itemQuantity){
+                                          @RequestParam(name = "nonMemberAddCartItemQuantiy") Integer itemQuantity,
+                                          HttpServletRequest req){
 
-        System.out.println("페이지에서 받아온 썸네일 : " + itemThumbnail);
-        System.out.println("페이지에서 받아온 이름 : " + itemName);
-        System.out.println("페이지에서 받아온 사이즈 : " + itemSize);
-        System.out.println("페이지에서 받아온 가격 : " + itemPrice);
-        System.out.println("페이지에서 받아온 수량 : " + itemQuantity);
+//        System.out.println("페이지에서 받아온 썸네일 : " + itemThumbnail);
+//        System.out.println("페이지에서 받아온 이름 : " + itemName);
+//        System.out.println("페이지에서 받아온 사이즈 : " + itemSize);
+//        System.out.println("페이지에서 받아온 가격 : " + itemPrice);
+//        System.out.println("페이지에서 받아온 수량 : " + itemQuantity);
+
+        HttpSession session = req.getSession();
+        session.setAttribute("nonmemberCartList", cartService.nonMemberAddCartItem(itemThumbnail, itemName, itemSize, itemPrice, itemQuantity, req));
 
         return "carts/itemInfo_Temp_CMS";
     }
