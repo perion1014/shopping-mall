@@ -6,7 +6,10 @@ import com.example.shoppingmall.item.service.ItemService;
 import com.example.shoppingmall.qna.dto.QnaDTO;
 import com.example.shoppingmall.qna.service.QnaService;
 
+import jakarta.servlet.ServletContext;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,7 +33,6 @@ public class ItemController {
 
     private final ItemService itemService;
     private final QnaService qnaService;
-
 
     /*유저 쇼핑몰 조회*/
     @GetMapping("")
@@ -88,61 +91,46 @@ public class ItemController {
         return "admins/item/admins-item-add";
     }
 
+    @Value("${file.dir}")
+    private String fileDir;
     @PostMapping("/admin/add")
     public String addItem(@ModelAttribute ItemAddDTO itemAddDTO,
                           @RequestParam(name="itemThumb") MultipartFile itemThumb,
                           @RequestParam("itemImg1") MultipartFile itemImg1,
                           @RequestParam("itemImg2") MultipartFile itemImg2,
-                          @RequestParam("itemImg3") MultipartFile itemImg3){
+                          @RequestParam("itemImg3") MultipartFile itemImg3) throws IOException{
+
+
         itemService.saveItem(itemAddDTO);
         Long itemNo = itemService.getMaxItemNo();
-
-        // 파일 처리
-        String itemThumbFilename = saveFile(itemThumb, "item_thumb");
-        String itemImg1Filename = saveFile(itemImg1, "item_img1");
-        String itemImg2Filename = saveFile(itemImg2, "item_img2");
-        String itemImg3Filename = saveFile(itemImg3, "item_img3");
-
-        ItemPhotosDTO itemPhotosDTO = new ItemPhotosDTO();
-        itemPhotosDTO.setItemNo(itemNo);
-        itemPhotosDTO.setItemThumb(itemThumbFilename);
-        itemPhotosDTO.setItemImg1(itemImg1Filename);
-        itemPhotosDTO.setItemImg2(itemImg2Filename);
-        itemPhotosDTO.setItemImg3(itemImg3Filename);
-
-
-
         itemService.saveItemPhotos(itemNo, itemAddDTO);
         itemService.saveItemStock(itemNo, itemAddDTO);
 
 
+        // 파일 처리
+        String myPath = "D:/intellij/workspace/";
+        String fullPath = "";
+        String createdDirPath = myPath + fileDir + itemNo + "/";
+        Files.createDirectories(Path.of(createdDirPath));
+        if (!itemThumb.isEmpty()) {
+            fullPath = createdDirPath + itemThumb.getOriginalFilename();
+            itemThumb.transferTo(new File(fullPath));
+        }
+        if (!itemImg1.isEmpty()) {
+            fullPath = createdDirPath + itemImg1.getOriginalFilename();
+            itemImg1.transferTo(new File(fullPath));
+        }
+        if (!itemImg2.isEmpty()) {
+            fullPath = createdDirPath + itemImg2.getOriginalFilename();
+            itemImg2.transferTo(new File(fullPath));
+        }
+        if (!itemImg3.isEmpty()) {
+            fullPath = createdDirPath + itemImg3.getOriginalFilename();
+            itemImg3.transferTo(new File(fullPath));
+        }
+
         return "redirect:/items/admin/add";
     }
-
-    public String saveFile(MultipartFile file, String fieldName) {
-        if(file != null && !file.isEmpty()) {
-            String originalFilename = file.getOriginalFilename();
-            String filename =
-                    UUID.randomUUID() + "_" + originalFilename;
-
-            try {
-                // Get the path to the static/images/itemImages directory
-                Resource resource = new ClassPathResource("static/images/itemImages/");
-                Path uploadPath = Path.of(resource.getURI());
-
-                // Copy the file to the target directory
-                Files.copy(file.getInputStream(), uploadPath.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
-
-                return filename;
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Handle the exception (e.g., log, show error to user)
-                return null;
-            }
-        }
-        return null;
-    }
-
 
 
     @GetMapping("/admin/{itemNo}")

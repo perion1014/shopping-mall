@@ -8,6 +8,10 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: "true"
 
+# File I/O
+file:
+  dir: shopping-mall/src/main/resources/static/images/itemImages/
+
 # Dev
 spring:
   thymeleaf:

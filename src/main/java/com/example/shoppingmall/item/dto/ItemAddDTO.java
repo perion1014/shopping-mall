@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -28,10 +29,10 @@ public class ItemAddDTO {
     private String itemDetail;
 
     // ItemPhotos Fields
-    private String itemThumb;
-    private String itemImg1;
-    private String itemImg2;
-    private String itemImg3;
+    private MultipartFile itemThumb;
+    private MultipartFile itemImg1;
+    private MultipartFile itemImg2;
+    private MultipartFile itemImg3;
     private String itemThumbModified;
     private String itemImg1Modified;
     private String itemImg2Modified;
@@ -68,10 +69,10 @@ public class ItemAddDTO {
     public static ItemPhotos itemAddDTOToItemPhotos(Long itemNo, ItemAddDTO itemAddDTO) {
         ItemPhotos itemPhotos = new ItemPhotos();
         itemPhotos.setItemNo(itemNo);
-        itemPhotos.setItemThumb(itemAddDTO.getItemThumb());
-        itemPhotos.setItemImg1(itemAddDTO.getItemImg1());
-        itemPhotos.setItemImg2(itemAddDTO.getItemImg2());
-        itemPhotos.setItemImg3(itemAddDTO.getItemImg3());
+        itemPhotos.setItemThumb(itemAddDTO.getItemThumb().getOriginalFilename());
+        itemPhotos.setItemImg1(itemAddDTO.getItemImg1().getOriginalFilename());
+        itemPhotos.setItemImg2(itemAddDTO.getItemImg2().getOriginalFilename());
+        itemPhotos.setItemImg3(itemAddDTO.getItemImg3().getOriginalFilename());
         itemPhotos.setItemThumbModified(ItemAddDTO.generateRandomFileName(itemAddDTO.getItemThumbModified()));
         itemPhotos.setItemImg1Modified(ItemAddDTO.generateRandomFileName(itemAddDTO.getItemImg1Modified()));
         itemPhotos.setItemImg2Modified(ItemAddDTO.generateRandomFileName(itemAddDTO.getItemImg2Modified()));
