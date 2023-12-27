@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.*;
 public class NoticeController {
 
     private final NoticeService noticeService;
+
     /*공지사항 리스트 출력 전체 공개용*/
-    @GetMapping("/")
+    @GetMapping("")
     public String showNoticeList(Model model,
                                        @RequestParam(value="page", required=false, defaultValue="1") int page){
         model.addAttribute("pageSettings", noticeService.setNoticeListPage(page));
