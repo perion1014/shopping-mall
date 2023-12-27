@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:admin-head>
+<!--  <div-->
+<!--          th:remove="tag"-->
+<!--          th:replace="~{/fragments/admin-head :: admin-head} "-->
+<!--  ></div>-->
+  <link rel="stylesheet" href="/css/pages/admins/admins-notice-detail.css"/>
+<!--  <script type="module" src="/js/pages/home.js" defer></script>-->
+</head>
+<body>
+<!--<header-->
+<!--        th:replace="~{/fragments/admin-login-header :: admin-login-header}"-->
+<!--&gt;</header>-->
+
+<!--<aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}"></aside>-->
+<header th:replace="~{/fragments/header :: header}"></header>
+<main>
+  <div class="main">
+    <div class="admin_notice_detail">공지 상세</div>
+    <form th:action="@{|/notice/admin/${noticeUpdateDTO.getNoticeNo()}/update|}" method="get">
+      <div class="notice_detail">
+        <hr/>
+        <div class="notice_elements">
+          <span th:text="${noticeUpdateDTO.getNoticeNo()}" class="notice_no"></span>
+          <div class="notice_elements_right">
+            <span th:text="${#dates.format(noticeUpdateDTO.getNoticeCreatedTime(), 'yyyy-MM-dd')}"></span>
+            <span th:text="${noticeUpdateDTO.getNoticeViewcount()}"></span>
+          </div>
+        </div>
+        <hr/>
+        <div th:text="${noticeUpdateDTO.getNoticeTitle()}" class="notice_title"></div>
+        <hr/>
+        <div th:text="${noticeUpdateDTO.getNoticeContent()}" class="notice_contents"></div>
+        <hr/>
+
+<!--        <div class="notice_btn">-->
+<!--          <button>수정</button>-->
+<!--        </div>-->
+      </div>
+    </form>
+<!--    <div>-->
+<!--      <form name="deleteNotice" th:action="@{|/notice/admin/${noticeUpdateDTO.getNoticeNo()}/delete|}" method="post">-->
+<!--        <button>삭제</button>-->
+<!--      </form>-->
+<!--    </div>-->
+  </div>
+  <!--main div-->
+  </div>
+</main>
+</body>
+</html>

@@ -15,9 +15,25 @@ public class NoticeController {
 
     private final NoticeService noticeService;
 
-    /*공지사항 리스트 출력*/
-    @GetMapping("/admin")
+    /*공지사항 리스트 출력 전체 공개용*/
+    @GetMapping("")
     public String showNoticeList(Model model,
+                                       @RequestParam(value="page", required=false, defaultValue="1") int page){
+        model.addAttribute("pageSettings", noticeService.setNoticeListPage(page));
+        model.addAttribute("noticeListByPaging", noticeService.getNoticeListPage(page));
+
+        return "notice/home-notice";
+    }
+    /*공지사항 디테일 전체 공개용*/
+    @GetMapping("/{noticeNo}")
+    public String showNoticeDetail(@PathVariable(name="noticeNo")Long noticeNo, Model model){
+        model.addAttribute("noticeUpdateDTO", noticeService.getNoticeInfo(noticeNo));
+        return "notice/home-notice-detail";
+    }
+
+    /*공지사항 리스트 출력 Admin전용*/
+    @GetMapping("/admin")
+    public String showAdminNoticeList(Model model,
                                  @RequestParam(value="page", required=false, defaultValue="1") int page){
 
         model.addAttribute("pageSettings", noticeService.setNoticeListPage(page));
@@ -27,9 +43,8 @@ public class NoticeController {
     }
     /*공지사항 디테일 Admin전용*/
     @GetMapping("/admin/{noticeNo}")
-    public String showNoticeDetail(@PathVariable(name="noticeNo")Long noticeNo, Model model){
+    public String showAdminNoticeDetail(@PathVariable(name="noticeNo")Long noticeNo, Model model){
         model.addAttribute("noticeUpdateDTO", noticeService.getNoticeInfo(noticeNo));
-        /////조회수 구현
         return "admins/notice/admins-notice-detail";
     }
     /*공지사항 작성 페이지 이동 Admin전용*/
