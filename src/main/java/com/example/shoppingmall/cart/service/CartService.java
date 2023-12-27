@@ -62,7 +62,6 @@ public class CartService {
         List<nonMemberCartAddDTO> nonmemberCartList = new ArrayList<>();
 
         if(session.getAttribute("nonmemberCartList") == null){
-            System.out.println("세션에 객체가 없을 경우로 진입");
             nonMemberCartAddDTO tempDTO = new nonMemberCartAddDTO();
             tempDTO.setCartNo(0L);
             tempDTO.setItemThumbnail(thumbnail);
@@ -71,12 +70,6 @@ public class CartService {
             tempDTO.setItemPrice(price);
             tempDTO.setItemQuantity(Quantity);
             nonmemberCartList.add(tempDTO);
-            System.out.println("객체 담김 테스트 : " + nonmemberCartList.get(0).getCartNo());
-            System.out.println("객체 담김 테스트 : " + nonmemberCartList.get(0).getItemThumbnail());
-            System.out.println("객체 담김 테스트 : " + nonmemberCartList.get(0).getItemName());
-            System.out.println("객체 담김 테스트 : " + nonmemberCartList.get(0).getItemSize());
-            System.out.println("객체 담김 테스트 : " + nonmemberCartList.get(0).getItemPrice());
-            System.out.println("객체 담김 테스트 : " + nonmemberCartList.get(0).getItemQuantity());
 
             return nonmemberCartList;
         } else{
@@ -92,6 +85,22 @@ public class CartService {
             return nonmemberCartList;
         }
 
+    }
+
+    public List<nonMemberCartAddDTO> nonMemberUpdateCartItem(Integer cartIndex, Integer changeQuantity, HttpSession session){
+        List<nonMemberCartAddDTO> tempDTOList = (List<nonMemberCartAddDTO>)session.getAttribute("nonmemberCartList");
+        nonMemberCartAddDTO tempDTO = tempDTOList.get(cartIndex);
+        if(changeQuantity == 1){
+            if(tempDTO.getItemQuantity() != 99){
+                tempDTO.setItemQuantity(tempDTO.getItemQuantity() + changeQuantity);
+            }
+        } else if(changeQuantity == -1){
+               if(tempDTO.getItemQuantity() != 1){
+                tempDTO.setItemQuantity(tempDTO.getItemQuantity() + changeQuantity);
+            }
+        }
+        tempDTOList.set(cartIndex, tempDTO);
+        return tempDTOList;
     }
 
 }

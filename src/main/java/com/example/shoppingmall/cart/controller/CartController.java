@@ -24,7 +24,6 @@ public class CartController {
 
     private final CartService cartService;
 
-
     @GetMapping("/{memberNo}")
     public String showMemberCartList(@PathVariable(name = "memberNo") Long memberNo, Model model) {
         List<CartReadDTO> cartDTOList = cartService.getCartList(memberNo);
@@ -76,18 +75,24 @@ public class CartController {
                                           @RequestParam(name = "nonMemberAddCartItemQuantiy") Integer itemQuantity,
                                           HttpServletRequest req){
 
-//        System.out.println("페이지에서 받아온 썸네일 : " + itemThumbnail);
-//        System.out.println("페이지에서 받아온 이름 : " + itemName);
-//        System.out.println("페이지에서 받아온 사이즈 : " + itemSize);
-//        System.out.println("페이지에서 받아온 가격 : " + itemPrice);
-//        System.out.println("페이지에서 받아온 수량 : " + itemQuantity);
-
         HttpSession session = req.getSession();
         session.setAttribute("nonmemberCartList", cartService.nonMemberAddCartItem(itemThumbnail, itemName, itemSize, itemPrice, itemQuantity, req));
 
         return "carts/itemInfo_Temp_CMS";
     }
 
+    @PostMapping("/{cartNo}/update")
+    public String updateItemsInNonMemberCart(@RequestBody Map<String, String> jsonData, HttpServletRequest req) {
+        Integer changeQuantity = Integer.parseInt(jsonData.get("changeQuantity"));
+        Integer cartIndex = Integer.parseInt(jsonData.get("cartListIndex"));
+
+        HttpSession session = req.getSession();
+        session.setAttribute("nonmemberCartList", cartService.nonMemberUpdateCartItem(cartIndex, changeQuantity, session));
+        //System.out.println("Java로 전송받은 변경 수량 : " + changeQuantity);
+        //System.out.println("Java로 전송받은 리스트 인덱스 : " + cartIndex);
+
+        return "carts/nonmember-cart-list";
+    }
 }
 
 
