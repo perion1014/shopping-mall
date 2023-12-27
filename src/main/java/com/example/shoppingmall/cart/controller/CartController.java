@@ -97,7 +97,6 @@ public class CartController {
     @PostMapping("/{cartNo}/delete")
     public String deleteItemsInNonMemberCart(@RequestBody Map<String, String> jsonData, HttpServletRequest req){
         Integer cartIndex = Integer.parseInt(jsonData.get("cartNo"));
-        System.out.println("JSON으로 전달받은 Index 번호 : " + cartIndex);
 
         HttpSession session = req.getSession();
         session.setAttribute("nonmemberCartList", cartService.nonMemberDeleteCartItem(cartIndex, session));

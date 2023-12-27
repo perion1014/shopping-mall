@@ -13,8 +13,8 @@
 <main>
     <h1>여기는 nonmember-cart-list입니다.</h1><hr>
         <div th:if="${session.nonmemberCartList != null}">
-            <div th:each = "nonMemberCartDTO : ${session.nonmemberCartList}">
-                <div th:text ="'장바구니 번호 : ' + ${nonMemberCartDTO.cartNo+1}"> </div>
+            <div th:each = "nonMemberCartDTO, Index : ${session.nonmemberCartList}">
+                <div th:text ="'장바구니 번호 : ' + ${Index.index+1}"> </div>
                 <div th:text ="'썸네일 : ' + ${nonMemberCartDTO.itemThumbnail}"></div>
                 <div th:text ="'상품명 : ' + ${nonMemberCartDTO.itemName}"></div>
                 <div th:text ="'상품 사이즈 : ' + ${nonMemberCartDTO.itemSize}"></div>
@@ -28,8 +28,8 @@
                         th:cartNo = "${nonMemberCartDTO.cartNo}"
                         th:onclick= "updateQuantity(1, this.getAttribute('cartNo'))"> + </button>
                 <button th:id = "'deleteBtn_' + ${nonMemberCartDTO.cartNo}"
-                        th:cartNo = "${nonMemberCartDTO.cartNo}"
-                        th:onclick= "sendCartDeleteJson(this.getAttribute('cartNo'))"> 삭제 </button>
+                        th:cartIndex = "${Index.index}"
+                        th:onclick= "sendCartDeleteJson(this.getAttribute('cartIndex'))"> 삭제 </button>
                 <hr>
             </div>
         </div>

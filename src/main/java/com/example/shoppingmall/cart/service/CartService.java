@@ -105,7 +105,15 @@ public class CartService {
 
     public List<nonMemberCartAddDTO> nonMemberDeleteCartItem(Integer cartIndex, HttpSession session){
 
-        return null;
+        List<nonMemberCartAddDTO> tempDTOList = (List<nonMemberCartAddDTO>)session.getAttribute("nonmemberCartList");
+        System.out.println("메소드에서 전달받은 카트 인덱스 : " + cartIndex);
+        tempDTOList.remove(cartIndex.intValue());
+
+        for(int i = 0; i < tempDTOList.size(); i++){
+            System.out.println("삭제 후 요소 순환 확인 : " + tempDTOList.get(i).getCartNo());
+        }
+
+        return tempDTOList;
     }
 
 }

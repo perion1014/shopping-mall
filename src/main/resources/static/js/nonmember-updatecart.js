@@ -36,8 +36,6 @@ function updateQuantity(changeQuantity, cartListIndex){
 
 function sendCartDeleteJson(cartNo){
 
-    alert('삭제 온버튼 함수 진입');
-
     fetch('/carts/' + (cartNo+1) + '/delete', {
         method: 'POST',
         headers: {
@@ -49,7 +47,8 @@ function sendCartDeleteJson(cartNo){
 
     }).then(response => response.text())
         .then(data => {
-            alert('JSON 전송 성공');
+            alert('삭제되었습니다.');
+            location.reload();
         }).catch(error => {
             alert('JSON 전송 실패 : 사유 - ' + error);
     })
