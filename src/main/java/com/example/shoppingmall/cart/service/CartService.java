@@ -103,4 +103,9 @@ public class CartService {
         return tempDTOList;
     }
 
+    public List<nonMemberCartAddDTO> nonMemberDeleteCartItem(Integer cartIndex, HttpSession session){
+
+        return null;
+    }
+
 }

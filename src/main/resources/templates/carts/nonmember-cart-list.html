@@ -27,7 +27,9 @@
                 <button th:id="'increaseBtn_' + ${nonMemberCartDTO.cartNo}"
                         th:cartNo = "${nonMemberCartDTO.cartNo}"
                         th:onclick= "updateQuantity(1, this.getAttribute('cartNo'))"> + </button>
-                <div></div>
+                <button th:id = "'deleteBtn_' + ${nonMemberCartDTO.cartNo}"
+                        th:cartNo = "${nonMemberCartDTO.cartNo}"
+                        th:onclick= "sendCartDeleteJson(this.getAttribute('cartNo'))"> 삭제 </button>
                 <hr>
             </div>
         </div>
