@@ -33,3 +33,24 @@ function updateQuantity(changeQuantity, cartListIndex){
     })
 
 }
+
+function sendCartDeleteJson(cartNo){
+
+    alert('삭제 온버튼 함수 진입');
+
+    fetch('/carts/' + (cartNo+1) + '/delete', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            cartNo: cartNo,
+        }),
+
+    }).then(response => response.text())
+        .then(data => {
+            alert('JSON 전송 성공');
+        }).catch(error => {
+            alert('JSON 전송 실패 : 사유 - ' + error);
+    })
+}
