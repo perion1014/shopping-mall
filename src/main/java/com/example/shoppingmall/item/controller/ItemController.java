@@ -6,24 +6,15 @@ import com.example.shoppingmall.item.service.ItemService;
 import com.example.shoppingmall.qna.dto.QnaDTO;
 import com.example.shoppingmall.qna.service.QnaService;
 
-import jakarta.servlet.ServletContext;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -91,62 +82,28 @@ public class ItemController {
         return "admins/item/admins-item-add";
     }
 
-    @Value("${file.dir}")
-    private String fileDir;
     @PostMapping("/admin/add")
     public String addItem(@ModelAttribute ItemAddDTO itemAddDTO,
                           @RequestParam(name="itemThumb") MultipartFile itemThumb,
                           @RequestParam("itemImg1") MultipartFile itemImg1,
                           @RequestParam("itemImg2") MultipartFile itemImg2,
                           @RequestParam("itemImg3") MultipartFile itemImg3) throws IOException{
-
-
         itemService.saveItem(itemAddDTO);
         Long itemNo = itemService.getMaxItemNo();
-        itemService.saveItemPhotos(itemNo, itemAddDTO);
+        itemService.saveItemPhotos(itemNo, itemAddDTO, itemThumb, itemImg1, itemImg2, itemImg3);
         itemService.saveItemStock(itemNo, itemAddDTO);
-
-
-        // 파일 처리
-        String myPath = "D:/intellij/workspace/";
-        String fullPath = "";
-        String createdDirPath = myPath + fileDir + itemNo + "/";
-        Files.createDirectories(Path.of(createdDirPath));
-        if (!itemThumb.isEmpty()) {
-            fullPath = createdDirPath + itemThumb.getOriginalFilename();
-            itemThumb.transferTo(new File(fullPath));
-        }
-        if (!itemImg1.isEmpty()) {
-            fullPath = createdDirPath + itemImg1.getOriginalFilename();
-            itemImg1.transferTo(new File(fullPath));
-        }
-        if (!itemImg2.isEmpty()) {
-            fullPath = createdDirPath + itemImg2.getOriginalFilename();
-            itemImg2.transferTo(new File(fullPath));
-        }
-        if (!itemImg3.isEmpty()) {
-            fullPath = createdDirPath + itemImg3.getOriginalFilename();
-            itemImg3.transferTo(new File(fullPath));
-        }
-
         return "redirect:/items/admin/add";
     }
 
 
     @GetMapping("/admin/{itemNo}")
-    @ResponseBody
-    public String goToItemDetailPage(@PathVariable(name="itemNo") Long itemNo, Model model) throws IOException{
+    public String goToItemDetailPage(@PathVariable(name="itemNo") Long itemNo, Model model){
         ItemDTO itemDTO = itemService.findItemByNo2(itemNo);
         ItemPhotosDTO itemPhotosDTO = itemService.findItemPhotosByNo(itemNo);
         List<ItemStockDTO> itemStockDTOList = itemService.findItemStockListByNo(itemNo);
         model.addAttribute("itemDTO", itemDTO);
         model.addAttribute("itemPhotosDTO", itemPhotosDTO);
         model.addAttribute("itemStockDTOList", itemStockDTOList);
-
-        // Add the filename for the item_thumb to the model
-        String itemThumbFilename = itemService.selectItemThumbByItemNo(itemNo);
-        model.addAttribute("itemThumbFilename", itemThumbFilename);
-
 
         return "admins/item/admins-item-detail";
     }

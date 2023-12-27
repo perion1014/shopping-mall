@@ -28,9 +28,9 @@
               <span th:text="'no.' + ${itemDTO.itemNo}"></span>
               <span>
                 <select name="itemCategory" th:value="${itemDTO.itemCategory}">
-                  <option value="top" th:selected="${itemDTO.itemCategory == 'top'}">top</option>
-                  <option value="bottom" th:selected="${itemDTO.itemCategory == 'bottom'}">bottom</option>
                   <option value="outer" th:selected="${itemDTO.itemCategory == 'outer'}">outer</option>
+                  <option value="inner" th:selected="${itemDTO.itemCategory == 'inner'}">inner</option>
+                  <option value="pants" th:selected="${itemDTO.itemCategory == 'pants'}">pants</option>
                 </select>
               </span>
               <span>
@@ -47,16 +47,17 @@
           </div>
 
           <div class="middle">
-            <div class="photo" th:if="${itemPhotosDTO.itemThumb}">
-              <img th:src="@{/images/items/${itemPhotosDTO.itemThumb}}">
+            <div class="photo">
+<!--              <img th:src="@{images/itemImages/} + ${itemDTO.itemNo} + '/thumb/' + ${itemPhotosDTO.itemThumb}">-->
+<!--              <img th:src="/images/itemImages/23/thumb/five.png">-->
             </div>
 
             <div class="contents">
               <div class="contents_info">
                 <div class="size_stock">
-                  <span>S <input name="itemSize1" th:value="${itemStockDTOList[0].itemStockValue}"></span>
-                  <span>M <input name="itemSize2" th:value="${itemStockDTOList[1].itemStockValue}"></span>
-                  <span>L <input name="itemSize3" th:value="${itemStockDTOList[2].itemStockValue}"></span>
+                  <div>S <input name="itemSize1" th:value="${itemStockDTOList[0].itemStockValue}"></div>
+                  <div>M <input name="itemSize2" th:value="${itemStockDTOList[1].itemStockValue}"></div>
+                  <div>L <input name="itemSize3" th:value="${itemStockDTOList[2].itemStockValue}"></div>
                 </div>
 
                 <div class="image">
