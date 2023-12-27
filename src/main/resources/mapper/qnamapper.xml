@@ -10,9 +10,14 @@
     </select>
 
     <select id="getMemberIdByNo" parameterType="Long" resultType="String">
-        select member_id
-        from member
-        where member_no = #{member_no}
+        SELECT member_id
+        FROM member
+        WHERE member_no = #{memberNo}
     </select>
 
+
+    <insert id="addQna" parameterType="com.example.shoppingmall.qna.domain.Qna">
+        INSERT INTO qna
+        VALUES (null,#{memberNo},#{itemNo},#{qnaClassification},#{qnaTitle},#{qnaQuestion},null,DATE_ADD(NOW(), INTERVAL -9 HOUR))
+    </insert>
 </mapper>
