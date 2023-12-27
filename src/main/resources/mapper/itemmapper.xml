@@ -110,4 +110,8 @@
         select * from item_photos where item_no = #{itemNo}
     </select>
 
+    <select id="selectItemThumbByItemNo" parameterType="long" resultType="com.example.shoppingmall.item.domain.ItemPhotos">
+        select item_thumb from item_photos where item_no = #{itemNo}
+    </select>
+
 </mapper>

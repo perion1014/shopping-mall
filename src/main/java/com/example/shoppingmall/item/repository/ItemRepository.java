@@ -43,4 +43,5 @@ public interface ItemRepository {
 
     ItemPhotos findItemPhotosByItemNo(Long itemNo);
 
+    String selectItemThumbByItemNo(Long itemNo);
 }
