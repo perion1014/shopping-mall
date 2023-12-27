@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head th:admin-head>
-<!--  <div-->
-<!--          th:remove="tag"-->
-<!--          th:replace="~{/fragments/admin-head :: admin-head} "-->
-<!--  ></div>-->
-  <link rel="stylesheet" href="/css/pages/admins/admins-notice-detail.css"/>
-<!--  <script type="module" src="/js/pages/home.js" defer></script>-->
+  <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
+  <!--CSS-->
+  <script type="module" src="/js/pages/home.js" defer></script>
 </head>
 <body>
-<!--<header-->
-<!--        th:replace="~{/fragments/admin-login-header :: admin-login-header}"-->
-<!--&gt;</header>-->
-
-<!--<aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}"></aside>-->
-<header th:replace="~{/fragments/header :: header}"></header>
+<header th:if="${session.loginMember != null}" th:replace="~{/fragments/login-header :: header}">
+</header>
+<header th:unless="${session.loginMember == null}" th:replace="~{/fragments/header :: header}">
+</header>
 <main>
   <div class="main">
     <div class="admin_notice_detail">공지 상세</div>

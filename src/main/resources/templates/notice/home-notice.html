@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head th:admin-head>
-    <div th:remove="tag" th:replace="~{/fragments/admin-head :: admin-head} "></div>
+    <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
     <!--CSS-->
-    <link rel="stylesheet" href="/css/pages/admins/admins-notice.css">
-<!--    <script type="module" src="/js/pages/home.js" defer></script>-->
+    <script type="module" src="/js/pages/home.js" defer></script>
 </head>
 <body>
-<!--<header th:replace="~{/fragments/admin-login-header :: admin-login-header}">-->
+<header th:if="${session.loginMember != null}" th:replace="~{/fragments/login-header :: header}">
 </header>
-
-<!--<aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}">-->
-<!--</aside>-->
-<header th:replace="~{/fragments/header :: header}"></header>
+<header th:unless="${session.loginMember == null}" th:replace="~{/fragments/header :: header}">
+</header>
 <main>
     <div class="main">
         <div class="admin_notice">공지사항</div>
@@ -39,7 +36,6 @@
             <tr>
                 <th>No</th>
                 <th>제목</th>
-<!--                <th>작성자</th>-->
                 <th>작성일자</th>
                 <th>조회수</th>
                 <th></th>
@@ -49,20 +45,8 @@
             <tr th:onclick="|location.href='@{|/notice/${noticeSearchDTO.noticeNo}|}'|">
                 <td th:text="${noticeSearchDTO.noticeNo}"></td>
                 <td th:text="${noticeSearchDTO.noticeTitle}"></td>
-<!--                <td name="writer">admin</td>-->
                 <td th:text="${#dates.format(noticeSearchDTO.noticeCreatedTime, 'yyyy-MM-dd')}"></td>
                 <td th:text="${noticeSearchDTO.noticeViewcount}"></td>
-<!--                <td>-->
-<!--                    <form name="deleteNotice" th:action="@{|/notice/admin/${noticeSearchDTO.noticeNo}/delete|}" method="post">-->
-<!--                        <button>삭제</button>-->
-<!--                    </form>-->
-<!--                </td>-->
-            </tr>
-            </tbody>
-        </table>
-        <form action="admin/add" method="get">
-            <div class="notice_btn">
-<!--                <button>등록</button>-->
             </div>
         </form>
         <div class="admin_notice_page">

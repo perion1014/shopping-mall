@@ -21,7 +21,7 @@
 
         <form class="notice_add_form" action="/notice/admin/add" method="post">
           <hr />
-          <input name="adminNo" type="text" th:value="${session.loginAdmin.adminNo}"
+          <input name="adminNo" type="hidden" th:value="${session.loginAdmin.adminNo}"
           />
           <input
             name="noticeTitle"
@@ -37,6 +37,7 @@
             rows="20"
             cols="20"
             maxlength="254"
+            placeholder="내용"
           ></textarea>
           <hr />
 
