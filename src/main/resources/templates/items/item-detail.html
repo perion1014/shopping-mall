@@ -2,11 +2,55 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
-    <title>PERION 공식 온라인 쇼핑몰</title>
-    <meta name="description" content="최신 트렌드의 아우터, 이너, 팬츠 등 다양한 상품이 있습니다. 트렌디한 상품을 원하시는 남성분들에게 추천합니다  ">
+    <title>PERION - 상품 상세</title>
+    <meta name="description" content="상품 정보, Q&A, 가격 등 다양한 상품의 정보를 확인하세요.">
     <link rel="stylesheet" href="/css/pages/user/items.css">
 </head>
 <body>
+<header th:if="${session.loginMember != null}" th:replace="~{/fragments/login-header :: header}">
+</header>
+<header th:unless="${session.loginMember == null}" th:replace="~{/fragments/header :: header}">
+</header>
+<main class="main__container">
+    <section class="item__container">
+        <img class="item__img" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp"/>
+        <div class="slide__info item__info">
+            <h1 class="item__card-name">상품명을 입력해주세요</h1>
+            <div class="item__rank">
+                <img class="item__star" src="/images/icons/star.svg">
+                <img class="item__star" src="/images/icons/star.svg">
+                <img class="item__star" src="/images/icons/star.svg">
+                <img class="item__star" src="/images/icons/star.svg">
+                <img class="item__star" src="/images/icons/star.svg">
+            </div>
+            <h2 class="item__card-price item__price">100,000원</h2>
 
+            <h5 class="label__title item__info-title">사이즈</h5>
+            <form class="item__sizebtns">
+                <input type="radio"> s
+                <input type="radio"> m
+                <input type="radio"> l
+            </form>
+            <div class="item__info-title">
+                <label class="label" for="item__count">
+                    <h5 class="label__title">상품 수량</h5>
+                    <form class="item__countbtns">
+                        <button class="btn btn--xs btn--white btn--item">-</button>
+                        <input id="item__count" class="input input--item">
+                        <button class="btn btn--xs btn--white btn--item">+</button>
+                    </form>
+
+             </label>
+            </div>
+            <h5 class="label__title item__info-title">배송비</h5>
+            <span class="item__delivery--price">3000원(10만원 구매 이상 시 무료)</span>
+            <div class="slide__btns">
+                <button class="btn btn--index btn--white">장바구니 추가</button>
+                <button class="btn btn--index btn--black">구매하기</button>
+            </div>
+
+        </div>
+    </section>
+</main>
 </body>
 </html>
