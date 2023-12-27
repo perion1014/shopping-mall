@@ -39,6 +39,10 @@
         </tr>
         </tbody>
     </table>
-    <button th:onclick="|window.location.href='/qna/' + ${itemNo}+ '/add'|">qna등록</button>
+
+    <button th:if="${session.loginMember != null}" th:onclick="|window.location.href='/qna/' + ${session.loginMember.getMemberNo()} + '/${itemNo}'|">qna등록</button>
+    <button th:unless="${session.loginMember != null}" th:onclick="|window.location.href='/members/login'|">
+        qna등록
+    </button>
 </body>
 </html>

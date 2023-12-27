@@ -1,10 +1,12 @@
 package com.example.shoppingmall.qna.service;
 
 import com.example.shoppingmall.qna.domain.Qna;
+import com.example.shoppingmall.qna.dto.QnaAddDTO;
 import com.example.shoppingmall.qna.dto.QnaDTO;
 import com.example.shoppingmall.qna.repository.QnaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.List;
 public class QnaService {
     private final QnaRepository qnaRepository;
 
+    @Transactional
     public List<QnaDTO> getQnaByItemNo(Long itemNo) {
 
         // 출력할 QnaDTO List 만듬
@@ -36,5 +39,10 @@ public class QnaService {
         }
 
         return QnaDTOList;
+    }
+
+    @Transactional
+    public void addQna(Long itemNo, Long memberNo, QnaAddDTO qnaAddDTO) {
+        qnaRepository.addQna(QnaAddDTO.QnaAddDTOToQna(memberNo,itemNo,qnaAddDTO));
     }
 }

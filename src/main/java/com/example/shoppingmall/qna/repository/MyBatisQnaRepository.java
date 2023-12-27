@@ -22,4 +22,8 @@ public class MyBatisQnaRepository implements QnaRepository {
     public String getMemberIdByNo(Long memberNo) {
         return qnaMapper.getMemberIdByNo(memberNo);
     }
+
+    @Override
+    public void addQna(Qna qna) { qnaMapper.addQna(qna); }
+
 }

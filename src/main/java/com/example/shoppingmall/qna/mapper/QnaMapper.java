@@ -11,4 +11,8 @@ public interface QnaMapper {
     List<Qna> findByItemNo(Long itemNo);
 
     String getMemberIdByNo(Long memberNo);
+
+    Long getmemberNoById(String memberId);
+
+    void addQna(Qna qna);
 }

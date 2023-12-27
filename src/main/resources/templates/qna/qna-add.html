@@ -6,5 +6,27 @@
 </head>
 <body>
     해위
+    <form th:action="@{'/qna/' + ${session.loginMember.getMemberNo()} + '/' + ${itemNo}}" method="post" >
+
+        <div>
+            <input type="text" name="qnaTitle" placeholder="제목">
+            <select name="qnaClassification">
+                <option value="사이즈">사이즈</option>
+                <option value="배송">배송</option>
+                <option value="재입고">재입고</option>
+                <option value="상품상세문의">상품상세문의</option>
+            </select>
+        </div>
+        <p/>
+        <div>
+             <textarea
+                     name="qnaQuestion"
+                     maxlength="400"
+             ></textarea>
+        </div>
+        <button type="submit">등록</button>
+    </form>
+
+
 </body>
 </html>
