@@ -35,4 +35,17 @@ public class ItemPhotosDTO {
         return itemPhotosDTO;
     }
 
+    public static ItemPhotos toItemPhotos(Long itemNo, ItemPhotosDTO itemPhotosDTO) {
+        ItemPhotos itemPhotos = new ItemPhotos();
+        itemPhotos.setItemNo(itemNo);
+        itemPhotos.setItemThumb(itemPhotosDTO.getItemThumb());
+        itemPhotos.setItemImg1(itemPhotosDTO.getItemImg1());
+        itemPhotos.setItemImg2(itemPhotosDTO.getItemImg2());
+        itemPhotos.setItemImg3(itemPhotosDTO.getItemImg3());
+        itemPhotos.setItemThumbModified(itemPhotosDTO.getItemThumbModified());
+        itemPhotos.setItemImg1Modified(itemPhotosDTO.getItemImg1Modified());
+        itemPhotos.setItemImg2Modified(itemPhotosDTO.getItemImg2Modified());
+        itemPhotos.setItemImg3Modified(itemPhotosDTO.getItemImg3Modified());
+        return itemPhotos;
+    }
 }

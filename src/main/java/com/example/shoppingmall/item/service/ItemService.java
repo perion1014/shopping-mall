@@ -32,10 +32,18 @@ public class ItemService {
     }
 
     public void saveItemPhotos(Long itemNo, ItemAddDTO itemAddDTO) {
+        ItemPhotos itemPhotos = ItemAddDTO.itemAddDTOToItemPhotos(itemNo, itemAddDTO);
         //Debugging
         System.out.println("itemService.saveItemPhotos(itemAddDTO) ==> item_no = " + itemNo);
         System.out.println("itemService.saveItemPhotos(itemAddDTO) ==> item_thumb = " + itemAddDTO.getItemThumb());
-        ItemPhotos itemPhotos = ItemAddDTO.itemAddDTOToItemPhotos(itemNo, itemAddDTO);
+        itemRepository.saveItemPhotos(itemPhotos);
+    }
+
+    public void saveItemPhotos(Long itemNo, ItemPhotosDTO itemPhotosDTO) {
+        //Debugging
+        System.out.println("itemService.saveItemPhotos(itemAddDTO) ==> item_no = " + itemNo);
+        System.out.println("itemService.saveItemPhotos(itemAddDTO) ==> item_thumb = " + itemPhotosDTO.getItemThumb());
+        ItemPhotos itemPhotos = ItemPhotosDTO.toItemPhotos(itemNo, itemPhotosDTO);
 
         itemRepository.saveItemPhotos(itemPhotos);
     }
