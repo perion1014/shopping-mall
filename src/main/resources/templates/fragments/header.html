@@ -15,9 +15,9 @@
                         <a class="header__nav-search"  href='javascript:void(0)'>상품검색</a>
                         <ul class="nav-search__menus">
                             <li class="nav-search__menu">
-                                <form class="header__search-form">
+                                <form class="header__search-form" action="/items/categoricalSearch" method="get">
                                     <label for="header__search">
-                                        <input id="header__search" class="header__search" type="text" placeholder="상품명을 입력해주세요">
+                                        <input id="header__search" name="searchKeyword" class="header__search" type="text" placeholder="상품명을 입력해주세요">
                                         <button class="btn btn--xs btn--white">검색</button>
                                     </label>
                                 </form>

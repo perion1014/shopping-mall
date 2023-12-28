@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CartReadDTO {
     private Long memberNo;
     private Long cartNo;
+    private Long itemNo;
     private String itemThumbnail;
     private String itemName;
     private String itemSize;
