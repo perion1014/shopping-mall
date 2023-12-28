@@ -132,8 +132,17 @@ public class ItemService {
 
     public List<ItemDTO> findAllItemsOnsale() {
         List<Item> itemList = itemRepository.findAllItemsOnsale();
+        for (Item item: itemList) {
+            Long itemNo = item.getItemNo();
+            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
+            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
+            item.setItemStockList(itemStockList);
+        }
         List<ItemDTO> itemDTOList = new ArrayList<>();
         for (Item item: itemList) {
+            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
+            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
+            item.setItemStockDTOList(itemStockDTOList);
             itemDTOList.add(ItemDTO.itemToItemDTO(item));
         }
         return itemDTOList;
@@ -141,8 +150,17 @@ public class ItemService {
 
     public List<ItemDTO> findAllItemsOffmarket() {
         List<Item> itemList = itemRepository.findAllItemsOffmarket();
+        for (Item item: itemList) {
+            Long itemNo = item.getItemNo();
+            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
+            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
+            item.setItemStockList(itemStockList);
+        }
         List<ItemDTO> itemDTOList = new ArrayList<>();
         for (Item item: itemList) {
+            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
+            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
+            item.setItemStockDTOList(itemStockDTOList);
             itemDTOList.add(ItemDTO.itemToItemDTO(item));
         }
         return itemDTOList;
@@ -157,6 +175,24 @@ public class ItemService {
         List<Item> itemList = itemRepository.findItemsByName(itemSearchDTO.getItemName());
         List<ItemDTO> itemDTOList = new ArrayList<>();
         for (Item item: itemList) {
+            itemDTOList.add(ItemDTO.itemToItemDTO(item));
+        }
+        return itemDTOList;
+    }
+
+    public List<ItemDTO> findAllItemsBySearchKeyword(String searchKeyword) {
+        List<Item> itemList = itemRepository.findAllItemsBySearchKeyword(searchKeyword);
+        for (Item item: itemList) {
+            Long itemNo = item.getItemNo();
+            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
+            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
+            item.setItemStockList(itemStockList);
+        }
+        List<ItemDTO> itemDTOList = new ArrayList<>();
+        for (Item item: itemList) {
+            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
+            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
+            item.setItemStockDTOList(itemStockDTOList);
             itemDTOList.add(ItemDTO.itemToItemDTO(item));
         }
         return itemDTOList;

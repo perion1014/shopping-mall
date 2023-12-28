@@ -3,6 +3,8 @@ package com.example.shoppingmall;
 import com.example.shoppingmall.item.dto.ItemDTO;
 import com.example.shoppingmall.item.service.ItemService;
 import com.example.shoppingmall.member.domain.Member;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,13 +20,14 @@ public class HomeController {
     private final ItemService itemService;
 
     @GetMapping("/")
-    public String goHome(@SessionAttribute(name="loginMember", required = false) Member loginMember, Model model){
+    public String goHome(@SessionAttribute(name="loginMember", required = false) Member loginMember, Model model, HttpServletRequest request){
 
 
         List<ItemDTO> itemDTOList = itemService.findAllItems();
         model.addAttribute("itemDTOList", itemDTOList);
 
-
+        HttpSession session = request.getSession();
+        session.setAttribute("ifSearched", false);
 
 
         //세션에 회원 데이터가 없으면 일반 홈으로 이동

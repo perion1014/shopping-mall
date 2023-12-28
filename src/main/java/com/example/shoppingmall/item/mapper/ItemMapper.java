@@ -48,5 +48,5 @@ public interface ItemMapper {
 
     String selectItemThumbByItemNo(Long itemNo);
 
-
+    List<Item> findAllItemsBySearchKeyword(String itemName);
 }
