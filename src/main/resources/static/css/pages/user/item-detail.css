@@ -32,6 +32,7 @@
     height: 2.5rem;
     border-width: 1px 0 1px 0;
     border-radius: 0;
+    padding: 1rem 0;
 }
 .item__countbtns{
     display: flex;
@@ -60,11 +61,14 @@
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--color-text);
 }
+.item__navs li{
+    cursor: pointer;
+}
 .item__detail{
     margin-bottom: 10rem;
 }
 .item__text{
-    margin:3rem 0 5rem 0;
+    margin-top: 3rem;
 }
 .item__btns{
     display: flex;
@@ -80,4 +84,24 @@
 }
 .review__page{
     margin-top:3rem;
+}
+.qna__more{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+.qna__form{
+    width: 100%;
+    text-align: right;
+}
+.btn--qna{
+    font-size: 1rem;
+}
+.item__aside{
+    position: fixed;
+    right:0;
+    top:50%;
+}
+.btn--aside{
+    display: block;
 }
