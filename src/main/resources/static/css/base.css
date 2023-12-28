@@ -1,7 +1,7 @@
 :root {
     /*사이트 색상 선정*/
     --color-primary: var(--color-white);
-    --color-primary-variant: var(--color-gray);
+    --color-primary-variant: var(--color-dark-gray);
     --color-accent: var(--color-yellow);
     --color-error: var(--color-red);
     --color-text: var(--color-black);
@@ -10,7 +10,8 @@
     --color-white: #ffffff;
     --color-black: #050a13;
     --color-yellow: #ffb94f;
-    --color-gray: #666;
+    --color-dark-gray: #666666;
+    --color-light-gray: #cccccc;
     --color-red: #F80D0D;
 
 }
