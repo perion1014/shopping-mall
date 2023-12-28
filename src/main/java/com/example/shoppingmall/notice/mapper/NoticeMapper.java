@@ -1,7 +1,7 @@
 package com.example.shoppingmall.notice.mapper;
 
 import com.example.shoppingmall.notice.domain.Notice;
-import com.example.shoppingmall.notice.form.NoticeSearchFrom;
+import com.example.shoppingmall.notice.form.NoticeSearchForm;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,6 +17,6 @@ public interface NoticeMapper {//이곳의 이름과 쿼리 이름 동일
     void updateViewCount(Long noticeNo);
     void deleteNoticeByNo(Long noticeNo);
     Notice findByNo(Long memberNo);
-    Long countAllNoticeByKeyword(NoticeSearchFrom noticeSearchFrom);
-    List<Notice> findAllNoticeByKeyword(NoticeSearchFrom noticeSearchFrom);
+    Long countAllNoticeByKeyword(NoticeSearchForm noticeSearchForm);
+    List<Notice> findAllNoticeByKeyword(NoticeSearchForm noticeSearchForm);
 }

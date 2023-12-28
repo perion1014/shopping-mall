@@ -14,11 +14,11 @@
         select count(notice_no) from notice
     </select>
 
-    <select id="countAllNoticeByKeyword" parameterType="com.example.shoppingmall.notice.form.NoticeSearchFrom" resultType="Long">
+    <select id="countAllNoticeByKeyword" parameterType="com.example.shoppingmall.notice.form.NoticeSearchForm" resultType="Long">
         select count(notice_no) from notice where ${category} LIKE CONCAT('%', #{keyword}, '%')
     </select>
 
-    <select id="findAllNoticeByKeyword" parameterType="com.example.shoppingmall.notice.form.NoticeSearchFrom" resultType="com.example.shoppingmall.notice.domain.Notice">
+    <select id="findAllNoticeByKeyword" parameterType="com.example.shoppingmall.notice.form.NoticeSearchForm" resultType="com.example.shoppingmall.notice.domain.Notice">
         select * from notice where ${category} LIKE CONCAT('%', #{keyword}, '%') LIMIT #{startPage}, #{pagePerNotice}
     </select>
 

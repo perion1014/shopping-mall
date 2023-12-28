@@ -1,8 +1,7 @@
 package com.example.shoppingmall.notice.repository;
 
-import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.notice.domain.Notice;
-import com.example.shoppingmall.notice.form.NoticeSearchFrom;
+import com.example.shoppingmall.notice.form.NoticeSearchForm;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +16,7 @@ public interface NoticeRepository {
     void updateNotice(Notice notice);
     void updateViewCount(Long noticeNo);
     void deleteNoticeByNo(Long noticeNo);
-    Long countAllNoticeByKeyword(NoticeSearchFrom noticeSearchFrom);
-    List<Notice> findAllNoticeByKeyword(NoticeSearchFrom noticeSearchFrom);
+    Long countAllNoticeByKeyword(NoticeSearchForm noticeSearchForm);
+    List<Notice> findAllNoticeByKeyword(NoticeSearchForm noticeSearchForm);
 
 }
