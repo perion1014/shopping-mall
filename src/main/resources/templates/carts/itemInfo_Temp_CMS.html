@@ -69,7 +69,7 @@
 
 <div th:if="${session.loginMember != null}">
     <form th:action = "${session.loginMember != null} ? @{/carts/{memberNo}(memberNo=${session.loginMember.getMemberNo()})} : @{/carts}" method = "post">
-    <div><input style = "display: none;" name = "itemNo" value = "5"></div>
+    <div><input style = "display: none;" name = "itemNo" value = "1"></div>
     <div >상품 썸네일 : asdasfasd</div>
     <div >상품명 : 빨간셔츠</div>
     <div >평점 : 3.5</div>
