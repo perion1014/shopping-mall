@@ -1,10 +1,10 @@
-# 순서대로 실행해주세요
+-- 순서대로 실행해주세요
 
-# 1
+-- 1
 USE perion;
 DROP procedure IF EXISTS generate_notice_test_data;
 
-# 2
+-- 2
 DELIMITER $$
 USE perion$$
 CREATE PROCEDURE generate_notice_test_data()
@@ -21,6 +21,6 @@ END WHILE;
 
 END $$
 
-#3
+-- 3
 DELIMITER ;
 CALL perion.generate_notice_test_data();

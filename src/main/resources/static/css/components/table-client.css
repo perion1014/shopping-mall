@@ -1,0 +1,23 @@
+.table__client{
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    margin : 1rem 1rem;
+    width: 100%;
+}
+.table__client th {
+    padding: 0.5rem;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+.table__client td {
+    padding: 0.5rem;
+    vertical-align: top;
+    border-bottom: 1px solid var(--color-light-gray);
+}
+.table__no{
+    width: 3rem;
+}
