@@ -14,10 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -128,5 +125,49 @@ public class QnaService {
     public void deleteAnswer(Long qnaNo) {
 
         qnaRepository.deleteAnswer(qnaNo);
+    }
+
+    @Transactional(readOnly = true)
+    public List<QnaDTO> getQnaListByItemNo(int page, Long itemNo) {
+
+        int startPage = (page-1) * 12; //시작 페이지
+        int pagePerMember = 12; // 멤버 수
+
+
+        List<Qna> qnaList = qnaRepository.findQnaByPaging(startPage,pagePerMember,itemNo);
+
+
+        List<QnaDTO> resultList = new ArrayList<>();
+
+        for(Qna qna : qnaList){
+
+            Long memberNo = qna.getMemberNo();
+            String memberId = qnaRepository.getMemberIdByNo(memberNo);
+
+            resultList.add(QnaDTO.fromEntity(qna,memberId));
+        }
+
+        return resultList;
+    }
+
+    @Transactional(readOnly = true)
+    public QnaPageForm setQnaListPageByItemNo(int page, Long itemNo) {
+
+        int pagePerMember = 12; // 보여줄 멤버 수
+        int pageLimit = 10; // 하단 페이징 번호 갯수
+
+        // 전체 멤버 조회
+        Long memberCount = qnaRepository.countQnaByitemNo(itemNo);
+
+        int totalPage = (int) (Math.ceil((double) memberCount / pagePerMember));
+
+        int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
+
+        int endPage = startPage + pageLimit - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        return new QnaPageForm(page,totalPage,startPage,endPage);
     }
 }

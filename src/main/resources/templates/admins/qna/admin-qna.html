@@ -51,7 +51,7 @@
             <td th:text="${#dates.format(QnaDTO.qnaQuestionCreatedTime, 'yyyy-MM-dd')}"></td>
             <td>
               <span th:if="${QnaDTO.qnaAnswer != null}" >답변완료</span>
-              <span th:unless="${QnaDTO.qnaAnswer != null}">답변확인중</span>
+              <span th:unless="${QnaDTO.qnaAnswer != null}">답변대기</span>
             </td>
           </tr>
         </table>

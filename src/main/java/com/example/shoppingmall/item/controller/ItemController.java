@@ -6,6 +6,8 @@ import com.example.shoppingmall.item.service.ItemService;
 import com.example.shoppingmall.qna.dto.QnaDTO;
 import com.example.shoppingmall.qna.service.QnaService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.util.List;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -26,14 +29,29 @@ public class ItemController {
 
     /*유저 쇼핑몰 조회*/
     @GetMapping("")
-    public String showItemList(Model model) {
-        List<ItemDTO> itemDTOList = itemService.findAllItems();
+    public String showItemList(Model model, HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        session.setAttribute("ifSearched", false);
+
+        List<ItemDTO> itemDTOList = itemService.findAllItemsOnsale();
+        model.addAttribute("itemDTOList", itemDTOList);
+        return "items/item-list";
+    }
+
+    @GetMapping("/searched")
+    public String showItemList2(Model model) {
+        List<ItemDTO> itemDTOList = itemService.findAllItemsOnsale();
         model.addAttribute("itemDTOList", itemDTOList);
         return "items/item-list";
     }
 
     @GetMapping("/outer")
-    public String showOuterList(Model model) {
+    public String showOuterList(Model model, HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        session.setAttribute("ifSearched", false);
+
         List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Outer");
         model.addAttribute("itemDTOList", itemDTOList);
         model.addAttribute("Category", "Outer");
@@ -41,7 +59,11 @@ public class ItemController {
     }
 
     @GetMapping("/inner")
-    public String showInnerList(Model model) {
+    public String showInnerList(Model model, HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        session.setAttribute("ifSearched", false);
+
         List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Inner");
         model.addAttribute("itemDTOList", itemDTOList);
         model.addAttribute("Category", "Inner");
@@ -49,7 +71,11 @@ public class ItemController {
     }
 
     @GetMapping("/pants")
-    public String showPantsList(Model model) {
+    public String showPantsList(Model model, HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        session.setAttribute("ifSearched", false);
+
         List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Pants");
         model.addAttribute("itemDTOList", itemDTOList);
         model.addAttribute("Category", "Pants");
@@ -57,7 +83,33 @@ public class ItemController {
     }
 
     @GetMapping("/search")
-    public String showSearchResult(){return "items/item-list-result";}
+    public String showItemSearched(@RequestParam (name = "searchKeyword", defaultValue = "") String searchKeyword,
+                                   Model model,
+                                   HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("ifSearched", true);
+        if (searchKeyword.isEmpty()) {
+            return "redirect:/items/searched";
+        }
+        List<ItemDTO> itemDTOList = itemService.findAllItemsBySearchKeyword(searchKeyword);
+        model.addAttribute("itemDTOList", itemDTOList);
+        return "items/item-list";
+    }
+
+    // 구현해야 할 부분
+    @GetMapping("/categoricalSearch")
+    public String showItemCategoricallySearched(@RequestParam (name = "searchKeyword", defaultValue = "") String searchKeyword,
+                                                Model model,
+                                                HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("ifSearched", true);
+        if (searchKeyword.isEmpty()) {
+            return "redirect:/items/searched";
+        }
+        List<ItemDTO> itemDTOList = itemService.findAllItemsBySearchKeyword(searchKeyword);
+        model.addAttribute("itemDTOList", itemDTOList);
+        return "items/item-list";
+    }
 
     @GetMapping("/admin")
     public String getItemList(Model model) {
@@ -149,11 +201,6 @@ public class ItemController {
 
         return "items/item-detail-pym";
 
-    }
-
-    @GetMapping("/itemDetailTest")
-    public String goToItemDetailTestPage() {
-        return "items/item-detail";
     }
 
 

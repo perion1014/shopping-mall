@@ -24,4 +24,8 @@ public interface QnaRepository {
     void replyQna(Qna qna);
 
     void deleteAnswer(Long qnaNo);
+
+    List<Qna> findQnaByPaging(int startPage, int pagePerMember, Long itemNo);
+
+    Long countQnaByitemNo(Long itemNo);
 }
