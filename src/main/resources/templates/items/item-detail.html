@@ -5,6 +5,7 @@
     <title>PERION - 상품 상세</title>
     <meta name="description" content="상품 정보, Q&A, 가격 등 다양한 상품의 정보를 확인하세요.">
     <link rel="stylesheet" href="/css/pages/user/items.css">
+    <script type="module" src="/js/pages/item-detail.js"></script>
 </head>
 <body>
 <header th:if="${session.loginMember != null}" th:replace="~{/fragments/login-header :: header}">
@@ -12,7 +13,7 @@
 <header th:unless="${session.loginMember == null}" th:replace="~{/fragments/header :: header}">
 </header>
 <main class="main__container">
-    <section class="item__container">
+    <section id="item__info" class="item__container">
         <img class="item__img" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp"/>
         <div class="slide__info item__info">
             <h1 class="item__card-name">상품명을 입력해주세요</h1>
@@ -36,7 +37,7 @@
                     <h5 class="label__title">상품 수량</h5>
                     <form class="item__countbtns">
                         <button class="btn btn--xs btn--white btn--item">-</button>
-                        <input id="item__count" class="input input--item">
+                        <input style ="text-align:center;" id="item__count" class="input input--item">
                         <button class="btn btn--xs btn--white btn--item">+</button>
                     </form>
              </label>
@@ -55,9 +56,9 @@
     </section>
     <nav class ="item__nav-container">
         <ul class="item__navs">
-            <li>상품 정보</li>
-            <li>Q&A</li>
-            <li>리뷰</li>
+            <li class="item__detail-link">상품 정보</li>
+            <li class="item__qna-link">Q&A</li>
+            <li class="item__review-link">리뷰</li>
         </ul>
     </nav>
     <section class="item-detail__container" id="item__detail">
@@ -101,38 +102,116 @@
         </p>
     </section>
     <section class="item-detail__container" id="item__qna">
-        <h1 class="section__title">Q & A</h1>
+        <div class="qna__more">
+            <h1 class="section__title">Q & A</h1>
+            <a href="#">더보기</a>
+        </div>
         <table class="table__client">
             <thead>
             <tr>
                 <th class="table__no">번호</th>
-                <th class="table__answer">답변여부</th>
                 <th class="table__category">구분</th>
                 <th>내용</th>
-                <th>작성자</th>
-                <th>등록일자</th>
+                <th class="table__user">작성자</th>
+                <th class="table__regtime">등록일자</th>
+                <th class="table__answer">답변 여부</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td class="table__no">1</td>
-                <!-- 답변완료(td:if로 걸고 안되면 기존의 span으로!) -->
-                <td>답변 완료</td>
-                <td>배송</td>
+                <td class="table__category">배송</td>
                 <td>배송은 얼마나 걸리나요?</td>
-                <td>user****</td>
-                <td>2023-05-12</td>
+                <td class="table__user">user****</td>
+                <td class="table__regtime">2023-05-12</td>
+                <!-- 답변완료(td:if로 걸고 안되면 기존의 span으로!) -->
+                <td class="table__answer">답변 완료</td>
             </tr>
             <tr>
                 <td class="table__no">2</td>
                 <!-- 답변완료(td:if로 걸고 안되면 기존의 span으로!) -->
-                <td>답변 완료</td>
-                <td>배송</td>
-                <td>배송은 얼마나 걸리나요?</td>
-                <td>user****</td>
-                <td>2023-05-12</td>
+                <td class="table__category">상품 상세문의</td>
+                <td>옷의 재질은 뭐인가요?</td>
+                <td class="table__user">user****</td>
+                <td class="table__regtime">2023-05-12</td>
+                <td class="table__answer">답변 대기</td>
+            </tr>
+            <tr>
+                <td class="table__no">3</td>
+                <!-- 답변완료(td:if로 걸고 안되면 기존의 span으로!) -->
+                <td class="table__category">상품 상세문의</td>
+                <td>옷의 재질은 뭐인가요?</td>
+                <td class="table__user">user****</td>
+                <td class="table__regtime">2023-05-12</td>
+                <td class="table__answer">답변 대기</td>
+            </tr>
+            <tr>
+                <td class="table__no">4</td>
+                <!-- 답변완료(td:if로 걸고 안되면 기존의 span으로!) -->
+                <td class="table__category">상품 상세문의</td>
+                <td>옷의 재질은 뭐인가요?</td>
+                <td class="table__user">user****</td>
+                <td class="table__regtime">2023-05-12</td>
+                <td class="table__answer">답변 대기</td>
+            </tr>
+            <tr>
+                <td class="table__no">5</td>
+                <!-- 답변완료(td:if로 걸고 안되면 기존의 span으로!) -->
+                <td class="table__category">상품 상세문의</td>
+                <td>옷의 재질은 뭐인가요?</td>
+                <td class="table__user">user****</td>
+                <td class="table__regtime">2023-05-12</td>
+                <td class="table__answer">답변 대기</td>
+            </tr>
+            <tr>
+                <td class="table__no">6</td>
+                <!-- 답변완료(td:if로 걸고 안되면 기존의 span으로!) -->
+                <td class="table__category">상품 상세문의</td>
+                <td>옷의 재질은 뭐인가요?</td>
+                <td class="table__user">user****</td>
+                <td class="table__regtime">2023-05-12</td>
+                <td class="table__answer">답변 대기</td>
+            </tr>
+            <tr>
+                <td class="table__no">7</td>
+                <!-- 답변완료(td:if로 걸고 안되면 기존의 span으로!) -->
+                <td class="table__category">상품 상세문의</td>
+                <td>옷의 재질은 뭐인가요?</td>
+                <td class="table__user">user****</td>
+                <td class="table__regtime">2023-05-12</td>
+                <td class="table__answer">답변 대기</td>
+            </tr>
+            <tr>
+                <td class="table__no">8</td>
+                <!-- 답변완료(td:if로 걸고 안되면 기존의 span으로!) -->
+                <td class="table__category">상품 상세문의</td>
+                <td>옷의 재질은 뭐인가요?</td>
+                <td class="table__user">user****</td>
+                <td class="table__regtime">2023-05-12</td>
+                <td class="table__answer">답변 대기</td>
+            </tr>
+            <tr>
+                <td class="table__no">9</td>
+                <!-- 답변완료(td:if로 걸고 안되면 기존의 span으로!) -->
+                <td class="table__category">상품 상세문의</td>
+                <td>옷의 재질은 뭐인가요?</td>
+                <td class="table__user">user****</td>
+                <td class="table__regtime">2023-05-12</td>
+                <td class="table__answer">답변 대기</td>
+            </tr>
+            <tr>
+                <td class="table__no">10</td>
+                <!-- 답변완료(td:if로 걸고 안되면 기존의 span으로!) -->
+                <td class="table__category">상품 상세문의</td>
+                <td>옷의 재질은 뭐인가요?</td>
+                <td class="table__user">user****</td>
+                <td class="table__regtime">2023-05-12</td>
+                <td class="table__answer">답변 대기</td>
             </tr>
         </table>
+        <div class="qna__form">
+            <button class="btn btn--mi btn--white btn--qna">질문 등록</button>
+        </div>
     </section>
     <section class="item-detail__container" id="item__reviews">
         <h1 class="section__title">리뷰</h1>
@@ -241,6 +320,12 @@
             <span>다음</span>
         </div>
     </section>
+    <aside class="item__aside">
+        <button class="aside__info btn--aside">상품 정보</button>
+        <button class="aside__detail btn--aside">상품 상세</button>
+        <button class="aside__qna btn--aside">Q & A</button>
+        <button class="aside__review btn--aside">리뷰</button>
+    </aside>
 </main>
 </body>
 </html>
