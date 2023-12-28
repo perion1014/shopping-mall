@@ -10,7 +10,7 @@
 <body>
 <header th:if="${session.loginMember != null}" th:replace="~{/fragments/login-header :: header}">
 </header>
-<header th:unless="${session.loginMember == null}" th:replace="~{/fragments/header :: header}">
+<header th:unless="${session.loginMember != null}" th:replace="~{/fragments/header :: header}">
 </header>
 <section class="main__container item-list__container">
     <h1 class="main__title">All</h1>
