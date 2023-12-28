@@ -18,7 +18,7 @@
             <div th:text="'상품 가격 : ' + ${cartDTO.itemPrice}"></div>
             <div th:text="'상품 총액 : ' + ${cartDTO.itemPriceSum}"></div>
             <div th:text="'주문 총액 : ' + ${cartDTO.orderPriceSum}"></div>
-            상품 수량 <input th:id="'inputvalue_' + ${cartIndex.index}" th:value ="${cartDTO.itemQuantity}"></input>
+            상품 수량 <input th:id="'inputvalue_' + ${cartIndex.index}" th:value ="${cartDTO.itemQuantity}" readonly></input>
             <button th:id="'decreaseButton_' + ${cartIndex.index}"
                     th:index = "${cartIndex.index}"
                     th:cartNo = "${cartDTO.cartNo}"

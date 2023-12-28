@@ -2,7 +2,10 @@
 function updateQuantity(changeQuantity, index, cartNo, memberNo){
     let currentQuantity = document.getElementById('inputvalue_' + index);
     let currentQuantityNum = Number(currentQuantity.value);
+
     currentQuantityNum += Number(changeQuantity);
+        if(currentQuantityNum == 0) {currentQuantityNum = 1;}
+        else if(currentQuantityNum == 100) {currentQuantityNum = 99;}
     currentQuantity.value = currentQuantityNum;
 
     fetch('/carts/' + memberNo + '/' + cartNo + '/update',{
