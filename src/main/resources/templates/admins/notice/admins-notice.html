@@ -49,6 +49,7 @@
                 <td th:text="${noticeSearchDTO.noticeNo}"></td>
                 <td th:text="${noticeSearchDTO.noticeTitle}"></td>
                 <td name="writer">admin</td>
+<!--                <td name="writer" th:text="${session.loginAdmin.adminId}"></td>-->
                 <td th:text="${#dates.format(noticeSearchDTO.noticeCreatedTime, 'yyyy-MM-dd')}"></td>
                 <td th:text="${noticeSearchDTO.noticeViewcount}"></td>
                 <td>
