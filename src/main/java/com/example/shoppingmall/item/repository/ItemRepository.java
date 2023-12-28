@@ -21,6 +21,8 @@ public interface ItemRepository {
 
     List<Item> findAllItems();
 
+    List<Item> findAllItemsByCategory(String category);
+
     List<ItemStock> findAllItemStocks(Long itemNo);
 
     Item findItemByNo(Long itemNo);
@@ -44,4 +46,6 @@ public interface ItemRepository {
     ItemPhotos findItemPhotosByItemNo(Long itemNo);
 
     String selectItemThumbByItemNo(Long itemNo);
+
+
 }

@@ -55,6 +55,10 @@
         select * from item order by item_no desc
     </select>
 
+    <select id="findAllItemsByCategory" parameterType="String" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_category = #{category} order by item_no desc
+    </select>
+
     <select id="findAllItemStocks" parameterType="long" resultType="com.example.shoppingmall.item.domain.ItemStock">
         select * from item_stock where item_no = #{itemNo}
     </select>
