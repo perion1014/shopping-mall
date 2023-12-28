@@ -20,7 +20,7 @@
         </tr>
         </thead>
         <tbody th:each="QnaDTO,itemQnaNo : ${qnaByItemNo}">
-        <tr>
+        <tr th:onclick="|location.href='@{|/items/${QnaDTO.itemNo}/qna/${QnaDTO.memberNo}|}'|">
             <td th:text="${itemQnaNo.count}"></td>
 <!--            <td th:text="${itemQnaDTO.qnaNo}"></td>-->
 
@@ -44,5 +44,7 @@
     <button th:unless="${session.loginMember != null}" th:onclick="|window.location.href='/members/login'|">
         qna등록
     </button>
+
+<!--    <a href="">더보기</a>-->
 </body>
 </html>

@@ -48,4 +48,9 @@ public class MyBatisQnaRepository implements QnaRepository {
         qnaMapper.replyQna(qna);
     }
 
+    @Override
+    public void deleteAnswer(Long qnaNo) {
+        qnaMapper.deleteAnswer(qnaNo);
+    }
+
 }
