@@ -10,8 +10,8 @@ td {
   padding: 6px 15px;
 }
 th {
-  background: #42444e;
-  color: #fff;
+  background: var(--color-primary-variant);
+  color: var(--color-primary);
   text-align: left;
 }
 tr:first-child th:first-child {
@@ -34,7 +34,7 @@ tr:nth-child(even) td {
 }
 
 td:last-child {
-  background-color:var(--color-white);
+  background-color:var(--color-primary);
 }
 
 tr:last-child td:first-child {
@@ -45,7 +45,36 @@ tr:last-child td:first-child {
 }
 
 .members-delete__container{
-  background-color: #fff;
+  background-color: var(--color-primary);
   width: 4rem;
   border: 0;
 }
+.table__client{
+  border-collapse: separate;
+  border-spacing: 1px;
+  background-color: var(--color-primary);
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  margin : 20px 10px;
+  width: 100%;
+}
+.table__client-tr{
+  background-color: var(--color-primary);
+}
+.table__client-th {
+  padding: 0.5rem;
+  text-align: left;
+  font-weight: bold;
+  vertical-align: top;
+  background-color: var(--color-primary);
+  border-bottom: 1px solid var(--color-text);
+}
+.table__client-td {
+  text-align: left;
+  padding: 0.5rem;
+  vertical-align: top;
+  background-color: var(--color-primary);
+  border-bottom: 1px solid var(--color-text);
+}
+

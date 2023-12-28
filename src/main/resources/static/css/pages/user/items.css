@@ -56,3 +56,6 @@
     justify-content: center;
     margin-bottom: 5rem;
 }
+.label__item-size{
+    border-color: var(--color-light-gray);
+}
