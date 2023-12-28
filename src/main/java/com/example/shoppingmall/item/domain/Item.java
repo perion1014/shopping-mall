@@ -23,6 +23,13 @@ public class Item {
     private Integer itemPrice;
     private Integer itemOnsale;
     private Timestamp itemRegisteredTime;
+
+    // 1:1
+    private ItemPhotos itemPhotos;
+    private ItemPhotosDTO itemPhotosDTO;
+
+    // 1:N
     private List<ItemStock> itemStockList;
     private List<ItemStockDTO> itemStockDTOList;
+
 }

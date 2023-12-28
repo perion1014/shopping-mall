@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
+    <title>PERION - 상품 상세</title>
+    <meta name="description" content="상품 정보, Q&A, 가격 등 다양한 상품의 정보를 확인하세요.">
+    <link rel="stylesheet" href="/css/pages/user/items.css">
+</head>
+<body>
+<header th:if="${session.loginMember != null}" th:replace="~{/fragments/login-header :: header}">
+</header>
+<header th:unless="${session.loginMember == null}" th:replace="~{/fragments/header :: header}">
+</header>
+<main class="main__container">
+    <section class="item__container">
+        <img class="item__img" th:src="@{/images/itemImages/__${itemDTO.itemNo}__/thumb/__${itemPhotosDTO.itemThumb}__}"/>
+        <div class="slide__info item__info">
+            <h1 class="item__card-name" th:text="${itemDTO.itemName}"></h1>
+            <div class="item__rank">
+                <img class="item__star" src="/images/icons/star.svg">
+                <img class="item__star" src="/images/icons/star.svg">
+                <img class="item__star" src="/images/icons/star.svg">
+                <img class="item__star" src="/images/icons/star.svg">
+                <img class="item__star" src="/images/icons/star.svg">
+            </div>
+            <h2 class="item__card-price item__price" th:text="${itemDTO.itemPrice} + '원'"></h2>
+
+            <h5 class="label__title item__info-title">사이즈</h5>
+            <form class="item__sizebtns select">
+                <input type="radio" id="s" name="itemSize" value="S"><label for="s">S</label>
+                <input type="radio" id="m" name="itemSize" value="M"><label for="m">M</label>
+                <input type="radio" id="l" name="itemSize" value="L"><label for="l">L</label>
+            </form>
+            <div class="item__info-title">
+                <label class="label" for="item__count">
+                    <h5 class="label__title">상품 수량</h5>
+                    <form class="item__countbtns">
+                        <button class="btn btn--xs btn--white btn--item">-</button>
+                        <input id="item__count" class="input input--item" name="itemStockValue">
+                        <button class="btn btn--xs btn--white btn--item">+</button>
+                    </form>
+                </label>
+            </div>
+            <h5 class="label__title item__info-title">배송비</h5>
+            <span class="item__delivery--price">3000원(10만원 구매 이상 시 무료)</span>
+            <div class="slide__btns item__btns">
+                <form th:action="@{${session.loginMember} != null? '/carts/' + ${session.loginMember.memberNo}: '/carts'}" method="post">
+                    <button class="btn btn--index btn--white">장바구니 추가</button>
+                </form>
+                <form>
+                    <button class="btn btn--index btn--black">구매하기</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <nav class ="item__nav-container">
+        <ul class="item__navs">
+            <li>상품 정보</li>
+            <li>Q&A</li>
+            <li>리뷰</li>
+        </ul>
+    </nav>
+    <section class="item-detail__container" id="item__detail">
+        <!-- 상품 상세 사진-->
+        <div class="item-imgs__container">
+            <img class="item__img item__img--detail" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
+            <img class="item__img item__img--detail" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
+            <img class="item__img item__img--detail" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
+        </div>
+        <!-- 상품 정보-->
+        <p class="item__detail">
+            같지 물방아 사랑의 운다. 소금이라 가는 이는 봄바람을 평화스러운 귀는 그림자는 봄바람이다. 불러 물방아 피어나기 청춘 위하여서, 구하지 운다. 두기 어디 구할 따뜻한 고동을 일월과 거친 보라. 가장 위하여 속에 이상 듣는다. 이상의 있을 부패를 뿐이다. 시들어 위하여서, 크고 원질이 끓는다. 고행을 못할 전인 청춘의 칼이다. 많이 든 이는 무엇을 찾아다녀도, 사라지지 듣는다. 몸이 듣기만 유소년에게서 커다란 불어 칼이다. 인생에 끓는 같이, 살았으며, 같지 그들에게 그리하였는가? 시들어 별과 것은 뜨거운지라, 몸이 아름다우냐?
+        </p>
+
+        <h3>배송안내</h3>
+        <p class="item__text">
+            배송 업체 ㅣ CJ 대한통운 (1588-1255)<br>
+            배송 지역 ㅣ 대한민국 전지역<br>
+            배송 비용 ㅣ 3,000원 / 구매 금액 100,000원 이상 시 무료배송<br>
+            배송 기간 ㅣ 주말·공휴일 제외 2일 ~ 5일<br><br><br>
+
+
+            유의사항<br>
+
+            - 주문폭주 및 공급 사정으로 인하여 지연 및 품절이 발생될 수 있습니다.<br>
+            - 기본 배송기간 이상 소요되는 상품이거나, 품절 상품은 개별 연락을 드립니다.<br>
+        </p>
+
+        <h3>교환 및 환불 문의</h3>
+        <p class="item__text">
+            신청 방법 ㅣ 상품을 수령하신 날로부터 7일 이내로 콜센터(1234-1234) 및 홈페이지 Q&A 게시판을 통해 접수<br>
+            배송 비용 ㅣ 단순 변심은 왕복 택배비 6,000원 (반품 상품을 제외한 나머지 금액이 100,000원 이상일 경우에는 3,000원)<br>
+            반품 주소 ㅣ 서울특별시 종로구 , ㅇㅇㅇ ㅇㅇㅇ<br><br><br>
+
+            유의 사항<br><br>
+
+            - 단순 변심의 경우 수령일로부터 7일 이내까지 교환∙반품이 가능합니다. (교환/반품비 고객님 부담)<br>
+            - 상품 하자, 오배송의 경우 수령일로부터 7일 이내 고객센터 접수 후 교환∙반품이 가능합니다. (교환/반품비 무료)<br>
+            - 제품 특성상 단순 변심, 부주의에 의한 제품 손상 및 파손, 사용 및 개봉한 경우 교환/반품이 불가합니다.<br>
+            - 네이버페이 결제 주문은 동일 상품 / 동일 옵션 교환만 가능합니다.<br><br><br><br>
+        </p>
+    </section>
+    <section class="item-detail__container" id="item__qna">
+        <h1 class="section__title">Q & A</h1>
+    </section>
+    <section class="item-detail__container" id="item__reviews">
+        <h1 class="section__title">리뷰</h1>
+        <div class="reviews__container">
+            <div class="review">
+                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
+                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
+                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
+                <!--th:text 리뷰 내용 -->
+                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
+            </div>
+        </div>
+        <div class="reviews__container">
+            <div class="review">
+                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
+                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
+                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
+                <!--th:text 리뷰 내용 -->
+                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
+            </div>
+        </div>
+        <div class="reviews__container">
+            <div class="review">
+                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
+                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
+                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
+                <!--th:text 리뷰 내용 -->
+                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
+            </div>
+        </div>
+        <div class="reviews__container">
+            <div class="review">
+                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
+                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
+                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
+                <!--th:text 리뷰 내용 -->
+                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
+            </div>
+        </div>
+        <div class="reviews__container">
+            <div class="review">
+                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
+                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
+                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
+                <!--th:text 리뷰 내용 -->
+                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
+            </div>
+        </div>
+        <div class="reviews__container">
+            <div class="review">
+                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
+                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
+                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
+                <!--th:text 리뷰 내용 -->
+                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
+            </div>
+        </div>
+        <div class="reviews__container">
+            <div class="review">
+                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
+                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
+                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
+                <!--th:text 리뷰 내용 -->
+                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
+            </div>
+        </div>
+        <div class="reviews__container">
+            <div class="review">
+                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
+                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
+                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
+                <!--th:text 리뷰 내용 -->
+                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
+            </div>
+        </div>
+        <div class="reviews__container">
+            <div class="review">
+                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
+                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
+                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
+                <!--th:text 리뷰 내용 -->
+                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
+            </div>
+        </div>
+        <div class="reviews__container">
+            <div class="review">
+                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
+                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
+                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
+                <!--th:text 리뷰 내용 -->
+                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
+            </div>
+        </div>
+        <div class="items__page review__page">
+            <span>이전</span>
+            <a class="now__page">1</a>
+            <a>2</a>
+            <a>3</a>
+            <a>4</a>
+            <a>5</a>
+            <a>6</a>
+            <a>7</a>
+            <a>8</a>
+            <a>9</a>
+            <a>10</a>
+            <span>다음</span>
+        </div>
+    </section>
+</main>
+</body>
+</html>

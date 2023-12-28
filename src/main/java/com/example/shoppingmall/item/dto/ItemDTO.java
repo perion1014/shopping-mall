@@ -20,14 +20,19 @@ public class ItemDTO {
     private Long itemNo;
     private String itemName;
     private Integer itemPrice;
-    // 1:N 관계
-    private List<ItemStockDTO> itemStockDTOList;
+
     private String itemCategory;
     private Double itemGrade;
     private Integer itemOnsale;
 
     private String itemDetail; // 필요 x
     private Timestamp itemRegisteredTime; // 필요 x
+
+    // 1:1 관계
+    private ItemPhotosDTO itemPhotosDTO;
+
+    // 1:N 관계
+    private List<ItemStockDTO> itemStockDTOList;
 
 
     public static ItemDTO itemToItemDTO(Item item) {
@@ -40,6 +45,7 @@ public class ItemDTO {
         itemDTO.setItemPrice(item.getItemPrice());
         itemDTO.setItemOnsale(item.getItemOnsale());
         itemDTO.setItemRegisteredTime(item.getItemRegisteredTime());
+        itemDTO.setItemPhotosDTO(item.getItemPhotosDTO());
         itemDTO.setItemStockDTOList(ItemStockDTO.toItemStockDTOList(item.getItemStockList()));
         return itemDTO;
     }
