@@ -83,7 +83,7 @@ public class ItemController {
 
     @PostMapping("/admin/add")
     public String addItem(@ModelAttribute ItemAddDTO itemAddDTO,
-                          @RequestParam(name="itemThumb") MultipartFile itemThumb,
+                          @RequestParam("itemThumb") MultipartFile itemThumb,
                           @RequestParam("itemImg1") MultipartFile itemImg1,
                           @RequestParam("itemImg2") MultipartFile itemImg2,
                           @RequestParam("itemImg3") MultipartFile itemImg3) throws IOException{
@@ -127,9 +127,19 @@ public class ItemController {
     public  String showItemDetail(@PathVariable(name="itemNo") Long itemNo, Model model) {
         model.addAttribute("itemNo", itemNo);
         List<QnaDTO> qnaByItemNo = qnaService.getQnaByItemNo(itemNo);
-
         model.addAttribute("qnaByItemNo",qnaByItemNo);
-        return "items/item-detail-qna-test";
+        /////////////////////////////////////////////////////////////////////////
+        ItemDTO itemDTO = itemService.findItemByNo2(itemNo);
+        ItemPhotosDTO itemPhotosDTO = itemService.findItemPhotosByNo(itemNo);
+        List<ItemStockDTO> itemStockDTOList = itemService.findItemStockListByNo(itemNo);
+        model.addAttribute("itemDTO", itemDTO);
+        model.addAttribute("itemPhotosDTO", itemPhotosDTO);
+        model.addAttribute("itemStockDTOList", itemStockDTOList);
+
+
+
+
+        return "items/item-detail-pym";
 
     }
 

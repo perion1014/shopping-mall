@@ -15,34 +15,17 @@
    <section class="section" id="new-arrivals">
       <h1 class="section__title">New Arrival</h1>
       <div class="new-items__container">
-         <a href="#">
-         <div class="item__card">
-            <img class="item__card-img" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
-            <h3 class="item__card-name">상품명을 입력해주세요</h3>
-            <h3 class="item__card-price">100,000원</h3>
-         </div>
-         </a>
-         <a href="#">
-         <div class="item__card">
-            <img class="item__card-img" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
-            <h3 class="item__card-name">상품명을 입력해주세요</h3>
-            <h3 class="item__card-price">100,000원</h3>
-         </div>
-         </a>
-         <a href="#">
-         <div class="item__card">
-            <img class="item__card-img" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
-            <h3 class="item__card-name">상품명을 입력해주세요</h3>
-            <h3 class="item__card-price">100,000원</h3>
-         </div>
-         </a>
-         <a href="#">
-         <div class="item__card">
-            <img class="item__card-img" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
-            <h3 class="item__card-name">상품명을 입력해주세요</h3>
-            <h3 class="item__card-price">100,000원</h3>
-         </div>
-         </a>
+
+         <span th:each="itemDTO : ${itemDTOList}" th:if="${itemDTOStat.index} < 4">
+            <a th:href="@{/items/{itemNo}(itemNo=${itemDTO.itemNo})}">
+               <div class="item__card">
+                  <img class="item__card-img" th:src="@{/images/itemImages/__${itemDTO.itemNo}__/thumb/__${itemDTO.itemPhotosDTO.itemThumb}__}">
+                  <h3 class="item__card-name" th:text="${itemDTO.itemName}"></h3>
+                  <h3 class="item__card-price" th:text="${itemDTO.itemPrice} + '원'"></h3>
+               </div>
+            </a>
+         </span>
+
       </div>
    </section>
    <section id="about-us" th:style=" 'background-image: url(/images/clay-banks-hi_52O-h5G8-unsplash-mod.webp); background-size:cover' ">
@@ -83,7 +66,6 @@
                      <img class="item__star" src="/images/icons/star.svg">
                   </div>
                   <div class="slide__btns">
-                     <button class="btn btn--index btn--white">장바구니 추가</button>
                      <button class="btn btn--index btn--black">상품 자세히 보기</button>
                   </div>
                </div>
@@ -104,7 +86,6 @@
                      <img class="item__star" src="/images/icons/star.svg">
                   </div>
                   <div class="slide__btns">
-                     <button class="btn btn--index btn--white">장바구니 추가</button>
                      <button class="btn btn--index btn--black">상품 자세히 보기</button>
                   </div>
                </div>
@@ -125,7 +106,6 @@
                      <img class="item__star" src="/images/icons/star.svg">
                   </div>
                   <div class="slide__btns">
-                     <button class="btn btn--index btn--white">장바구니 추가</button>
                      <button class="btn btn--index btn--black">상품 자세히 보기</button>
                   </div>
                </div>

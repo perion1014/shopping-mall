@@ -88,7 +88,6 @@ public class ItemService {
         System.out.println("itemService.saveItemStock(itemAddDTO) ==> item_stock_no = " + itemAddDTO.getItemStockNo());
         System.out.println("itemService.saveItemStock(itemAddDTO) ==> item_no = " + itemNo);
         System.out.println("itemService.saveItemStock(itemAddDTO) ==> item_stock_value = " + itemAddDTO.getItemStockValue());
-        //ItemStock itemStock = ItemAddDTO.itemAddDTOToItemStock(itemNo, itemAddDTO);
         List<ItemStock> itemStockList = ItemAddDTO.itemAddToItemStockList(itemNo, itemAddDTO);
         for (ItemStock itemStock: itemStockList) {
             itemRepository.saveItemStock(itemStock);
@@ -99,15 +98,18 @@ public class ItemService {
         List<Item> itemList = itemRepository.findAllItems();
         for (Item item: itemList) {
             Long itemNo = item.getItemNo();
+            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
             List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
             item.setItemStockList(itemStockList);
         }
         List<ItemDTO> itemDTOList = new ArrayList<>();
         for (Item item: itemList) {
+            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
             List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
             item.setItemStockDTOList(itemStockDTOList);
             itemDTOList.add(ItemDTO.itemToItemDTO(item));
         }
+
         return itemDTOList;
     }
 
