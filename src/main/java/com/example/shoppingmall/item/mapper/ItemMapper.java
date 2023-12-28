@@ -22,6 +22,8 @@ public interface ItemMapper {
 
     List<Item> findAllItems();
 
+    List<Item> findAllItemsByCategory(String category);
+
     List<ItemStock> findAllItemStocks(Long itemNo);
 
     List<Item> findAllItemsOnsale();
@@ -45,4 +47,6 @@ public interface ItemMapper {
     ItemPhotos findItemPhotosByItemNo(Long itemNo);
 
     String selectItemThumbByItemNo(Long itemNo);
+
+
 }

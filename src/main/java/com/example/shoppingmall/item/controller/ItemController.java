@@ -26,23 +26,34 @@ public class ItemController {
 
     /*유저 쇼핑몰 조회*/
     @GetMapping("")
-    public String showItemList() {
+    public String showItemList(Model model) {
+        List<ItemDTO> itemDTOList = itemService.findAllItems();
+        model.addAttribute("itemDTOList", itemDTOList);
         return "items/item-list";
     }
 
     @GetMapping("/outer")
-    public String showOuterList() {
-        return "items/item-list-outer";
+    public String showOuterList(Model model) {
+        List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Outer");
+        model.addAttribute("itemDTOList", itemDTOList);
+        model.addAttribute("Category", "Outer");
+        return "items/item-list";
     }
 
     @GetMapping("/inner")
-    public String showInnerList() {
-        return "items/item-list-inner";
+    public String showInnerList(Model model) {
+        List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Inner");
+        model.addAttribute("itemDTOList", itemDTOList);
+        model.addAttribute("Category", "Inner");
+        return "items/item-list";
     }
 
     @GetMapping("/pants")
-    public String showPantsList() {
-        return "items/item-list-pants";
+    public String showPantsList(Model model) {
+        List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Pants");
+        model.addAttribute("itemDTOList", itemDTOList);
+        model.addAttribute("Category", "Pants");
+        return "items/item-list";
     }
 
     @GetMapping("/search")
@@ -135,9 +146,6 @@ public class ItemController {
         model.addAttribute("itemDTO", itemDTO);
         model.addAttribute("itemPhotosDTO", itemPhotosDTO);
         model.addAttribute("itemStockDTOList", itemStockDTOList);
-
-
-
 
         return "items/item-detail-pym";
 

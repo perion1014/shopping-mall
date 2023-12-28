@@ -42,6 +42,12 @@ public class MyBatisItemRepository implements ItemRepository{
     }
 
     @Override
+    public List<Item> findAllItemsByCategory(String category) {
+        List<Item> itemList = itemMapper.findAllItemsByCategory(category);
+        return itemList;
+    }
+
+    @Override
     public List<ItemStock> findAllItemStocks(Long itemNo) {
         List<ItemStock> itemStockList = itemMapper.findAllItemStocks(itemNo);
         return itemStockList;

@@ -109,7 +109,24 @@ public class ItemService {
             item.setItemStockDTOList(itemStockDTOList);
             itemDTOList.add(ItemDTO.itemToItemDTO(item));
         }
+        return itemDTOList;
+    }
 
+    public List<ItemDTO> findAllItemsByCategory(String category) {
+        List<Item> itemList = itemRepository.findAllItemsByCategory(category);
+        for (Item item: itemList) {
+            Long itemNo = item.getItemNo();
+            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
+            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
+            item.setItemStockList(itemStockList);
+        }
+        List<ItemDTO> itemDTOList = new ArrayList<>();
+        for (Item item: itemList) {
+            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
+            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
+            item.setItemStockDTOList(itemStockDTOList);
+            itemDTOList.add(ItemDTO.itemToItemDTO(item));
+        }
         return itemDTOList;
     }
 
@@ -193,4 +210,6 @@ public class ItemService {
     public String selectItemThumbByItemNo(Long itemNo) {
         return itemRepository.selectItemThumbByItemNo(itemNo);
     }
+
+
 }
