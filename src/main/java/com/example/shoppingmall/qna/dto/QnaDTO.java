@@ -38,6 +38,10 @@ public class QnaDTO {
         qnaDTO.setQnaAnswer(qna.getQnaAnswer());
         qnaDTO.setQnaQuestionCreatedTime(qna.getQnaQuestionCreatedTime());
 
+        qnaDTO.setQnaNo(qna.getQnaNo());
+        qnaDTO.setMemberNo(qna.getMemberNo());
+        qnaDTO.setItemNo(qna.getItemNo());
+
         return qnaDTO;
     }
 

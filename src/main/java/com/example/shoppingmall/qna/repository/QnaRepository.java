@@ -22,4 +22,6 @@ public interface QnaRepository {
     Qna findByQnaNo(Long qnaNo);
 
     void replyQna(Qna qna);
+
+    void deleteAnswer(Long qnaNo);
 }

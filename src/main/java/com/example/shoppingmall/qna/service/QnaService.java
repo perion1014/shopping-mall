@@ -38,6 +38,8 @@ public class QnaService {
         for (Qna qna : qnaList) {
             Long memberNo = qna.getMemberNo();
 
+            qna.setItemNo(itemNo);
+
             String memberId = qnaRepository.getMemberIdByNo(memberNo);
 
             QnaDTOList.add(QnaDTO.qnaToQnaDTO(qna, memberId));
@@ -121,5 +123,10 @@ public class QnaService {
         answer.setQnaAnswer(qnaAnswer);
 
         qnaRepository.replyQna(answer);
+    }
+
+    public void deleteAnswer(Long qnaNo) {
+
+        qnaRepository.deleteAnswer(qnaNo);
     }
 }

@@ -43,4 +43,10 @@
         SET qna_answer = #{qnaAnswer}
         WHERE qna_no = #{qnaNo}
     </update>
+
+    <update id="deleteAnswer" parameterType="Long">
+        UPDATE qna
+        SET qna_answer = NULL
+        WHERE qna_no = #{qnaNo}
+    </update>
 </mapper>

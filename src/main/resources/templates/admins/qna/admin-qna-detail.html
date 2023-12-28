@@ -6,6 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        form {
+            display: inline;
+        }
+    </style>
 </head>
 <body>
     번호 <span th:text="${qnaDetail.qnaNo}"></span> <p>
@@ -22,12 +27,17 @@
         <textarea name="qnaAnswer" th:text="${qnaDetail.qnaAnswer}"></textarea>
             <button>수정</button>
         </form>
+
+        <form th:action="@{'/qna/' + ${qnaDetail.qnaNo} + '/answer-delete'}" method="post" >
+            <button>삭제</button>
+        </form>
     </div>
     <div th:unless="${qnaDetail.qnaAnswer != null}">
         <form th:action="@{'/qna/' + ${qnaDetail.qnaNo}}" method="post" >
             <textarea name="qnaAnswer"></textarea>
             <button>등록</button>
         </form>
+
     </div>
 
 
