@@ -3,6 +3,8 @@ package com.example.shoppingmall.notice.controller;
 import com.example.shoppingmall.notice.dto.NoticeAddDTO;
 import com.example.shoppingmall.notice.dto.NoticeUpdateDTO;
 import com.example.shoppingmall.notice.service.NoticeService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,12 +59,11 @@ public class NoticeController {
     @PostMapping("/admin/add")
     public String registerNotice(@RequestParam("adminNo") Integer adminNo, @ModelAttribute NoticeAddDTO noticeAddDTO){
         //adminId도 가져와야함 @RequestParam("adminId") String adminId
-        System.out.println("adminNo = " + adminNo);
+        //System.out.println("adminNo = " + adminNo);
         //추가구현
-        //해당 작성자admin아이디 출력
+        //해당 작성자 admin아이디 출력
         //작성일자 생성 셀렉트문으로 DB에 있는 글들을 끌어올떄는 Timestamp DATE_ADD(NOW(), INTERVAL 0 HOUR)
         //9시간 차이는 INTERVAL -9 HOUR
-
         noticeService.addNotice(adminNo, noticeAddDTO);
         return "redirect:/notice/admin";
     }
@@ -76,9 +77,8 @@ public class NoticeController {
     @PostMapping("/admin/{noticeNo}/update")
     public String updateNotice(@ModelAttribute NoticeUpdateDTO noticeUpdateDTO){
         noticeService.update(noticeUpdateDTO);
-        System.out.println("noticeUpdateDTO.getNoticeTitle() = " + noticeUpdateDTO.getNoticeTitle());
-        System.out.println("noticeUpdateDTO.getNoticeContent() = " + noticeUpdateDTO.getNoticeContent());
-//        return "admins/notice/admins-notice-modify";
+//        System.out.println("noticeUpdateDTO.getNoticeTitle() = " + noticeUpdateDTO.getNoticeTitle());
+//        System.out.println("noticeUpdateDTO.getNoticeContent() = " + noticeUpdateDTO.getNoticeContent());
         return "redirect:/notice/admin/{noticeNo}";
     }
     /*공지사항 삭제 Admin전용*/

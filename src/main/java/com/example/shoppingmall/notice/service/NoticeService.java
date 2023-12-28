@@ -99,8 +99,8 @@ public class NoticeService {
         pagingSettings.put("startPage", startPage);
         pagingSettings.put("pagePerNotice", pagePerNotice);
 
-        System.out.println("startPage = " + startPage);
-        System.out.println("pagePerNotice = " + pagePerNotice);
+//        System.out.println("startPage = " + startPage);
+//        System.out.println("pagePerNotice = " + pagePerNotice);
 
         List<Notice> noticeList = noticeRepository.findAllNoticeByPaging(pagingSettings);
 
