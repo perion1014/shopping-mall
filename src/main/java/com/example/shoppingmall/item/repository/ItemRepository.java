@@ -31,6 +31,8 @@ public interface ItemRepository {
 
     List<Item> findItemsByName(String itemName);
 
+    List<Item> findAllItemsBySearchKeyword(String searchKeyword);
+
     List<Item> findAllItemsOnsale();
 
     List<Item> findAllItemsOffmarket();
@@ -46,6 +48,7 @@ public interface ItemRepository {
     ItemPhotos findItemPhotosByItemNo(Long itemNo);
 
     String selectItemThumbByItemNo(Long itemNo);
+
 
 
 }

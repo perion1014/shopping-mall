@@ -55,8 +55,12 @@
         select * from item order by item_no desc
     </select>
 
+    <select id="findAllItemsBySearchKeyword" parameterType="String" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_name like concat('%', #{itemName}, '%') order by item_no desc
+    </select>
+
     <select id="findAllItemsByCategory" parameterType="String" resultType="com.example.shoppingmall.item.domain.Item">
-        select * from item where item_category = #{category} order by item_no desc
+        select * from item where item_category = #{category} and item_onsale = 1 order by item_no desc
     </select>
 
     <select id="findAllItemStocks" parameterType="long" resultType="com.example.shoppingmall.item.domain.ItemStock">
@@ -64,11 +68,11 @@
     </select>
 
     <select id="findAllItemsOnsale" resultType="com.example.shoppingmall.item.domain.Item">
-        select * from item where item_onsale = 1
+        select * from item where item_onsale = 1 order by item_no desc
     </select>
 
     <select id="findAllItemsOffmarket" resultType="com.example.shoppingmall.item.domain.Item">
-        select * from item where item_onsale = 0
+        select * from item where item_onsale = 0 order by item_no desc
     </select>
 
     <select id="findItemByNo" resultType="com.example.shoppingmall.item.domain.Item">
