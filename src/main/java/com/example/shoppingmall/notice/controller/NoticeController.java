@@ -2,9 +2,8 @@ package com.example.shoppingmall.notice.controller;
 
 import com.example.shoppingmall.notice.dto.NoticeAddDTO;
 import com.example.shoppingmall.notice.dto.NoticeUpdateDTO;
+import com.example.shoppingmall.notice.form.NoticeSearchFrom;
 import com.example.shoppingmall.notice.service.NoticeService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +31,15 @@ public class NoticeController {
         model.addAttribute("noticeUpdateDTO", noticeService.getNoticeInfo(noticeNo));
         return "notice/home-notice-detail";
     }
-
+    /*공지사항 검색 Admin전용*/
+    @GetMapping("/admin/search")
+    public String searchNotice(@ModelAttribute NoticeSearchFrom noticeSearchFrom, Model model,
+                               @RequestParam(value="page", required = false, defaultValue = "1")int page){
+        model.addAttribute("noticeSearchForm", noticeSearchFrom);
+        model.addAttribute("pageSettings", noticeService.setSearchNoticeListPage(page, noticeSearchFrom));
+        model.addAttribute("noticeListByPaging", noticeService.getSearchNoticeListPage(page, noticeSearchFrom));
+        return"admins/notice/admin-notice-search";
+    }
     /*공지사항 리스트 출력 Admin전용*/
     @GetMapping("/admin")
     public String showAdminNoticeList(Model model,
@@ -41,19 +48,19 @@ public class NoticeController {
         model.addAttribute("pageSettings", noticeService.setNoticeListPage(page));
         model.addAttribute("noticeListByPaging", noticeService.getNoticeListPage(page));
 
-        return "admins/notice/admins-notice";
+        return "admins/notice/admin-notice";
     }
     /*공지사항 디테일 Admin전용*/
     @GetMapping("/admin/{noticeNo}")
     public String showAdminNoticeDetail(@PathVariable(name="noticeNo")Long noticeNo, Model model){
         model.addAttribute("noticeUpdateDTO", noticeService.getNoticeInfo(noticeNo));
-        return "admins/notice/admins-notice-detail";
+        return "admins/notice/admin-notice-detail";
     }
     /*공지사항 작성 페이지 이동 Admin전용*/
     @GetMapping("/admin/add")
     public String goToRegisterNoticePage(){
         //다른작업을하다가 등록을 누르면 에러가 뜨는 오류가 있음!!!
-        return "admins/notice/admins-notice-add";
+        return "admins/notice/admin-notice-add";
     }
     /*공지사항 작성 실행 Admin전용*/
     @PostMapping("/admin/add")
@@ -71,7 +78,7 @@ public class NoticeController {
     @GetMapping("/admin/{noticeNo}/update")
     public String goToUpdateNoticePage(@PathVariable(name="noticeNo")Long noticeNo, Model model){
         model.addAttribute("noticeUpdateDTO", noticeService.getNoticeInfo(noticeNo));
-        return "admins/notice/admins-notice-modify";
+        return "admins/notice/admin-notice-modify";
     }
     /*공지사항 수정 실행 Admin전용*/
     @PostMapping("/admin/{noticeNo}/update")
