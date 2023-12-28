@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NoticeSearchFrom {
+public class NoticeSearchForm {
     private String category;
     private String keyword;
     private Integer startPage;

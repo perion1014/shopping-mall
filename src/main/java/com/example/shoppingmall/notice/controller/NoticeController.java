@@ -2,7 +2,7 @@ package com.example.shoppingmall.notice.controller;
 
 import com.example.shoppingmall.notice.dto.NoticeAddDTO;
 import com.example.shoppingmall.notice.dto.NoticeUpdateDTO;
-import com.example.shoppingmall.notice.form.NoticeSearchFrom;
+import com.example.shoppingmall.notice.form.NoticeSearchForm;
 import com.example.shoppingmall.notice.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -33,11 +33,11 @@ public class NoticeController {
     }
     /*공지사항 검색 Admin전용*/
     @GetMapping("/admin/search")
-    public String searchNotice(@ModelAttribute NoticeSearchFrom noticeSearchFrom, Model model,
+    public String searchNotice(@ModelAttribute NoticeSearchForm noticeSearchForm, Model model,
                                @RequestParam(value="page", required = false, defaultValue = "1")int page){
-        model.addAttribute("noticeSearchForm", noticeSearchFrom);
-        model.addAttribute("pageSettings", noticeService.setSearchNoticeListPage(page, noticeSearchFrom));
-        model.addAttribute("noticeListByPaging", noticeService.getSearchNoticeListPage(page, noticeSearchFrom));
+        model.addAttribute("noticeSearchForm", noticeSearchForm);
+        model.addAttribute("pageSettings", noticeService.setSearchNoticeListPage(page, noticeSearchForm));
+        model.addAttribute("noticeListByPaging", noticeService.getSearchNoticeListPage(page, noticeSearchForm));
         return"admins/notice/admin-notice-search";
     }
     /*공지사항 리스트 출력 Admin전용*/

@@ -42,7 +42,7 @@
             </tr>
             </thead>
             <tbody th:each="noticeSearchDTO : ${noticeListByPaging}">
-            <tr th:onclick="|location.href='@{|/notice/admin/${noticeSearchDTO.noticeNo}|}'|">
+            <tr th:onclick="|location.href='@{|/notice/admin/${noticeSearchDTO.noticeNo}|}'|" style="cursor: pointer;">
                 <td th:text="${noticeSearchDTO.noticeNo}"></td>
                 <td th:text="${noticeSearchDTO.noticeTitle}"></td>
                 <td name="writer">admin</td>

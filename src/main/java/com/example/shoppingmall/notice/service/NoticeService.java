@@ -1,10 +1,9 @@
 package com.example.shoppingmall.notice.service;
 
-import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.notice.domain.Notice;
 import com.example.shoppingmall.notice.dto.*;
 import com.example.shoppingmall.notice.form.NoticePageForm;
-import com.example.shoppingmall.notice.form.NoticeSearchFrom;
+import com.example.shoppingmall.notice.form.NoticeSearchForm;
 import com.example.shoppingmall.notice.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -111,13 +110,13 @@ public class NoticeService {
     }
     /*관리자 공지 검색 페이지 설정(보여줄 엔티티 수, 페이지 당 페이지 수)*/
     @Transactional(readOnly = true)
-    public NoticePageForm setSearchNoticeListPage(int page, NoticeSearchFrom noticeSearchFrom){
+    public NoticePageForm setSearchNoticeListPage(int page, NoticeSearchForm noticeSearchForm){
 
         int pagePerNotice = 12;//보여줄 공지 수
         int pageLimit = 10;//하단 페이징 번호 갯수
 
         //전체 멤버 조회
-        Long noticeCount = noticeRepository.countAllNoticeByKeyword(noticeSearchFrom);
+        Long noticeCount = noticeRepository.countAllNoticeByKeyword(noticeSearchForm);
 
         //전체 페이지 갯수 계산(10/3=3.33333 => 4)
         int totalPage = (int)(Math.ceil((double) noticeCount/pagePerNotice));
@@ -134,12 +133,12 @@ public class NoticeService {
     }
     /*관리자 공지 검색 페이지 생성*/
     @Transactional(readOnly = true)
-    public List<NoticeSearchDTO> getSearchNoticeListPage(int page, NoticeSearchFrom noticeSearchFrom){
+    public List<NoticeSearchDTO> getSearchNoticeListPage(int page, NoticeSearchForm noticeSearchForm){
         int startPage = (page-1)*12;//시작 페이지
         int pagePerNotice = 12;//공지 수
-        noticeSearchFrom.setStartPage(startPage);
-        noticeSearchFrom.setPagePerNotice(pagePerNotice);
-        List<Notice>noticeList = noticeRepository.findAllNoticeByKeyword(noticeSearchFrom);
+        noticeSearchForm.setStartPage(startPage);
+        noticeSearchForm.setPagePerNotice(pagePerNotice);
+        List<Notice>noticeList = noticeRepository.findAllNoticeByKeyword(noticeSearchForm);
         List<NoticeSearchDTO>resultList = new ArrayList<>();
 
         for(Notice notice: noticeList){
