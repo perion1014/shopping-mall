@@ -17,19 +17,16 @@
         <div class="admin_notice">공지사항</div>
 
         <div class="admin_notice_search">
-            <select name="category">
-                <option value="member_id">아이디</option>
+            <form th:action="@{admin/search}" method="get">
+                <select name="category">
+                    <option value="notice_title">제목</option>
+                    <option value="notice_no">글번호</option>
+                    <!--                <option value="notice_writer">작성자</option>-->
 
-                <option value="member_hp">전화번호</option>
-
-                <option value="member_email">이메일</option>
-
-                <option value="member_name">이름</option>
-
-                <option value="member_address_basic">주소</option>
-            </select>
-            <input type="text"/>
-            <button>검색</button>
+                </select>
+                <input name="keyword" type="text"/>
+                <button>검색</button>
+            </form>
         </div>
 
         <!-- table Ex-->
@@ -49,13 +46,14 @@
                 <td th:text="${noticeSearchDTO.noticeNo}"></td>
                 <td th:text="${noticeSearchDTO.noticeTitle}"></td>
                 <td name="writer">admin</td>
-<!--                <td name="writer" th:text="${session.loginAdmin.adminId}"></td>-->
+                <!--                <td name="writer" th:text="${session.loginAdmin.adminId}"></td>-->
                 <td th:text="${#dates.format(noticeSearchDTO.noticeCreatedTime, 'yyyy-MM-dd')}"></td>
                 <td th:text="${noticeSearchDTO.noticeViewcount}"></td>
                 <td>
-                <form name="deleteNotice" th:action="@{|/notice/admin/${noticeSearchDTO.noticeNo}/delete|}" method="post">
-                    <button>삭제</button>
-                </form>
+                    <form name="deleteNotice" th:action="@{|/notice/admin/${noticeSearchDTO.noticeNo}/delete|}"
+                          method="post">
+                        <button>삭제</button>
+                    </form>
                 </td>
             </tr>
             </tbody>

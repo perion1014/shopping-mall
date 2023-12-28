@@ -14,6 +14,14 @@
         select count(notice_no) from notice
     </select>
 
+    <select id="countAllNoticeByKeyword" parameterType="com.example.shoppingmall.notice.form.NoticeSearchFrom" resultType="Long">
+        select count(notice_no) from notice where ${category} LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+    <select id="findAllNoticeByKeyword" parameterType="com.example.shoppingmall.notice.form.NoticeSearchFrom" resultType="com.example.shoppingmall.notice.domain.Notice">
+        select * from notice where ${category} LIKE CONCAT('%', #{keyword}, '%') LIMIT #{startPage}, #{pagePerNotice}
+    </select>
+
     <select id="findAllNoticeByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.notice.domain.Notice">
         select * from notice order by notice_no desc limit #{startPage}, #{pagePerNotice}
     </select>

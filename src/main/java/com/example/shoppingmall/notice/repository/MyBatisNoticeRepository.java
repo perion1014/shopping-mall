@@ -1,6 +1,7 @@
 package com.example.shoppingmall.notice.repository;
 
 import com.example.shoppingmall.notice.domain.Notice;
+import com.example.shoppingmall.notice.form.NoticeSearchFrom;
 import com.example.shoppingmall.notice.mapper.NoticeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -46,6 +47,12 @@ public class MyBatisNoticeRepository implements NoticeRepository{
     public void deleteNoticeByNo(Long noticeNo) {
         noticeMapper.deleteNoticeByNo(noticeNo);
     }
-
-
+    @Override
+    public Long countAllNoticeByKeyword(NoticeSearchFrom noticeSearchFrom){
+        return noticeMapper.countAllNoticeByKeyword(noticeSearchFrom);
+    }
+    @Override
+    public List<Notice> findAllNoticeByKeyword(NoticeSearchFrom noticeSearchFrom){
+        return noticeMapper.findAllNoticeByKeyword(noticeSearchFrom);
+    }
 }
