@@ -113,5 +113,13 @@ public class QnaService {
         return qnaDetail;
     }
 
-//    public void replyQna
+    public void replyQna(Long qnaNo, String qnaAnswer) {
+
+        Qna answer = new Qna();
+
+        answer.setQnaNo(qnaNo);
+        answer.setQnaAnswer(qnaAnswer);
+
+        qnaRepository.replyQna(answer);
+    }
 }

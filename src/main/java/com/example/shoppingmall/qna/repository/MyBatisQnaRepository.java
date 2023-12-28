@@ -1,6 +1,7 @@
 package com.example.shoppingmall.qna.repository;
 
 import com.example.shoppingmall.qna.domain.Qna;
+import com.example.shoppingmall.qna.dto.QnaDTO;
 import com.example.shoppingmall.qna.mapper.QnaMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -40,6 +41,11 @@ public class MyBatisQnaRepository implements QnaRepository {
     @Override
     public Qna findByQnaNo(Long qnaNo) {
         return qnaMapper.findByQnaNo(qnaNo);
+    }
+
+    @Override
+    public void replyQna(Qna qna) {
+        qnaMapper.replyQna(qna);
     }
 
 }

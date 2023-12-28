@@ -18,11 +18,14 @@
     내용 <span th:text="${qnaDetail.qnaQuestion}"></span><p>
 
     <div th:if="${qnaDetail.qnaAnswer != null}">
-        <p th:text="${qnaDetail.qnaAnswer}"></p>
+        <form th:action="@{'/qna/' + ${qnaDetail.qnaNo}}" method="post" >
+        <textarea name="qnaAnswer" th:text="${qnaDetail.qnaAnswer}"></textarea>
+            <button>수정</button>
+        </form>
     </div>
     <div th:unless="${qnaDetail.qnaAnswer != null}">
         <form th:action="@{'/qna/' + ${qnaDetail.qnaNo}}" method="post" >
-            <textarea th:attr="placeholder=${'답변쓰는곳'}"></textarea>
+            <textarea name="qnaAnswer"></textarea>
             <button>등록</button>
         </form>
     </div>

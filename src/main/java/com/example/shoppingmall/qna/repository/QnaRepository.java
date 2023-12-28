@@ -1,6 +1,7 @@
 package com.example.shoppingmall.qna.repository;
 
 import com.example.shoppingmall.qna.domain.Qna;
+import com.example.shoppingmall.qna.dto.QnaDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -19,4 +20,6 @@ public interface QnaRepository {
     Long countAll();
 
     Qna findByQnaNo(Long qnaNo);
+
+    void replyQna(Qna qna);
 }

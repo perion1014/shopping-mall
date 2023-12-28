@@ -1,6 +1,7 @@
 package com.example.shoppingmall.qna.mapper;
 
 import com.example.shoppingmall.qna.domain.Qna;
+import com.example.shoppingmall.qna.dto.QnaDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface QnaMapper {
     Long countAll();
 
     Qna findByQnaNo(Long qnaNo);
+
+    void replyQna(Qna qna);
 }

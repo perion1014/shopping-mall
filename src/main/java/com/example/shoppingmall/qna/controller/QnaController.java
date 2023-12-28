@@ -60,4 +60,12 @@ public class QnaController {
         model.addAttribute("qnaDetail", qnaService.getQnaInfo(qnaNo));
         return "admins/qna/admin-qna-detail";
     }
+
+    @PostMapping("/{qnaNo}")
+    public String answerQna(@PathVariable(name="qnaNo") Long qnaNo,
+                            @RequestParam(name="qnaAnswer") String qnaAnswer){
+        qnaService.replyQna(qnaNo,qnaAnswer);
+
+        return "redirect:/qna";
+    }
 }
