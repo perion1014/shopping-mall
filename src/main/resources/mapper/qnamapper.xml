@@ -37,4 +37,10 @@
         FROM qna
         WHERE qna_no = #{qnaNo}
     </select>
+
+    <update id="replyQna" parameterType="com.example.shoppingmall.qna.domain.Qna">
+        UPDATE qna
+        SET qna_answer = #{qnaAnswer}
+        WHERE qna_no = #{qnaNo}
+    </update>
 </mapper>
