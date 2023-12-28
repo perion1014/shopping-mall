@@ -47,7 +47,6 @@ public class NoticeController {
 
         model.addAttribute("pageSettings", noticeService.setNoticeListPage(page));
         model.addAttribute("noticeListByPaging", noticeService.getNoticeListPage(page));
-
         return "admins/notice/admin-notice";
     }
     /*공지사항 디테일 Admin전용*/
