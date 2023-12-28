@@ -27,6 +27,8 @@ public class CartService {
             CartReadDTO cartReadDTO = new CartReadDTO();
             cartReadDTO.setMemberNo(cart.getMemberNo());
             cartReadDTO.setCartNo(cart.getCartNo());
+            cartReadDTO.setItemNo(cart.getItemNo());
+            //System.out.println("DTO에 담긴 아이템 번호 : " + cartReadDTO.getItemNo());
             cartReadDTO.setItemThumbnail(cartRepository.getItemThumbnails(cart.getItemNo()));
             cartReadDTO.setItemName(cartRepository.getItemName(cart.getItemNo()));
             cartReadDTO.setItemSize(cart.getItemSize());

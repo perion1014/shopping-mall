@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,11 +44,23 @@ public class CartController {
     }
 
     @PostMapping("/{memberNo}/{cartNo}/update")
-    public String updateItemsInMemberCart(@RequestBody Map<String, String> jsonData, Model model, RedirectAttributes rttr){
+    @ResponseBody
+    public Map<String, Object> updateItemsInMemberCart(@RequestBody Map<String, String> jsonData, Model model, RedirectAttributes rttr){
         Integer currentQuantityNum = Integer.parseInt(jsonData.get("currentQuantityNum"));
+        //버튼 누른 이후 값 전달받는 것 확인
         Long cartNo = Long.parseLong(jsonData.get("cartNo"));
+        Long itemNo = Long.parseLong(jsonData.get("itemNo"));
+        String itemSize = jsonData.get("itemSize");
+//        System.out.println("JSON으로 전송받은 사이즈 : " + jsonData.get("itemSize"));
+//        System.out.println("JSON으로 전송받은 아이템 번호 : " + jsonData.get("itemNo"));
+        //Integer itemStockValue = cartService.getItemStockValue(itemNo, itemSize);
+        //System.out.println(itemStockValue);
+
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("response", "잘 받았습니다.");
+
         cartService.updateCartItem(cartNo, currentQuantityNum);
-        return "carts/member-cart-list";
+        return responseData;
     }
 
     @PostMapping("/{memberNo}/{cartNo}/delete")
@@ -104,6 +117,9 @@ public class CartController {
         return "carts/nonmember-cart-list";
     }
 }
+
+
+
 
 
 
