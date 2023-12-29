@@ -75,14 +75,14 @@ public class MemberService {
     @Transactional(readOnly = true)
     public MemberPageForm setMemberListPage(int page) {
 
-        int pagePerMember = 12; // 보여줄 멤버 수
+        int memberPerPage = 12; // 보여줄 멤버 수
         int pageLimit = 10; // 하단 페이징 번호 갯수
 
         // 전체 멤버 조회
         Long memberCount = memberRepository.countAll();
 
         // 전체 페이지 갯수 계산 (10/3=3.33333 => 4)
-        int totalPage = (int) (Math.ceil((double) memberCount / pagePerMember));
+        int totalPage = (int) (Math.ceil((double) memberCount / memberPerPage));
 
         // 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
@@ -160,7 +160,7 @@ public class MemberService {
         int memberPerPage = 12; // 멤버 수
 
         memberSearchForm.setStartPage(startPage);
-        memberSearchForm.setMemberPerPage( memberPerPage);
+        memberSearchForm.setMemberPerPage(memberPerPage);
         List<Member> memberList = memberRepository.findAllByKeyword(memberSearchForm);
         List<MemberSearchDTO> resultList = new ArrayList<>();
 
