@@ -56,6 +56,7 @@ public class MemberController {
     /*유저 회원 가입 기능*/
     @GetMapping("/add")
     public String goToAddMemberPage(){
+
         return "members/add-member";
     }
 
