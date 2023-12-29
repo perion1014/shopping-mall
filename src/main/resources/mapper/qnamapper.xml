@@ -61,4 +61,28 @@
     <select id="countQnaByitemNo" parameterType="Long" resultType="Long">
         SELECT count(qna_no) FROM qna WHERE item_no = #{itemNo}
     </select>
+
+    <select id="findMQnaByPaging" resultType="com.example.shoppingmall.qna.domain.Qna">
+        SELECT *
+        FROM qna
+        WHERE member_no = #{memberNo}
+        ORDER BY qna_answer is null, qna_no DESC
+        LIMIT #{startPage}, #{pagePerMember}
+    </select>
+
+    <select id="countMemberQna" parameterType="Long" resultType="Long">
+        SELECT count(qna_no) FROM qna WHERE member_no = #{memberNo}
+    </select>
+
+    <update id="updateQna" parameterType="com.example.shoppingmall.qna.dto.QnaUpdateDTO">
+        UPDATE qna
+        SET qna_title = #{qnaTitle},
+            qna_Classification = #{qnaClassification},
+            qna_Question = #{qnaQuestion}
+        WHERE qna_no = #{qnaNo}
+    </update>
+    <delete id="deleteQna" parameterType="Long">
+        DELETE FROM qna
+        where qna_no = #{qnaNo}
+    </delete>
 </mapper>

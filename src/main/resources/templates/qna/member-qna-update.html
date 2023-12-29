@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form  th:action="@{'/members/' + ${session.loginMember.getMemberNo()} + '/qna/' + ${qnaDetail.qnaNo} + '/update'}" method="post" >
+    번호 <span th:text="${qnaDetail.qnaNo}"></span> <p>
+        제목 <input type="text" name="qnaTitle" th:value="${qnaDetail.qnaTitle}" /> <p>
+        작성시간 <span th:text="${qnaDetail.qnaQuestionCreatedTime}"></span><p>
+    <p></p>
+    상품 번호 <span th:text="${qnaDetail.ItemNo}"></span><p>
+        구분 <select name="qnaClassification">
+        <option value="사이즈" th:selected="${qnaDetail.qnaClassification == '사이즈'}">사이즈</option>
+        <option value="배송" th:selected="${qnaDetail.qnaClassification == '배송'}">배송</option>
+        <option value="재입고" th:selected="${qnaDetail.qnaClassification == '재입고'}">재입고</option>
+        <option value="상품상세문의" th:selected="${qnaDetail.qnaClassification == '상품상세문의'}">상품상세문의</option>
+    </select>
+    <p></p>
+    내용 <textarea name="qnaQuestion" th:text="${qnaDetail.qnaQuestion}"></textarea>
+
+        <button>수정</button>
+    </form>
+
+    </div>
+
+</body>
+</html>

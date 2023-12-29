@@ -2,6 +2,7 @@ package com.example.shoppingmall.qna.repository;
 
 import com.example.shoppingmall.qna.domain.Qna;
 import com.example.shoppingmall.qna.dto.QnaDTO;
+import com.example.shoppingmall.qna.dto.QnaUpdateDTO;
 import com.example.shoppingmall.qna.mapper.QnaMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -58,4 +59,16 @@ public class MyBatisQnaRepository implements QnaRepository {
 
     @Override
     public Long countQnaByitemNo(Long itemNo) { return qnaMapper.countQnaByitemNo(itemNo); }
+
+    @Override
+    public List<Qna> findMQnaByPaging(int startPage, int pagePerMember, Long memberNo) { return qnaMapper.findMQnaByPaging(startPage,pagePerMember,memberNo); }
+
+    @Override
+    public Long countMemberQna(Long memberNo) { return qnaMapper.countMemberQna(memberNo); }
+
+    @Override
+    public void updateQna(QnaUpdateDTO qnaUpdateDTO) { qnaMapper.updateQna(qnaUpdateDTO); }
+
+    @Override
+    public void deleteQna(Long qnaNo) { qnaMapper.deleteQna(qnaNo); }
 }

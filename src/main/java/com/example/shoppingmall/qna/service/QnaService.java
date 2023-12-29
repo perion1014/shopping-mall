@@ -7,6 +7,7 @@ import com.example.shoppingmall.member.form.MemberSearchForm;
 import com.example.shoppingmall.qna.domain.Qna;
 import com.example.shoppingmall.qna.dto.QnaAddDTO;
 import com.example.shoppingmall.qna.dto.QnaDTO;
+import com.example.shoppingmall.qna.dto.QnaUpdateDTO;
 import com.example.shoppingmall.qna.form.QnaPageForm;
 import com.example.shoppingmall.qna.repository.QnaRepository;
 import lombok.RequiredArgsConstructor;
@@ -83,10 +84,9 @@ public class QnaService {
         int pagePerMember = 12; // 보여줄 멤버 수
         int pageLimit = 10; // 하단 페이징 번호 갯수
 
-        // 전체 멤버 조회
-        Long memberCount = qnaRepository.countAll();
+        Long qnaCount = qnaRepository.countAll();
 
-        int totalPage = (int) (Math.ceil((double) memberCount / pagePerMember));
+        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerMember));
 
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
@@ -156,10 +156,9 @@ public class QnaService {
         int pagePerMember = 12; // 보여줄 멤버 수
         int pageLimit = 10; // 하단 페이징 번호 갯수
 
-        // 전체 멤버 조회
-        Long memberCount = qnaRepository.countQnaByitemNo(itemNo);
+        Long qnaCount = qnaRepository.countQnaByitemNo(itemNo);
 
-        int totalPage = (int) (Math.ceil((double) memberCount / pagePerMember));
+        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerMember));
 
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
@@ -169,5 +168,56 @@ public class QnaService {
         }
 
         return new QnaPageForm(page,totalPage,startPage,endPage);
+    }
+
+    public Object setMQnaListPage(int page, Long memberNo) {
+        int pagePerMember = 12; // 보여줄 멤버 수
+        int pageLimit = 10; // 하단 페이징 번호 갯수
+
+        Long qnaCount = qnaRepository.countMemberQna(memberNo);
+
+        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerMember));
+
+        int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
+
+        int endPage = startPage + pageLimit - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        return new QnaPageForm(page,totalPage,startPage,endPage);
+    }
+
+    public List<QnaDTO> getMQnaListPage(int page, Long memberNo) {
+
+        int startPage = (page-1) * 12; //시작 페이지
+        int pagePerMember = 12; // 멤버 수s
+
+
+        List<Qna> qnaList = qnaRepository.findMQnaByPaging(startPage,pagePerMember,memberNo);
+
+
+        List<QnaDTO> resultList = new ArrayList<>();
+
+        for(Qna qna : qnaList){
+
+            Long memberNoForId = qna.getMemberNo();
+            String memberId = qnaRepository.getMemberIdByNo(memberNoForId);
+
+            resultList.add(QnaDTO.fromEntity(qna,memberId));
+        }
+
+        return resultList;
+    }
+
+    public void modifyQna(Long qnaNo, QnaUpdateDTO qnaUpdateDTO) {
+
+        qnaUpdateDTO.setQnaNo(qnaNo);
+
+        qnaRepository.updateQna(qnaUpdateDTO);
+    }
+
+    public void deleteQustion(Long qnaNo) {
+        qnaRepository.deleteQna(qnaNo);
     }
 }
