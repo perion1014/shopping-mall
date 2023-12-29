@@ -20,6 +20,6 @@ public class CartReadDTO {
     private String itemSize;
     private Integer itemPrice;
     private Integer itemQuantity;
-    private Integer itemPriceSum;
-    private Integer orderPriceSum;
+    //private Integer itemPriceSum;
+    //private Integer orderPriceSum;
 }

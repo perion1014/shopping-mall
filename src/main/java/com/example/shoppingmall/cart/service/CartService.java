@@ -28,14 +28,13 @@ public class CartService {
             cartReadDTO.setMemberNo(cart.getMemberNo());
             cartReadDTO.setCartNo(cart.getCartNo());
             cartReadDTO.setItemNo(cart.getItemNo());
-            //System.out.println("DTO에 담긴 아이템 번호 : " + cartReadDTO.getItemNo());
             cartReadDTO.setItemThumbnail(cartRepository.getItemThumbnails(cart.getItemNo()));
             cartReadDTO.setItemName(cartRepository.getItemName(cart.getItemNo()));
             cartReadDTO.setItemSize(cart.getItemSize());
             cartReadDTO.setItemPrice(cartRepository.getItemPrice(cart.getItemNo()));
             cartReadDTO.setItemQuantity(cart.getCartItemQuantity());
-            cartReadDTO.setItemPriceSum(cartReadDTO.getItemPrice() * cartReadDTO.getItemQuantity());
-            cartReadDTO.setOrderPriceSum((cartReadDTO.getItemPrice() * cartReadDTO.getItemQuantity()) - 1000);
+            //cartReadDTO.setItemPriceSum(cartReadDTO.getItemPrice() * cartReadDTO.getItemQuantity());
+            //cartReadDTO.setOrderPriceSum((cartReadDTO.getItemPrice() * cartReadDTO.getItemQuantity()) - 1000);
             cartDTOList.add(cartReadDTO);
         }
 
