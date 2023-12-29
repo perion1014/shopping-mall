@@ -34,4 +34,11 @@ public interface QnaMapper {
                          @Param("itemNo") Long itemNo);
 
     Long countQnaByitemNo(Long itemNo);
+
+    List<Qna> findMQnaByPaging(@Param("startPage")int startPage,
+                              @Param("pagePerMember") int pagePerMember,
+                              @Param("memberNo") Long memberNo);
+
+
+    Long countMemberQna(Long memberNo);
 }

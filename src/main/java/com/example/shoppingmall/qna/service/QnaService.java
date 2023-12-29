@@ -83,10 +83,9 @@ public class QnaService {
         int pagePerMember = 12; // 보여줄 멤버 수
         int pageLimit = 10; // 하단 페이징 번호 갯수
 
-        // 전체 멤버 조회
-        Long memberCount = qnaRepository.countAll();
+        Long qnaCount = qnaRepository.countAll();
 
-        int totalPage = (int) (Math.ceil((double) memberCount / pagePerMember));
+        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerMember));
 
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
@@ -156,10 +155,9 @@ public class QnaService {
         int pagePerMember = 12; // 보여줄 멤버 수
         int pageLimit = 10; // 하단 페이징 번호 갯수
 
-        // 전체 멤버 조회
-        Long memberCount = qnaRepository.countQnaByitemNo(itemNo);
+        Long qnaCount = qnaRepository.countQnaByitemNo(itemNo);
 
-        int totalPage = (int) (Math.ceil((double) memberCount / pagePerMember));
+        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerMember));
 
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
@@ -169,5 +167,45 @@ public class QnaService {
         }
 
         return new QnaPageForm(page,totalPage,startPage,endPage);
+    }
+
+    public Object setMQnaListPage(int page, Long memberNo) {
+        int pagePerMember = 2; // 보여줄 멤버 수
+        int pageLimit = 2; // 하단 페이징 번호 갯수
+
+        Long qnaCount = qnaRepository.countMemberQna(memberNo);
+
+        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerMember));
+
+        int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
+
+        int endPage = startPage + pageLimit - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        return new QnaPageForm(page,totalPage,startPage,endPage);
+    }
+
+    public List<QnaDTO> getMQnaListPage(int page, Long memberNo) {
+
+        int startPage = (page-1) * 2; //시작 페이지
+        int pagePerMember = 2; // 멤버 수
+
+
+        List<Qna> qnaList = qnaRepository.findMQnaByPaging(startPage,pagePerMember,memberNo);
+
+
+        List<QnaDTO> resultList = new ArrayList<>();
+
+        for(Qna qna : qnaList){
+
+            Long memberNoForId = qna.getMemberNo();
+            String memberId = qnaRepository.getMemberIdByNo(memberNoForId);
+
+            resultList.add(QnaDTO.fromEntity(qna,memberId));
+        }
+
+        return resultList;
     }
 }

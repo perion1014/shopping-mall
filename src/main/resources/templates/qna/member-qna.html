@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+
+        <th>번호</th>
+        <th>상품 번호</th>
+        <th>구분</th>
+        <th>제목</th>
+        <th>등록일자</th>
+        <th>답변여부</th>
+    </tr>
+    </thead>
+    <tbody th:each="QnaDTO,itemQnaNo : ${qnaListByPaging}">
+    <tr th:onclick="|window.open('/items/${QnaDTO.itemNo}/qna/${QnaDTO.qnaNo}', 'name', 'resizable=no,width=600,height=500');
+		 return false;|">
+        <td th:text="${itemQnaNo.count}"></td>
+        <td th:text="${QnaDTO.ItemNo}"></td>
+        <td th:text="${QnaDTO.qnaClassification}"></td>
+        <td th:text="${QnaDTO.qnaTitle}"></td>
+        <td th:text="${#dates.format(QnaDTO.qnaQuestionCreatedTime, 'yyyy-MM-dd')}"></td>
+        <td>
+            <span th:if="${QnaDTO.qnaAnswer != null}" >답변완료</span>
+            <span th:unless="${QnaDTO.qnaAnswer != null}">답변대기</span>
+        </td>
+    </tr>
+</table>
+
+<div>
+    <span th:if="${pageSettings.page &lt;= 1}">이전</span>
+    <span th:unless="${pageSettings.page &lt;= 1}">
+            <a th:href="@{/qna/members/{memberNo}(memberNo=${memberNo},page=${pageSettings.page - 1})}">이전</a>
+          </span>
+
+    <span th:each="i : ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
+            <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
+            <a th:unless="${i == pageSettings.page}"
+               th:href="@{/qna/members/{memberNo}(memberNo=${memberNo},page=${i})}"
+               th:text="${i}"></a>
+          </span>
+
+    <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
+    <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
+       th:href="@{/qna/members/{memberNo}(memberNo=${memberNo},page=${pageSettings.page + 1})}"
+    >다음</a
+    >
+
+
+</div>
+</body>
+</html>

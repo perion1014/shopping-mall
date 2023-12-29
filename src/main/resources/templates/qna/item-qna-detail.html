@@ -17,6 +17,10 @@
 <div th:if="${qnaDetail.qnaAnswer != null}">
     <span th:text="${qnaDetail.qnaAnswer}"></span>
 </div>
+<!--<span th:text="${qnaDetail.memberNo}"></span>-->
+<div th:if="${qnaDetail.memberNo == session.loginMember.memberNo}">
+    <button>수정</button>
+</div>
 
 
 </div>

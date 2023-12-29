@@ -28,4 +28,8 @@ public interface QnaRepository {
     List<Qna> findQnaByPaging(int startPage, int pagePerMember, Long itemNo);
 
     Long countQnaByitemNo(Long itemNo);
+
+    List<Qna> findMQnaByPaging(int startPage, int pagePerMember, Long memberNo);
+
+    Long countMemberQna(Long memberNo);
 }

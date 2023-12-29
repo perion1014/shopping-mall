@@ -75,4 +75,22 @@ public class QnaController {
 
         return "redirect:/qna/{qnaNo}";
     }
+
+    @GetMapping("/members/{memberNo}")
+    public String showMemberQnaList(@RequestParam(value="page", required=false, defaultValue="1") int page,
+                                    @PathVariable(name="memberNo") Long memberNo, Model model,
+                                    HttpServletRequest request) {
+
+        HttpSession session = request.getSession(false);
+
+        if (session == null || session.getAttribute("loginMember") == null) {
+            return "redirect:/members/login";
+        }
+
+        model.addAttribute("pageSettings", qnaService.setMQnaListPage(page,memberNo));
+        model.addAttribute("qnaListByPaging",qnaService.getMQnaListPage(page,memberNo));
+
+
+        return "/qna/member-qna";
+    }
 }
