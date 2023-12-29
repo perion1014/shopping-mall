@@ -94,11 +94,11 @@ public class MemberService {
     public List<MemberSearchDTO> getMemberListPage(int page) {
 
         int startPage = (page-1) * 12; //시작 페이지
-        int pagePerMember = 12; // 멤버 수
+        int memberPerPage = 12; // 멤버 수
 
         Map<String, Integer> pagingSettings = new HashMap<>();
         pagingSettings.put("startPage", startPage);
-        pagingSettings.put("pagePerMember", pagePerMember);
+        pagingSettings.put("memberPerPage", memberPerPage);
         List<Member> memberList = memberRepository.findAllByPaging(pagingSettings);
 
         /**
@@ -123,14 +123,14 @@ public class MemberService {
     @Transactional(readOnly = true)
     public MemberPageForm setSearchMemberListPage(int page, MemberSearchForm memberSearchForm) {
 
-        int pagePerMember = 12; // 보여줄 멤버 수
+        int memberPerPage = 12; // 보여줄 멤버 수
         int pageLimit = 10; // 하단 페이징 번호 갯수
 
         // 전체 멤버 조회
         Long memberCount = memberRepository.countAllByKeyword(memberSearchForm);
 
         // 전체 페이지 갯수 계산 (10/3=3.33333 => 4)
-        int totalPage = (int) (Math.ceil((double) memberCount / pagePerMember));
+        int totalPage = (int) (Math.ceil((double) memberCount / memberPerPage));
 
         // 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
@@ -150,10 +150,10 @@ public class MemberService {
     public List<MemberSearchDTO> getSearchMemberListPage(int page, MemberSearchForm memberSearchForm) {
 
         int startPage = (page-1) * 12; //시작 페이지
-        int pagePerMember = 12; // 멤버 수
+        int memberPerPage = 12; // 멤버 수
 
         memberSearchForm.setStartPage(startPage);
-        memberSearchForm.setPagePerMember(pagePerMember);
+        memberSearchForm.setMemberPerPage( memberPerPage);
         List<Member> memberList = memberRepository.findAllByKeyword(memberSearchForm);
         List<MemberSearchDTO> resultList = new ArrayList<>();
 

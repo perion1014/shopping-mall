@@ -47,11 +47,11 @@
     </select>
 
     <select id="findAllByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.member.domain.Member">
-        select * from member order by member_no desc limit #{startPage}, #{pagePerMember}
+        select * from member order by member_no desc limit #{startPage}, #{memberPerPage}
     </select>
 
     <select id="findAllByKeyword" parameterType="com.example.shoppingmall.member.form.MemberSearchForm" resultType="com.example.shoppingmall.member.domain.Member">
-        select * from member where ${category} LIKE CONCAT('%', #{keyword}, '%') LIMIT #{startPage}, #{pagePerMember}
+        select * from member where ${category} LIKE CONCAT('%', #{keyword}, '%') LIMIT #{startPage}, #{memberPerPage}
     </select>
 
     <select id="countAll" resultType="Long">

@@ -12,6 +12,6 @@ public class MemberSearchForm {
     private String category;
     private String keyword;
     private Integer startPage;
-    private Integer pagePerMember;
+    private Integer memberPerPage;
 }
 
