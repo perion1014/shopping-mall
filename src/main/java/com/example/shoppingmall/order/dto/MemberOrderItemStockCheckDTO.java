@@ -11,4 +11,5 @@ import lombok.Setter;
 public class MemberOrderItemStockCheckDTO {
     private String itemName;
     private String itemSize;
+    private Integer selectedItemQuantity;
 }

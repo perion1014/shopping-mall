@@ -97,46 +97,40 @@ function calculatePriceSum(cartDTOListSize){
 
 function checkItemStock(cartDTOListSize, memberNo){
 
-    var jsonData = {};
-    jsonData.items = [];
+    var jsonData= [];
 
     var itemName = '';
     var itemSize = '';
+    var selectedItemQuantity = 0;
 
     for(var i = 0; i < cartDTOListSize; i++){
         if(document.getElementById('cartCheckBox_' + i).checked === true){
             itemName = document.getElementById('itemName_' + i).innerText;
             itemSize = document.getElementById('itemSize_' + i).innerText;
-            var jsonItem = JSON.stringify({itemName: itemName, itemSize: String(itemSize)});
-            jsonData.items.push(jsonItem);
+            selectedItemQuantity = document.getElementById('inputvalue_' + i)
+            var jsonItem = {itemName: itemName, itemSize: itemSize};
+            jsonData.push(jsonItem);
             // alert('아이템 명 : ' + itemName);
             // alert('아이템 사이즈 : ' + itemSize);
         }
     }
 
-    for(var i = 0; i < jsonData.items.length; i++){
-        alert('JSON담은 이름 : ' + jsonData.items[i].itemName);
-        alert('JSON담은 사이즈 : ' + jsonData.items[i].itemSize);
-    }
-
-    //alert('members/' + memberNo + '/orders/check-itemstock');
+    // for(var i = 0; i < jsonData.length; i++){
+    //     alert('JSON담은 이름 : ' + jsonData[i].itemName);
+    //     alert('JSON담은 사이즈 : ' + jsonData[i].itemSize);
+    // }
 
     fetch('/members/' + memberNo + '/orders/check-itemstock', {
         method: 'POST',
         headers:{
             'Content-Type': 'application/json'
         },
-        body:jsonData
-    }).then(response => response.text())
+        body:JSON.stringify(jsonData)
+    }).then(response => response.json())
         .then(data => {
-            //var responsemessage = data.;
-            //alert(data.response);
 
-            //location.reload();
-            //alert(currentQuantityNum);
-            //alert('전송 결과 : ' + data);
+            alert(JSON.stringify(data.response));
 
-            alert('JSON 데이터 전송 성공');
         }).catch(error => {
             alert('JSON 전송 실패 - 사유 : ' + error);
     })
