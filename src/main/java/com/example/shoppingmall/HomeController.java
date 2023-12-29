@@ -28,6 +28,7 @@ public class HomeController {
 
         HttpSession session = request.getSession();
         session.setAttribute("ifSearched", false);
+        session.setAttribute("ifCategorySelected", true);
 
 
         //세션에 회원 데이터가 없으면 일반 홈으로 이동
