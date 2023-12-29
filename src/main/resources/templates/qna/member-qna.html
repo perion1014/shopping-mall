@@ -29,6 +29,12 @@
             <span th:if="${QnaDTO.qnaAnswer != null}" >답변완료</span>
             <span th:unless="${QnaDTO.qnaAnswer != null}">답변대기</span>
         </td>
+        <td>
+            <form th:action="'/members/'+${QnaDTO.memberNo}+'/qna'" method="post">
+                <input type="hidden" name="qnaNo" th:value="${QnaDTO.qnaNo}" />
+                <button>삭제</button>
+            </form>
+        </td>
     </tr>
 </table>
 

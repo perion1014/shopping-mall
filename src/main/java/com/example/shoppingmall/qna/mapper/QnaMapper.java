@@ -44,4 +44,6 @@ public interface QnaMapper {
     Long countMemberQna(Long memberNo);
 
     void updateQna(QnaUpdateDTO qnaUpdateDTO);
+
+    void deleteQna(Long qnaNo);
 }

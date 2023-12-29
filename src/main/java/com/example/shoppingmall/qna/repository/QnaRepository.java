@@ -35,4 +35,6 @@ public interface QnaRepository {
     Long countMemberQna(Long memberNo);
 
     void updateQna(QnaUpdateDTO qnaUpdateDTO);
+
+    void deleteQna(Long qnaNo);
 }

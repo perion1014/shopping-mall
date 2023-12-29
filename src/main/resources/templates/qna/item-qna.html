@@ -53,6 +53,7 @@
     >다음</a
     >
 
+
     <button th:if="${session.loginMember != null}" th:onclick="|window.open('/qna/${session.loginMember.getMemberNo()}/${itemNo}', 'name', 'resizable=no,width=600,height=500'); return false;|">qna등록</button>
     <button th:unless="${session.loginMember != null}" th:onclick="|window.location.href='/members/login'|">
         qna등록

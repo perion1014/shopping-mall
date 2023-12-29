@@ -216,4 +216,8 @@ public class QnaService {
 
         qnaRepository.updateQna(qnaUpdateDTO);
     }
+
+    public void deleteQustion(Long qnaNo) {
+        qnaRepository.deleteQna(qnaNo);
+    }
 }

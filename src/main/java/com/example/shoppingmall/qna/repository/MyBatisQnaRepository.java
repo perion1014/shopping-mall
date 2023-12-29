@@ -68,4 +68,7 @@ public class MyBatisQnaRepository implements QnaRepository {
 
     @Override
     public void updateQna(QnaUpdateDTO qnaUpdateDTO) { qnaMapper.updateQna(qnaUpdateDTO); }
+
+    @Override
+    public void deleteQna(Long qnaNo) { qnaMapper.deleteQna(qnaNo); }
 }

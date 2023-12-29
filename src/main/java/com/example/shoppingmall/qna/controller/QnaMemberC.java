@@ -49,4 +49,12 @@ public class QnaMemberC {
         return "redirect:/items/" + itemNo + "/qna/" + qnaNo;
     }
 
+    @PostMapping("/{memberNo}/qna")
+    public String deleteQnaQuestion(@PathVariable(name = "memberNo") Long memberNo,
+                                    @RequestParam(name = "qnaNo") Long qnaNo){
+        qnaService.deleteQustion(qnaNo);
+
+
+        return "redirect:/members/{memberNo}/qna";
+    }
 }

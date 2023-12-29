@@ -81,5 +81,8 @@
             qna_Question = #{qnaQuestion}
         WHERE qna_no = #{qnaNo}
     </update>
-
+    <delete id="deleteQna" parameterType="Long">
+        DELETE FROM qna
+        where qna_no = #{qnaNo}
+    </delete>
 </mapper>
