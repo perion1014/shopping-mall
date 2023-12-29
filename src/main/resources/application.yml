@@ -3,17 +3,17 @@ server:
   port: 8082
 
 #Gmail SMTP Server
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: perion1014
-    password: ffircdrkxzinzvxi
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: perion1014
+#    password:
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
 
 # Mybatis
 mybatis:
