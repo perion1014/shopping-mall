@@ -55,20 +55,20 @@
         select * from item order by item_no desc
     </select>
 
-    <select id="findAllItemsBySearchKeyword" parameterType="String" resultType="com.example.shoppingmall.item.domain.Item">
-        select * from item where item_name like concat('%', #{itemName}, '%') order by item_no desc
+    <select id="findAllItemsBySearchKeyword" parameterType="com.example.shoppingmall.item.form.ItemSearchForm" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_name like concat('%', #{searchKeyword}, '%') order by item_no desc
     </select>
 
-    <select id="findAllItemsOuterBySearchKeyword" parameterType="String" resultType="com.example.shoppingmall.item.domain.Item">
-        select * from item where item_name like concat('%', #{itemName}, '%') and item_category = 'Outer' order by item_no desc
+    <select id="findAllItemsOuterBySearchKeyword" parameterType="com.example.shoppingmall.item.form.ItemSearchForm" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_name like concat('%', #{searchKeyword}, '%') and item_category = 'outer' order by item_no desc limit #{startPage}, #{itemsPerPage}
     </select>
 
-    <select id="findAllItemsInnerBySearchKeyword" parameterType="String" resultType="com.example.shoppingmall.item.domain.Item">
-        select * from item where item_name like concat('%', #{itemName}, '%') and item_category = 'Inner' order by item_no desc
+    <select id="findAllItemsInnerBySearchKeyword" parameterType="com.example.shoppingmall.item.form.ItemSearchForm" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_name like concat('%', #{searchKeyword}, '%') and item_category = 'inner' order by item_no desc limit #{startPage}, #{itemsPerPage}
     </select>
 
-    <select id="findAllItemsPantsBySearchKeyword" parameterType="String" resultType="com.example.shoppingmall.item.domain.Item">
-        select * from item where item_name like concat('%', #{itemName}, '%') and item_category = 'Pants' order by item_no desc
+    <select id="findAllItemsPantsBySearchKeyword" parameterType="com.example.shoppingmall.item.form.ItemSearchForm" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_name like concat('%', #{searchKeyword}, '%') and item_category = 'pants' order by item_no desc limit #{startPage}, #{itemsPerPage}
     </select>
 
     <select id="findAllItemsByCategory" parameterType="String" resultType="com.example.shoppingmall.item.domain.Item">
@@ -132,6 +132,18 @@
 
     <select id="selectItemThumbByItemNo" parameterType="long" resultType="com.example.shoppingmall.item.domain.ItemPhotos">
         select item_thumb from item_photos where item_no = #{itemNo}
+    </select>
+
+    <select id="findAllItemsByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_onsale = 1 order by item_no desc limit #{startPage}, #{itemsPerPage}
+    </select>
+
+    <select id="getItemListPageByCategory" parameterType="com.example.shoppingmall.item.form.ItemCategoryPageForm" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_category = #{category} and item_onsale = 1 order by item_no desc limit #{startPage}, #{itemsPerPage}
+    </select>
+
+    <select id="getItemListPageBySearch" parameterType="com.example.shoppingmall.item.form.ItemSearchForm" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_name like concat('%', #{searchKeyword}, '%') and item_onsale = 1 order by item_no desc limit #{startPage}, #{itemsPerPage}
     </select>
 
 </mapper>

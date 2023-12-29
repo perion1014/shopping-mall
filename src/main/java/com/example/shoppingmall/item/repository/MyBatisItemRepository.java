@@ -3,10 +3,13 @@ package com.example.shoppingmall.item.repository;
 import com.example.shoppingmall.item.domain.Item;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
+import com.example.shoppingmall.item.form.ItemCategoryPageForm;
+import com.example.shoppingmall.item.form.ItemSearchForm;
 import com.example.shoppingmall.item.mapper.ItemMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
@@ -42,26 +45,26 @@ public class MyBatisItemRepository implements ItemRepository{
     }
 
     @Override
-    public List<Item> findAllItemsBySearchKeyword(String searchKeyword) {
-        List<Item> itemList = itemMapper.findAllItemsBySearchKeyword(searchKeyword);
+    public List<Item> findAllItemsBySearchKeyword(ItemSearchForm itemSearchForm) {
+        List<Item> itemList = itemMapper.findAllItemsBySearchKeyword(itemSearchForm);
         return itemList;
     }
 
     @Override
-    public List<Item> findAllItemsOuterBySearchKeyword(String searchKeyword) {
-        List<Item> itemList = itemMapper.findAllItemsOuterBySearchKeyword(searchKeyword);
+    public List<Item> findAllItemsOuterBySearchKeyword(ItemSearchForm itemSearchForm) {
+        List<Item> itemList = itemMapper.findAllItemsOuterBySearchKeyword(itemSearchForm);
         return itemList;
     }
 
     @Override
-    public List<Item> findAllItemsInnerBySearchKeyword(String searchKeyword) {
-        List<Item> itemList = itemMapper.findAllItemsInnerBySearchKeyword(searchKeyword);
+    public List<Item> findAllItemsInnerBySearchKeyword(ItemSearchForm itemSearchForm) {
+        List<Item> itemList = itemMapper.findAllItemsInnerBySearchKeyword(itemSearchForm);
         return itemList;
     }
 
     @Override
-    public List<Item> findAllItemsPantsBySearchKeyword(String searchKeyword) {
-        List<Item> itemList = itemMapper.findAllItemsPantsBySearchKeyword(searchKeyword);
+    public List<Item> findAllItemsPantsBySearchKeyword(ItemSearchForm itemSearchForm) {
+        List<Item> itemList = itemMapper.findAllItemsPantsBySearchKeyword(itemSearchForm);
         return itemList;
     }
 
@@ -134,6 +137,21 @@ public class MyBatisItemRepository implements ItemRepository{
     @Override
     public String selectItemThumbByItemNo(Long itemNo) {
         return itemMapper.selectItemThumbByItemNo(itemNo);
+    }
+
+    @Override
+    public List<Item> findAllItemsByPaging(Map<String, Integer> pagingSettings) {
+        return itemMapper.findAllItemsByPaging(pagingSettings);
+    }
+
+    @Override
+    public List<Item> getItemListPageByCategory(ItemCategoryPageForm itemCategoryPageForm) {
+        return itemMapper.getItemListPageByCategory(itemCategoryPageForm);
+    }
+
+    @Override
+    public List<Item> getItemListPageBySearch(ItemSearchForm itemSearchForm) {
+        return itemMapper.getItemListPageBySearch(itemSearchForm);
     }
 
 }

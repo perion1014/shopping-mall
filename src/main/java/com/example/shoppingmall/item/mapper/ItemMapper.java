@@ -4,9 +4,12 @@ import com.example.shoppingmall.item.domain.Item;
 import com.example.shoppingmall.item.domain.ItemItemStock;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
+import com.example.shoppingmall.item.form.ItemCategoryPageForm;
+import com.example.shoppingmall.item.form.ItemSearchForm;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Mapper
@@ -48,12 +51,17 @@ public interface ItemMapper {
 
     String selectItemThumbByItemNo(Long itemNo);
 
-    List<Item> findAllItemsBySearchKeyword(String itemName);
+    List<Item> findAllItemsBySearchKeyword(ItemSearchForm itemSearchForm);
 
-    List<Item> findAllItemsOuterBySearchKeyword(String itemName);
+    List<Item> findAllItemsOuterBySearchKeyword(ItemSearchForm itemSearchForm);
 
-    List<Item> findAllItemsInnerBySearchKeyword(String itemName);
+    List<Item> findAllItemsInnerBySearchKeyword(ItemSearchForm itemSearchForm);
 
-    List<Item> findAllItemsPantsBySearchKeyword(String itemName);
+    List<Item> findAllItemsPantsBySearchKeyword(ItemSearchForm itemSearchForm);
 
+    List<Item> findAllItemsByPaging(Map<String, Integer> pagingSettings);
+
+    List<Item> getItemListPageByCategory(ItemCategoryPageForm itemCategoryPageForm);
+
+    List<Item> getItemListPageBySearch(ItemSearchForm itemSearchForm);
 }

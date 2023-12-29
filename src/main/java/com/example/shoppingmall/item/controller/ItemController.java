@@ -1,6 +1,8 @@
 package com.example.shoppingmall.item.controller;
 
 import com.example.shoppingmall.item.dto.*;
+import com.example.shoppingmall.item.form.ItemCategoryPageForm;
+import com.example.shoppingmall.item.form.ItemSearchForm;
 import com.example.shoppingmall.item.service.ItemService;
 
 import com.example.shoppingmall.qna.dto.QnaDTO;
@@ -29,66 +31,99 @@ public class ItemController {
 
     /*유저 쇼핑몰 조회*/
     @GetMapping("")
-    public String showItemList(Model model, HttpServletRequest request) {
-
-        HttpSession session = request.getSession();
-        session.setAttribute("ifSearched", false);
-
-        List<ItemDTO> itemDTOList = itemService.findAllItemsOnsale();
-        model.addAttribute("itemDTOList", itemDTOList);
-        return "items/item-list";
-    }
-
-    @GetMapping("/searched")
-    public String showItemList2(Model model) {
-        List<ItemDTO> itemDTOList = itemService.findAllItemsOnsale();
-        model.addAttribute("itemDTOList", itemDTOList);
-        return "items/item-list";
-    }
-
-    @GetMapping("/outer")
-    public String showOuterList(Model model, HttpServletRequest request) {
+    public String showItemList(@RequestParam(value="page", required=false, defaultValue="1") int page,
+                               Model model, HttpServletRequest request) {
 
         HttpSession session = request.getSession();
         session.setAttribute("ifSearched", false);
         session.setAttribute("ifCategorySelected", true);
 
-        List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Outer");
+        model.addAttribute("pageSettings", itemService.setItemListPage(page));
+        List<ItemDTO> itemDTOList = itemService.getItemListPage(page);
+        model.addAttribute("itemDTOList", itemDTOList);
+        model.addAttribute("Category", "All");
+        return "items/item-list";
+    }
+
+    @GetMapping("/searched")
+    public String showItemList2(@RequestParam(value="page", required=false, defaultValue="1") int page,
+                                Model model, HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        session.setAttribute("ifSearched", true);
+        session.setAttribute("ifCategorySelected", false);
+
+        model.addAttribute("pageSettings", itemService.setItemListPage(page));
+        List<ItemDTO> itemDTOList = itemService.getItemListPage(page);
+        model.addAttribute("itemDTOList", itemDTOList);
+        return "items/item-list";
+    }
+
+    @GetMapping("/outer")
+    public String showOuterList(@ModelAttribute ItemCategoryPageForm itemCategoryPageForm,
+                                @RequestParam(value="page", required=false, defaultValue="1") int page,
+                                Model model, HttpServletRequest request) {
+
+        itemCategoryPageForm.setCategory("outer");
+        model.addAttribute("pageSettings", itemService.setItemListPageByCategory(page, itemCategoryPageForm));
+
+        HttpSession session = request.getSession();
+        session.setAttribute("ifSearched", false);
+        session.setAttribute("ifCategorySelected", true);
+
+        //List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Outer");
+        List<ItemDTO> itemDTOList = itemService.getItemListPageByCategory(page, itemCategoryPageForm);
         model.addAttribute("itemDTOList", itemDTOList);
         model.addAttribute("Category", "Outer");
         return "items/item-list";
     }
 
     @GetMapping("/inner")
-    public String showInnerList(Model model, HttpServletRequest request) {
+    public String showInnerList(@ModelAttribute ItemCategoryPageForm itemCategoryPageForm,
+                                @RequestParam(value="page", required=false, defaultValue="1") int page,
+                                Model model, HttpServletRequest request) {
+
+        itemCategoryPageForm.setCategory("inner");
+        model.addAttribute("pageSettings", itemService.setItemListPageByCategory(page, itemCategoryPageForm));
 
         HttpSession session = request.getSession();
         session.setAttribute("ifSearched", false);
         session.setAttribute("ifCategorySelected", true);
 
-        List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Inner");
+        //List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Inner");
+        List<ItemDTO> itemDTOList = itemService.getItemListPageByCategory(page, itemCategoryPageForm);
         model.addAttribute("itemDTOList", itemDTOList);
         model.addAttribute("Category", "Inner");
         return "items/item-list";
     }
 
     @GetMapping("/pants")
-    public String showPantsList(Model model, HttpServletRequest request) {
+    public String showPantsList(@ModelAttribute ItemCategoryPageForm itemCategoryPageForm,
+                                @RequestParam(value="page", required=false, defaultValue="1") int page,
+                                Model model, HttpServletRequest request) {
+
+        itemCategoryPageForm.setCategory("pants");
+        model.addAttribute("pageSettings", itemService.setItemListPageByCategory(page, itemCategoryPageForm));
 
         HttpSession session = request.getSession();
         session.setAttribute("ifSearched", false);
         session.setAttribute("ifCategorySelected", true);
 
-        List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Pants");
+        //List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Pants");
+        List<ItemDTO> itemDTOList = itemService.getItemListPageByCategory(page, itemCategoryPageForm);
         model.addAttribute("itemDTOList", itemDTOList);
         model.addAttribute("Category", "Pants");
         return "items/item-list";
     }
 
     @GetMapping("/search")
-    public String showItemSearched(@RequestParam (name = "searchKeyword", defaultValue = "") String searchKeyword,
+    public String showItemSearched(@ModelAttribute ItemSearchForm itemSearchForm,
+                                   @RequestParam(value="page", required=false, defaultValue="1") int page,
+                                   @RequestParam (name = "searchKeyword", defaultValue = "") String searchKeyword,
                                    Model model,
                                    HttpServletRequest request){
+
+        model.addAttribute("pageSettings", itemService.setItemSearchList(page, itemSearchForm));
 
         HttpSession session = request.getSession();
         session.setAttribute("ifSearched", true);
@@ -96,40 +131,44 @@ public class ItemController {
         if (searchKeyword.isEmpty()) {
             return "redirect:/items/searched";
         }
-        List<ItemDTO> itemDTOList = itemService.findAllItemsBySearchKeyword(searchKeyword);
+        //List<ItemDTO> itemDTOList = itemService.findAllItemsBySearchKeyword(searchKeyword);
+        List<ItemDTO> itemDTOList = itemService.getItemListPageBySearch(page, itemSearchForm);
         model.addAttribute("itemDTOList", itemDTOList);
         return "items/item-list";
     }
 
     // 구현해야 할 부분
     @GetMapping("/categoricalSearch")
-    public String showItemCategoricallySearched(@RequestParam (name = "searchKeyword", defaultValue = "") String searchKeyword,
+    public String showItemCategoricallySearched(@ModelAttribute ItemSearchForm itemSearchForm,
                                                 @RequestParam (name = "selectedCategory") String selectedCategory,
+                                                HttpServletRequest request,
                                                 Model model){
 
-        // The initial state of session.ifSearched == false.
-        // The initial state of session.ifCategorySelected == true.
 
-        System.out.println("showItemCategoricallySearched ==> searchKeyword: " + searchKeyword);
-        System.out.println("showItemCategoricallySearched ==> selectedCategory: " + selectedCategory);
+        HttpSession session = request.getSession();
 
-        if (searchKeyword.isEmpty()) {
-            return "redirect:/items/searched";
+        if (selectedCategory.equals("All")) {
+            List<ItemDTO> itemDTOList = itemService.findAllItemsBySearchKeyword(itemSearchForm);
+            System.out.println(itemDTOList.size());
+            model.addAttribute("itemDTOList", itemDTOList);
+            model.addAttribute("Category", selectedCategory);
+        } else if (selectedCategory.equals("Outer")){
+            List<ItemDTO> itemDTOList = itemService.findAllItemsOuterBySearchKeyword(itemSearchForm);
+            System.out.println(itemDTOList.size());
+            model.addAttribute("itemDTOList", itemDTOList);
+            model.addAttribute("Category", selectedCategory);
+        } else if (selectedCategory.equals("Inner")){
+            List<ItemDTO> itemDTOList = itemService.findAllItemsInnerBySearchKeyword(itemSearchForm);
+            System.out.println(itemDTOList.size());
+            model.addAttribute("itemDTOList", itemDTOList);
+            model.addAttribute("Category", selectedCategory);
+        } else {
+            List<ItemDTO> itemDTOList = itemService.findAllItemsPantsBySearchKeyword(itemSearchForm);
+            System.out.println(itemDTOList.size());
+            model.addAttribute("itemDTOList", itemDTOList);
+            model.addAttribute("Category", selectedCategory);
         }
 
-        List<ItemDTO> itemDTOList = itemService.findAllItemsBySearchKeyword(searchKeyword);
-        if (searchKeyword.equals("Outer")){
-            itemDTOList = itemService.findAllItemsOuterBySearchKeyword(searchKeyword);
-        } else if (searchKeyword.equals("Inner")){
-            itemDTOList = itemService.findAllItemsInnerBySearchKeyword(searchKeyword);
-        } else if (searchKeyword.equals("Pants")){
-            itemDTOList = itemService.findAllItemsPantsBySearchKeyword(searchKeyword);
-        }
-
-        System.out.println(itemDTOList.size());
-
-        model.addAttribute("itemDTOList", itemDTOList);
-        model.addAttribute("Category", selectedCategory);
         return "items/item-list";
     }
 
