@@ -48,6 +48,24 @@ public class MyBatisItemRepository implements ItemRepository{
     }
 
     @Override
+    public List<Item> findAllItemsOuterBySearchKeyword(String searchKeyword) {
+        List<Item> itemList = itemMapper.findAllItemsOuterBySearchKeyword(searchKeyword);
+        return itemList;
+    }
+
+    @Override
+    public List<Item> findAllItemsInnerBySearchKeyword(String searchKeyword) {
+        List<Item> itemList = itemMapper.findAllItemsInnerBySearchKeyword(searchKeyword);
+        return itemList;
+    }
+
+    @Override
+    public List<Item> findAllItemsPantsBySearchKeyword(String searchKeyword) {
+        List<Item> itemList = itemMapper.findAllItemsPantsBySearchKeyword(searchKeyword);
+        return itemList;
+    }
+
+    @Override
     public List<Item> findAllItemsByCategory(String category) {
         List<Item> itemList = itemMapper.findAllItemsByCategory(category);
         return itemList;

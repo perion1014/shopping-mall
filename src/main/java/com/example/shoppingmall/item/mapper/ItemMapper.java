@@ -49,4 +49,11 @@ public interface ItemMapper {
     String selectItemThumbByItemNo(Long itemNo);
 
     List<Item> findAllItemsBySearchKeyword(String itemName);
+
+    List<Item> findAllItemsOuterBySearchKeyword(String itemName);
+
+    List<Item> findAllItemsInnerBySearchKeyword(String itemName);
+
+    List<Item> findAllItemsPantsBySearchKeyword(String itemName);
+
 }

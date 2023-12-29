@@ -59,6 +59,18 @@
         select * from item where item_name like concat('%', #{itemName}, '%') order by item_no desc
     </select>
 
+    <select id="findAllItemsOuterBySearchKeyword" parameterType="String" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_name like concat('%', #{itemName}, '%') and item_category = 'Outer' order by item_no desc
+    </select>
+
+    <select id="findAllItemsInnerBySearchKeyword" parameterType="String" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_name like concat('%', #{itemName}, '%') and item_category = 'Inner' order by item_no desc
+    </select>
+
+    <select id="findAllItemsPantsBySearchKeyword" parameterType="String" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_name like concat('%', #{itemName}, '%') and item_category = 'Pants' order by item_no desc
+    </select>
+
     <select id="findAllItemsByCategory" parameterType="String" resultType="com.example.shoppingmall.item.domain.Item">
         select * from item where item_category = #{category} and item_onsale = 1 order by item_no desc
     </select>

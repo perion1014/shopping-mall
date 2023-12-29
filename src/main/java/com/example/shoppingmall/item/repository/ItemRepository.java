@@ -33,6 +33,12 @@ public interface ItemRepository {
 
     List<Item> findAllItemsBySearchKeyword(String searchKeyword);
 
+    List<Item> findAllItemsOuterBySearchKeyword(String searchKeyword);
+
+    List<Item> findAllItemsInnerBySearchKeyword(String searchKeyword);
+
+    List<Item> findAllItemsPantsBySearchKeyword(String searchKeyword);
+
     List<Item> findAllItemsOnsale();
 
     List<Item> findAllItemsOffmarket();
