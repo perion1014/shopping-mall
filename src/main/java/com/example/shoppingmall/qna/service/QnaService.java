@@ -7,6 +7,7 @@ import com.example.shoppingmall.member.form.MemberSearchForm;
 import com.example.shoppingmall.qna.domain.Qna;
 import com.example.shoppingmall.qna.dto.QnaAddDTO;
 import com.example.shoppingmall.qna.dto.QnaDTO;
+import com.example.shoppingmall.qna.dto.QnaUpdateDTO;
 import com.example.shoppingmall.qna.form.QnaPageForm;
 import com.example.shoppingmall.qna.repository.QnaRepository;
 import lombok.RequiredArgsConstructor;
@@ -170,8 +171,8 @@ public class QnaService {
     }
 
     public Object setMQnaListPage(int page, Long memberNo) {
-        int pagePerMember = 2; // 보여줄 멤버 수
-        int pageLimit = 2; // 하단 페이징 번호 갯수
+        int pagePerMember = 12; // 보여줄 멤버 수
+        int pageLimit = 10; // 하단 페이징 번호 갯수
 
         Long qnaCount = qnaRepository.countMemberQna(memberNo);
 
@@ -189,8 +190,8 @@ public class QnaService {
 
     public List<QnaDTO> getMQnaListPage(int page, Long memberNo) {
 
-        int startPage = (page-1) * 2; //시작 페이지
-        int pagePerMember = 2; // 멤버 수
+        int startPage = (page-1) * 12; //시작 페이지
+        int pagePerMember = 12; // 멤버 수s
 
 
         List<Qna> qnaList = qnaRepository.findMQnaByPaging(startPage,pagePerMember,memberNo);
@@ -207,5 +208,12 @@ public class QnaService {
         }
 
         return resultList;
+    }
+
+    public void modifyQna(Long qnaNo, QnaUpdateDTO qnaUpdateDTO) {
+
+        qnaUpdateDTO.setQnaNo(qnaNo);
+
+        qnaRepository.updateQna(qnaUpdateDTO);
     }
 }

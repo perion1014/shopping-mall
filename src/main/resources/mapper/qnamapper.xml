@@ -74,4 +74,12 @@
         SELECT count(qna_no) FROM qna WHERE member_no = #{memberNo}
     </select>
 
+    <update id="updateQna" parameterType="com.example.shoppingmall.qna.dto.QnaUpdateDTO">
+        UPDATE qna
+        SET qna_title = #{qnaTitle},
+            qna_Classification = #{qnaClassification},
+            qna_Question = #{qnaQuestion}
+        WHERE qna_no = #{qnaNo}
+    </update>
+
 </mapper>

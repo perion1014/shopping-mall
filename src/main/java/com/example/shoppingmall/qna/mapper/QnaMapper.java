@@ -2,6 +2,7 @@ package com.example.shoppingmall.qna.mapper;
 
 import com.example.shoppingmall.qna.domain.Qna;
 import com.example.shoppingmall.qna.dto.QnaDTO;
+import com.example.shoppingmall.qna.dto.QnaUpdateDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -41,4 +42,6 @@ public interface QnaMapper {
 
 
     Long countMemberQna(Long memberNo);
+
+    void updateQna(QnaUpdateDTO qnaUpdateDTO);
 }

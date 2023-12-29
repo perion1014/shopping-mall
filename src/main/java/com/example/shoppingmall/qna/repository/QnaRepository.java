@@ -2,6 +2,7 @@ package com.example.shoppingmall.qna.repository;
 
 import com.example.shoppingmall.qna.domain.Qna;
 import com.example.shoppingmall.qna.dto.QnaDTO;
+import com.example.shoppingmall.qna.dto.QnaUpdateDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -32,4 +33,6 @@ public interface QnaRepository {
     List<Qna> findMQnaByPaging(int startPage, int pagePerMember, Long memberNo);
 
     Long countMemberQna(Long memberNo);
+
+    void updateQna(QnaUpdateDTO qnaUpdateDTO);
 }

@@ -19,7 +19,9 @@
 </div>
 <!--<span th:text="${qnaDetail.memberNo}"></span>-->
 <div th:if="${qnaDetail.memberNo == session.loginMember.memberNo}">
-    <button>수정</button>
+    <button th:onclick="|window.location.href='/members/${qnaDetail.memberNo}/qna/${qnaDetail.qnaNo}/update'|">
+        수정
+    </button>
 </div>
 
 
