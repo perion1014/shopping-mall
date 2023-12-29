@@ -61,8 +61,9 @@
     <h3 class="main__title">검색 결과가 없습니다.</h3>
 
 </main>
-<form class="items__search" action="" method="get">
-    <input class="input--items" th:placeholder="${Category} + ' 카테고리 내에서 검색'">
+<form class="items__search" action="/items/categoricalSearch" method="get">
+    <input class="input--items" name="searchKeyword" th:placeholder="${Category} != null? ${Category} + ' 카테고리 내에서 검색': '전체 카테고리 내에서 검색'">
+    <input type="hidden" name="selectedCategory" th:value="${Category}">
     <button class="btn btn--xs btn--black">검색</button>
 </form>
 <div class="items__page">

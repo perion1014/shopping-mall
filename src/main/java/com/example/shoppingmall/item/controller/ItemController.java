@@ -51,6 +51,7 @@ public class ItemController {
 
         HttpSession session = request.getSession();
         session.setAttribute("ifSearched", false);
+        session.setAttribute("ifCategorySelected", true);
 
         List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Outer");
         model.addAttribute("itemDTOList", itemDTOList);
@@ -63,6 +64,7 @@ public class ItemController {
 
         HttpSession session = request.getSession();
         session.setAttribute("ifSearched", false);
+        session.setAttribute("ifCategorySelected", true);
 
         List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Inner");
         model.addAttribute("itemDTOList", itemDTOList);
@@ -75,6 +77,7 @@ public class ItemController {
 
         HttpSession session = request.getSession();
         session.setAttribute("ifSearched", false);
+        session.setAttribute("ifCategorySelected", true);
 
         List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Pants");
         model.addAttribute("itemDTOList", itemDTOList);
@@ -86,8 +89,10 @@ public class ItemController {
     public String showItemSearched(@RequestParam (name = "searchKeyword", defaultValue = "") String searchKeyword,
                                    Model model,
                                    HttpServletRequest request){
+
         HttpSession session = request.getSession();
         session.setAttribute("ifSearched", true);
+        session.setAttribute("ifCategorySelected", false);
         if (searchKeyword.isEmpty()) {
             return "redirect:/items/searched";
         }
@@ -99,15 +104,32 @@ public class ItemController {
     // 구현해야 할 부분
     @GetMapping("/categoricalSearch")
     public String showItemCategoricallySearched(@RequestParam (name = "searchKeyword", defaultValue = "") String searchKeyword,
-                                                Model model,
-                                                HttpServletRequest request){
-        HttpSession session = request.getSession();
-        session.setAttribute("ifSearched", true);
+                                                @RequestParam (name = "selectedCategory") String selectedCategory,
+                                                Model model){
+
+        // The initial state of session.ifSearched == false.
+        // The initial state of session.ifCategorySelected == true.
+
+        System.out.println("showItemCategoricallySearched ==> searchKeyword: " + searchKeyword);
+        System.out.println("showItemCategoricallySearched ==> selectedCategory: " + selectedCategory);
+
         if (searchKeyword.isEmpty()) {
             return "redirect:/items/searched";
         }
+
         List<ItemDTO> itemDTOList = itemService.findAllItemsBySearchKeyword(searchKeyword);
+        if (searchKeyword.equals("Outer")){
+            itemDTOList = itemService.findAllItemsOuterBySearchKeyword(searchKeyword);
+        } else if (searchKeyword.equals("Inner")){
+            itemDTOList = itemService.findAllItemsInnerBySearchKeyword(searchKeyword);
+        } else if (searchKeyword.equals("Pants")){
+            itemDTOList = itemService.findAllItemsPantsBySearchKeyword(searchKeyword);
+        }
+
+        System.out.println(itemDTOList.size());
+
         model.addAttribute("itemDTOList", itemDTOList);
+        model.addAttribute("Category", selectedCategory);
         return "items/item-list";
     }
 
