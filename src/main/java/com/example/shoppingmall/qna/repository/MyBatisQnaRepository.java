@@ -53,4 +53,9 @@ public class MyBatisQnaRepository implements QnaRepository {
         qnaMapper.deleteAnswer(qnaNo);
     }
 
+    @Override
+    public List<Qna> findQnaByPaging(int startPage, int pagePerMember, Long itemNo) { return qnaMapper.findQnaByPaging(startPage,pagePerMember,itemNo); }
+
+    @Override
+    public Long countQnaByitemNo(Long itemNo) { return qnaMapper.countQnaByitemNo(itemNo); }
 }

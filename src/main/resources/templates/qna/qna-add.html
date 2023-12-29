@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
-    해위
-    <form th:action="@{'/qna/' + ${session.loginMember.getMemberNo()} + '/' + ${itemNo}}" method="post" >
+
+    <form id="addQna" th:action="@{'/qna/' + ${session.loginMember.getMemberNo()} + '/' + ${itemNo}}" method="post" >
 
         <div>
             <input type="text" name="qnaTitle" placeholder="제목">

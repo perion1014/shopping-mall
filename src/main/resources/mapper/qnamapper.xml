@@ -49,4 +49,16 @@
         SET qna_answer = NULL
         WHERE qna_no = #{qnaNo}
     </update>
+
+    <select id="findQnaByPaging" resultType="com.example.shoppingmall.qna.domain.Qna">
+        SELECT *
+        FROM qna
+        WHERE item_no = #{itemNo}
+        ORDER BY qna_no DESC
+        LIMIT #{startPage}, #{pagePerMember}
+    </select>
+
+    <select id="countQnaByitemNo" parameterType="Long" resultType="Long">
+        SELECT count(qna_no) FROM qna WHERE item_no = #{itemNo}
+    </select>
 </mapper>
