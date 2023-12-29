@@ -41,7 +41,7 @@ public class ItemController {
         model.addAttribute("pageSettings", itemService.setItemListPage(page));
         List<ItemDTO> itemDTOList = itemService.getItemListPage(page);
         model.addAttribute("itemDTOList", itemDTOList);
-        model.addAttribute("Category", "All");
+        model.addAttribute("Category", "all");
         return "items/item-list";
     }
 
@@ -74,7 +74,7 @@ public class ItemController {
         //List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Outer");
         List<ItemDTO> itemDTOList = itemService.getItemListPageByCategory(page, itemCategoryPageForm);
         model.addAttribute("itemDTOList", itemDTOList);
-        model.addAttribute("Category", "Outer");
+        model.addAttribute("Category", "outer");
         return "items/item-list";
     }
 
@@ -93,7 +93,7 @@ public class ItemController {
         //List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Inner");
         List<ItemDTO> itemDTOList = itemService.getItemListPageByCategory(page, itemCategoryPageForm);
         model.addAttribute("itemDTOList", itemDTOList);
-        model.addAttribute("Category", "Inner");
+        model.addAttribute("Category", "inner");
         return "items/item-list";
     }
 
@@ -112,7 +112,7 @@ public class ItemController {
         //List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Pants");
         List<ItemDTO> itemDTOList = itemService.getItemListPageByCategory(page, itemCategoryPageForm);
         model.addAttribute("itemDTOList", itemDTOList);
-        model.addAttribute("Category", "Pants");
+        model.addAttribute("Category", "pants");
         return "items/item-list";
     }
 
@@ -147,17 +147,17 @@ public class ItemController {
 
         HttpSession session = request.getSession();
 
-        if (selectedCategory.equals("All")) {
+        if (selectedCategory.equals("all")) {
             List<ItemDTO> itemDTOList = itemService.findAllItemsBySearchKeyword(itemSearchForm);
             System.out.println(itemDTOList.size());
             model.addAttribute("itemDTOList", itemDTOList);
             model.addAttribute("Category", selectedCategory);
-        } else if (selectedCategory.equals("Outer")){
+        } else if (selectedCategory.equals("outer")){
             List<ItemDTO> itemDTOList = itemService.findAllItemsOuterBySearchKeyword(itemSearchForm);
             System.out.println(itemDTOList.size());
             model.addAttribute("itemDTOList", itemDTOList);
             model.addAttribute("Category", selectedCategory);
-        } else if (selectedCategory.equals("Inner")){
+        } else if (selectedCategory.equals("inner")){
             List<ItemDTO> itemDTOList = itemService.findAllItemsInnerBySearchKeyword(itemSearchForm);
             System.out.println(itemDTOList.size());
             model.addAttribute("itemDTOList", itemDTOList);
