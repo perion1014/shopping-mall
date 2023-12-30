@@ -37,4 +37,12 @@ public interface QnaRepository {
     void updateQna(QnaUpdateDTO qnaUpdateDTO);
 
     void deleteQna(Long qnaNo);
+
+    List<Qna> findQnaAnswered(Map<String, Integer> pagingSettings);
+
+    Long countQnaAnswered();
+
+    List<Qna> findUnansweredQna(Map<String, Integer> pagingSettings);
+
+    Long countUnansweredQna();
 }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head th:admin-head>
+    <div th:remove="tag" th:replace="~{/fragments/admin-head :: admin-head} "></div>
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/pages/admins/admins-member.css">
+</head>
+<body>
+<header th:replace="~{/fragments/admin-login-header :: admin-login-header}"></header>
+<aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}"></aside>
+<main>
+    <div class="main">
+        <div class="admin_member"> QnA </div>
+        <!--        <div class="admin_member_search">-->
+        <!--          <form th:action="@{admin/search}" method="get">-->
+        <!--            <select name="category">-->
+        <!--              <option value="member_no" >회원번호</option>-->
+        <!--              <option value="member_id" >아이디</option>-->
+        <!--              <option value="member_hp" >전화번호</option>-->
+        <!--              <option value="member_email" >이메일</option>-->
+        <!--              <option value="member_name" >이름</option>-->
+        <!--              <option value="member_address_basic" >주소</option>-->
+        <!--            </select>-->
+        <!--          <input name="keyword" type="text" />-->
+        <!--          <button>검색</button>-->
+        <!--          </form>-->
+        <!--        </div>-->
+
+        <!-- table Ex-->
+        <table>
+            <thead>
+            <tr>
+                <th>몰라</th>
+                <th>번호</th>
+                <th>회원 아이디</th>
+                <th>상품 번호</th>
+                <th>구분</th>
+                <th>제목</th>
+                <th>등록일자</th>
+                <th>답변여부</th>
+            </tr>
+            </thead>
+            <tbody th:each="QnaDTO : ${qnaListByPaging}">
+            <tr th:onclick="|location.href='@{|/qna/${QnaDTO.qnaNo}|}'|">
+                <td><a href="#" onclick="window.open('items/1','name','resizable=no width=600 height=500');return false">ㅎㅇ</a></td>
+                <td th:text="${QnaDTO.qnaNo}" ></td>
+                <td th:text="${QnaDTO.MemberId}"></td>
+                <td th:text="${QnaDTO.ItemNo}"></td>
+                <td th:text="${QnaDTO.qnaClassification}"></td>
+                <td th:text="${QnaDTO.qnaTitle}"></td>
+                <td th:text="${#dates.format(QnaDTO.qnaQuestionCreatedTime, 'yyyy-MM-dd')}"></td>
+                <td>
+                    <span th:if="${QnaDTO.qnaAnswer != null}" >답변완료</span>
+                    <span th:unless="${QnaDTO.qnaAnswer != null}">답변대기</span>
+                </td>
+            </tr>
+        </table>
+
+        <div class="admin_member_page">
+            <span th:if="${pageSettings.page &lt;= 1}">이전</span>
+            <span th:unless="${pageSettings.page &lt;= 1}">
+            <a th:href="@{/qna/noAnswer(page=${pageSettings.page - 1})}">이전</a>
+          </span>
+
+            <span th:each="i : ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
+            <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
+            <a th:unless="${i == pageSettings.page}"
+               th:href="@{/qna/noAnswer(page=${i})}"
+               th:text="${i}"></a>
+          </span>
+
+            <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
+            <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
+               th:href="@{/qna/noAnswer(page=${pageSettings.page + 1})}"
+            >다음</a
+            >
+        </div>
+    </div>
+    <!--main div-->
+</main>
+</body>
+</html>

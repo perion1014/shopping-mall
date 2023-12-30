@@ -76,4 +76,26 @@ public class QnaController {
         return "redirect:/qna/{qnaNo}";
     }
 
+
+    // 답변완료 페이징
+    @GetMapping("/answer")
+    public String showAnsweredQna(@RequestParam(value="page", required=false, defaultValue="1") int page
+                                ,Model model){
+
+        model.addAttribute("pageSettings", qnaService.setQnaPageAnswered(page));
+        model.addAttribute("qnaListByPaging",qnaService.getQnaAnswered(page));
+
+        return "admins/qna/admin-answered-qna";
+    }
+
+//     답변대기 페이징
+    @GetMapping("/noAnswer")
+    public String showUnansweredQna(@RequestParam(value="page", required=false, defaultValue="1") int page
+            ,Model model){
+
+        model.addAttribute("pageSettings", qnaService.setUnansweredQnaPage(page));
+        model.addAttribute("qnaListByPaging",qnaService.getUnansweredQna(page));
+
+        return "admins/qna/admin-unanswered-qna";
+    }
 }
