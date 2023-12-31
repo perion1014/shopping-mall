@@ -1,6 +1,7 @@
 package com.example.shoppingmall.item.controller;
 
 import com.example.shoppingmall.item.dto.*;
+import com.example.shoppingmall.item.form.ItemCategoricalSearchPageForm;
 import com.example.shoppingmall.item.form.ItemCategoryPageForm;
 import com.example.shoppingmall.item.form.ItemSearchForm;
 import com.example.shoppingmall.item.service.ItemService;
@@ -30,7 +31,7 @@ public class ItemController {
     private final QnaService qnaService;
 
     /*유저 쇼핑몰 조회*/
-    @GetMapping("")
+    @GetMapping("/all") /* state: not searched */
     public String showItemList(@RequestParam(value="page", required=false, defaultValue="1") int page,
                                Model model, HttpServletRequest request) {
 
@@ -45,7 +46,7 @@ public class ItemController {
         return "items/item-list";
     }
 
-    @GetMapping("/searched")
+    @GetMapping("/searched")    /* state: searched */
     public String showItemList2(@RequestParam(value="page", required=false, defaultValue="1") int page,
                                 Model model, HttpServletRequest request) {
 
@@ -56,6 +57,7 @@ public class ItemController {
         model.addAttribute("pageSettings", itemService.setItemListPage(page));
         List<ItemDTO> itemDTOList = itemService.getItemListPage(page);
         model.addAttribute("itemDTOList", itemDTOList);
+        model.addAttribute("Category", "all");
         return "items/item-list";
     }
 
@@ -139,31 +141,35 @@ public class ItemController {
 
     // 구현해야 할 부분
     @GetMapping("/categoricalSearch")
-    public String showItemCategoricallySearched(@ModelAttribute ItemSearchForm itemSearchForm,
+    public String showItemCategoricallySearched(@ModelAttribute ItemCategoricalSearchPageForm itemCategoricalSearchPageForm,
+                                                @RequestParam(value="page", required=false, defaultValue="1") int page,
                                                 @RequestParam (name = "selectedCategory") String selectedCategory,
-                                                HttpServletRequest request,
                                                 Model model){
 
-
-        HttpSession session = request.getSession();
-
         if (selectedCategory.equals("all")) {
-            List<ItemDTO> itemDTOList = itemService.findAllItemsBySearchKeyword(itemSearchForm);
+            model.addAttribute("pageSettings", itemService.setItemSearchListByAll(page, itemCategoricalSearchPageForm));
+            List<ItemDTO> itemDTOList = itemService.findAllItemsBySearchKeyword(page, itemCategoricalSearchPageForm);
             System.out.println(itemDTOList.size());
             model.addAttribute("itemDTOList", itemDTOList);
             model.addAttribute("Category", selectedCategory);
         } else if (selectedCategory.equals("outer")){
-            List<ItemDTO> itemDTOList = itemService.findAllItemsOuterBySearchKeyword(itemSearchForm);
+            itemCategoricalSearchPageForm.setCategory(selectedCategory);
+            model.addAttribute("pageSettings", itemService.setItemSearchListByCategory(page, itemCategoricalSearchPageForm));
+            List<ItemDTO> itemDTOList = itemService.findAllItemsOuterBySearchKeyword(page, itemCategoricalSearchPageForm);
             System.out.println(itemDTOList.size());
             model.addAttribute("itemDTOList", itemDTOList);
             model.addAttribute("Category", selectedCategory);
         } else if (selectedCategory.equals("inner")){
-            List<ItemDTO> itemDTOList = itemService.findAllItemsInnerBySearchKeyword(itemSearchForm);
+            itemCategoricalSearchPageForm.setCategory(selectedCategory);
+            model.addAttribute("pageSettings", itemService.setItemSearchListByCategory(page, itemCategoricalSearchPageForm));
+            List<ItemDTO> itemDTOList = itemService.findAllItemsInnerBySearchKeyword(page, itemCategoricalSearchPageForm);
             System.out.println(itemDTOList.size());
             model.addAttribute("itemDTOList", itemDTOList);
             model.addAttribute("Category", selectedCategory);
         } else {
-            List<ItemDTO> itemDTOList = itemService.findAllItemsPantsBySearchKeyword(itemSearchForm);
+            itemCategoricalSearchPageForm.setCategory(selectedCategory);
+            model.addAttribute("pageSettings", itemService.setItemSearchListByCategory(page, itemCategoricalSearchPageForm));
+            List<ItemDTO> itemDTOList = itemService.findAllItemsPantsBySearchKeyword(page, itemCategoricalSearchPageForm);
             System.out.println(itemDTOList.size());
             model.addAttribute("itemDTOList", itemDTOList);
             model.addAttribute("Category", selectedCategory);
@@ -173,9 +179,21 @@ public class ItemController {
     }
 
     @GetMapping("/admin")
-    public String getItemList(Model model) {
-        List<ItemDTO> itemDTOList = itemService.findAllItems();
-        model.addAttribute("itemDTOList", itemDTOList);
+    public String getItemList(@ModelAttribute ItemSearchForm itemSearchForm,
+                              @RequestParam(value="page", required=false, defaultValue="1") int page,
+                              Model model) {
+
+
+
+        if (itemSearchForm.getSearchKeyword() == null || itemSearchForm.getSearchKeyword().isEmpty()) {
+            model.addAttribute("pageSettings", itemService.setItemListPage(page));
+            List<ItemDTO> itemDTOList = itemService.getItemListPage(page);
+            model.addAttribute("itemDTOList", itemDTOList);
+        } else {
+            model.addAttribute("pageSettings", itemService.setItemSearchList(page, itemSearchForm));
+            List<ItemDTO> itemDTOList = itemService.getItemListPageBySearch(page, itemSearchForm);
+            model.addAttribute("itemDTOList", itemDTOList);
+        }
         return "admins/item/admins-item";
     }
 
