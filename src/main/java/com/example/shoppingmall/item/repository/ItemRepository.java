@@ -5,10 +5,12 @@ import com.example.shoppingmall.item.domain.ItemItemStock;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.ItemStockDTO;
+import com.example.shoppingmall.item.form.ItemCategoricalSearchPageForm;
 import com.example.shoppingmall.item.form.ItemCategoryPageForm;
 import com.example.shoppingmall.item.form.ItemSearchForm;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -34,13 +36,13 @@ public interface ItemRepository {
 
     List<Item> findItemsByName(String itemName);
 
-    List<Item> findAllItemsBySearchKeyword(ItemSearchForm itemSearchForm);
+    List<Item> findAllItemsBySearchKeyword(ItemCategoricalSearchPageForm itemCategoricalSearchPageForm);
 
-    List<Item> findAllItemsOuterBySearchKeyword(ItemSearchForm itemSearchForm);
+    List<Item> findAllItemsOuterBySearchKeyword(ItemCategoricalSearchPageForm itemCategoricalSearchPageForm);
 
-    List<Item> findAllItemsInnerBySearchKeyword(ItemSearchForm itemSearchForm);
+    List<Item> findAllItemsInnerBySearchKeyword(ItemCategoricalSearchPageForm itemCategoricalSearchPageForm);
 
-    List<Item> findAllItemsPantsBySearchKeyword(ItemSearchForm itemSearchForm);
+    List<Item> findAllItemsPantsBySearchKeyword(ItemCategoricalSearchPageForm itemCategoricalSearchPageForm);
 
     List<Item> findAllItemsOnsale();
 
@@ -64,4 +66,6 @@ public interface ItemRepository {
     List<Item> getItemListPageByCategory(ItemCategoryPageForm itemCategoryPageForm);
 
     List<Item> getItemListPageBySearch(ItemSearchForm itemSearchForm);
+
+    List<Item> findItemsByNameAndCategory(ItemCategoricalSearchPageForm itemCategoricalSearchPageForm);
 }
