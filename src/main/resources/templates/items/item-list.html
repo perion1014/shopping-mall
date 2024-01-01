@@ -30,19 +30,19 @@
         <li class="item__filter"><a href="/items/pants">Pants</a></li>
     </ul>
     <ul class="item__filters" th:if="${Category} == 'outer' and ${session.ifSearched} == false">
-        <li class="item__filter"><a href="/items">All</a></li>
+        <li class="item__filter"><a href="/items/all">All</a></li>
         <li class="item__filter"><a class="now__page">Outer</a></li>
         <li class="item__filter"><a href="/items/inner">Inner</a></li>
         <li class="item__filter"><a href="/items/pants">Pants</a></li>
     </ul>
     <ul class="item__filters" th:if="${Category} == 'inner' and ${session.ifSearched} == false">
-        <li class="item__filter"><a href="/items">All</a></li>
+        <li class="item__filter"><a href="/items/all">All</a></li>
         <li class="item__filter"><a href="/items/outer">Outer</a></li>
         <li class="item__filter"><a class="now__page">Inner</a></li>
         <li class="item__filter"><a href="/items/pants">Pants</a></li>
     </ul>
     <ul class="item__filters" th:if="${Category} == 'pants' and ${session.ifSearched} == false">
-        <li class="item__filter"><a href="/items">All</a></li>
+        <li class="item__filter"><a href="/items/all">All</a></li>
         <li class="item__filter"><a href="/items/outer">Outer</a></li>
         <li class="item__filter"><a href="/items/inner">Inner</a></li>
         <li class="item__filter"><a class="now__page">Pants</a></li>
@@ -63,7 +63,7 @@
 
 </main>
 <form class="items__search" action="/items/categoricalSearch" method="get">
-    <input class="input--items" name="searchKeyword" th:placeholder="${Category} != 'all'? ${Category} + ' 카테고리 내에서 검색': '전체 카테고리 내에서 검색'">
+    <input class="input--items" name="searchKeyword" th:placeholder="(${Category} == 'all' or ${Category} == null)? '전체 카테고리 내에서 검색': ${Category} + ' 카테고리 내에서 검색'">
     <input type="hidden" name="selectedCategory" th:value="${Category}">
     <button class="btn btn--xs btn--black">검색</button>
 </form>
@@ -71,19 +71,19 @@
 
     <span th:if="${pageSettings.page &lt;= 1}">이전</span>
     <span th:unless="${pageSettings.page &lt;= 1}">
-        <a th:href="@{/items/{Category}(category=${Category},page=${pageSettings.page - 1})}">이전</a>
+        <a th:href="@{/items/{category}(category=${Category}, page=${pageSettings.page - 1})}">이전</a>
     </span>
 
     <span th:each="i: ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
         <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
-        <a th:unless="${i == pageSettings.page}"
-           th:href="@{/items/${Category}(page=${i})}"
+        <a th:if="${i != pageSettings.page}"
+           th:href="@{/items/{category}(category=${Category}, page=${i})}"
            th:text="${i}"></a>
     </span>
 
     <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
     <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
-       th:href="@{/items/{Category}(category=${Category},page=${pageSettings.page + 1})}">다음</a>
+       th:href="@{/items/{category}(category=${Category},page=${pageSettings.page + 1})}">다음</a>
 </div>
 </body>
 </html>

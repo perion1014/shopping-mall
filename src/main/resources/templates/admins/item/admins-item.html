@@ -21,12 +21,14 @@
         <div class="admin_item_sale">On sale | Not on sale</div>
         <div class="admin_item_category">top | bottom | outer</div>
         <div class="admin_item_search">
-          <select name="category">
-            <option value="member_id">상품 번호</option>
-            <option value="member_address_basic" selected>상품명</option>
-          </select>
-          <input type="text" />
-          <button>검색</button>
+          <form action="/items/admin" method="get">
+            <select name="category">
+              <option value="member_id">상품 번호</option>
+              <option value="member_address_basic" selected>상품명</option>
+            </select>
+            <input type="text" name="searchKeyword"/>
+            <button>검색</button>
+          </form>
         </div>
 
         <!-- table Ex-->
@@ -62,7 +64,22 @@
           </tbody>
         </table>
 
-        <div class="admin_item_page"><a href="1">1</a> <a href="2">2</a></div>
+        <div class="admin_item_page">
+          <span th:if="${pageSettings.page &lt;= 1}">이전</span>
+          <span th:unless="${pageSettings.page &lt;= 1}">
+        <a th:href="@{/items/admin(page=${pageSettings.page - 1})}">이전</a>
+    </span>
+
+          <span th:each="i: ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
+        <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
+        <a th:if="${i != pageSettings.page}"
+           th:href="@{/items/admin(page=${i})}"
+           th:text="${i}"></a>
+    </span>
+
+          <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
+          <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
+             th:href="@{/items/admin(page=${pageSettings.page + 1})}">다음</a>
       </div>
       <!--main div-->
     </main>
