@@ -30,9 +30,9 @@ public class OrderController {
         System.out.println("컨트롤러에 도착 확인");
 
         for(int i =0; i <jsonData.size(); i++){
-
             System.out.println(jsonData.get(i).getItemName());
             System.out.println(jsonData.get(i).getItemSize());
+            System.out.println(jsonData.get(i).getSelectedItemQuantity());
         }
 
         Map<String, Object> responseData = new HashMap<>();
@@ -45,9 +45,13 @@ public class OrderController {
     @ResponseBody
     public Map<String, Object> checkNonMemberOrderItemStock(@RequestBody List<MemberOrderItemStockCheckDTO> jsonData){
 
+        System.out.println("컨트롤러 도착 확인");
 
-
-
+        for(int i = 0; i < jsonData.size(); i++){
+            System.out.println(jsonData.get(i).getItemName());
+            System.out.println(jsonData.get(i).getItemSize());
+            System.out.println(jsonData.get(i).getSelectedItemQuantity());
+        }
 
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("response", "데이터 전달 후 응답 확인");
