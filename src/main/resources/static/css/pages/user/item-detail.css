@@ -34,6 +34,13 @@
     border-radius: 0;
     padding: 1rem 0;
 }
+.input--item-cart{
+    margin: 0;
+    width: 2.5rem;
+    height: 1.5rem;
+    border-width: 1px 0 1px 0;
+    border-radius: 0;
+}
 .item__countbtns{
     display: flex;
     align-items: end;
@@ -47,6 +54,15 @@
     border-radius: 0;
     text-align: center;
 }
+
+.btn--item-cart{
+    width: 2rem;
+    height: 1.5rem;
+    font-size: 1rem;
+    border-radius: 0;
+    text-align: center;
+}
+
 .item__delivery--price{
     font-size: 0.8rem;
     color: var(--color-primary-variant);
@@ -104,4 +120,8 @@
 }
 .btn--aside{
     display: block;
+}
+.item__countbtns--cart{
+    width: 60%;
+    height: 60%;
 }
