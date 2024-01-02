@@ -93,7 +93,7 @@ public class NoticeService {
     public List<NoticeSearchDTO> getNoticeListPage(int page){
 
         int startPage = (page-1) * 12;//시작페이지
-        int pagePerNotice = 12;//멤버 수
+        int pagePerNotice = 12;//공지 수
 
         Map<String, Integer> pagingSettings = new HashMap<>();
         pagingSettings.put("startPage", startPage);
@@ -108,6 +108,7 @@ public class NoticeService {
         }
         return resultList;
     }
+
     /*관리자 공지 검색 페이지 설정(보여줄 엔티티 수, 페이지 당 페이지 수)*/
     @Transactional(readOnly = true)
     public NoticePageForm setSearchNoticeListPage(int page, NoticeSearchForm noticeSearchForm){
@@ -131,6 +132,7 @@ public class NoticeService {
         }
         return  new NoticePageForm(page,totalPage,startPage,endPage);
     }
+
     /*관리자 공지 검색 페이지 생성*/
     @Transactional(readOnly = true)
     public List<NoticeSearchDTO> getSearchNoticeListPage(int page, NoticeSearchForm noticeSearchForm){
@@ -147,5 +149,47 @@ public class NoticeService {
         return resultList;
     }
 
+    /*고객용 공지 페이지 설정*/
+    @Transactional(readOnly = true)
+    public NoticePageForm setNoticeListForMember(int page) {
+
+        int pagePerNotice = 12;//보여줄 공지 수
+        int pageLimit = 10;//하단 페이징 번호 갯수
+
+        //전체 공지 조회
+        Long noticeCount = noticeRepository.countAllNotice();
+
+        //전체 페이지 갯수 계산(10/3.3333 => 4)
+        int totalPage = (int) (Math.ceil((double) noticeCount / pagePerNotice));
+
+        //시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
+        int startPage = (((int) (Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
+
+        //끝 페이지 값 계산(3, 6, 9, 12, ~~~)
+        int endPage = startPage + pageLimit - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+        return new NoticePageForm(page, totalPage, startPage, endPage);
+    }
+
+    /*고객용 공지 페이지 생성*/
+    @Transactional(readOnly = true)
+    public List<NoticeListDTO> getNoticeListForMember(int page){
+
+        int startPage = (page-1) * 12;//시작페이지
+        int pagePerNotice = 12;//공지 수
+
+        Map<String, Integer> pagingSettings = new HashMap<>();
+        pagingSettings.put("startPage", startPage);
+        pagingSettings.put("pagePerNotice", pagePerNotice);
+        List<Notice> noticeList = noticeRepository.findAllNoticeByPaging(pagingSettings);
+        List<NoticeListDTO> resultList = new ArrayList<>();
+
+        for(Notice notice : noticeList){
+            resultList.add(NoticeListDTO.NoticeToNoticeListDTO(notice));
+        }
+        return resultList;
+    }
 }
 
