@@ -13,7 +13,7 @@ noticeBtn.addEventListener('click',()=>{
 
 const itemsBtn = document.querySelector('.btn--items');
 itemsBtn.addEventListener('click',()=>{
-    location.href='/items';
+    location.href='/items/all';
 })
 
 
