@@ -9,8 +9,11 @@
 <body>
    <header th:replace="~{/fragments/login-header :: header}"></header>
 
-    <main>
-        <div th:each="cartDTO, cartIndex : ${cartDTOList}">
+   <main th:if="${cartDTOList.size()} == 0 or ${cartDTOList} == null">
+       <div th:text="'장바구니가 비어 있습니다.'"></div>
+   </main>
+   <main th:if="${cartDTOList.size()} > 0">
+   <div th:each="cartDTO, cartIndex : ${cartDTOList}">
             <div th:text="'장바구니 번호 : ' + ${cartDTO.cartNo}"></div>
             <input th:value ="${cartDTO.itemNo}" style="display:none;">
             <div th:text="'썸네일 : ' + ${cartDTO.itemThumbnail}"></div>

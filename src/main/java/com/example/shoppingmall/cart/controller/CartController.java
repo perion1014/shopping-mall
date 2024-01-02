@@ -116,6 +116,18 @@ public class CartController {
 
         return "carts/nonmember-cart-list";
     }
+
+    @GetMapping("member/test")
+    public String goToMemberTestPage(){
+        return "member-cart-list-test";
+    }
+
+    @GetMapping("nonmember/test")
+        public String goToNonMemberTestPage(){
+        return "nonmember-cart-list-test";
+    }
+
+
 }
 
 
