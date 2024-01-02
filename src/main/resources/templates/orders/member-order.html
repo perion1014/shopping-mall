@@ -11,24 +11,26 @@
 <main class="main__container">
     <h1 class="main__title">주문 정보 입력</h1>
     <form method="post">
-        <div class="order__links`">
+        <div class="radio__container">
             <div>
-                <input type="radio">등록된 주소
+                <input id="memberAddress" type="radio">
+                <label for="memberAddress">등록된 주소</label>
             </div>
             <div>
-                <input type="radio">새로운 주소 입력
+                <input id="newAddress" type="radio">
+                <label for="newAddress">새로운 주소 입력</label>
             </div>
         </div>
-        <label class="label" for="memberName">
-            <h5 class="label__title">수령자 이름*</h5>
-            <input id="memberName" name ="memberName" class="input input--lg" type="text" />
+        <label class="label" for="memberHp">
+            <h5 class="label__title">주문자 휴대폰 번호*</h5>
+            <input id="memberHp" name="memberHp" class="input input--lg" type="text" />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
-        <label class="label" for="memberHp">
-            <h5 class="label__title">휴대폰 번호*</h5>
-            <input id="memberHp" name="memberHp" class="input input--lg" type="text" />
+        <label class="label" for="memberName">
+            <h5 class="label__title">수령자명*</h5>
+            <input id="memberName" name ="memberName" class="input input--lg" type="text" />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
