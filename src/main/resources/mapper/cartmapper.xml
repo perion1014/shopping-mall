@@ -7,7 +7,7 @@
     </select>
 
     <select id = "getItemThumbnails" resultType = "java.lang.String">
-    select item_thumb_modified FROM item_photos where item_no = #{itemNo}
+    select item_thumb FROM item_photos where item_no = #{itemNo}
     </select>
 
     <select id = "getItemName" resultType = "java.lang.String">

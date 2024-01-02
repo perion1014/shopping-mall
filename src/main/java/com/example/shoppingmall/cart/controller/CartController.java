@@ -29,7 +29,7 @@ public class CartController {
     public String showMemberCartList(@PathVariable(name = "memberNo") Long memberNo, Model model) {
         List<CartReadDTO> cartDTOList = cartService.getCartList(memberNo);
         model.addAttribute("cartDTOList", cartDTOList);
-        return "carts/member-cart-list";
+        return "carts/member-cart-list-test";
     }
 
     //회원 장바구니 추가
@@ -82,7 +82,7 @@ public class CartController {
 
     @GetMapping("")
     public String showNonMemberCartList(){
-        return "carts/nonmember-cart-list";
+        return "carts/nonmember-cart-list-test";
     }
 
     //비회원 장바구니 추가
