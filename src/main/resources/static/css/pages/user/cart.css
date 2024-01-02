@@ -1,0 +1,15 @@
+.cart-order__price{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.cart__delivery-price{
+    font-size: 0.75rem;
+}
+.cart-order__btns{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap:1rem;
+}
