@@ -86,9 +86,3 @@
     border: 0;
     font-size: 0.5rem;
 }
-.cart-order__btns{
-    width: 100%;
-    display: flex;
-    justify-content: end;
-    gap:1rem;
-}
