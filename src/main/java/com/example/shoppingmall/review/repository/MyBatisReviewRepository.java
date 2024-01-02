@@ -21,4 +21,13 @@ public class MyBatisReviewRepository implements ReviewRepository{
 
     @Override
     public List<Review> findByItemNo(Long itemNo) { return reviewMapper.findByItemNo(itemNo); }
+
+    @Override
+    public Long getItemStockNo(Long memberOrderNo) { return reviewMapper.getItemStockNo(memberOrderNo);}
+
+    @Override
+    public String getItemSize(Long itemStockNo) { return reviewMapper.getItemSize(itemStockNo); }
+
+    @Override
+    public  String getMemberId(Long memberNo) { return reviewMapper.getMemberId(memberNo); }
 }

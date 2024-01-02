@@ -13,6 +13,7 @@ public class ReviewAddDTO {
 
     private Long memberNo;
     private Long ItemNo;
+    private Long memberOrderNo;
     private Long reviewScore;
     private String reviewContext;
 

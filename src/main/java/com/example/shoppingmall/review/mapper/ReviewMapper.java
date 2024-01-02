@@ -11,4 +11,10 @@ public interface ReviewMapper {
     void addReview(ReviewAddDTO reviewAddDTO);
 
     List<Review> findByItemNo(Long itemNo);
+
+    Long getItemStockNo(Long memberOrderNo);
+
+    String getItemSize(Long itemStockNo);
+
+    String getMemberId(Long memberNo);
 }

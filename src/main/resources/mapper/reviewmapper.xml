@@ -3,7 +3,7 @@
 <mapper namespace="com.example.shoppingmall.review.mapper.ReviewMapper">
     <insert id="addReview" parameterType="com.example.shoppingmall.review.dto.ReviewAddDTO">
         INSERT INTO review
-        VALUES (null,#{memberNo},#{itemNo}, #{reviewContext},DATE_ADD(NOW(), INTERVAL -9 HOUR),#{reviewScore})
+        VALUES (null,#{memberNo},#{itemNo}, #{reviewContext},DATE_ADD(NOW(), INTERVAL -9 HOUR),#{reviewScore},#{memberOrderNo})
     </insert>
 
     <select id="findByItemNo" parameterType="Long" resultType="com.example.shoppingmall.review.domain.Review">
@@ -11,4 +11,23 @@
         FROM review
         WHERE item_no = #{itemNo}
     </select>
+
+    <select id="getItemStockNo" parameterType="Long" resultType="Long">
+        SELECT item_stock_no
+        FROM member_order_detail
+        WHERE member_order_no = #{memberOrderNo}
+    </select>
+
+    <select id="getItemSize" parameterType="Long" resultType="String">
+        SELECT  item_size
+        FROM item_stock
+        WHERE item_stock_no = #{itemStockNo}
+    </select>
+
+    <select id="getMemberId" parameterType="Long" resultType="String">
+        SELECT member_id
+        FROM  member
+        where member_id = #{memberId}
+    </select>
+
 </mapper>
