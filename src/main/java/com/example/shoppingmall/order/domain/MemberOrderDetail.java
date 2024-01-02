@@ -1,5 +1,6 @@
 package com.example.shoppingmall.order.domain;
 
+import com.example.shoppingmall.order.dto.MemberOrderDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,4 +17,7 @@ public class MemberOrderDetail {
     private Long itemNo;
     private Long itemStockNo;
     private Integer itemQuantity;
+
+    private MemberOrder memberOrder;
+    private MemberOrderDTO memberOrderDTO;
 }

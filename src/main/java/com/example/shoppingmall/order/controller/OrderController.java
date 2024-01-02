@@ -70,7 +70,6 @@ public class OrderController {
     @PostMapping("/{memberNo}/create")
     public String makeMemberOrder(@PathVariable(name="memberNo") Long memberNo, @ModelAttribute MemberOrderAddDTO memberOrderAddDTO, @ModelAttribute MemberOrderDetailAddDTO memberOrderDetailAddDTO) {
         memberOrderService.saveMemberOrder(memberOrderAddDTO);
-        memberOrderService.saveMemberOrderDetail(memberOrderDetailAddDTO);
         return null;    // html 파일이 생성되면 그때 수정할 예정.
     }
 

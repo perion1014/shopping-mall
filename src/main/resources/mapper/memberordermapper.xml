@@ -10,6 +10,14 @@
         insert into member_order_detail values (#{memberOrderDetailNo}, #{memberOrderNo}, #{itemNo}, #{itemStockNo}, #{itemQuantity})
     </insert>
 
+    <select id="findMemberOrderList" parameterType="Long" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where member_no = #{memberNo}
+    </select>
+
+    <select id="findMemberOrderDetail" parameterType="long" resultType="com.example.shoppingmall.order.domain.MemberOrderDetail">
+        select * from member_order_detail where member_order_no = #{memberOrderNo}
+    </select>
+
     <select id="getMemberOrderList" resultType="com.example.shoppingmall.order.domain.MemberOrder">
         select * from member_order
     </select>

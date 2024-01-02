@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,6 +24,8 @@ public class MemberOrderDTO {
     private String orderAddressDetail;
     private String receiverName;
     private Integer orderStatus;
+
+    private List<MemberOrderDetailDTO> memberOrderDetailDTOList;
 
     public static MemberOrderDTO toMemberOrderDTO(MemberOrder memberOrder) {
         MemberOrderDTO memberOrderDTO = new MemberOrderDTO();

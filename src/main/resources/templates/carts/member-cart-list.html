@@ -13,67 +13,70 @@
        <div th:text="'장바구니가 비어 있습니다.'"></div>
    </main>
    <main th:if="${cartDTOList.size()} > 0">
-   <div th:each="cartDTO, cartIndex : ${cartDTOList}">
-            <div th:text="'장바구니 번호 : ' + ${cartDTO.cartNo}"></div>
-            <input th:value ="${cartDTO.itemNo}" style="display:none;">
-            <div th:text="'썸네일 : ' + ${cartDTO.itemThumbnail}"></div>
-            <div th:id = "'itemName_' + ${cartIndex.index}" th:text="${cartDTO.itemName}"></div>
-            <div th:id = "'itemSize_' + ${cartIndex.index}" th:text="${cartDTO.itemSize}"></div>
-            <input th:id = "'itemPrice_' + ${cartIndex.index}" th:value="${cartDTO.itemPrice}" style="display:none;">
-            <div th:text="'상품 가격 : ' + ${cartDTO.itemPrice}"></div>
-            <!--<div th:text="'상품 총액 : ' + ${cartDTO.itemPriceSum}"></div>-->
-            <!--<div th:text="'주문 총액 : ' + ${cartDTO.orderPriceSum}"></div>-->
-            상품 수량 <input th:id="'inputvalue_' + ${cartIndex.index}" th:value ="${cartDTO.itemQuantity}" readonly></input>
-            <button th:id="'decreaseButton_' + ${cartIndex.index}"
-                    th:index = "${cartIndex.index}"
-                    th:cartNo = "${cartDTO.cartNo}"
-                    th:memberNo = "${cartDTO.memberNo}"
-                    th:itemNo = "${cartDTO.itemNo}"
-                    th:itemSize = "${cartDTO.itemSize}"
-                    th:onclick="updateQuantity(-1,
+       <form th:action="@{/members/{memberNo}/orders/create(memberNo=${session.loginMember.memberNo})}" method="post" id="orderForm">
+           <div th:each="cartDTO, cartIndex : ${cartDTOList}">
+               <div th:text="'장바구니 번호 : ' + ${cartDTO.cartNo}"></div>
+               <input th:value ="${cartDTO.itemNo}" style="display:none;">
+               <div th:text="'썸네일 : ' + ${cartDTO.itemThumbnail}"></div>
+               <div th:id = "'itemName_' + ${cartIndex.index}" th:text="${cartDTO.itemName}"></div>
+               <div th:id = "'itemSize_' + ${cartIndex.index}" th:text="${cartDTO.itemSize}"></div>
+               <input th:id = "'itemPrice_' + ${cartIndex.index}" th:value="${cartDTO.itemPrice}" style="display:none;">
+               <div th:text="'상품 가격 : ' + ${cartDTO.itemPrice}"></div>
+               <!--<div th:text="'상품 총액 : ' + ${cartDTO.itemPriceSum}"></div>-->
+               <!--<div th:text="'주문 총액 : ' + ${cartDTO.orderPriceSum}"></div>-->
+               상품 수량 <input th:id="'inputvalue_' + ${cartIndex.index}" th:value ="${cartDTO.itemQuantity}" readonly></input>
+               <button th:id="'decreaseButton_' + ${cartIndex.index}"
+                       th:index = "${cartIndex.index}"
+                       th:cartNo = "${cartDTO.cartNo}"
+                       th:memberNo = "${cartDTO.memberNo}"
+                       th:itemNo = "${cartDTO.itemNo}"
+                       th:itemSize = "${cartDTO.itemSize}"
+                       th:onclick="updateQuantity(-1,
                                 this.getAttribute('index'),
                                 this.getAttribute('cartNo'),
                                 this.getAttribute('memberNo'),
                                 this.getAttribute('itemNo'),
                                 this.getAttribute('itemSize'))"> - </button>
-            <button th:id="'increaseButton_' + ${cartIndex.index}"
-                    th:index = "${cartIndex.index}"
-                    th:cartNo = "${cartDTO.cartNo}"
-                    th:memberNo = "${cartDTO.memberNo}"
-                    th:itemNo = "${cartDTO.itemNo}"
-                    th:itemSize = "${cartDTO.itemSize}"
-                    th:onclick="updateQuantity(1,
+               <button th:id="'increaseButton_' + ${cartIndex.index}"
+                       th:index = "${cartIndex.index}"
+                       th:cartNo = "${cartDTO.cartNo}"
+                       th:memberNo = "${cartDTO.memberNo}"
+                       th:itemNo = "${cartDTO.itemNo}"
+                       th:itemSize = "${cartDTO.itemSize}"
+                       th:onclick="updateQuantity(1,
                                 this.getAttribute('index'),
                                 this.getAttribute('cartNo'),
                                 this.getAttribute('memberNo'),
                                 this.getAttribute('itemNo'),
                                 this.getAttribute('itemSize'))"> + </button>
-            <button th:id="'deleteButton_' + ${cartIndex.index}"
-                    th:index = "${cartIndex.index}"
-                    th:cartNo = "${cartDTO.cartNo}"
-                    th:memberNo = "${cartDTO.memberNo}"
-                    th:onclick="deleteCart(this.getAttribute('index'), this.getAttribute('cartNo'), this.getAttribute('memberNo'))"> 삭제 </button>
-            <input th:id = "'cartCheckBox_' + ${cartIndex.index}"
+               <button th:id="'deleteButton_' + ${cartIndex.index}"
+                       th:index = "${cartIndex.index}"
+                       th:cartNo = "${cartDTO.cartNo}"
+                       th:memberNo = "${cartDTO.memberNo}"
+                       th:onclick="deleteCart(this.getAttribute('index'), this.getAttribute('cartNo'), this.getAttribute('memberNo'))"> 삭제 </button>
+               <input th:id = "'cartCheckBox_' + ${cartIndex.index}"
+                      th:cartDTOListSize ="${cartDTOList.size()}"
+                      class = "cartCheckboxes"
+                      type = "checkbox"
+                      th:onclick="calculatePriceSum(this.getAttribute('cartDTOListSize'))">
+               <hr>
+           </div>
+           <span> 상품 총액 : </span>
+           <span id = "priceSum">0</span>
+           <span>원</span>
+           <input id = "cartListAllCheckBtn" onclick="toggleAllCartCheckbox('cartCheckboxes')" type = "checkbox" style="width: 20px; position: absolute; left: 23%;">
+           <span style="position: absolute; left: 25%;" >전체 선택</span><br>
+           <span> 주문 총액 :</span>
+           <span id = "orderSum">0</span>
+           <span>원</span>
+           <button
                    th:cartDTOListSize ="${cartDTOList.size()}"
-                   class = "cartCheckboxes"
-                   type = "checkbox"
-                   th:onclick="calculatePriceSum(this.getAttribute('cartDTOListSize'))">
-            <hr>
-        </div>
-        <span> 상품 총액 : </span>
-        <span id = "priceSum">0</span>
-        <span>원</span>
-        <input id = "cartListAllCheckBtn" onclick="toggleAllCartCheckbox('cartCheckboxes')" type = "checkbox" style="width: 20px; position: absolute; left: 23%;">
-        <span style="position: absolute; left: 25%;" >전체 선택</span><br>
-        <span> 주문 총액 :</span>
-        <span id = "orderSum">0</span>
-        <span>원</span>
-        <button
-                th:cartDTOListSize ="${cartDTOList.size()}"
-                th:memberNo = "${cartDTOList[0].memberNo}"
-                th:onclick="checkItemStock(this.getAttribute('cartDTOListSize'), this.getAttribute('memberNo'))"
-                style = "position: absolute; left:23%;"> 선택한 상품 구매</button>
-        <button style = "position: absolute; left:30%;"> 선택한 상품 삭제</button>
+                   th:memberNo = "${cartDTOList[0].memberNo}"
+                   th:onclick="checkItemStock(this.getAttribute('cartDTOListSize'), this.getAttribute('memberNo'))"
+                   style = "position: absolute; left:23%;"> 선택한 상품 구매</button>
+           <button style = "position: absolute; left:30%;"> 선택한 상품 삭제</button>
+       </form>
+
 
     </main>
 
