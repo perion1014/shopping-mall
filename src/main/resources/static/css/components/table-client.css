@@ -46,3 +46,49 @@
 .notice__link{
     margin-top: 1rem;
 }
+.table--2{
+    font-size: 0.75rem;
+}
+.table--2 td{
+    vertical-align: middle;
+}
+.cart__imgbox{
+    width: 5.5rem;
+}
+.cart__img{
+    display:inline;
+    width: 5rem;
+    height:6rem;
+}
+.cart__checkbox{
+    width: 3rem;
+}
+.cart__price{
+    font-size: 0.75rem;
+    width: 5rem;
+}
+.cart__btn{
+    width: 5rem;
+}
+.cart__quantity{
+    width: 5rem;
+    margin: 0 auto;
+}
+.input--cart{
+    width: 2.5rem;
+}
+.countbtns--cart{
+    width: 3rem;
+    height: 1.5rem;
+}
+.btn--cart{
+    height: 1.25rem;
+    border: 0;
+    font-size: 0.5rem;
+}
+.cart-order__btns{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    gap:1rem;
+}

@@ -13,26 +13,50 @@
 <!-- <h1 class="main__title">장바구니</h1>-->
 <!--    <h2>장바구니가 비어있습니다.</h2>-->
 <!--</main>-->
-
 <!--비어있지 않을 때-->
 <main class="main__container section">
     <h1 class="main__title">장바구니</h1>
-    <table class="table__client">
+    <table class="table__client table--2">
         <thead>
            <tr>
-               <th>상품명</th>
-               <th>상품가격</th>
-               <th>수량</th>
-               <th></th>
+               <th class="cart__checkbox"><input type="checkbox" /></th>
+               <th colspan="2" style="text-align: center">상품명</th>
+               <th class="cart__price">상품 가격</th>
+               <th class="cart__quantity" style="text-align: center">수량</th>
+               <th class="cart__btn"></th>
            </tr>
         </thead>
         <tbody>
         <!--반복 구간(tr -> th:each)-->
              <tr>
-                 <td></td>
+                 <td class="cart__checkbox">
+                     <input type="checkbox" />
+                 </td>
+                 <td class="cart__imgbox">
+                     <img class="cart__img" src="/images/itemImages/33/thumb/1777156461.g_350-w-et-pj_g.jpg">
+                 </td>
+                 <td>
+                     <h4>상품명</h4>
+                     <span>사이즈</span>
+                 </td>
+                 <td class="cart__price">20000원</td>
+                 <td class="cart__quantity">
+                     <div class="item__countbtns item__countbtns--cart">
+                         <button type = "button" class="btn btn--xs btn--white btn--item-cart">-</button>
+                         <input style = "text-align:center;" class="input input--item-cart">
+                         <button type = "button" class="btn btn--xs btn--white btn--item-cart">+</button>
+                     </div>
+                 </td>
+                 <td class="cart__btn">
+                     <button class="btn btn--xs btn--black">삭제</button>
+                 </td>
              </tr>
         </tbody>
     </table>
+    <div class="cart-order__btns">
+        <button class="btn btn--white btn--mi">선택상품 삭제</button>
+        <button class="btn btn--black btn--mi">선택상품 구매</button>
+    </div>
 </main>
 </body>
 </html>
