@@ -6,6 +6,7 @@ import com.example.shoppingmall.order.mapper.MemberOrderMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -14,17 +15,29 @@ public class MyBatisMemberOrderRepository implements MemberOrderRepository{
 
     private final MemberOrderMapper memberOrderMapper;
 
-    @Override
+    @Override   /* user */
     public void saveMemberOrder(MemberOrder memberOrder) {
         memberOrderMapper.saveMemberOrder(memberOrder);
     }
 
-    @Override
+    @Override   /* user */
     public void saveMemberOrderDetail(MemberOrderDetail memberOrderDetail) {
         memberOrderMapper.saveMemberOrderDetail(memberOrderDetail);
     }
 
-    @Override
+    @Override   /* user */
+    public List<MemberOrder> findMemberOrderList(Long memberNo) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.findMemberOrderList(memberNo);
+        return memberOrderList;
+    }
+
+    @Override   /* user */
+    public MemberOrderDetail findMemberOrderDetail(Long memberOrderNo) {
+        MemberOrderDetail memberOrderDetail = memberOrderMapper.findMemberOrderDetail(memberOrderNo);
+        return memberOrderDetail;
+    }
+
+    @Override   /* admin */
     public List<MemberOrder> getMemberOrderList() {
         List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderList();
         return memberOrderList;
