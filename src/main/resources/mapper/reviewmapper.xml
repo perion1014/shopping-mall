@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.shoppingmall.review.mapper.ReviewMapper">
+    <insert id="addReview" parameterType="com.example.shoppingmall.review.dto.ReviewAddDTO">
+        INSERT INTO review
+        VALUES (null,#{memberNo},#{itemNo}, #{reviewContext},DATE_ADD(NOW(), INTERVAL -9 HOUR),#{reviewScore})
+    </insert>
+
+    <select id="findByItemNo" parameterType="Long" resultType="com.example.shoppingmall.review.domain.Review">
+        SELECT *
+        FROM review
+        WHERE item_no = #{itemNo}
+    </select>
+</mapper>

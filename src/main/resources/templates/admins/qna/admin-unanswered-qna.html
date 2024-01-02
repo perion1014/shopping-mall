@@ -11,6 +11,10 @@
 <main>
     <div class="main">
         <div class="admin_member"> QnA </div>
+        <div>
+            <a href="/qna/answer">답변완료</a>
+            <a href="/qna/noAnswer">답변대기</a>
+        </div>
         <!--        <div class="admin_member_search">-->
         <!--          <form th:action="@{admin/search}" method="get">-->
         <!--            <select name="category">-->
@@ -30,7 +34,6 @@
         <table>
             <thead>
             <tr>
-                <th>몰라</th>
                 <th>번호</th>
                 <th>회원 아이디</th>
                 <th>상품 번호</th>
@@ -42,7 +45,6 @@
             </thead>
             <tbody th:each="QnaDTO : ${qnaListByPaging}">
             <tr th:onclick="|location.href='@{|/qna/${QnaDTO.qnaNo}|}'|">
-                <td><a href="#" onclick="window.open('items/1','name','resizable=no width=600 height=500');return false">ㅎㅇ</a></td>
                 <td th:text="${QnaDTO.qnaNo}" ></td>
                 <td th:text="${QnaDTO.MemberId}"></td>
                 <td th:text="${QnaDTO.ItemNo}"></td>
