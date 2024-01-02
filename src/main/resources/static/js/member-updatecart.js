@@ -66,6 +66,8 @@ function toggleAllCartCheckbox(className){
                 checkBoxes[i].checked = thisBoxChecked;
             }
 
+    calculatePriceSum(checkBoxes.length);
+
 }
 
 function calculatePriceSum(cartDTOListSize){

@@ -10,37 +10,20 @@
 </header>
 <header th:unless="${session.loginMember == null}" th:replace="~{/fragments/header :: header}">
 </header>
-<main>
-    <div class="main">
-        <div class="admin_notice">공지사항</div>
-
-        <div class="admin_notice_search">
-            <select name="category">
-                <option value="member_id">아이디</option>
-
-                <option value="member_hp">전화번호</option>
-
-                <option value="member_email">이메일</option>
-
-                <option value="member_name">이름</option>
-
-                <option value="member_address_basic">주소</option>
-            </select>
-            <input type="text"/>
-            <button>검색</button>
-        </div>
-
+<main class="notice__container">
+    <div class="main__container">
+        <h1 class="main__title">공지사항</h1>
         <!-- table Ex-->
-        <table>
+        <table class="table__client">
             <thead>
             <tr>
-                <th>No</th>
+                <th class="table__no">번호</th>
                 <th>제목</th>
-                <th>작성일자</th>
-                <th>조회수</th>
-                <th></th>
+                <th class="table__regtime">작성일자</th>
+                <th class="table__answer">조회수</th>
             </tr>
             </thead>
+<<<<<<< HEAD
             <tbody th:each="noticeListDTO : ${HomeNoticeListByPaging}">
             <tr th:onclick="|location.href='@{|/notice/${noticeListDTO.noticeNo}|}'|">
                 <td th:text="${noticeListDTO.noticeNo}"></td>
@@ -70,7 +53,5 @@
     </div>
     </div><!--main div-->
 </main>
-
-
 </body>
 </html>

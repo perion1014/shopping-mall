@@ -170,7 +170,7 @@ public class QnaService {
         return new QnaPageForm(page,totalPage,startPage,endPage);
     }
 
-    public Object setMQnaListPage(int page, Long memberNo) {
+    public QnaPageForm setMQnaListPage(int page, Long memberNo) {
         int pagePerMember = 12; // 보여줄 멤버 수
         int pageLimit = 10; // 하단 페이징 번호 갯수
 
@@ -219,5 +219,92 @@ public class QnaService {
 
     public void deleteQustion(Long qnaNo) {
         qnaRepository.deleteQna(qnaNo);
+    }
+
+
+    // 답변완료 Q&A 페이징
+    public List<QnaDTO> getQnaAnswered(int page) {
+        int startPage = (page-1) * 12; //시작 페이지
+        int pagePerMember = 12; // 멤버 수
+
+        Map<String, Integer> pagingSettings = new HashMap<>();
+        pagingSettings.put("startPage", startPage);
+        pagingSettings.put("pagePerMember", pagePerMember);
+
+        List<Qna> qnaList = qnaRepository.findQnaAnswered(pagingSettings);
+
+
+        List<QnaDTO> resultList = new ArrayList<>();
+
+        for(Qna qna : qnaList){
+
+            Long memberNo = qna.getMemberNo();
+            String memberId = qnaRepository.getMemberIdByNo(memberNo);
+
+            resultList.add(QnaDTO.fromEntity(qna,memberId));
+        }
+
+        return resultList;
+    }
+
+    public QnaPageForm setQnaPageAnswered(int page) {
+        int pagePerMember = 12; // 보여줄 멤버 수
+        int pageLimit = 10; // 하단 페이징 번호 갯수
+
+        Long qnaCount = qnaRepository.countQnaAnswered();
+
+        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerMember));
+
+        int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
+
+        int endPage = startPage + pageLimit - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        return new QnaPageForm(page,totalPage,startPage,endPage);
+    }
+
+    // 답변대기 Q&A 페이징
+    public List<QnaDTO> getUnansweredQna(int page) {
+        int startPage = (page-1) * 12; //시작 페이지
+        int pagePerMember = 12; // 멤버 수
+
+        Map<String, Integer> pagingSettings = new HashMap<>();
+        pagingSettings.put("startPage", startPage);
+        pagingSettings.put("pagePerMember", pagePerMember);
+
+        List<Qna> qnaList = qnaRepository.findUnansweredQna(pagingSettings);
+
+
+        List<QnaDTO> resultList = new ArrayList<>();
+
+        for(Qna qna : qnaList){
+
+            Long memberNo = qna.getMemberNo();
+            String memberId = qnaRepository.getMemberIdByNo(memberNo);
+
+            resultList.add(QnaDTO.fromEntity(qna,memberId));
+        }
+
+        return resultList;
+    }
+
+    public QnaPageForm setUnansweredQnaPage(int page) {
+        int pagePerMember = 12; // 보여줄 멤버 수
+        int pageLimit = 10; // 하단 페이징 번호 갯수
+
+        Long qnaCount = qnaRepository.countUnansweredQna();
+
+        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerMember));
+
+        int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
+
+        int endPage = startPage + pageLimit - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        return new QnaPageForm(page,totalPage,startPage,endPage);
     }
 }

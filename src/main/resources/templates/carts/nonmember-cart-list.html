@@ -16,8 +16,9 @@
             <div th:each = "nonMemberCartDTO, Index : ${session.nonmemberCartList}">
                 <div th:text ="'장바구니 번호 : ' + ${Index.index+1}"> </div>
                 <div th:text ="'썸네일 : ' + ${nonMemberCartDTO.itemThumbnail}"></div>
-                <div th:text ="'상품명 : ' + ${nonMemberCartDTO.itemName}"></div>
-                <div th:text ="'상품 사이즈 : ' + ${nonMemberCartDTO.itemSize}"></div>
+                <div th:id = "'itemName_' + ${Index.index}" th:text ="${nonMemberCartDTO.itemName}"></div>
+                <div th:id = "'itemSize_' + ${Index.index}" th:text ="${nonMemberCartDTO.itemSize}"></div>
+                <input th:id = "'itemPrice_' + ${Index.index}" th:value="${nonMemberCartDTO.itemPrice}" style="display:none;">
                 <div th:text ="'상품 가격 : ' + ${nonMemberCartDTO.itemPrice}"></div>
                 상품 수량
                 <button th:id="'decreaseBtn_' + ${nonMemberCartDTO.cartNo}"
@@ -30,9 +31,36 @@
                 <button th:id = "'deleteBtn_' + ${nonMemberCartDTO.cartNo}"
                         th:cartIndex = "${Index.index}"
                         th:onclick= "sendCartDeleteJson(this.getAttribute('cartIndex'))"> 삭제 </button>
+                <input th:id = "'cartCheckBox_' + ${Index.index}"
+                       th:cartDTOListSize ="${session.nonmemberCartList.size()}"
+                       class = "cartCheckboxes"
+                       type = "checkbox"
+                       th:onclick="calculatePriceSum(this.getAttribute('cartDTOListSize'))">
                 <hr>
             </div>
+
+            <span> 상품 총액 : </span>
+            <span id = "priceSum">0</span>
+            <span>원</span>
+            <input id = "cartListAllCheckBtn" onclick="toggleAllCartCheckbox('cartCheckboxes')" type = "checkbox" style="width: 20px; position: absolute; left: 23%;">
+            <span style="position: absolute; left: 25%;" >전체 선택</span><br>
+            <span> 주문 총액 :</span>
+            <span id = "orderSum">0</span>
+            <span>원</span>
+            <button
+                    th:cartDTOListSize ="${session.nonmemberCartList.size()}"
+                    th:onclick="checkItemStock(this.getAttribute('cartDTOListSize'))"
+                    style = "position: absolute; left:23%;"> 선택한 상품 구매</button>
+            <button style = "position: absolute; left:30%;"> 선택한 상품 삭제</button>
+
         </div>
+
+        <div th:unless="${session.nonmemberCartList} != null">
+
+            <h1> 현재 장바구니에 상품이 없네요...</h1>
+
+        </div>
+
 </main>
 
 <footer>

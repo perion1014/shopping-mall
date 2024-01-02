@@ -85,4 +85,32 @@
         DELETE FROM qna
         where qna_no = #{qnaNo}
     </delete>
+
+    <!--    답변완료 페이징 -->
+    <select id="findQnaAnswered" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.qna.domain.Qna">
+        SELECT *
+        FROM qna
+        WHERE qna_answer is not null
+        LIMIT #{startPage}, #{pagePerMember}
+    </select>
+
+    <select id="countQnaAnswered" resultType="Long">
+        SELECT count(qna_no)
+        FROM qna
+        where qna_answer is not null
+    </select>
+
+    <!--    답변대기 페이징 -->
+    <select id="findUnansweredQna" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.qna.domain.Qna">
+        SELECT *
+        FROM qna
+        WHERE qna_answer is null
+            LIMIT #{startPage}, #{pagePerMember}
+    </select>
+
+    <select id="countUnansweredQna" resultType="Long">
+        SELECT count(qna_no)
+        FROM qna
+        where qna_answer is null
+    </select>
 </mapper>
