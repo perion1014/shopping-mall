@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:admin-head>
+<head>
   <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
-  <!--CSS-->
   <script type="module" src="/js/pages/home.js" defer></script>
 </head>
 <body>
@@ -10,38 +9,23 @@
 </header>
 <header th:unless="${session.loginMember == null}" th:replace="~{/fragments/header :: header}">
 </header>
-<main>
-  <div class="main">
-    <div class="admin_notice_detail">공지 상세</div>
-    <form th:action="@{|/notice/admin/${noticeUpdateDTO.getNoticeNo()}/update|}" method="get">
-      <div class="notice_detail">
-        <hr/>
-        <div class="notice_elements">
-          <span th:text="${noticeUpdateDTO.getNoticeNo()}" class="notice_no"></span>
-          <div class="notice_elements_right">
-            <span th:text="${#dates.format(noticeUpdateDTO.getNoticeCreatedTime(), 'yyyy-MM-dd')}"></span>
-            <span th:text="${noticeUpdateDTO.getNoticeViewcount()}"></span>
-          </div>
-        </div>
-        <hr/>
-        <div th:text="${noticeUpdateDTO.getNoticeTitle()}" class="notice_title"></div>
-        <hr/>
-        <div th:text="${noticeUpdateDTO.getNoticeContent()}" class="notice_contents"></div>
-        <hr/>
-
-<!--        <div class="notice_btn">-->
-<!--          <button>수정</button>-->
-<!--        </div>-->
+<main class="notice__container">
+    <h1 class="section__title" th:text="${noticeUpdateDTO.getNoticeTitle()}">글제목</h1>
+    <div class="reviews__container">
+      <div class="review notice__detail">
+        <span class="review__header" th:text="|글번호  ${noticeUpdateDTO.getNoticeNo()}|">글번호</span>
+        <span class="review__header" th:text="|작성시간 ${#dates.format(noticeUpdateDTO.getNoticeCreatedTime(), 'yyyy-MM-dd')}|">작성일</span>
+        <span class="review__header" th:text="|조회수 ${noticeUpdateDTO.getNoticeViewcount()}|">조회수</span>
       </div>
-    </form>
-<!--    <div>-->
-<!--      <form name="deleteNotice" th:action="@{|/notice/admin/${noticeUpdateDTO.getNoticeNo()}/delete|}" method="post">-->
-<!--        <button>삭제</button>-->
-<!--      </form>-->
-<!--    </div>-->
+      <div class="notice__detail">
+        <p th:text="${noticeUpdateDTO.getNoticeContent()}">글내용</p>
+      </div>
+    </div>
+  <div class="items__page notice__link">
+    <a href="#" onclick="history.back()">이전 페이지로</a>
+    <a href="/notice">공지사항으로</a>
   </div>
-  <!--main div-->
-  </div>
+
 </main>
 </body>
 </html>

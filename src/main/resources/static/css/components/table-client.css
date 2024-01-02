@@ -39,3 +39,10 @@
 .table__row{
     cursor: pointer;
 }
+.notice__detail{
+    border-bottom: 1px solid var(--color-text);
+    padding:0.5rem 0 0.5rem 0.5rem;
+}
+.notice__link{
+    margin-top: 1rem;
+}
