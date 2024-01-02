@@ -1,6 +1,5 @@
 package com.example.shoppingmall.review.service;
 
-import com.example.shoppingmall.qna.domain.Qna;
 import com.example.shoppingmall.review.domain.Review;
 import com.example.shoppingmall.review.dto.ReviewAddDTO;
 import com.example.shoppingmall.review.dto.ReviewDTO;
@@ -11,10 +10,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.shoppingmall.review.dto.ReviewDTO.reivewToReviewDTO;
+
 @Service
 @RequiredArgsConstructor
 public class ReviewService {
-
     private final ReviewRepository reviewRepository;
 
     // 리뷰 등록
@@ -30,7 +30,19 @@ public class ReviewService {
 
         for (Review review : reviews) {
 
+            Long memberOrderNo = review.getMemberOrderNo();
+            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
+
+            String itemSize = reviewRepository.getItemSize(itemStockNo);
+            String memberId = reviewRepository.getMemberId(review.getMemberNo());
+
+            reviewDTOList.add(reivewToReviewDTO(review,itemSize,memberId));
+
         }
+
         return reviewDTOList;
+    }
+
+    public void deleteReview(Long reviewNo) {
     }
 }
