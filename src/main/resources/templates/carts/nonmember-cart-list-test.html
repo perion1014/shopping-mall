@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
+    <script defer src="/js/nonmember-updatecart.js"></script>
+    <!--<script defer src="/js/nonmember-getjsondata.js"></script>-->
+    <title>비회원 장바구니 조회</title>
 </head>
 <body>
-
+<header th:replace="~{/fragments/login-header :: header}"></header>
 </body>
 </html>
