@@ -20,8 +20,8 @@ public class NoticeController {
     @GetMapping("")
     public String showNoticeList(Model model,
                                        @RequestParam(value="page", required=false, defaultValue="1") int page){
-        model.addAttribute("pageSettings", noticeService.setNoticeListPage(page));
-        model.addAttribute("noticeListByPaging", noticeService.getNoticeListPage(page));
+        model.addAttribute("HomeNoticePageSettings", noticeService.setNoticeListForMember(page));
+        model.addAttribute("HomeNoticeListByPaging", noticeService.getNoticeListForMember(page));
 
         return "notice/home-notice";
     }

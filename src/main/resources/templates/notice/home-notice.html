@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:admin-head>
+<head>
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
     <!--CSS-->
     <script type="module" src="/js/pages/home.js" defer></script>
@@ -23,34 +23,35 @@
                 <th class="table__answer">조회수</th>
             </tr>
             </thead>
-            <tbody>
-            <tr class="table__row" th:each="noticeSearchDTO : ${noticeListByPaging}" th:onclick="|location.href='@{|/notice/${noticeSearchDTO.noticeNo}|}'|">
-                <td th:text="${noticeSearchDTO.noticeNo}"></td>
-                <td th:text="${noticeSearchDTO.noticeTitle}"></td>
-                <td th:text="${#dates.format(noticeSearchDTO.noticeCreatedTime, 'yyyy-MM-dd')}"></td>
-                <td th:text="${noticeSearchDTO.noticeViewcount}"></td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="items__page">
-
-            <span th:if="${pageSettings.page &lt;= 1}">이전</span>
-            <span th:unless="${pageSettings.page &lt;= 1}">
-        <a th:href="@{/items/{category}(category=${Category}, page=${pageSettings.page - 1})}">이전</a>
-    </span>
-
-            <span th:each="i: ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
-        <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
-        <a th:if="${i != pageSettings.page}"
-           th:href="@{/items/{category}(category=${Category}, page=${i})}"
-           th:text="${i}"></a>
-    </span>
-
-            <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
-            <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
-               th:href="@{/items/{category}(category=${Category},page=${pageSettings.page + 1})}">다음</a>
-        </div>
+<<<<<<< HEAD
+            <tbody th:each="noticeListDTO : ${HomeNoticeListByPaging}">
+            <tr th:onclick="|location.href='@{|/notice/${noticeListDTO.noticeNo}|}'|">
+                <td th:text="${noticeListDTO.noticeNo}"></td>
+                <td th:text="${noticeListDTO.noticeTitle}"></td>
+                <td th:text="${#dates.format(noticeListDTO.noticeCreatedTime, 'yyyy-MM-dd')}"></td>
+                <td th:text="${noticeListDTO.noticeViewcount}"></td>
     </div>
+    </form>
+    <div class="admin_notice_page">
+        <span th:if="${HomeNoticePageSettings.page &lt;= 1}">이전</span>
+        <span th:unless="${HomeNoticePageSettings.page &lt;= 1}">
+                    <a th:href="@{/notice(page=${HomeNoticePageSettings.page - 1})}">이전</a>
+                  </span>
+
+        <span th:each="i : ${#numbers.sequence(HomeNoticePageSettings.startPage, HomeNoticePageSettings.endPage)}">
+                    <span th:if="${i == HomeNoticePageSettings.page}" th:text="${i}" th:class="now__page"></span>
+                    <a th:unless="${i == HomeNoticePageSettings.page}"
+                       th:href="@{/notice(page=${i})}"
+                       th:text="${i}"></a>
+                  </span>
+
+        <span th:if="${HomeNoticePageSettings.page >= HomeNoticePageSettings.totalPage}">다음</span>
+        <a th:unless="${HomeNoticePageSettings.page >= HomeNoticePageSettings.totalPage}"
+           th:href="@{/notice(page=${HomeNoticePageSettings.page + 1})}"
+        >다음</a
+        >
+    </div>
+    </div><!--main div-->
 </main>
 </body>
 </html>
