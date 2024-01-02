@@ -36,7 +36,7 @@ public class CartController {
     public String addItemsToMemberCart(@PathVariable(name = "memberNo") Long memberNo,
                                        @RequestParam(name = "itemNo") Long itemNo,
                                        @RequestParam(name = "cartAddItemSize") String cartAddItemSize,
-                                       @RequestParam(name = "addCartItemQuantiy") Integer addCartItemQuantiy){
+                                       @RequestParam(name = "addCartItemQuantity") Integer addCartItemQuantiy){
 
         cartService.addCartItem(memberNo, itemNo, cartAddItemSize, addCartItemQuantiy);
         //return "redirect:/carts/" + memberNo;
@@ -85,7 +85,7 @@ public class CartController {
                                           @RequestParam(name = "nonMemberCartItemName") String itemName,
                                           @RequestParam(name = "nonMemberCartItemSize") String itemSize,
                                           @RequestParam(name = "nonMemberCartItemPrice") Integer itemPrice,
-                                          @RequestParam(name = "nonMemberAddCartItemQuantiy") Integer itemQuantity,
+                                          @RequestParam(name = "nonMemberAddCartItemQuantity") Integer itemQuantity,
                                           HttpServletRequest req){
 
         HttpSession session = req.getSession();
@@ -119,55 +119,50 @@ public class CartController {
 
     @GetMapping("/member/test")
     public String goToMemberTestPage(){
-        return "member-cart-list-test";
+        return "carts/member-cart-list-test";
     }
 
     @GetMapping("/nonmember/test")
         public String goToNonMemberTestPage(){
-        return "nonmember-cart-list-test";
+        return "carts/nonmember-cart-list-test";
     }
 
     @GetMapping("/member/order-success-test")
         public String goToMemberOrderSuccessTest(){
-            return "member-order-success-test";
-        }
+            return "orders/member-order-success-test";
+    }
 
     @GetMapping("/nonmember/order-success-test")
     public String goToNonmemberOrderSuccessTest(){
-        return "nonmember-order-success-test";
+        return "orders/nonmember-order-success-test";
     }
 
     @GetMapping("/member/order-list-test")
     public String goToMemberOrderListTest(){
-        return "member-order-list-test";
+        return "orders/member-order-list-test";
     }
 
     @GetMapping("/member/order-detail-test")
     public String goToMemberOrderDetailTest(){
-        return "member-order-detail-test";
+        return "orders/member-order-detail-test";
     }
 
     @GetMapping("/orders/non-members")
     public String goToNonmemberOrderCheckTest(){
-        return "nonmember-order-check-test";
+        return "orders/nonmember-order-check-test";
     }
 
     @GetMapping("/nonmember/order-detail-check-test")
     public String goToNonmemberOrderDetailCheckTest(){
-        return "nonmember-order-detail-check-test";
+        return "orders/nonmember-order-detail-check-test";
     }
 
     @GetMapping("/orders/delete-sucess")
     public String goToNonmemberOrderDeleteSuccessTest(){
-        return "nonmember-order-delete-success-test";
+        return "orders/nonmember-order-delete-success-test";
     }
 
 }
-
-
-
-
-
 
 //@Controller
 //@RequiredArgsConstructor
