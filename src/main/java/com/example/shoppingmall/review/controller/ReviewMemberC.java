@@ -4,9 +4,8 @@ import com.example.shoppingmall.review.service.ReviewService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/members")
@@ -18,11 +17,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //    /members/'+${ReviewDTO.memberNo}+'/reviews/'+${ReviewDTO.reviewNo}
     @PostMapping("/{memberNo}/reviews/{reviewNo}")
     public String deleteMyReview(@PathVariable(name = "reviewNo") Long reviewNo,
-                                 HttpServletRequest req) {
-        String currentURI = req.getRequestURI();
-        System.out.println("안녕");
+                                 @PathVariable("memberNo") Long memberNO
+                                 ) {
+        reviewService.deleteReview(reviewNo);
 
-//        reviewService.deleteReview(reviewNo);
-        return "redirect:" + currentURI;
+        return "redirect:/members/{memberNo}/reviews";
+    }
+
+    // 마이페이지 페이징
+    // 마이페이지에서 자기 리뷰 가져오고 페이징
+    @GetMapping("{memberNo}/reviews")
+    public String showMyReviewList(@RequestParam(value="page", required=false, defaultValue="1") int page,
+                                   @PathVariable("memberNo") Long memberNo, Model model) {
+
+        model.addAttribute("pageSettings", reviewService.setReviewPageByMember(page,memberNo));
+        model.addAttribute("itemReviewList", reviewService.getReviewListByMember(memberNo,page));
+
+        return "reviews/member-review";
     }
 }

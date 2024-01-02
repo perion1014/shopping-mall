@@ -3,8 +3,10 @@ package com.example.shoppingmall.review.mapper;
 import com.example.shoppingmall.review.domain.Review;
 import com.example.shoppingmall.review.dto.ReviewAddDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ReviewMapper {
@@ -17,4 +19,16 @@ public interface ReviewMapper {
     String getItemSize(Long itemStockNo);
 
     String getMemberId(Long memberNo);
+
+    void deleteReview(Long reviewNo);
+
+    List<Review> findMReviewByPaging(@Param("startPage")int startPage,
+                             @Param("pagePerReview") int pagePerReview,
+                             @Param("memberNo") Long memberNo);
+
+    Long countMemberReview(Long memberNo);
+
+    List<Review> findReviewByPaging(Map<String, Integer> pagingSettings);
+
+    Long countReview();
 }

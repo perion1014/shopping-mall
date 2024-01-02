@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:each="ReviewDTO,itemReviewNo : ${reviewList}">
+    <span th:text="${itemReviewNo.count}"></span>
+    <span th:text="${ReviewDTO.memberId}"></span>
+    <span th:text="${ReviewDTO.itemSize}"></span>
+    <span th:text="${ReviewDTO.reviewScore}"></span>
+    <span th:text="${#dates.format(ReviewDTO.reviewCreatedTime, 'yyyy-MM-dd')}"></span>
+    <p></p>
+    <span th:text="${ReviewDTO.reviewContext}"></span>
+
+    <form th:action="'/members/'+${ReviewDTO.memberNo}+'/reviews/'+${ReviewDTO.reviewNo}" method="post">
+        <input type="hidden" name="reviewNo" th:value="${ReviewDTO.reviewNo}" />
+        <button th:if="${session.loginMember != null}">삭제</button>
+    </form>
+    <hr>
+</div>
+
+<div>
+    <span th:if="${pageSettings.page &lt;= 1}">이전</span>
+    <span th:unless="${pageSettings.page &lt;= 1}">
+                <a th:href="@{/templates/reviews(memberNo=${memberNo},page=${pageSettings.page - 1})}">이전</a>
+              </span>
+
+    <span th:each="i : ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
+                <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
+                <a th:unless="${i == pageSettings.page}"
+                   th:href="@{/templates/reviews(memberNo=${memberNo},page=${i})}"
+                   th:text="${i}"></a>
+              </span>
+
+    <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
+    <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
+       th:href="@{/templates/reviews(memberNo=${memberNo},page=${pageSettings.page + 1})}"
+    >다음</a
+    >
+</div>
+</body>
+</html>

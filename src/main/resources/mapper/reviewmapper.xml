@@ -29,5 +29,29 @@
         FROM  member
         where member_id = #{memberId}
     </select>
+    
+    <delete id="deleteReview" parameterType="Long">
+        DELETE FROM review
+        where review_no = #{reviewNo}
+    </delete>
 
+<!--    마이페이지 페이징-->
+    <select id="findMReviewByPaging" resultType="com.example.shoppingmall.review.domain.Review">
+        SELECT *
+        FROM review
+        WHERE member_no = #{memberNo}
+        LIMIT #{startPage}, #{pagePerReview}
+    </select>
+
+    <select id="countMemberReview" resultType="Long">
+        SELECT count(review_no) FROM review WHERE member_no = #{memberNo}
+    </select>
+
+    <select id="findReviewByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.review.domain.Review">
+        SELECT * FROM review LIMIT #{startPage}, #{pagePerReview}
+    </select>
+
+    <select id="countReview" resultType="Long">
+        SELECT count(review_no) FROM review
+    </select>
 </mapper>

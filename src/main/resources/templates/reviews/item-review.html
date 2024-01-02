@@ -10,14 +10,17 @@
         <span th:text="${itemReviewNo.count}"></span>
         <span th:text="${ReviewDTO.memberId}"></span>
         <span th:text="${ReviewDTO.itemSize}"></span>
-        <span th:text="${ReviewDTO.reviewCreatedTime}"></span>
         <span th:text="${ReviewDTO.reviewScore}"></span>
+        <span th:text="${#dates.format(ReviewDTO.reviewCreatedTime, 'yyyy-MM-dd')}"></span>
+        <p></p>
         <span th:text="${ReviewDTO.reviewContext}"></span>
 
         <form th:action="'/members/'+${ReviewDTO.memberNo}+'/reviews/'+${ReviewDTO.reviewNo}" method="post">
             <input type="hidden" name="reviewNo" th:value="${ReviewDTO.reviewNo}" />
             <button th:if="${session.loginMember != null}">삭제</button>
         </form>
+
+        <hr>
     </div>
 </body>
 </html>

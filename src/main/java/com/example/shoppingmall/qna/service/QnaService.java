@@ -57,11 +57,11 @@ public class QnaService {
     public List<QnaDTO> getQnaListPage(int page) {
 
         int startPage = (page-1) * 12; //시작 페이지
-        int pagePerMember = 12; // 멤버 수
+        int pagePerQna = 12; // 멤버 수
 
         Map<String, Integer> pagingSettings = new HashMap<>();
         pagingSettings.put("startPage", startPage);
-        pagingSettings.put("pagePerMember", pagePerMember);
+        pagingSettings.put("pagePerQna", pagePerQna);
         List<Qna> qnaList = qnaRepository.findAllByPaging(pagingSettings);
 
 
@@ -81,12 +81,12 @@ public class QnaService {
     @Transactional(readOnly = true)
     public QnaPageForm setQnaListPage(int page) {
 
-        int pagePerMember = 12; // 보여줄 멤버 수
+        int pagePerQna = 12; // 보여줄 멤버 수
         int pageLimit = 10; // 하단 페이징 번호 갯수
 
         Long qnaCount = qnaRepository.countAll();
 
-        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerMember));
+        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerQna));
 
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
@@ -131,10 +131,10 @@ public class QnaService {
     public List<QnaDTO> getQnaListByItemNo(int page, Long itemNo) {
 
         int startPage = (page-1) * 12; //시작 페이지
-        int pagePerMember = 12; // 멤버 수
+        int pagePerQna = 12; // 멤버 수
 
 
-        List<Qna> qnaList = qnaRepository.findQnaByPaging(startPage,pagePerMember,itemNo);
+        List<Qna> qnaList = qnaRepository.findQnaByPaging(startPage,pagePerQna,itemNo);
 
 
         List<QnaDTO> resultList = new ArrayList<>();
@@ -153,12 +153,12 @@ public class QnaService {
     @Transactional(readOnly = true)
     public QnaPageForm setQnaListPageByItemNo(int page, Long itemNo) {
 
-        int pagePerMember = 12; // 보여줄 멤버 수
+        int pagePerQna = 12; // 보여줄 멤버 수
         int pageLimit = 10; // 하단 페이징 번호 갯수
 
         Long qnaCount = qnaRepository.countQnaByitemNo(itemNo);
 
-        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerMember));
+        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerQna));
 
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
@@ -171,12 +171,12 @@ public class QnaService {
     }
 
     public QnaPageForm setMQnaListPage(int page, Long memberNo) {
-        int pagePerMember = 12; // 보여줄 멤버 수
+        int pagePerQna = 12; // 보여줄 멤버 수
         int pageLimit = 10; // 하단 페이징 번호 갯수
 
         Long qnaCount = qnaRepository.countMemberQna(memberNo);
 
-        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerMember));
+        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerQna));
 
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
@@ -191,10 +191,10 @@ public class QnaService {
     public List<QnaDTO> getMQnaListPage(int page, Long memberNo) {
 
         int startPage = (page-1) * 12; //시작 페이지
-        int pagePerMember = 12; // 멤버 수s
+        int pagePerQna = 12; // 멤버 수s
 
 
-        List<Qna> qnaList = qnaRepository.findMQnaByPaging(startPage,pagePerMember,memberNo);
+        List<Qna> qnaList = qnaRepository.findMQnaByPaging(startPage,pagePerQna,memberNo);
 
 
         List<QnaDTO> resultList = new ArrayList<>();
@@ -225,11 +225,11 @@ public class QnaService {
     // 답변완료 Q&A 페이징
     public List<QnaDTO> getQnaAnswered(int page) {
         int startPage = (page-1) * 12; //시작 페이지
-        int pagePerMember = 12; // 멤버 수
+        int pagePerQna = 12; // 멤버 수
 
         Map<String, Integer> pagingSettings = new HashMap<>();
         pagingSettings.put("startPage", startPage);
-        pagingSettings.put("pagePerMember", pagePerMember);
+        pagingSettings.put("pagePerQna", pagePerQna);
 
         List<Qna> qnaList = qnaRepository.findQnaAnswered(pagingSettings);
 
@@ -248,12 +248,12 @@ public class QnaService {
     }
 
     public QnaPageForm setQnaPageAnswered(int page) {
-        int pagePerMember = 12; // 보여줄 멤버 수
+        int pagePerQna = 12; // 보여줄 멤버 수
         int pageLimit = 10; // 하단 페이징 번호 갯수
 
         Long qnaCount = qnaRepository.countQnaAnswered();
 
-        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerMember));
+        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerQna));
 
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
@@ -268,11 +268,11 @@ public class QnaService {
     // 답변대기 Q&A 페이징
     public List<QnaDTO> getUnansweredQna(int page) {
         int startPage = (page-1) * 12; //시작 페이지
-        int pagePerMember = 12; // 멤버 수
+        int pagePerQna = 12; // 멤버 수
 
         Map<String, Integer> pagingSettings = new HashMap<>();
         pagingSettings.put("startPage", startPage);
-        pagingSettings.put("pagePerMember", pagePerMember);
+        pagingSettings.put("pagePerQna", pagePerQna);
 
         List<Qna> qnaList = qnaRepository.findUnansweredQna(pagingSettings);
 
@@ -291,12 +291,12 @@ public class QnaService {
     }
 
     public QnaPageForm setUnansweredQnaPage(int page) {
-        int pagePerMember = 12; // 보여줄 멤버 수
+        int pagePerQna = 12; // 보여줄 멤버 수
         int pageLimit = 10; // 하단 페이징 번호 갯수
 
         Long qnaCount = qnaRepository.countUnansweredQna();
 
-        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerMember));
+        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerQna));
 
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 

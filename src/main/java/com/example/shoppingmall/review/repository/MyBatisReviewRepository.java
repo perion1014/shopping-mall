@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
@@ -29,5 +30,24 @@ public class MyBatisReviewRepository implements ReviewRepository{
     public String getItemSize(Long itemStockNo) { return reviewMapper.getItemSize(itemStockNo); }
 
     @Override
-    public  String getMemberId(Long memberNo) { return reviewMapper.getMemberId(memberNo); }
+    public String getMemberId(Long memberNo) { return reviewMapper.getMemberId(memberNo); }
+
+    @Override
+    public void deleteReview(Long reviewNo) { reviewMapper.deleteReview(reviewNo); }
+
+    @Override
+    public List<Review> findMReviewByPaging(int startPage, int pagePerReview, Long memberNo) {
+        return reviewMapper.findMReviewByPaging(startPage,pagePerReview,memberNo);
+    }
+
+    @Override
+    public Long countMemberReview(Long memberNo) { return reviewMapper.countMemberReview(memberNo); }
+
+    @Override
+    public List<Review> findReviewByPaging(Map<String, Integer> pagingSettings) {
+        return reviewMapper.findReviewByPaging(pagingSettings);
+    }
+
+    @Override
+    public Long countReview() { return reviewMapper.countReview(); }
 }

@@ -49,8 +49,18 @@ public class ReviewController {
     public String showItemReviewList(@PathVariable("itemNo") Long itemNo, Model model){
 
         model.addAttribute("itemReviewList",reviewService.getReviewListByitemNo(itemNo));
-        System.out.println(reviewService.getReviewListByitemNo(itemNo));
         return "reviews/item-review";
+    }
+
+
+    // 어드민 상에서 review 다 가져오고 페이징
+    @GetMapping("")
+    public String showReviewList(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model) {
+
+        model.addAttribute("pageSettings", reviewService.setReviewPage(page));
+        model.addAttribute("reviewList", reviewService.getAllReviewList(page));
+
+        return "admins/admin-review-test";
     }
 
 }
