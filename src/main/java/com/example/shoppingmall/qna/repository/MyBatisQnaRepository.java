@@ -71,4 +71,18 @@ public class MyBatisQnaRepository implements QnaRepository {
 
     @Override
     public void deleteQna(Long qnaNo) { qnaMapper.deleteQna(qnaNo); }
+
+    // 답변완료 qna 페이징
+    @Override
+    public List<Qna> findQnaAnswered(Map<String, Integer> pagingSettings) { return qnaMapper.findQnaAnswered(pagingSettings); }
+
+    @Override
+    public Long countQnaAnswered() { return qnaMapper.countQnaAnswered(); }
+
+    // 답변 대기 qna 페이징
+    @Override
+    public List<Qna> findUnansweredQna(Map<String, Integer> pagingSettings) { return qnaMapper.findUnansweredQna(pagingSettings); }
+
+    @Override
+    public Long countUnansweredQna() { return qnaMapper.countUnansweredQna(); }
 }

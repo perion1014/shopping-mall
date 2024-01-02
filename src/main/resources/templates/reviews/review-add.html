@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:action="@{'/reviews/' + ${memberNo} + '/' + ${itemNo} + '/add'}" method="post" >
+    평점
+    <input type="radio" name="reviewScore" value="1" checked>
+    <input type="radio" name="reviewScore" value="2" checked>
+    <input type="radio" name="reviewScore" value="3" checked>
+    <input type="radio" name="reviewScore" value="4" checked>
+    <input type="radio" name="reviewScore" value="5" checked>
+
+        <p></p>
+    리뷰
+        <textarea
+                name="reviewContext"
+                maxlength="400"
+        ></textarea>
+        <button>전송</button>
+    </form>
+</body>
+</html>
