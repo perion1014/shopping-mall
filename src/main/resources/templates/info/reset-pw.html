@@ -9,23 +9,23 @@
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
 <main class="main__container">
-    <h1 class="main__title">비회원 주문 조회</h1>
+    <h1 class="main__title">비밀번호 재설정</h1>
     <form th:action method="post">
-        <label class="label" for="orderNo">
-            <h5 class="label__title">주문번호*</h5>
-            <input id="orderNo" name="orderNo" class="input" type="text"/>
+        <label class="label" for="memberPw">
+            <h5 class="label__title">비밀번호*</h5>
+            <input id="memberPw" name="memberPw" class="input" type="text"/>
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
-        <label class="label" for="memberName">
-            <h5 class="label__title">고객명*</h5>
-            <input id="memberName" name="memberName" class="input" type="text"/>
+        <label class="label" for="pwCheck">
+            <h5 class="label__title">비밀번호 확인*</h5>
+            <input id="pwCheck" name="pwCheck" class="input" type="text"/>
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
-        <button type="submit" class="btn btn--black btn--member-login">조회 하기</button>
+        <button type="submit" class="btn btn--black btn--member-login">비밀번호 재설정</button>
     </form>
 </main>
 </body>
