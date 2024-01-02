@@ -51,8 +51,7 @@ public class ItemService {
         System.out.println("itemService.saveItemPhotos(itemAddDTO) ==> item_thumb = " + itemAddDTO.getItemThumb());
         itemRepository.saveItemPhotos(itemPhotos);
         // 파일 처리 (추가)
-        //String myPath = "D:/intellij/workspace/";
-        String myPath = "C:/Users/gram/Desktop/programming/IT_School/team-project/";
+        String myPath = "D:/intellij/workspace/";
         String fullPath = "";
         //D:/intellij/workspace/shopping-mall/src/main/resources/static/images/itemImages/
         String createdDirPath = myPath + fileDir + itemNo + "/";
