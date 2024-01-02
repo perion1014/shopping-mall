@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
+    <title>PERION - 회원 주문</title>
+    <meta name="description" content="상품 정보, Q&A, 가격 등 다양한 상품의 정보를 확인하세요.">
+    <link rel="stylesheet" href="/css/pages/user/items.css">
+    <script type="module" src="/js/pages/item-detail.js"></script>
+</head>
+<body>
+<header th:if="${session.loginMember != null}" th:replace="~{/fragments/login-header :: header}">
+</header>
+<header th:unless="${session.loginMember == null}" th:replace="~{/fragments/header :: header}">
+</header>
+<main class="main__container">
+    <section id="item__info" class="item__container">
+        <form th:action="@{/members/{memberNo}/orders/create-success(memberNo=${session.loginMember.memberNo})}" method="get">
+            <div>
+                <div th:text="'회원명: ' + ${session.loginMember.memberName}"></div>
+                <div th:text="'배송지: ' + ${session.loginMember.memberAddressBasic} + ' ' + ${session.loginMember.memberAddressDetail}"></div>
+                <div th:text="'연락처: ' + ${session.loginMember.memberHp}"></div>
+            </div>
+
+            <div th:each="cart: ${cartDTOList}">
+                <div th:text="'상품명: ' + ${cart.itemName}"></div>
+                <div><img th:src="@{/images/itemImages/__${cart.itemNo}__/thumb/__${cart.itemThumbnail}__}"></div>
+                <div th:text="'사이즈: ' + ${cart.itemSize}"></div>
+                <div th:text="'가격: ' + ${cart.itemPrice}"></div>
+                <input th:value="'수량: ' + *{cart.itemQuantity}" type="number" class="quantity" min="1"/>
+            </div>
+            <button th:if="${#lists.size(cartDTOList) > 0}">주문하기</button>
+            <span th:if="${#lists.size(cartDTOList) == 0}">상품을 선택해주세요</span>
+            <span class="total-price" th:if="${#lists.size(cartDTOList) > 0}">
+                총 주문 금액: <b th:text="${totalPrice}"></b>원
+            </span>
+        </form>
+    </section>
+</main>
+</body>
+<script>
+    var totalPrice = 0;
+</script>
+</html>
