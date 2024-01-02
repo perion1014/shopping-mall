@@ -41,6 +41,20 @@ public class OrderController {
         return responseData;
     }
 
+    @PostMapping("orders/check-itemstock")
+    @ResponseBody
+    public Map<String, Object> checkNonMemberOrderItemStock(@RequestBody List<MemberOrderItemStockCheckDTO> jsonData){
+
+
+
+
+
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("response", "데이터 전달 후 응답 확인");
+
+        return responseData;
+    }
+
     @GetMapping("/members/{memberNo}/orders/create")
     public String goToInputMemberOrder(@PathVariable(name="memberNo") Long memberNo) {
 
