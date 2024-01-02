@@ -117,16 +117,50 @@ public class CartController {
         return "carts/nonmember-cart-list";
     }
 
-    @GetMapping("member/test")
+    @GetMapping("/member/test")
     public String goToMemberTestPage(){
         return "member-cart-list-test";
     }
 
-    @GetMapping("nonmember/test")
+    @GetMapping("/nonmember/test")
         public String goToNonMemberTestPage(){
         return "nonmember-cart-list-test";
     }
 
+    @GetMapping("/member/order-success-test")
+        public String goToMemberOrderSuccessTest(){
+            return "member-order-success-test";
+        }
+
+    @GetMapping("/nonmember/order-success-test")
+    public String goToNonmemberOrderSuccessTest(){
+        return "nonmember-order-success-test";
+    }
+
+    @GetMapping("/member/order-list-test")
+    public String goToMemberOrderListTest(){
+        return "member-order-list-test";
+    }
+
+    @GetMapping("/member/order-detail-test")
+    public String goToMemberOrderDetailTest(){
+        return "member-order-detail-test";
+    }
+
+    @GetMapping("/orders/non-members")
+    public String goToNonmemberOrderCheckTest(){
+        return "nonmember-order-check-test";
+    }
+
+    @GetMapping("/nonmember/order-detail-check-test")
+    public String goToNonmemberOrderDetailCheckTest(){
+        return "nonmember-order-detail-check-test";
+    }
+
+    @GetMapping("/orders/delete-sucess")
+    public String goToNonmemberOrderDeleteSuccessTest(){
+        return "nonmember-order-delete-success-test";
+    }
 
 }
 
