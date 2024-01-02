@@ -30,9 +30,9 @@
             <h5 class="label__title item__info-title">사이즈</h5>
             <div>
             <form th:action="@{${session.loginMember} != null? '/carts/' + ${session.loginMember.memberNo}: '/carts'}" method = "post" class="item__sizebtns select">
-                <input type="radio" id="s" name="itemSize" value="s"><label for="s">S</label>
-                <input type="radio" id="m" name="itemSize" value="m"><label for="m">M</label>
-                <input type="radio" id="l" name="itemSize" value="l"><label for="l">L</label>
+                <input type="radio" id="s" name="itemSize" value="S"><label for="s">S</label>
+                <input type="radio" id="m" name="itemSize" value="M"><label for="m">M</label>
+                <input type="radio" id="l" name="itemSize" value="L"><label for="l">L</label>
 
             <input style = "display:none;" name = "itemThumbnail" th:value="${'/images/itemImages/__${itemDTO.itemNo}__/thumb/__${itemPhotosDTO.itemThumb}__'}">
             <input style = "display:none;" name = "itemName" th:value="${itemDTO.itemName}">

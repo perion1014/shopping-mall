@@ -58,6 +58,7 @@ function deleteCart(index, cartNo, memberNo){
     }
 }
 
+//전체 선택 토글 시 체크or해제 + 가격 재갱신
 function toggleAllCartCheckbox(className){
 
     var checkBoxes = document.querySelectorAll('.' + className);
@@ -70,6 +71,8 @@ function toggleAllCartCheckbox(className){
 
 }
 
+
+//체크박스 선택 시 상품 총액 및 주문 총액 변경
 function calculatePriceSum(cartDTOListSize){
 
     //alert('자바스크립트로 넘긴 리스트 인덱스 체크 : ' + Number(cartDTOListSize));
@@ -103,14 +106,17 @@ function checkItemStock(cartDTOListSize, memberNo){
 
     var itemName = '';
     var itemSize = '';
-    var selectedItemQuantity = 0;
+    var itemQuantity = 0;
 
     for(var i = 0; i < cartDTOListSize; i++){
         if(document.getElementById('cartCheckBox_' + i).checked === true){
             itemName = document.getElementById('itemName_' + i).innerText;
             itemSize = document.getElementById('itemSize_' + i).innerText;
-            selectedItemQuantity = document.getElementById('inputvalue_' + i)
-            var jsonItem = {itemName: itemName, itemSize: itemSize};
+            itemQuantity = document.getElementById('inputvalue_' + i).value;
+            // alert('자스에서 받아온 아이템 명 : ' + itemName);
+            // alert('자스에서 받아온 아이템 사이즈 : ' + itemSize);
+            // alert('자스에서 받아온 아이템 수량 : ' + selectedItemQuantity);
+            var jsonItem = {itemName: itemName, itemSize: itemSize, itemQuantity: itemQuantity};
             jsonData.push(jsonItem);
             // alert('아이템 명 : ' + itemName);
             // alert('아이템 사이즈 : ' + itemSize);
