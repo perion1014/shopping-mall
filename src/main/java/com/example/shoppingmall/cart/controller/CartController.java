@@ -32,15 +32,20 @@ public class CartController {
         return "carts/member-cart-list";
     }
 
+    //회원 장바구니 추가
     @PostMapping("/{memberNo}")
-    public String addItemsToMemberCart(@PathVariable(name = "memberNo") Long memberNo,
-                                       @RequestParam(name = "itemNo") Long itemNo,
-                                       @RequestParam(name = "cartAddItemSize") String cartAddItemSize,
-                                       @RequestParam(name = "addCartItemQuantity") Integer addCartItemQuantiy){
+    public String addItemsToMemberCart(@PathVariable(name = "memberNo", required = false) Long memberNo,
+                                       @RequestParam(name = "itemNo", required = false) Long itemNo,
+                                       @RequestParam(name = "itemSize", required = false) String itemSize,
+                                       @RequestParam(name = "itemQuantity", required = false) Integer itemQuantity){
 
-        cartService.addCartItem(memberNo, itemNo, cartAddItemSize, addCartItemQuantiy);
+        System.out.println("회원 - 받아온 아이템 번호 : " + itemNo);
+        System.out.println("회원 - 받아온 아이템 사이즈 : " + itemSize);
+        System.out.println("회원 - 받아온 아이템 수량 : " + itemQuantity);
+
+        cartService.addCartItem(memberNo, itemNo, itemSize, itemQuantity);
         //return "redirect:/carts/" + memberNo;
-        return "redirect:/carts/carts/item_info_temp";
+        return "redirect:/items/" + itemNo;
     }
 
     @PostMapping("/{memberNo}/{cartNo}/update")
@@ -80,18 +85,26 @@ public class CartController {
         return "carts/nonmember-cart-list";
     }
 
+    //비회원 장바구니 추가
     @PostMapping("")
-    public String addItemsToNonMemberCart(@RequestParam(name = "nonMemberCartThumbnail") String itemThumbnail,
-                                          @RequestParam(name = "nonMemberCartItemName") String itemName,
-                                          @RequestParam(name = "nonMemberCartItemSize") String itemSize,
-                                          @RequestParam(name = "nonMemberCartItemPrice") Integer itemPrice,
-                                          @RequestParam(name = "nonMemberAddCartItemQuantity") Integer itemQuantity,
+    public String addItemsToNonMemberCart(@RequestParam(name = "itemThumbnail", required = false) String itemThumbnail,
+                                          @RequestParam(name = "itemName", required = false) String itemName,
+                                          @RequestParam(name = "itemSize", required = false) String itemSize,
+                                          @RequestParam(name = "itemPrice", required = false) Integer itemPrice,
+                                          @RequestParam(name = "itemQuantity", required = false) Integer itemQuantity,
+                                          @RequestParam(name = "itemNo", required = false) Integer itemNo,
                                           HttpServletRequest req){
+
+        System.out.println("비회원 - 받아온 썸네일 : " + itemThumbnail);
+        System.out.println("비회원 - 받아온 상품이름 : " + itemName);
+        System.out.println("비회원 - 받아온 상품사이즈 : " + itemSize);
+        System.out.println("비회원 - 받아온 상품가격 : " + itemPrice);
+        System.out.println("비회원 - 받아온 상품수량 : " + itemQuantity);
 
         HttpSession session = req.getSession();
         session.setAttribute("nonmemberCartList", cartService.nonMemberAddCartItem(itemThumbnail, itemName, itemSize, itemPrice, itemQuantity, req));
 
-        return "carts/itemInfo_Temp_CMS";
+        return "redirect:/items/" + itemNo;
     }
 
     @PostMapping("/{cartNo}/update")

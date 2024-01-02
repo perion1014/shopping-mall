@@ -23,37 +23,6 @@
         }
     }
 
-    // function sendJsonToSessionStorage(){
-    //
-    //     var itemThumbNail = document.getElementById('nonMemberCartThumbnailInput');
-    //     var itemName = document.getElementById('nonMemberCartItemNameInput');
-    //     var itemPrice = document.getElementById('nonMemberCartItemPriceInput');
-    //     var itemSize = document.getElementById('nonMemberCartItemSizeInput');
-    //     var itemQuantity = document.getElementById('nonMemberCartAddQuantityInput');
-    //
-    //     var jsonData = {
-    //         "datas":{
-    //             "itemThumbNail": itemThumbNail,
-    //             "itemName": itemName,
-    //             "itemPrice": itemPrice,
-    //             "itemSize": itemSize,
-    //             "itemQuantity": itemQuantity
-    //         }
-    //     };
-    //
-    //     fetch('/carts', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify(jsonData)
-    //     }).then(response => {
-    //         alert('jsonData 전송 성공');
-    //     }).catch(error => {
-    //         alert('jsonData 전송 실패. 사유 - ' + error);
-    //     })
-    // }
-
 </script>
 
 </head>
@@ -84,7 +53,7 @@
     </div>
     <div >
         상품 수량 <button type = "button" onclick="changeCartAddQuantity(-1, 'memberCartAddQuantityInput')"> - </button>
-        <input id = "memberCartAddQuantityInput" name = "addCartItemQuantiy" value = "1" readonly>
+        <input id = "memberCartAddQuantityInput" name = "addCartItemQuantity" value = "1" readonly>
         <button type="button" onclick = "changeCartAddQuantity(1, 'memberCartAddQuantityInput')"> + </button>
     </div>
     <div>
