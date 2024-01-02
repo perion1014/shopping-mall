@@ -25,7 +25,7 @@
 
                 </select>
                 <input name="keyword" type="text"/>
-                <button>검색</button>
+                <button class="btn btn--black btn--xs">검색</button>
             </form>
         </div>
 
@@ -52,7 +52,7 @@
                 <td>
                     <form name="deleteNotice" th:action="@{|/notice/admin/${noticeSearchDTO.noticeNo}/delete|}"
                           method="post">
-                        <button>삭제</button>
+                        <button class="btn btn--index btn--black btn--xs">삭제</button>
                     </form>
                 </td>
             </tr>
@@ -60,7 +60,7 @@
         </table>
         <form action="admin/add" method="get">
             <div class="notice_btn">
-                <button>등록</button>
+                <button class="btn btn--index btn--black btn--mi">등록</button>
             </div>
         </form>
         <div class="admin_notice_page">

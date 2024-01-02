@@ -23,16 +23,18 @@
                 <th class="table__answer">조회수</th>
             </tr>
             </thead>
-<<<<<<< HEAD
             <tbody th:each="noticeListDTO : ${HomeNoticeListByPaging}">
-            <tr th:onclick="|location.href='@{|/notice/${noticeListDTO.noticeNo}|}'|">
+            <tr th:onclick="|location.href='@{|/notice/${noticeListDTO.noticeNo}|}'|" style="cursor: pointer;">
                 <td th:text="${noticeListDTO.noticeNo}"></td>
                 <td th:text="${noticeListDTO.noticeTitle}"></td>
                 <td th:text="${#dates.format(noticeListDTO.noticeCreatedTime, 'yyyy-MM-dd')}"></td>
                 <td th:text="${noticeListDTO.noticeViewcount}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
     </form>
-    <div class="admin_notice_page">
+    <div class="items__page">
         <span th:if="${HomeNoticePageSettings.page &lt;= 1}">이전</span>
         <span th:unless="${HomeNoticePageSettings.page &lt;= 1}">
                     <a th:href="@{/notice(page=${HomeNoticePageSettings.page - 1})}">이전</a>
