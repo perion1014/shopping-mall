@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
+    <script defer src="/js/member-updatecart.js"></script>
+    <title>회원 장바구니 조회</title>
 </head>
 <body>
+<header th:replace="~{/fragments/login-header :: header}"></header>
+<!--비어있을 때-->
+<!--<main class="main__container section">-->
+<!-- <h1 class="main__title">장바구니</h1>-->
+<!--    <h2>장바구니가 비어있습니다.</h2>-->
+<!--</main>-->
 
+<!--비어있지 않을 때-->
+<main class="main__container section">
+    <h1 class="main__title">장바구니</h1>
+    <table class="table__client">
+        <thead>
+           <tr>
+               <th>상품명</th>
+               <th>상품가격</th>
+               <th>수량</th>
+               <th></th>
+           </tr>
+        </thead>
+        <tbody>
+        <!--반복 구간(tr -> th:each)-->
+             <tr>
+                 <td></td>
+             </tr>
+        </tbody>
+    </table>
+</main>
 </body>
 </html>
