@@ -278,7 +278,7 @@ public class ItemController {
         model.addAttribute("itemPhotosDTO", itemPhotosDTO);
         model.addAttribute("itemStockDTOList", itemStockDTOList);
 
-        return "items/item-detail-pym";
+        return "items/item-detail";
 
     }
 
