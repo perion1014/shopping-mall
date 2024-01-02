@@ -31,13 +31,13 @@ public interface QnaMapper {
     void deleteAnswer(Long qnaNo);
 
     List<Qna> findQnaByPaging(@Param("startPage")int startPage,
-                         @Param("pagePerMember") int pagePerMember,
+                         @Param("pagePerQna") int pagePerQna,
                          @Param("itemNo") Long itemNo);
 
     Long countQnaByitemNo(Long itemNo);
 
     List<Qna> findMQnaByPaging(@Param("startPage")int startPage,
-                              @Param("pagePerMember") int pagePerMember,
+                              @Param("pagePerQna") int pagePerQna,
                               @Param("memberNo") Long memberNo);
 
 

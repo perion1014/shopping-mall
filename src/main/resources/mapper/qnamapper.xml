@@ -25,7 +25,7 @@
         SELECT *
         FROM qna
         order by qna_no desc
-        limit #{startPage}, #{pagePerMember}
+        limit #{startPage}, #{pagePerQna}
     </select>
 
     <select id="countAll" resultType="Long">
@@ -55,7 +55,7 @@
         FROM qna
         WHERE item_no = #{itemNo}
         ORDER BY qna_no DESC
-        LIMIT #{startPage}, #{pagePerMember}
+        LIMIT #{startPage}, #{pagePerQna}
     </select>
 
     <select id="countQnaByitemNo" parameterType="Long" resultType="Long">
@@ -67,7 +67,7 @@
         FROM qna
         WHERE member_no = #{memberNo}
         ORDER BY qna_answer is null, qna_no DESC
-        LIMIT #{startPage}, #{pagePerMember}
+        LIMIT #{startPage}, #{pagePerQna}
     </select>
 
     <select id="countMemberQna" parameterType="Long" resultType="Long">
@@ -91,7 +91,7 @@
         SELECT *
         FROM qna
         WHERE qna_answer is not null
-        LIMIT #{startPage}, #{pagePerMember}
+        LIMIT #{startPage}, #{pagePerQna}
     </select>
 
     <select id="countQnaAnswered" resultType="Long">
@@ -105,7 +105,7 @@
         SELECT *
         FROM qna
         WHERE qna_answer is null
-            LIMIT #{startPage}, #{pagePerMember}
+            LIMIT #{startPage}, #{pagePerQna}
     </select>
 
     <select id="countUnansweredQna" resultType="Long">

@@ -26,11 +26,11 @@ public interface QnaRepository {
 
     void deleteAnswer(Long qnaNo);
 
-    List<Qna> findQnaByPaging(int startPage, int pagePerMember, Long itemNo);
+    List<Qna> findQnaByPaging(int startPage, int pagePerQna, Long itemNo);
 
     Long countQnaByitemNo(Long itemNo);
 
-    List<Qna> findMQnaByPaging(int startPage, int pagePerMember, Long memberNo);
+    List<Qna> findMQnaByPaging(int startPage, int pagePerQna, Long memberNo);
 
     Long countMemberQna(Long memberNo);
 

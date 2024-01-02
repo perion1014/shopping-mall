@@ -55,13 +55,13 @@ public class MyBatisQnaRepository implements QnaRepository {
     }
 
     @Override
-    public List<Qna> findQnaByPaging(int startPage, int pagePerMember, Long itemNo) { return qnaMapper.findQnaByPaging(startPage,pagePerMember,itemNo); }
+    public List<Qna> findQnaByPaging(int startPage, int pagePerQna, Long itemNo) { return qnaMapper.findQnaByPaging(startPage,pagePerQna,itemNo); }
 
     @Override
     public Long countQnaByitemNo(Long itemNo) { return qnaMapper.countQnaByitemNo(itemNo); }
 
     @Override
-    public List<Qna> findMQnaByPaging(int startPage, int pagePerMember, Long memberNo) { return qnaMapper.findMQnaByPaging(startPage,pagePerMember,memberNo); }
+    public List<Qna> findMQnaByPaging(int startPage, int pagePerQna, Long memberNo) { return qnaMapper.findMQnaByPaging(startPage,pagePerQna,memberNo); }
 
     @Override
     public Long countMemberQna(Long memberNo) { return qnaMapper.countMemberQna(memberNo); }
