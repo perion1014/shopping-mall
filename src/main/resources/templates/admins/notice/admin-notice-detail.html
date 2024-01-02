@@ -16,7 +16,6 @@
 
 <main>
     <div class="main">
-        <div class="admin_notice_detail">공지 상세</div>
         <form th:action="@{|/notice/admin/${noticeUpdateDTO.getNoticeNo()}/update|}" method="get">
             <div class="notice_detail">
                 <hr/>
@@ -38,6 +37,7 @@
                 </div>
             </div>
         </form>
+        <div class="admin_notice_detail">공지 상세</div>
         <div>
             <form name="deleteNotice" th:action="@{|/notice/admin/${noticeUpdateDTO.getNoticeNo()}/delete|}" method="post">
                 <button>삭제</button>
