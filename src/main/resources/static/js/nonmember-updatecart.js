@@ -87,17 +87,13 @@ function calculatePriceSum(cartDTOListSize){
     for(var i = 0; i < cartDTOListSize; i++){
 
         if(document.getElementById('cartCheckBox_'+ i).checked === true){
-
             itemPrice = document.getElementById('itemPrice_' + i).value;
             itemQuantity = document.getElementById('inputvalue_' + i).value;
 
             priceSum += itemPrice * itemQuantity;
             orderSum = priceSum - 1000;
-
         }
 
-        //alert('for문돌려서 확인하는 상품 가격 : ' + itemPrice);
-        //alert('상품 수량 : ' + itemQuantity);
     }
 
     document.getElementById('priceSum').innerText = priceSum;

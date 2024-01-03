@@ -25,14 +25,14 @@ public class OrderController {
     public Map<String, Object> checkMemberOrderItemStock(@RequestBody List<MemberOrderItemStockCheckDTO> jsonData,
                                                          @PathVariable Integer memberNo){
 
-        System.out.println(jsonData);
-        System.out.println(memberNo);
+//        System.out.println(jsonData);
+//        System.out.println(memberNo);
         System.out.println("컨트롤러에 도착 확인");
 
         for(int i =0; i <jsonData.size(); i++){
             System.out.println(jsonData.get(i).getItemName());
             System.out.println(jsonData.get(i).getItemSize());
-            System.out.println(jsonData.get(i).getSelectedItemQuantity());
+            System.out.println(jsonData.get(i).getItemQuantity());
         }
 
         Map<String, Object> responseData = new HashMap<>();
@@ -50,7 +50,7 @@ public class OrderController {
         for(int i = 0; i < jsonData.size(); i++){
             System.out.println(jsonData.get(i).getItemName());
             System.out.println(jsonData.get(i).getItemSize());
-            System.out.println(jsonData.get(i).getSelectedItemQuantity());
+            System.out.println(jsonData.get(i).getItemQuantity());
         }
 
         Map<String, Object> responseData = new HashMap<>();

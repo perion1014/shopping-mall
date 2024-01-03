@@ -10,13 +10,15 @@
 <header th:replace="~{/fragments/header :: header}"></header>
 <main class="main__container">
     <h1 class="main__title">아이디/비밀번호 찾기</h1>
-    <div class="input-group">
-        <input type="radio" id="findByEmail" name="findByEmail">
-        <label for="findByEmail" class="label">아이디 찾기</label>
-    </div>
-    <div class="input-group">
-        <input type="radio" id="findByPw" name="findByPw">
-        <label for="findByPw" class="label">비밀번호 찾기</label>
+    <div class="radio__container">
+        <div class="input-group">
+            <input type="radio" id="findByEmail" name="findByEmail">
+            <label for="findByEmail" class="label">아이디 찾기</label>
+        </div>
+        <div class="input-group">
+            <input type="radio" id="findByPw" name="findByPw">
+            <label for="findByPw" class="label">비밀번호 찾기</label>
+        </div>
     </div>
 
     <form action="/info/id" method="post">
