@@ -17,7 +17,7 @@
        <form th:action="@{/members/{memberNo}/orders/create(memberNo=${session.loginMember.memberNo})}" method="post" id="orderForm">
            <div th:each="cartDTO, cartIndex : ${cartDTOList}">
                <div th:text="'장바구니 번호 : ' + ${cartDTO.cartNo}"></div>
-               <input th:value ="${cartDTO.itemNo}" style="display:none;">
+               <input th:id="'itemNo_' + ${cartDTO.itemNo}" th:value ="${cartDTO.itemNo}" style="display:none;">
                <div th:text="'썸네일 : ' + ${cartDTO.itemThumbnail}"></div>
                <div th:id = "'itemName_' + ${cartIndex.index}" th:text="${cartDTO.itemName}"></div>
                <div th:id = "'itemSize_' + ${cartIndex.index}" th:text="${cartDTO.itemSize}"></div>
@@ -72,8 +72,8 @@
            <span>원</span>
            <button
                    th:cartDTOListSize ="${cartDTOList.size()}"
-                   th:memberNo = "${cartDTOList[0].memberNo}"
-                   th:onclick="checkItemStock2(this.getAttribute('cartDTOListSize'), this.getAttribute('memberNo'))"
+                   th:memberNo = "${session.loginMember.memberNo}"
+                   th:onclick="checkItemStock2(this.getAttribute('cartDTOListSize'), this.getAttribute('memberNo'));"
                    style = "position: absolute; left:23%;"> 선택한 상품 구매</button>
            <button style = "position: absolute; left:30%;"> 선택한 상품 삭제</button>
        </form>
