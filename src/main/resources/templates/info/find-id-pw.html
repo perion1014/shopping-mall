@@ -19,7 +19,7 @@
         <label for="findByPw" class="label">비밀번호 찾기</label>
     </div>
 
-    <form th:action method="get">
+    <form action="/info/id" method="post">
         <label class="label" for="memberEmail">
             <h5 class="label__title">이메일*</h5>
             <input id="memberEmail" name="memberEmail" class="input" type="text"/>
@@ -30,7 +30,7 @@
         <button type="submit" class="btn btn--black btn--member-login">아이디 조회</button>
     </form>
 
-    <form th:action method="get">
+    <form action="/info/pw" method="post">
         <label class="label" for="memberId">
             <h5 class="label__title">아이디*</h5>
             <input id="memberId" name="memberId" class="input" type="text"/>
