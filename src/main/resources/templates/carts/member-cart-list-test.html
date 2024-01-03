@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
     <script defer src="/js/member-updatecart.js"></script>
+    <script defer src="/js/member-updatecart-pym.js"></script>
     <title>회원 장바구니 조회</title>
 </head>
 <body>
@@ -48,6 +49,7 @@
                  <td>
                      <h4 th:id = "'itemName_' + ${cartIndex.index}" th:text="${cartDTO.itemName}"></h4>
                      <span th:id = "'itemSize_' + ${cartIndex.index}" th:text="${cartDTO.itemSize}"></span>
+                     <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
                  </td>
                  <input th:id = "'itemPrice_' + ${cartIndex.index}" th:value="${cartDTO.itemPrice}" style="display:none;">
                  <td class="cart__price" th:text="${cartDTO.itemPrice} + '원'"></td>
@@ -117,7 +119,7 @@
         <button class="btn btn--black btn--mi"
                 th:cartDTOListSize ="${cartDTOList.size()}"
                 th:memberNo = "${cartDTOList[0].memberNo}"
-                th:onclick="checkItemStock(this.getAttribute('cartDTOListSize'), this.getAttribute('memberNo'))"
+                th:onclick="checkItemStock2(this.getAttribute('cartDTOListSize'), this.getAttribute('memberNo'))"
         >선택상품 구매</button>
     </div>
 </main>
