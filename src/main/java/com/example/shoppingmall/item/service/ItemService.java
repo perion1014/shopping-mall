@@ -52,6 +52,7 @@ public class ItemService {
         itemRepository.saveItemPhotos(itemPhotos);
         // 파일 처리 (추가)
         String myPath = "D:/intellij/workspace/";
+        //String myPath = "C:/Users/ckd39/Downloads/";
         String fullPath = "";
         //D:/intellij/workspace/shopping-mall/src/main/resources/static/images/itemImages/
         String createdDirPath = myPath + fileDir + itemNo + "/";
