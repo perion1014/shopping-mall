@@ -71,9 +71,9 @@
     <section class="item-detail__container" id="item__detail">
         <!-- 상품 상세 사진-->
         <div class="item-imgs__container">
-            <img class="item__img item__img--detail" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
-            <img class="item__img item__img--detail" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
-            <img class="item__img item__img--detail" src="/images/item-sample-tobias-tullius-Fg15LdqpWrs-unsplash.webp">
+            <img class="item__img item__img--detail" th:if="${itemPhotosDTO.itemImg1} != null" th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg1}__}">
+            <img class="item__img item__img--detail" th:if="${itemPhotosDTO.itemImg2} != null" th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg2}__}">
+            <img class="item__img item__img--detail" th:if="${itemPhotosDTO.itemImg3} != null" th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg3}__}">
         </div>
         <!-- 상품 정보-->
         <p class="item__detail">
