@@ -10,7 +10,7 @@
 <header th:replace="~{/fragments/header :: header}"></header>
 <main class="main__container">
     <h1 class="main__title">비밀번호 재설정</h1>
-    <form th:action method="post">
+    <form action="/members/info/pw/update" method="post">
         <label class="label" for="memberPw">
             <h5 class="label__title">비밀번호*</h5>
             <input id="memberPw" name="memberPw" class="input" type="text"/>
