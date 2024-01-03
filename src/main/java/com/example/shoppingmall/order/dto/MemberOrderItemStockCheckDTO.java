@@ -9,6 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberOrderItemStockCheckDTO {
+    private Long itemNo;
     private String itemName;
     private String itemSize;
     private Integer itemQuantity;

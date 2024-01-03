@@ -42,6 +42,10 @@ public class OrderControllerPYM {
             System.out.println(jsonData.get(i).getItemQuantity());
         }
 
+        for (int i = 0; i < jsonData.size(); i++) {
+
+        }
+
         Map<String, Object> responseData = new HashMap<>();
         responseData.put("response", "선택하신 상품의 재고가 없습니다.");
 
@@ -109,11 +113,13 @@ public class OrderControllerPYM {
         return null;
     }
 
+    //..
     @GetMapping("/order/member/test")
     public String goToMemberOrderTest() {
         return "/orders/member-order";
     }
 
+    //..
     @GetMapping("/order/nonmember/test")
     public String goToNonmemberOrderTest() {
         return "/orders/nonmember-order";
