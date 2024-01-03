@@ -20,7 +20,6 @@ import java.util.*;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    JavaMailSender mailSender;
 
     /*회원 가입*/
     @Transactional
@@ -32,10 +31,6 @@ public class MemberService {
                 .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 이메일입니다.");});
         memberRepository.save(member);
     }
-//    @Transactional
-//    public void mail(MemberAddDTO memberAddDTO){
-//        MimeMessage msg = mailSender.createMimeMessage();
-//    }
 
     /*유저 회원 정보 조회*/
     @Transactional(readOnly = true)
