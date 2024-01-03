@@ -2,36 +2,34 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
-    <title>PERION - 회원 주문 조회</title>
+    <title>PERION - 나의 질문 목록</title>
     <script src="/js/pages/order.js"></script>
 </head>
 <body>
 <header th:replace="~{/fragments/login-header :: header}"></header>
 <main class="notice__container">
     <div class="main__container">
-        <h1 class="main__title">나의 주문 목록</h1>
+        <h1 class="main__title">나의 질문 목록</h1>
         <!-- table Ex-->
         <table class="table__client">
             <thead>
             <tr>
-                <th class="table__no">주문번호</th>
-                <th>상품 정보</th>
-                <th class="table__regtime">주문금액</th>
-                <th class="table__regtime">주문일자</th>
-                <th class="table__answer">주문상태</th>
-                <th class="table__order-status"></th>
+                <th class="table__no">질문번호</th>
+                <th class="table__category">상품명</th>
+                <th class="table__category">구분</th>
+                <th>내용</th>
+                <th class="table__regtime">등록일자</th>
+                <th class="table__answer">답변 여부</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td class="table__no">1</td>
-                <td>pants01...외 5종</td>
-                <td class="table__regtime">250000원</td>
+                <th class="table__category">pant01</th>
+                <th class="table__category">사이즈</th>
+                <td>옷이 이상해서 꼬툭튀가 되요</td>
                 <td class="table__regtime">2024-01-02</td>
-                <td class="table__answer">주문 완료</td>
-                <td class="table__order-status"><form method="post">
-                    <button class="btn btn--white btn--order">주문 취소</button>
-                </form></td>
+                <td class="table__answer">답변 대기</td>
             </tr>
             </tbody>
         </table>
