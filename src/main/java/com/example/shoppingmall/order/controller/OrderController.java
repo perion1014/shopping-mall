@@ -48,7 +48,7 @@ public class OrderController {
         System.out.println("컨트롤러 도착 확인");
 
         for(int i = 0; i < jsonData.size(); i++){
-            System.out.println(jsonData.get(i).getItemName());
+            System.out.println(jsonData.get(i).getItemNo());
             System.out.println(jsonData.get(i).getItemSize());
             System.out.println(jsonData.get(i).getItemQuantity());
         }

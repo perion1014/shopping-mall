@@ -30,14 +30,14 @@ public class OrderControllerPYM {
     @PostMapping("/members/{memberNo}/orders/check-itemstock")
     @ResponseBody
     public Map<String, Object> checkMemberOrderItemStock(@RequestBody List<MemberOrderItemStockCheckDTO> jsonData,
-                                                         @PathVariable Integer memberNo){
+                                                         @PathVariable(name="memberNo") Integer memberNo){
 
 //        System.out.println(jsonData);
 //        System.out.println(memberNo);
         System.out.println("컨트롤러에 도착 확인");
 
         for(int i =0; i <jsonData.size(); i++){
-            System.out.println(jsonData.get(i).getItemName());
+            System.out.println(jsonData.get(i).getItemNo());
             System.out.println(jsonData.get(i).getItemSize());
             System.out.println(jsonData.get(i).getItemQuantity());
         }
