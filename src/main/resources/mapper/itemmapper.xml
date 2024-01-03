@@ -34,7 +34,7 @@
 
     <insert id="saveItem" parameterType="com.example.shoppingmall.item.domain.Item">
         insert into item
-        values (#{itemNo},#{itemName},#{itemCategory},#{itemGrade},#{itemDetail},#{itemPrice},#{itemOnsale},DATE_ADD(NOW(), INTERVAL 0 HOUR))
+        values (#{itemNo},#{itemName},#{itemCategory},#{itemGrade},#{itemDetail},#{itemPrice},1,DATE_ADD(NOW(), INTERVAL 0 HOUR))
     </insert>
 
     <select id="getMaxItemNo" resultType="Long">
@@ -100,7 +100,6 @@
         set item_name = #{itemName},
             item_category=#{itemCategory},
             item_detail=#{itemDetail},
-            item_onsale=#{itemOnsale}
         where item_no = #{itemNo}
     </update>
 
