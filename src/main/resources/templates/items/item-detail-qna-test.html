@@ -19,7 +19,7 @@
             <th>등록일자</th>
         </tr>
         </thead>
-        <tbody th:each="QnaDTO,itemQnaNo : ${qnaByItemNo}" th:if="${itemQnaNo.index < 5}">
+        <tbody th:each="QnaDTO,itemQnaNo : ${qnaByItemNo}" th:if="${itemQnaNo.index < 10}">
         <tr th:onclick="|window.open('/items/${QnaDTO.itemNo}/qna/${QnaDTO.qnaNo}', 'name', 'resizable=no,width=600,height=500'); return false;|">
             <td th:text="${itemQnaNo.count}"></td>
 <!--            <td th:text="${itemQnaDTO.qnaNo}"></td>-->
@@ -40,9 +40,9 @@
         </tbody>
     </table>
 
-    <button th:if="${session.loginMember != null}" th:onclick="|window.open('/qna/${session.loginMember.getMemberNo()}/${itemNo}', 'name', 'resizable=no,width=600,height=500'); return false;|">qna등록</button>
+    <button th:if="${session.loginMember != null}" th:onclick="|window.open('/qna/${session.loginMember.getMemberNo()}/${itemNo}', 'name', 'resizable=no,width=600,height=500'); return false;|">질문 등록</button>
     <button th:unless="${session.loginMember != null}" th:onclick="|window.location.href='/members/login'|">
-        qna등록
+        질문 등록등록
     </button>
 
     <button th:onclick="|location.href='@{|/items/${itemNo}/qna|}'|">더보기</button>
