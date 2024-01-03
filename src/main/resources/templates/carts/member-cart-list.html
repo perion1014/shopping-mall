@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
     <script defer src="/js/member-updatecart.js"></script>
+    <script defer src="/js/member-updatecart-pym.js"></script>
     <title>회원 장바구니 조회</title>
 </head>
 <body>
@@ -72,7 +73,7 @@
            <button
                    th:cartDTOListSize ="${cartDTOList.size()}"
                    th:memberNo = "${cartDTOList[0].memberNo}"
-                   th:onclick="checkItemStock(this.getAttribute('cartDTOListSize'), this.getAttribute('memberNo'))"
+                   th:onclick="checkItemStock2(this.getAttribute('cartDTOListSize'), this.getAttribute('memberNo'))"
                    style = "position: absolute; left:23%;"> 선택한 상품 구매</button>
            <button style = "position: absolute; left:30%;"> 선택한 상품 삭제</button>
        </form>
