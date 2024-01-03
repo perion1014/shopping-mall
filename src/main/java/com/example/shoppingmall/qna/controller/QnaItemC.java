@@ -38,7 +38,7 @@ public class QnaItemC {
                                   @PathVariable(name="qnaNo") Long qnaNo, Model model) {
         model.addAttribute("qnaDetail", qnaService.getQnaInfo(qnaNo));
 
-        return "qna/item-qna-detail";
+        return "qna/test";
     }
 
 
