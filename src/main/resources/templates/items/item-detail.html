@@ -76,8 +76,8 @@
             <img class="item__img item__img--detail" th:if="${itemPhotosDTO.itemImg3} != null" th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg3}__}">
         </div>
         <!-- 상품 정보-->
-        <p class="item__detail">
-            같지 물방아 사랑의 운다. 소금이라 가는 이는 봄바람을 평화스러운 귀는 그림자는 봄바람이다. 불러 물방아 피어나기 청춘 위하여서, 구하지 운다. 두기 어디 구할 따뜻한 고동을 일월과 거친 보라. 가장 위하여 속에 이상 듣는다. 이상의 있을 부패를 뿐이다. 시들어 위하여서, 크고 원질이 끓는다. 고행을 못할 전인 청춘의 칼이다. 많이 든 이는 무엇을 찾아다녀도, 사라지지 듣는다. 몸이 듣기만 유소년에게서 커다란 불어 칼이다. 인생에 끓는 같이, 살았으며, 같지 그들에게 그리하였는가? 시들어 별과 것은 뜨거운지라, 몸이 아름다우냐?
+        <p class="item__detail" th:text="${itemDTO.itemDetail}">
+
         </p>
 
         <h3>배송안내</h3>
