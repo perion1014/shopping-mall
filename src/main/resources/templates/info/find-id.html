@@ -11,10 +11,10 @@
 <main class="main__container">
     <h1 class="main__title">아이디 조회 성공</h1>
     <h5>회원님의 아이디는 test****입니다</h5>
-    <form th:action method="get">
-        <button type="submit" class="btn btn--black btn--member-login">비밀번호 재설정</button>
+    <form action="info/id/find-success" method="get">
+        <button type="submit" class="btn btn--black btn--member-login">로그인 페이지로</button>
     </form>
-    <form th:action method="get">
+    <form action="info/pw" method="post">
         <button type="submit" class="btn btn--white btn--member-login">비밀번호 찾기</button>
     </form>
 
