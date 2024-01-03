@@ -5,27 +5,26 @@
     <title>PERION -  주문 입력</title>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/js/kakao-address.js"></script>
+    <script src="/js/pages/order.js"></script>
 </head>
 <body>
 <header th:replace="~{/fragments/login-header :: header}"></header>
 <main class="main__container">
     <h1 class="main__title">주문 정보 입력</h1>
-    <div class="radio__container">
-        <div>
-            <input id="memberAddress" type="radio">
-            <label for="memberAddress">등록된 주소</label>
-        </div>
-        <div>
-            <input id="newAddress" type="radio">
-            <label for="newAddress">새로운 주소 입력</label>
-        </div>
-    </div>
+    <form class="radio__container">
+        <label>
+            <input type="radio" name="address" id="1" onclick="change_form('1')" checked>등록된 주소
+        </label>
+        <label>
+            <input type="radio" name="address" id="2" onclick="change_form('2')">다른 주소 입력
+        </label>
+    </form>
 
     <!--기존 주소-->
-    <form method="post">
+    <form id="display1" method="post">
         <label class="label" for="memberHp">
             <h5 class="label__title">주문자 휴대폰 번호*</h5>
-            <input id="memberHp" name="memberHp" class="input input--lg" type="text" readonly/>
+            <input id="memberHp" name="memberHp" class="input input--lg" type="text" />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
@@ -39,22 +38,21 @@
         </label>
         <label class="label" for="memberPostalCode">
             <h5 class="label__title">우편번호*</h5>
-            <input id="memberPostalCode" name=memberPostalCode class="input input--mi" type="text" />
-            <button type="button" class="btn btn--mi btn--black btn--address" onclick="execDaumPostalcode()">우편번호 찾기</button>
+            <input id="memberPostalCode" name=memberPostalCode class="input input--lg" type="text" readonly />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberAddressBasic">
             <h5 class="label__title">기본 주소*</h5>
-            <input id="memberAddressBasic" name="memberAddressBasic" class="input input--lg" type="text" />
+            <input id="memberAddressBasic" name="memberAddressBasic" class="input input--lg" type="text" readonly />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberAddressDetail">
             <h5 class="label__title">상세 주소</h5>
-            <input id="memberAddressDetail" name="memberAddressDetail" class="input input--lg" type="text" />
+            <input id="memberAddressDetail" name="memberAddressDetail" class="input input--lg" type="text" readonly />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
@@ -63,24 +61,24 @@
     </form>
 
     <!--배송지 새로 입력-->
-    <form method="post">
+    <form id="display2" method="post">
         <label class="label" for="memberHp2">
             <h5 class="label__title">주문자 휴대폰 번호*</h5>
-            <input id="memberHp2" name="memberHp" class="input input--lg" type="text" />
+            <input id="memberHp2" name="memberHp" class="input input--lg" type="text"  />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberName2">
             <h5 class="label__title">수령자명*</h5>
-            <input id="memberName2" name ="memberName" class="input input--lg" type="text" />
+            <input id="memberName2" name ="memberName" class="input input--lg" type="text"  />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberPostalCode2">
             <h5 class="label__title">우편번호*</h5>
-            <input id="memberPostalCode2" name=memberPostalCode class="input input--mi" type="text" />
+            <input id="memberPostalCode2" name=memberPostalCode class="input input--mi" type="text"  />
             <button type="button" class="btn btn--mi btn--black btn--address" onclick="execDaumPostalcode()">우편번호 찾기</button>
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>

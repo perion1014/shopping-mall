@@ -46,7 +46,7 @@
 }
 
 .input--mi{
-    width: 20rem;
+    width: 19.5rem;
 }
 
 .input--sm{
@@ -79,7 +79,7 @@
 .btn{
     display: block;
     width: 23rem;
-    height: 3rem;
+    height: 2.5rem;
     margin: 0.5rem 0 1rem 0;
     font-size: 1.125rem;
     font-weight: bold;
@@ -160,10 +160,15 @@
 
 .radio__container{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 2rem;
     width: 100%;
     margin:0 0 1rem 0;
 }
 .after--logo{
     margin-top: 1rem;
+}
+
+#display2{
+    display: none;
 }
