@@ -142,7 +142,7 @@
     </select>
 
     <select id="getItemListPageBySearch" parameterType="com.example.shoppingmall.item.form.ItemSearchForm" resultType="com.example.shoppingmall.item.domain.Item">
-        select * from item where item_name like concat('%', #{searchKeyword}, '%') and item_onsale = 1 order by item_no desc limit #{startPage}, #{itemsPerPage}
+        select * from item where item_name like concat('%', #{searchKeyword}, '%') order by item_no desc limit #{startPage}, #{itemsPerPage}
     </select>
 
     <select id="findItemListPageBySearchAndCategory" parameterType="com.example.shoppingmall.item.form.ItemCategoricalSearchPageForm" resultType="com.example.shoppingmall.item.domain.Item">
