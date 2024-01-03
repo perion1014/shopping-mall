@@ -1,4 +1,5 @@
 
+//회원 - 장바구니 조회 내 수량 변경 + 변경된 수량 DB에 반영하는 함수
 function updateQuantity(changeQuantity, index, cartNo, memberNo, itemNo, itemSize){
     let currentQuantity = document.getElementById('inputvalue_' + index);
     let currentQuantityNum = Number(currentQuantity.value);
@@ -34,6 +35,7 @@ function updateQuantity(changeQuantity, index, cartNo, memberNo, itemNo, itemSiz
 
 }
 
+//회원 - 장바구니 조회 페이지 내, 장바구니 항목 삭제 함수
 function deleteCart(index, cartNo, memberNo){
     let deleteCheck = confirm('장바구니에서 해당 항목을 삭제하시겠습니까?');
     if(deleteCheck == true){
@@ -58,10 +60,10 @@ function deleteCart(index, cartNo, memberNo){
     }
 }
 
-//전체 선택 토글 시 체크or해제 + 가격 재갱신
+//전체 선택 토글 시 체크or해제 + 가격 재갱신 함수
 function toggleAllCartCheckbox(className){
 
-    var checkBoxes = document.querySelectorAll('.' + className);
+    let checkBoxes = document.querySelectorAll('.' + className);
     thisBoxChecked = Boolean(document.getElementById('cartListAllCheckBtn').checked);
             for(var i = 0; i < checkBoxes.length; i++){
                 checkBoxes[i].checked = thisBoxChecked;
@@ -76,12 +78,12 @@ function toggleAllCartCheckbox(className){
 function calculatePriceSum(cartDTOListSize){
 
     //alert('자바스크립트로 넘긴 리스트 인덱스 체크 : ' + Number(cartDTOListSize));
-    var itemPrice = 0;
-    var itemQuantity = 0;
-    var priceSum = 0;
-    var orderSum = 0;
+    let itemPrice = 0;
+    let itemQuantity = 0;
+    let priceSum = 0;
+    let orderSum = 0;
 
-    for(var i = 0; i < cartDTOListSize; i++){
+    for(let i = 0; i < cartDTOListSize; i++){
 
         if(document.getElementById('cartCheckBox_'+ i).checked === true){
 
@@ -100,13 +102,14 @@ function calculatePriceSum(cartDTOListSize){
         document.getElementById('orderSum').innerText = orderSum;
 }
 
+//장바구니 상품 선택하고 구매 누를 시, 구매 페이지로 넘어가기 전 재고 체크 함수
 function checkItemStock(cartDTOListSize, memberNo){
 
-    var jsonData= [];
+    let jsonData= [];
 
-    var itemName = '';
-    var itemSize = '';
-    var itemQuantity = 0;
+    let itemName = '';
+    let itemSize = '';
+    let itemQuantity = 0;
 
     for(var i = 0; i < cartDTOListSize; i++){
         if(document.getElementById('cartCheckBox_' + i).checked === true){
@@ -116,7 +119,7 @@ function checkItemStock(cartDTOListSize, memberNo){
             // alert('자스에서 받아온 아이템 명 : ' + itemName);
             // alert('자스에서 받아온 아이템 사이즈 : ' + itemSize);
             // alert('자스에서 받아온 아이템 수량 : ' + selectedItemQuantity);
-            var jsonItem = {itemName: itemName, itemSize: itemSize, itemQuantity: itemQuantity};
+            let jsonItem = {itemName: itemName, itemSize: itemSize, itemQuantity: itemQuantity};
             jsonData.push(jsonItem);
             // alert('아이템 명 : ' + itemName);
             // alert('아이템 사이즈 : ' + itemSize);

@@ -311,6 +311,7 @@ public class ItemService {
         itemRepository.deleteItemPhotosByItemNo(itemNo);
         // 파일 처리 (삭제)
         String myPath = "D:/intellij/workspace/";
+        //String myPath = "C:/Users/ckd39/Downloads/";
         String createdDirPath = myPath + fileDir + itemNo + "/";
         //D:/intellij/workspace/shopping-mall/src/main/resources/static/images/itemImages/
         try {
