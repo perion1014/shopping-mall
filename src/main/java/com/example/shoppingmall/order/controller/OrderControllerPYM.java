@@ -3,6 +3,8 @@ package com.example.shoppingmall.order.controller;
 import com.example.shoppingmall.cart.dto.CartReadDTO;
 import com.example.shoppingmall.cart.service.CartService;
 import com.example.shoppingmall.member.domain.Member;
+import com.example.shoppingmall.member.dto.MemberDTO;
+import com.example.shoppingmall.member.service.MemberService;
 import com.example.shoppingmall.order.dto.MemberOrderAddDTO;
 import com.example.shoppingmall.order.dto.MemberOrderDTO;
 import com.example.shoppingmall.order.dto.MemberOrderDetailDTO;
@@ -17,13 +19,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class OrderControllerPYM {
 
+    private final MemberService memberService;
     private final MemberOrderService memberOrderService;
     private final CartService cartService;
 
@@ -39,7 +41,7 @@ public class OrderControllerPYM {
             return "redirect:/member/login";
         }
 
-        List<CartReadDTO> cartDTOList = null;
+        List<CartReadDTO> cartDTOList = cartService.getCartList(memberNo);
 
         model.addAttribute("cartDTOList", cartDTOList);
         return "orders/member-order-pym";
