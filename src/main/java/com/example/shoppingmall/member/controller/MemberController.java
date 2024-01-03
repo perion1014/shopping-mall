@@ -4,6 +4,7 @@ import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.*;
 import com.example.shoppingmall.member.form.MemberPageForm;
 import com.example.shoppingmall.member.form.MemberSearchForm;
+import com.example.shoppingmall.member.service.MemberInfoService;
 import com.example.shoppingmall.member.service.MemberLoginService;
 import com.example.shoppingmall.member.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ public class MemberController {
 
     private final MemberService memberService;
     private final MemberLoginService memberLoginService;
+    private final MemberInfoService memberInfoService;
 
     /*유저 로그인*/
     @GetMapping("/login")
@@ -148,4 +150,48 @@ public class MemberController {
         return "admins/admin-member-search";
     }
 
+    /*회원 아이디/비밀번호 페이지*/
+    @GetMapping("/info")
+    public String goToIdPwPage(){
+        return "info/find-id-pw";
+    }
+
+    /*아이디 찾기*/
+    @PostMapping("/info/id")
+    public String findId(String memberEmail, Model model){
+        model.addAttribute("memberSearchDTO", memberInfoService.getMemberIdByEmail(memberEmail));
+        return "info/find-id";
+    }
+
+    /*아이디 찾기 성공 페이지*/
+    @GetMapping("/info/id/find-success")
+    public String findIdSuccess(){
+        return "members/member-login";
+    }
+
+    /*비밀번호 찾기*/
+    @PostMapping("/info/pw")
+    public String findPw(){
+        return"info/reset-pw";
+    }
+
+    /*비빌번호 재설정 페이지*///아이디 찾기와 비밀번호 찾기가 한페이지에서 출력되기때문에 나눌필요없음
+//    @GetMapping("/info/pw/update")
+//    public String goToPwUpdatePage(){
+//        return "info/reset-pw";
+//    }
+
+    /*비밀번호 재설정 */
+    @PostMapping("/info/pw/update")
+    public String updatePw(){
+        return "info/reset-pw-ok";
+    }
+
+    /*비밀번호 재설정 완료*/
+    @GetMapping("/info/pw/update-success")
+    public String updatePwSuccess (){
+        return "info/reset-pw-ok";
+    }
 }
+
+
