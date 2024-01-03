@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+번호 <span th:text="${qnaDetail.qnaNo}"></span> <p>
+    제목 <span th:text="${qnaDetail.qnaTitle}"></span> <p>
+    작성시간 <span th:text="${qnaDetail.qnaQuestionCreatedTime}"></span><p>
+<p></p>
+상품 번호 <span th:text="${qnaDetail.ItemNo}"></span><p>
+    구분 <span th:text="${qnaDetail.qnaClassification}"></span><p>
+<p></p>
+내용 <span th:text="${qnaDetail.qnaQuestion}"></span><p>
+
+<div th:if="${qnaDetail.qnaAnswer != null}">
+    <span th:text="${qnaDetail.qnaAnswer}"></span>
+</div>
+<!--<span th:text="${qnaDetail.memberNo}"></span>-->
+<div th:if="${qnaDetail.memberNo == session.loginMember.memberNo}">
+    <button th:onclick="|window.location.href='/members/${qnaDetail.memberNo}/qna/${qnaDetail.qnaNo}/update'|">
+        수정
+    </button>
+</div>
+
+
+</div>
+
+</body>
+</html>
