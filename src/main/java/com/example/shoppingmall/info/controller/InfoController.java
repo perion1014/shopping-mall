@@ -15,31 +15,37 @@ public class InfoController {
     public String goToIdPwPage(){
         return "info/find-id-pw";
     }
+
     /*아이디 찾기*/
     @PostMapping("/id")
     public String findId(){
         return "info/find-id";
     }
+
     /*아이디 찾기 성공 페이지*/
     @GetMapping("/id/find-success")
     public String findIdSuccess(){
-        return "redirect:";
+        return "members/member-login";
     }
+
     /*비밀번호 찾기*/
     @PostMapping("/pw")
     public String findPw(){
         return"info/reset-pw";
     }
+
     /*비빌번호 재설정 페이지*/
     @GetMapping("/pw/update")
     public String goToPwUpdatePage(){
         return "info/reset-pw";
     }
+
     /*비밀번호 재설정 */
     @PostMapping("/pw/update")
     public String updatePw(){
         return "info/reset-pw";
     }
+
     /*비밀번호 재설정 완료*/
     @GetMapping("/pw/update-success")
     public String updatePwSuccess (){
