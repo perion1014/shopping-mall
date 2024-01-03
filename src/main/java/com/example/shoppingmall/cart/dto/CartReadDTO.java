@@ -2,6 +2,7 @@ package com.example.shoppingmall.cart.dto;
 
 import com.example.shoppingmall.cart.domain.Cart;
 import com.example.shoppingmall.cart.service.CartService;
+import com.example.shoppingmall.item.dto.ItemPhotosDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +23,6 @@ public class CartReadDTO {
     private Integer itemQuantity;
     //private Integer itemPriceSum;
     //private Integer orderPriceSum;
+
+    private ItemPhotosDTO itemPhotosDTO;
 }

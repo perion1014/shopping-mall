@@ -1,6 +1,7 @@
 package com.example.shoppingmall.cart.domain;
 
 import com.example.shoppingmall.cart.dto.CartReadDTO;
+import com.example.shoppingmall.item.domain.ItemPhotos;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,4 +16,6 @@ public class Cart {
     private Long itemNo;
     private Integer cartItemQuantity;
     private String itemSize;
+
+    private ItemPhotos itemPhotos;
 }

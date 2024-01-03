@@ -4,6 +4,8 @@ import com.example.shoppingmall.cart.domain.Cart;
 import com.example.shoppingmall.cart.dto.CartReadDTO;
 import com.example.shoppingmall.cart.dto.nonMemberCartAddDTO;
 import com.example.shoppingmall.cart.repository.CartRepository;
+import com.example.shoppingmall.item.dto.ItemPhotosDTO;
+import com.example.shoppingmall.item.repository.ItemRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import java.util.List;
 public class CartService {
 
     private final CartRepository cartRepository;
+    private final ItemRepository itemRepository;
 
     public List<CartReadDTO> getCartList(Long memberNo){
         List<Cart> dbCartList = cartRepository.getCartList(memberNo);
@@ -35,6 +38,7 @@ public class CartService {
             cartReadDTO.setItemQuantity(cart.getCartItemQuantity());
             //cartReadDTO.setItemPriceSum(cartReadDTO.getItemPrice() * cartReadDTO.getItemQuantity());
             //cartReadDTO.setOrderPriceSum((cartReadDTO.getItemPrice() * cartReadDTO.getItemQuantity()) - 1000);
+            cartReadDTO.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(itemRepository.findItemPhotosByItemNo(cartReadDTO.getItemNo())));
             cartDTOList.add(cartReadDTO);
         }
 

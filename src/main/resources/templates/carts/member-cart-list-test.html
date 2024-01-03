@@ -43,7 +43,7 @@
                             th:onclick="calculatePriceSum(this.getAttribute('cartDTOListSize'))" />
                  </td>
                  <td class="cart__imgbox">
-                     <img class="cart__img" src="/images/itemImages/33/thumb/1777156461.g_350-w-et-pj_g.jpg">
+                     <img class="cart__img" th:src="@{/images/itemImages/__${cartDTO.itemNo}__/thumb/__${cartDTO.itemPhotosDTO.itemThumb}__}">
                  </td>
                  <td>
                      <h4 th:id = "'itemName_' + ${cartIndex.index}" th:text="${cartDTO.itemName}"></h4>
