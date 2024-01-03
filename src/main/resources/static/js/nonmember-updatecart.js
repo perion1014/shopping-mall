@@ -1,5 +1,7 @@
 //alert('nonmember-updatecart.js 적용 확인');
 
+
+//비회원 장바구니 조회 내 수량 변경 함수
 function updateQuantity(changeQuantity, cartListIndex){
     let currentQuantityInput = document.getElementById('inputvalue_' + cartListIndex);
     let currentQuantityValue = Number(currentQuantityInput.value);
@@ -54,6 +56,7 @@ function sendCartDeleteJson(cartNo){
     })
 }
 
+//비회원 - 모든 장바구니 항목을 선택/해제하는 체크박스
 function toggleAllCartCheckbox(checkBoxClass){
 
     var checkBoxes = document.querySelectorAll('.' + checkBoxClass);
