@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 600px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif; /* 원하는 폰트로 변경 가능 */
+    overflow: hidden; /* 스크롤바를 숨김 */
+}
+.container {
+    width: 600px;
+    height: 500px;
+}
+
+.logo img {
+    margin-top: 8px;
+    margin-left: 8px;
+    width: 44px;
+}
+
+.title {
+    width: 100%;
+    height: 16px;
+    margin-left: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.context {
+    display: flex;
+    justify-content: space-between; /* 좌우 정렬 조절 */
+    align-items: center; /* 수직 정렬 조절 */
+    width: 100%;
+    height: 30%;
+    font-size: 12px;
+}
+
+.inner-div {
+    display: flex;
+    width: 100px; /* 필요에 따라 조절 */
+    height: 100px; /* 필요에 따라 조절 */
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.inner--context {
+    width: 100%; /* 필요에 따라 조절 */
+    height: 100%; /* 필요에 따라 조절 */
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+
+.line {
+    width: 100%;
+    border: 1px solid black;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.t {
+    margin-left: 80px;
+}
+
+.d {
+    margin-right: 116px;
+}

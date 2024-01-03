@@ -1,31 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/components/custom.css">
+    <link rel="stylesheet" href="/css/pages/qna/qna-detail.css">
+    <title>PERION Q&A</title>
+
 </head>
 <body>
-번호 <span th:text="${qnaDetail.qnaNo}"></span> <p>
-    제목 <span th:text="${qnaDetail.qnaTitle}"></span> <p>
-    작성시간 <span th:text="${qnaDetail.qnaQuestionCreatedTime}"></span><p>
-<p></p>
-상품 번호 <span th:text="${qnaDetail.ItemNo}"></span><p>
-    구분 <span th:text="${qnaDetail.qnaClassification}"></span><p>
-<p></p>
-내용 <span th:text="${qnaDetail.qnaQuestion}"></span><p>
 
-<div th:if="${qnaDetail.qnaAnswer != null}">
-    <span th:text="${qnaDetail.qnaAnswer}"></span>
+<div class="container">
+    <div class="logo"><img src="/images/spartan-helmet.svg" alt="logo" /></div>
+
+    <div class="line"></div>
+
+    <div class="title">
+        <span class="t">제목: <span th:text="${qnaDetail.qnaTitle}"></span> </span>
+        <span th:text="${qnaDetail.qnaClassification}"></span>
+        <span class="d" th:text="${#dates.format(qnaDetail.qnaQuestionCreatedTime, 'yyyy-MM-dd')}"></span>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="context">
+
+        <div class="inner-div">
+            <div class="inner">
+                <span th:text="${#strings.substring(qnaDetail.memberId, 0, 3)} + '***'"></span>
+            </div>
+        </div>
+
+        <div class="inner--context">
+            <div th:text="${qnaDetail.qnaQuestion}"></div>
+        </div>
+
+        <div class="inner-div">
+            <div class="inner" th:if="${session.loginMember != null and qnaDetail.memberNo == session.loginMember.memberNo}">
+                <button class="btn btn--black btn--xs"
+                        th:onclick="|window.location.href=
+                        '/members/${qnaDetail.memberNo}/qna/${qnaDetail.qnaNo}/update'|">
+                    수정
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="line"></div>
+
+    <div class="context">
+
+        <div class="inner-div">
+            <div class="inner">어드민</div>
+        </div>
+
+        <div class="inner--context">
+            <div th:text="${qnaDetail.qnaAnswer} != null ? ${qnaDetail.qnaAnswer} : '곧 답변 드리겠습니다.'"></div>
+        </div>
+
+        <div class="inner-div">
+            <div class="inner"></div>
+        </div>
+
+    </div>
+
+    <div class="line"></div>
+
 </div>
-<!--<span th:text="${qnaDetail.memberNo}"></span>-->
-<div th:if="${qnaDetail.memberNo == session.loginMember.memberNo}">
-    <button th:onclick="|window.location.href='/members/${qnaDetail.memberNo}/qna/${qnaDetail.qnaNo}/update'|">
-        수정
-    </button>
-</div>
-
-
-</div>
-
 </body>
 </html>
