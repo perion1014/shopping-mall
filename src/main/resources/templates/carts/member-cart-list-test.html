@@ -87,7 +87,13 @@
                      </div>
                  </td>
                  <td class="cart__btn">
-                     <button class="btn btn--xs btn--black">삭제</button>
+                     <button
+                             class="btn btn--xs btn--black"
+                             th:id="'deleteButton_' + ${cartIndex.index}"
+                             th:index = "${cartIndex.index}"
+                             th:cartNo = "${cartDTO.cartNo}"
+                             th:memberNo = "${cartDTO.memberNo}"
+                             th:onclick="deleteCart(this.getAttribute('index'), this.getAttribute('cartNo'), this.getAttribute('memberNo'))">삭제</button>
                  </td>
              </tr>
         </div>

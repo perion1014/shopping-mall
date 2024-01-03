@@ -29,7 +29,7 @@ public class CartController {
     public String showMemberCartList(@PathVariable(name = "memberNo") Long memberNo, Model model) {
         List<CartReadDTO> cartDTOList = cartService.getCartList(memberNo);
         model.addAttribute("cartDTOList", cartDTOList);
-        return "carts/member-cart-list";
+        return "carts/member-cart-list-test";
     }
 
     //회원 장바구니 추가
@@ -130,21 +130,25 @@ public class CartController {
         return "carts/nonmember-cart-list";
     }
 
+    //페이지 개발 완료 - 회원 장바구니 목록
     @GetMapping("/member/test")
     public String goToMemberTestPage(){
         return "carts/member-cart-list-test";
     }
 
+    //페이지 개발 완료 - 비회원 장바구니 목록
     @GetMapping("/nonmember/test")
         public String goToNonMemberTestPage(){
         return "carts/nonmember-cart-list-test";
     }
 
+    //페이지 개발 완료 - 회원 주문 성공 페이지
     @GetMapping("/member/order-success-test")
         public String goToMemberOrderSuccessTest(){
             return "orders/member-order-success-test";
     }
 
+    //페이지 개발 완료 - 비회원 주문 성공 페이지
     @GetMapping("/nonmember/order-success-test")
     public String goToNonmemberOrderSuccessTest(){
         return "orders/nonmember-order-success-test";
@@ -160,6 +164,7 @@ public class CartController {
         return "orders/member-order-detail-test";
     }
 
+    //페이지 개발 완료 - 비회원 주문 조회 입력 페이지
     @GetMapping("/orders/non-members")
     public String goToNonmemberOrderCheckTest(){
         return "orders/nonmember-order-check-test";
@@ -170,6 +175,7 @@ public class CartController {
         return "orders/nonmember-order-detail-check-test";
     }
 
+    //페이지 개발 완료 - 비회원 주문 삭제 성공 페이지
     @GetMapping("/orders/delete-sucess")
     public String goToNonmemberOrderDeleteSuccessTest(){
         return "orders/nonmember-order-delete-success-test";
