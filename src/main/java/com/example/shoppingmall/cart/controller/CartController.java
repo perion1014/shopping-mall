@@ -1,10 +1,7 @@
 package com.example.shoppingmall.cart.controller;
 
-import com.example.shoppingmall.cart.domain.Cart;
 import com.example.shoppingmall.cart.dto.CartReadDTO;
-import com.example.shoppingmall.cart.dto.nonMemberCartAddDTO;
 import com.example.shoppingmall.cart.service.CartService;
-import com.example.shoppingmall.member.domain.Member;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -167,7 +163,7 @@ public class CartController {
     //페이지 개발 완료 - 비회원 주문 조회 입력 페이지
     @GetMapping("/orders/non-members")
     public String goToNonmemberOrderCheckTest(){
-        return "orders/nonmember-order-check-test";
+        return "nonmember-order-check";
     }
 
     @GetMapping("/nonmember/order-detail-check-test")
