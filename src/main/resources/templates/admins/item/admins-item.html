@@ -18,8 +18,7 @@
     <main>
       <div class="main">
         <div class="admin_item">상품 조회</div>
-        <div class="admin_item_sale">On sale | Not on sale</div>
-        <div class="admin_item_category">top | bottom | outer</div>
+        <div class="admin_item_category">outer | inner | pants</div>
         <div class="admin_item_search">
           <form action="/items/admin" method="get">
             <select name="category">
@@ -40,7 +39,6 @@
               <th>상품 가격</th>
               <th>상품 재고</th>
               <th>상품 카테고리</th>
-              <th>판매 여부</th>
               <th>수정</th>
               <th>삭제</th>
             </tr>
@@ -56,8 +54,6 @@
 
               </td>
               <td th:text="${item.itemCategory}"></td>
-              <td th:if="${item.itemOnsale == 1}">On sale</td>
-              <td th:unless="${item.itemOnsale == 1}">Not on sale</td>
               <td><a th:href="@{/items/admin/{itemNo}(itemNo=${item.itemNo})}">수정</a></td>
               <td><a th:href="@{/items/admin/{itemNo}/delete(itemNo=${item.itemNo})}">삭제</a></td>
             </tr>
