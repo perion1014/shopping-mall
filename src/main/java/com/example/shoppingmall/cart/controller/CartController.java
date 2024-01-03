@@ -28,6 +28,7 @@ public class CartController {
     @GetMapping("/{memberNo}")
     public String showMemberCartList(@PathVariable(name = "memberNo") Long memberNo, Model model) {
         List<CartReadDTO> cartDTOList = cartService.getCartList(memberNo);
+        //cartDTOList[0].itemPhotosDTO.itemThumb
         model.addAttribute("cartDTOList", cartDTOList);
         return "carts/member-cart-list-test";
     }
