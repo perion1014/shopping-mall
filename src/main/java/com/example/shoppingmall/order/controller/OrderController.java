@@ -59,5 +59,9 @@ public class OrderController {
         return responseData;
     }
 
+    @GetMapping("/orders/non-members")
+    public String goToNonMemberOrderPage(){
+        return "orders/nonmember-order-check";
+    }
 
 }
