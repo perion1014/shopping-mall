@@ -51,7 +51,7 @@
               <td th:text="${item.itemName}"></td>
               <td th:text="${item.itemPrice}"></td>
 
-              <td th:if="${item.itemStockDTOList} != null or ${item.itemStockDTOList.size()} > 0" th:text="${item.itemStockDTOList[0].itemSize} + ' ' + ${item.itemStockDTOList[0].itemStockValue} + ' / ' + ${item.itemStockDTOList[1].itemSize} + ' ' + ${item.itemStockDTOList[1].itemStockValue} + ' / ' + ${item.itemStockDTOList[2].itemSize} + ' ' + ${item.itemStockDTOList[2].itemStockValue}">
+              <td th:if="${item.itemStockDTOList} != null or ${item.itemStockDTOList.size()} >= 0" th:text="${item.itemStockDTOList[0].itemSize} + ' ' + ${item.itemStockDTOList[0].itemStockValue} + ' / ' + ${item.itemStockDTOList[1].itemSize} + ' ' + ${item.itemStockDTOList[1].itemStockValue} + ' / ' + ${item.itemStockDTOList[2].itemSize} + ' ' + ${item.itemStockDTOList[2].itemStockValue}">
 
 
               </td>
