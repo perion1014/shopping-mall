@@ -29,6 +29,8 @@ public class MemberService {
                 .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 아이디입니다.");});
         memberRepository.findByEmail(member.getMemberEmail())
                 .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 이메일입니다.");});
+        memberRepository.findByHp(member.getMemberHp())
+                .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 휴대폰 번호입니다.");});
         memberRepository.save(member);
     }
 

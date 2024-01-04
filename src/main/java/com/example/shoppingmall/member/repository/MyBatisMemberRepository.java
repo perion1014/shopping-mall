@@ -48,6 +48,11 @@ public class MyBatisMemberRepository implements MemberRepository {
     }
 
     @Override
+    public Optional<Member> findByHp(String memberHp) {
+        return Optional.ofNullable(memberMapper.findByHp(memberHp));
+    }
+
+    @Override
     public List<Member> findAllByPaging(Map<String, Integer> pagingSettings) {
         return memberMapper.findAllByPaging(pagingSettings);
     }

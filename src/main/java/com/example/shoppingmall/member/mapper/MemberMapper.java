@@ -16,6 +16,7 @@ public interface MemberMapper {
     void deleteByNo(Long memberNo);
     Member findByNo(Long memberNo);
     Member findById(String memberId);
+    Member findByHp(String memberHp);
     Member findByEmail(String memberEmail);
     List<Member> findAllByPaging(Map<String, Integer> pagingSettings);
     List<Member> findAllByKeyword(MemberSearchForm memberSearchForm);
