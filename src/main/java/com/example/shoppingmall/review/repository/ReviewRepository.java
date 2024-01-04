@@ -13,7 +13,7 @@ public interface ReviewRepository {
 
     Long getItemStockNo(Long memberOrderNo);
 
-    String getItemSize(Long itemStockNo);
+    String getItemSize(Long memberOrderDetailNo);
 
     String getMemberId(Long memberNo);
 
@@ -26,4 +26,6 @@ public interface ReviewRepository {
     List<Review> findReviewByPaging(Map<String, Integer> pagingSettings);
 
     Long countReview();
+
+    String getItemName(Long itemNo);
 }

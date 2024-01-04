@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head th:admin-head>
+    <div
+      th:remove="tag"
+      th:replace="~{/fragments/admin-head :: admin-head} "
+    ></div>
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/pages/admins/admins-review.css" />
+    <link rel="stylesheet" href="/css/pages/user/items.css">
+  </head>
+  <body>
+    <header
+      th:replace="~{/fragments/admin-login-header :: admin-login-header}"
+    ></header>
+
+    <aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}"></aside>
+
+    <main>
+      <div class="main">
+        <div class="admin_review">Review</div>
+
+        <div class="admin_review_search">
+          <select name="#y">
+            <option value="#">상품 번호</option>
+
+            <option value="#">아이디</option>
+          </select>
+          <input type="text" />
+          <button>검색</button>
+        </div>
+
+        <hr />
+        <div class="review" th:each="ReviewDTO : ${reviewList}">
+          <div class="review_container">
+            <div class="review_info">
+              <span th:text="${ReviewDTO.memberId}"></span>
+              <span th:text="${ReviewDTO.ItemName}"></span>
+              <span>사이즈: <span th:text="${ReviewDTO.itemSize}"></span>
+              <span th:text= "'★'+${ReviewDTO.reviewScore}"></span>
+            </div>
+            <div class="review_drop">
+              <form action="/reviews/delete" method="post">
+                <input type="hidden" name="reviewNo" th:value="${ReviewDTO.reviewNo}" />
+                <button class="btn--drop">삭제</button>
+              </form>
+            </div>
+          </div>
+          <div class="review_content" th:text="${ReviewDTO.reviewContext}">
+
+          </div>
+          <hr />
+        </div>
+
+
+        <div class="margin"></div>
+        <div class ="items__page">
+          <span th:if="${pageSettings.page &lt;= 1}">이전</span>
+          <span th:unless="${pageSettings.page &lt;= 1}">
+                <a th:href="@{/members/{memberNo}/reviews(memberNo=${memberNo},page=${pageSettings.page - 1})}">이전</a>
+              </span>
+
+          <span th:each="i : ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
+                <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
+                <a th:unless="${i == pageSettings.page}"
+                   th:href="@{/members/{memberNo}/reviews(memberNo=${memberNo},page=${i})}"
+                   th:text="${i}"></a>
+              </span>
+
+          <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
+          <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
+             th:href="@{/members/{memberNo}/reviews(memberNo=${memberNo},page=${pageSettings.page + 1})}"
+          >다음</a
+          >
+        </div>
+      </div>
+      <!--main div-->
+    </main>
+  </body>
+</html>

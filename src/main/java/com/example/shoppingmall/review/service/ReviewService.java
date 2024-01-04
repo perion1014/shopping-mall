@@ -34,10 +34,11 @@ public class ReviewService {
 
         for (Review review : reviews) {
 
-            Long memberOrderNo = review.getMemberOrderNo();
-            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
+            Long memberOrderDetilNo = review.getMemberOrderDetailNo();
 
-            String itemSize = reviewRepository.getItemSize(itemStockNo);
+//            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
+
+            String itemSize = reviewRepository.getItemSize(memberOrderDetilNo);
             String memberId = reviewRepository.getMemberId(review.getMemberNo());
 
             reviewDTOList.add(reivewToReviewDTO(review,itemSize,memberId));
@@ -63,10 +64,10 @@ public class ReviewService {
 
         for (Review review : reviews) {
 
-            Long memberOrderNo = review.getMemberOrderNo();
-            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
+            Long memberOrderDetailNo = review.getMemberOrderDetailNo();
+//            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
 
-            String itemSize = reviewRepository.getItemSize(itemStockNo);
+            String itemSize = reviewRepository.getItemSize(memberOrderDetailNo);
             String memberId = reviewRepository.getMemberId(review.getMemberNo());
 
             resultList.add(reivewToReviewDTO(review,itemSize,memberId));
@@ -113,13 +114,18 @@ public class ReviewService {
 
         for (Review review : reviews) {
 
-            Long memberOrderNo = review.getMemberOrderNo();
-            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
+            Long memberOrderDetailNo = review.getMemberOrderDetailNo();
 
-            String itemSize = reviewRepository.getItemSize(itemStockNo);
+            String ItemName = reviewRepository.getItemName(review.getItemNo());
+//            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
+
+            String itemSize = reviewRepository.getItemSize(memberOrderDetailNo);
             String memberId = reviewRepository.getMemberId(review.getMemberNo());
 
-            resultList.add(reivewToReviewDTO(review,itemSize,memberId));
+            ReviewDTO reviewDTO = reivewToReviewDTO(review,itemSize,memberId);
+
+            reviewDTO.setItemName(ItemName);
+            resultList.add(reviewDTO);
 
         }
 

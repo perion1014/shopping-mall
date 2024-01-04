@@ -21,7 +21,7 @@
     <hr>
 </div>
 
-<div>
+<div class="items__page">
     <span th:if="${pageSettings.page &lt;= 1}">이전</span>
     <span th:unless="${pageSettings.page &lt;= 1}">
                 <a th:href="@{/templates/reviews(memberNo=${memberNo},page=${pageSettings.page - 1})}">이전</a>

@@ -37,7 +37,7 @@ public class QnaMemberC {
     public String updateQnaQuestion(@PathVariable(name="qnaNo")Long qnaNo, Model model){
         model.addAttribute("qnaDetail",qnaService.getQnaInfo(qnaNo));
 
-        return "/qna/member-qna-update";
+        return "/qna/qna-modify";
     }
 
     @PostMapping("/{memberNo}/qna/{qnaNo}/update")

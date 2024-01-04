@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/components/custom.css">
+    <link rel="stylesheet" href="/css/pages/qna/qna-detail.css">
+    <title>PERION Q&A</title>
+
+</head>
+<body>
+    <form  th:action="@{'/members/' + ${session.loginMember.getMemberNo()} + '/qna/' + ${qnaDetail.qnaNo} + '/update'}" method="post" >
+<div class="container">
+    <div class="logo"><img src="/images/spartan-helmet.svg" alt="logo" /></div>
+
+    <div class="line"></div>
+
+    <div class="title">
+        <span class="t">제목: <input type="text" name="qnaTitle" th:value="${qnaDetail.qnaTitle}" /> </span>
+        <select name="qnaClassification">
+            <option value="사이즈" th:selected="${qnaDetail.qnaClassification == '사이즈'}">사이즈</option>
+            <option value="배송" th:selected="${qnaDetail.qnaClassification == '배송'}">배송</option>
+            <option value="재입고" th:selected="${qnaDetail.qnaClassification == '재입고'}">재입고</option>
+            <option value="상품상세문의" th:selected="${qnaDetail.qnaClassification == '상품상세문의'}">상품상세문의</option>
+        </select>
+        <span class="d" th:text="${#dates.format(qnaDetail.qnaQuestionCreatedTime, 'yyyy-MM-dd')}"></span>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="context">
+
+        <div class="inner-div">
+            <div class="inner">
+                <span th:text="${#strings.substring(qnaDetail.memberId, 0, 3)} + '***'"></span>
+            </div>
+        </div>
+
+        <div class="inner--context">
+            <textarea rows="100"  cols="50" name="qnaQuestion" th:text="${qnaDetail.qnaQuestion}"></textarea>
+        </div>
+
+        <div class="inner-div">
+            <div class="inner" th:if="${session.loginMember != null and qnaDetail.memberNo == session.loginMember.memberNo}">
+                <button class="btn btn--black btn--xs"
+                        th:onclick="|window.location.href=
+                        '/members/${qnaDetail.memberNo}/qna/${qnaDetail.qnaNo}/update'|">
+                    수정
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="line"></div>
+
+    <div class="context">
+
+        <div class="inner-div">
+            <div class="inner">어드민</div>
+        </div>
+
+        <div class="inner--context">
+            <div th:text="${qnaDetail.qnaAnswer} != null ? ${qnaDetail.qnaAnswer} : '곧 답변 드리겠습니다.'"></div>
+        </div>
+
+        <div class="inner-div">
+            <div class="inner"></div>
+        </div>
+
+    </div>
+
+    <div class="line"></div>
+
+</div>
+
+    </form>
+</body>
+</html>

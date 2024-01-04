@@ -6,13 +6,13 @@
 </head>
 <body>
     <form th:action="@{'/reviews/' + ${memberNo} + '/' + ${itemNo} + '/add'}" method="post" >
-        <input type="hidden" name= "memberOrderNo" th:value="${memberOrderNo}">
+        <input type="hidden" name= "memberOrderDetailNo" th:value="${memberOrderDetailNo}">
     평점
-    <input type="radio" name="reviewScore" value="1" checked>
-    <input type="radio" name="reviewScore" value="2" checked>
-    <input type="radio" name="reviewScore" value="3" checked>
-    <input type="radio" name=git"reviewScore" value="4" checked>
-    <input type="radio" name="reviewScore" value="5" checked>
+    <input type="radio" name="reviewScore" value="1" >
+    <input type="radio" name="reviewScore" value="2" >
+    <input type="radio" name="reviewScore" value="3" >
+    <input type="radio" name="reviewScore" value="4" >
+    <input type="radio" name="reviewScore" value="5" >
 
         <p></p>
     리뷰

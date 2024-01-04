@@ -24,9 +24,9 @@ public class ReviewController {
     //리뷰 등록
     @GetMapping("{memberNo}/{itemNo}/add")
     public String makeReview(@PathVariable(name="memberNo") Long memberNo,
-                             @RequestParam(name = "memberOrderNo") Long memberOrderNo,
+                             @RequestParam(name = "memberOrderDetailNo") Long memberOrderDetailNo,
                              @PathVariable(name="itemNo") Long itemNo, Model model) {
-        model.addAttribute("memberOrderNo", memberOrderNo);
+        model.addAttribute("memberOrderDetailNo", memberOrderDetailNo);
 
         return "reviews/review-add";
     }
@@ -60,9 +60,17 @@ public class ReviewController {
         model.addAttribute("pageSettings", reviewService.setReviewPage(page));
         model.addAttribute("reviewList", reviewService.getAllReviewList(page));
 
-        return "admins/admin-review-test";
+        return "admins/admin-review";
+
     }
 
+    // 어드민 리뷰 삭제
+    @PostMapping("delete")
+    public String deleteReview(@RequestParam(name = "reviewNo") Long reviewNo) {
+        reviewService.deleteReview(reviewNo);
+
+        return "redirect:/reviews";
+    }
 //    @GetMapping("Search")
 //    public String searchReviews(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model)
 

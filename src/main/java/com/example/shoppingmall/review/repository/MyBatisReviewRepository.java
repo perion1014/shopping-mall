@@ -27,7 +27,7 @@ public class MyBatisReviewRepository implements ReviewRepository{
     public Long getItemStockNo(Long memberOrderNo) { return reviewMapper.getItemStockNo(memberOrderNo);}
 
     @Override
-    public String getItemSize(Long itemStockNo) { return reviewMapper.getItemSize(itemStockNo); }
+    public String getItemSize(Long memberOrderDetailNo) { return reviewMapper.getItemSize(memberOrderDetailNo); }
 
     @Override
     public String getMemberId(Long memberNo) { return reviewMapper.getMemberId(memberNo); }
@@ -50,4 +50,7 @@ public class MyBatisReviewRepository implements ReviewRepository{
 
     @Override
     public Long countReview() { return reviewMapper.countReview(); }
+
+    @Override
+    public String getItemName(Long itemNo) { return reviewMapper.getItemName(itemNo); }
 }
