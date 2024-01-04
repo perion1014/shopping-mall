@@ -153,4 +153,8 @@
         select item_stock_value from item_stock where item_no = #{itemNo} and item_size = #{itemSize}
     </select>
 
+    <select id="getItemThumbByNo" parameterType="Long" resultType="String">
+        select item_thumb from item_photos where item_no = #{itemNo}
+    </select>
+
 </mapper>

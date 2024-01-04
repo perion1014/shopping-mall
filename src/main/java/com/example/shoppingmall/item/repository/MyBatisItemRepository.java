@@ -166,4 +166,8 @@ public class MyBatisItemRepository implements ItemRepository{
         return itemMapper.getItemStockValueByItemNoAndItemSize(itemStockDTO);
     }
 
+    @Override
+    public String getItemThumbByNo(Long itemNo) {
+        return itemMapper.getItemThumbByNo(itemNo);
+    }
 }

@@ -72,4 +72,6 @@ public class MyBatisMemberOrderRepository implements MemberOrderRepository{
     public void cancelMemberOrder(Long memberOrderNo) {
         memberOrderMapper.cancelMemberOrder(memberOrderNo);
     }
+
+
 }

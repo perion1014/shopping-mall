@@ -20,6 +20,8 @@ public class MemberOrderDetailDTO {
     private String itemName;
     private Integer itemPrice;
 
+    private String itemThumb;
+
 
     public static MemberOrderDetailDTO toMemberOrderDetailDTO(MemberOrderDetail memberOrderDetail) {
         MemberOrderDetailDTO memberOrderDetailDTO = new MemberOrderDetailDTO();

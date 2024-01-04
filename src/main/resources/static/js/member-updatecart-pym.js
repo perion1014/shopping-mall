@@ -44,7 +44,7 @@ function checkItemStock2(cartDTOListSize, memberNo){
                     },
                     body: JSON.stringify(jsonData)
                 }).then( data => {
-                    location.href = '/temp';
+                    location.href = '/members/orders/create';
                 })
             }
 

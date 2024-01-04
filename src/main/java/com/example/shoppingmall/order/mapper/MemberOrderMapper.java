@@ -34,9 +34,14 @@ public interface MemberOrderMapper {
     MemberOrder joinMemeberOrderByMemberOrderNo(Long orderNo);
 
 
+    /* user */
     MemberOrder findMemberOrderByNo(Long memberOrderNo);
+
 
     List<MemberOrder> findAllMemberOrdersByNo(Long memberNo);
 
+    /* user */
     void cancelMemberOrder(Long memberOrderNo);
+
+
 }

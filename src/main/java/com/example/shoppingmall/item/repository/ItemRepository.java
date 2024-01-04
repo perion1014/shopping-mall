@@ -70,4 +70,6 @@ public interface ItemRepository {
     List<Item> findItemsByNameAndCategory(ItemCategoricalSearchPageForm itemCategoricalSearchPageForm);
 
     Integer getItemStockValueByItemNoAndItemSize(ItemStockDTO itemStockDTO);
+
+    String getItemThumbByNo(Long itemNo);
 }
