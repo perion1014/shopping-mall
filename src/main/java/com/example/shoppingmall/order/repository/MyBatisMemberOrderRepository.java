@@ -39,9 +39,9 @@ public class MyBatisMemberOrderRepository implements MemberOrderRepository{
     }
 
     @Override   /* user */
-    public MemberOrderDetail findMemberOrderDetail(Long memberOrderNo) {
-        MemberOrderDetail memberOrderDetail = memberOrderMapper.findMemberOrderDetail(memberOrderNo);
-        return memberOrderDetail;
+    public List<MemberOrderDetail> findMemberOrderDetail(Long memberOrderNo) {
+        List<MemberOrderDetail> memberOrderDetailList = memberOrderMapper.findMemberOrderDetail(memberOrderNo);
+        return memberOrderDetailList;
     }
 
     @Override   /* admin */
@@ -66,5 +66,10 @@ public class MyBatisMemberOrderRepository implements MemberOrderRepository{
     public List<MemberOrder> findAllMemberOrdersByNo(Long memberNo) {
         List<MemberOrder> memberOrderList = memberOrderMapper.findAllMemberOrdersByNo(memberNo);
         return memberOrderList;
+    }
+
+    @Override
+    public void cancelMemberOrder(Long memberOrderNo) {
+        memberOrderMapper.cancelMemberOrder(memberOrderNo);
     }
 }

@@ -151,29 +151,30 @@ public class OrderControllerPYM {
         memberOrderViewForm.setMemberNo(memberNo);
         model.addAttribute("pageSettings", memberOrderService.setMemberOrderListPage(page, memberOrderViewForm));
 
-        List<MemberOrderDTO> memberOrderDTOList = memberOrderService.findMemberOrderList(page, memberOrderViewForm);
-        model.addAttribute("memberOrderDTOList", memberOrderDTOList);
+        List<MemberOrderDTO> memberOrderDTOList = memberOrderService.getMemberOrderListPage(page, memberOrderViewForm);
+
+
 
         List<Integer> priceSumList = new ArrayList<>();
         for (MemberOrderDTO memberOrderDTO: memberOrderDTOList) {
             Integer priceSum = 0;
-            for (MemberOrderDetailDTO memberOrderDetailDTO: memberOrderDTO.getMemberOrderDetailDTOList()) {
-                priceSum += memberOrderDetailDTO.getItemPrice();
+            for (int i = 0; i < memberOrderDTO.getMemberOrderDetailDTOList().size(); i++) {
+                priceSum += memberOrderDTO.getMemberOrderDetailDTOList().get(i).getItemPrice() * memberOrderDTO.getMemberOrderDetailDTOList().get(i).getItemQuantity();
             }
             priceSumList.add(priceSum);
         }
-        List<Integer> priceSumDTOList = new ArrayList<>();
         for (int i = 0; i < priceSumList.size(); i++) {
-            priceSumDTOList.add(priceSumList.get(priceSumList.size() - i - 1));
+            memberOrderDTOList.get(i).setPriceSum(priceSumList.get(i));
         }
-        model.addAttribute("priceSumDTOList", priceSumDTOList);
-
+        model.addAttribute("memberOrderDTOList", memberOrderDTOList);
         return "orders/member-order-list-test";
     }
 
     /* user */
     @PostMapping("/members/{memberNo}/orders")
-    public String cancelMemberOrder(@PathVariable(name = "memberNo") Long memberNo) {
+    public String cancelMemberOrder(@PathVariable(name = "memberNo") Long memberNo,
+                                    @RequestParam(name = "orderNo") Long orderNo) {
+        memberOrderService.cancelMemberOrder(orderNo);
         return "redirect:/members/" + memberNo + "/orders";
     }
 
@@ -187,8 +188,8 @@ public class OrderControllerPYM {
         if (session.getAttribute("loginMember") == null ) {
             return "redirect:/members/login";
         }
-        MemberOrderDetailDTO memberOrderDetailDTO = memberOrderService.findMemberOrderDetail(orderNo);
-        model.addAttribute("memberOrderDetailDTO", memberOrderDetailDTO);
+        //List<MemberOrderDetailDTO> memberOrderDetailDTO = memberOrderService.findMemberOrderDetail(orderNo);
+        //model.addAttribute("memberOrderDetailDTO", memberOrderDetailDTO);
         return null;
     }
 

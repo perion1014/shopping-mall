@@ -60,11 +60,11 @@ public class MemberOrderService {
 
 
     /* user */
-    public MemberOrderDetailDTO findMemberOrderDetail(Long memberOrderNo) {
-        MemberOrderDetail memberOrderDetail = memberOrderRepository.findMemberOrderDetail(memberOrderNo);
-        MemberOrderDetailDTO memberOrderDetailDTO = MemberOrderDetailDTO.toMemberOrderDetailDTO(memberOrderDetail);
-        return memberOrderDetailDTO;
-    }
+//    public MemberOrderDetailDTO findMemberOrderDetail(Long memberOrderNo) {
+//        MemberOrderDetail memberOrderDetail = memberOrderRepository.findMemberOrderDetail(memberOrderNo);
+//        MemberOrderDetailDTO memberOrderDetailDTO = MemberOrderDetailDTO.toMemberOrderDetailDTO(memberOrderDetail);
+//        return memberOrderDetailDTO;
+//    }
 
 
 
@@ -107,7 +107,7 @@ public class MemberOrderService {
 
     /* user */
     @Transactional(readOnly = true)
-    public List<MemberOrderDTO> findMemberOrderList(int page, MemberOrderViewForm memberOrderViewForm) {
+    public List<MemberOrderDTO> getMemberOrderListPage(int page, MemberOrderViewForm memberOrderViewForm) {
 
         int memberOrdersPerPage = 10;
         int startPage = (page - 1) * memberOrdersPerPage;
@@ -118,8 +118,16 @@ public class MemberOrderService {
         List<MemberOrder> memberOrderList = memberOrderRepository.findMemberOrderList(memberOrderViewForm);
         List<MemberOrderDTO> memberOrderDTOList = new ArrayList<>();
         for (MemberOrder memberOrder: memberOrderList) {
+            MemberOrderDTO memberOrderDTO = new MemberOrderDTO();
+            Long memberOrderNo = memberOrder.getMemberOrderNo();
+            List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetail(memberOrderNo);
+            memberOrder.setMemberOrderDetailList(memberOrderDetailList);
             memberOrderDTOList.add(MemberOrderDTO.toMemberOrderDTO(memberOrder));
         }
         return memberOrderDTOList;
+    }
+
+    public void cancelMemberOrder(Long memberOrderNo) {
+        memberOrderRepository.cancelMemberOrder(memberOrderNo);
     }
 }
