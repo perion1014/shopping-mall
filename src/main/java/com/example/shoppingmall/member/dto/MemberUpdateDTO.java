@@ -1,6 +1,7 @@
 package com.example.shoppingmall.member.dto;
 
 import com.example.shoppingmall.member.domain.Member;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,9 @@ public class MemberUpdateDTO {
     private Long memberNo;
     private String memberEmail;
     private String memberId;
+    @NotBlank(message = "비밀번호를 입력해주세요.")
     private String memberPw;
+    @NotBlank(message = "비밀번호를 입력해주세요.")
     private String memberPw2;
     private String memberHp;
     private String memberName;

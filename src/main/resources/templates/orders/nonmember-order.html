@@ -41,15 +41,15 @@
         </label>
         <label class="label" for="memberPostalCode">
             <h5 class="label__title">우편번호*</h5>
-            <input id="memberPostalCode" name=memberPostalCode class="input input--mi" type="text" />
-            <button type="button" class="btn btn--mi btn--black btn--address" onclick="execDaumPostalcode()">우편번호 찾기</button>
+            <input id="memberPostalCode" name=memberPostalCode class="input input--mi" type="text" readonly onclick="execDaumPostalcode()"/>
+            <button type="button" class="btn btn--mi btn--black btn--address"  onclick="execDaumPostalcode()">우편번호 찾기</button>
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberAddressBasic">
             <h5 class="label__title">기본 주소*</h5>
-            <input id="memberAddressBasic" name="memberAddressBasic" class="input input--lg" type="text" />
+            <input id="memberAddressBasic" name="memberAddressBasic" class="input input--lg" type="text" readonly onclick="execDaumPostalcode()"/>
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
