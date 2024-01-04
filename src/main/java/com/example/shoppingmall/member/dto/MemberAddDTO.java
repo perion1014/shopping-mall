@@ -1,29 +1,32 @@
 package com.example.shoppingmall.member.dto;
 
 import com.example.shoppingmall.member.domain.Member;
-import com.example.shoppingmall.order.domain.MemberOrderDetail;
-import com.example.shoppingmall.order.dto.MemberOrderDetailAddDTO;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberAddDTO {
 
+    @NotBlank(message = "아이디를 입력해주세요.")
     private String memberId;
+    @NotBlank(message = "비밀번호를 입력해주세요.")
     private String memberPw;
+    @NotBlank(message = "비밀번호를 입력해주세요.")
     private String memberPw2;
+    @NotBlank(message = "휴대폰 번호를 입력해주세요.")
     private String memberHp;
+    @NotBlank(message = "성명을 입력해주세요.")
     private String memberName;
+    @NotBlank(message = "이메일을 입력해주세요.")
     private String memberEmail;
-    private Integer memberAddCode;
     private Integer memberPostalCode;
+    @NotBlank(message = "기본번호를 입력해주세요.")
     private String memberAddressBasic;
     private String memberAddressDetail;
 
