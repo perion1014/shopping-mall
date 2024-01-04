@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -28,15 +30,18 @@ public class MemberController {
 
     /*유저 로그인*/
     @GetMapping("/login")
-    public String goToMemberLoginPage(){
+    public String goToMemberLoginPage(@ModelAttribute("memberLoginDTO") MemberLoginDTO memberLoginDTO){
         return "members/member-login";
     }
 
     @PostMapping("/login")
-    public String memberLogin(@ModelAttribute MemberLoginDTO memberLoginDTO, HttpServletRequest request){
-        //실패 시
+    public String memberLogin(@Validated @ModelAttribute("memberLoginDTO") MemberLoginDTO memberLoginDTO, BindingResult bindingResult,HttpServletRequest request){
+        //로그인 실패 시 (아이디, 비밀번호 미입력 시[필드 에러])
+        if(bindingResult.hasErrors()){
+            return "members/member-login";
+        }
 
-        //성공 시
+        //로그인 성공 시
         Member loginMember = memberLoginService.login(memberLoginDTO);
 
         HttpSession session = request.getSession();
@@ -57,14 +62,17 @@ public class MemberController {
 
     /*유저 회원 가입 기능*/
     @GetMapping("/add")
-    public String goToAddMemberPage(){
+    public String goToAddMemberPage(@ModelAttribute("memberAddDTO") MemberAddDTO memberAddDTO){
 
         return "members/add-member";
     }
 
     @PostMapping("/add")
-    public String addMember(@ModelAttribute MemberAddDTO memberAddDTO){
-        //실패 시
+    public String addMember(@Validated @ModelAttribute("memberAddDTO") MemberAddDTO memberAddDTO, BindingResult bindingResult){
+        //회원 가입 실패 시 (필드 에러)
+        if(bindingResult.hasErrors()){
+            return "/members/add-member";
+        }
 
         //성공 시
         memberService.join(memberAddDTO);
