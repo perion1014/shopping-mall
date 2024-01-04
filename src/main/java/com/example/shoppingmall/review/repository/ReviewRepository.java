@@ -2,6 +2,7 @@ package com.example.shoppingmall.review.repository;
 
 import com.example.shoppingmall.review.domain.Review;
 import com.example.shoppingmall.review.dto.ReviewAddDTO;
+import com.example.shoppingmall.review.form.ReviewSearchForm;
 
 import java.util.List;
 import java.util.Map;
@@ -28,4 +29,8 @@ public interface ReviewRepository {
     Long countReview();
 
     String getItemName(Long itemNo);
+
+    List<Review> searchReviewByPaging(ReviewSearchForm reviewSearchForm);
+
+    Long countSearchedReview(ReviewSearchForm reviewSearchForm);
 }

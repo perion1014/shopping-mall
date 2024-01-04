@@ -1,6 +1,7 @@
 package com.example.shoppingmall.review.controller;
 
 import com.example.shoppingmall.review.dto.ReviewAddDTO;
+import com.example.shoppingmall.review.form.ReviewSearchForm;
 import com.example.shoppingmall.review.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -71,7 +72,15 @@ public class ReviewController {
 
         return "redirect:/reviews";
     }
-//    @GetMapping("Search")
-//    public String searchReviews(@RequestParam(value="page", required=false, defaultValue="1") int page, Model model)
+    @GetMapping("search")
+    public String searchReviews(@ModelAttribute ReviewSearchForm reviewSearchForm,Model model,
+                                @RequestParam(value="page", required=false, defaultValue="1") int page) {
+
+        model.addAttribute("reviewSearchForm", reviewSearchForm );
+        model.addAttribute("pageSettings", reviewService.setSearchedReviewPage(page,reviewSearchForm) );
+        model.addAttribute("reviewListByPaging", reviewService.getSearchedReviewList(page, reviewSearchForm));
+
+        return "admins/admin-search-review";
+    }
 
 }

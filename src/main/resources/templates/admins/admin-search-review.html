@@ -21,7 +21,7 @@
         <div class="admin_review">Review</div>
 
         <div class="admin_review_search">
-          <form th:action method="get">
+          <form action="/reviews/search" method="get">
           <select name="category">
             <option value="item_no">상품 번호</option>
 
@@ -33,7 +33,7 @@
         </div>
 
         <hr />
-        <div class="review" th:each="ReviewDTO : ${reviewList}">
+        <div class="review" th:each="ReviewDTO : ${reviewListByPaging}">
           <div class="review_container">
             <div class="review_info">
               <span th:text="${ReviewDTO.memberId}"></span>
@@ -59,19 +59,19 @@
         <div class ="items__page">
           <span th:if="${pageSettings.page &lt;= 1}">이전</span>
           <span th:unless="${pageSettings.page &lt;= 1}">
-                <a th:href="@{/reviews(page=${pageSettings.page - 1})}">이전</a>
+                <a th:href="@{/reviews/search(page=${pageSettings.page - 1},category=${reviewSearchForm.category}, keyword=${reviewSearchForm.keyword})}">이전</a>
               </span>
 
           <span th:each="i : ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
                 <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
                 <a th:unless="${i == pageSettings.page}"
-                   th:href="@{/reviews(page=${i})}"
+                   th:href="@{/reviews/search(page=${i},category=${reviewSearchForm.category}, keyword=${reviewSearchForm.keyword})}"
                    th:text="${i}"></a>
               </span>
 
           <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
           <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
-             th:href="@{/reviews(page=${pageSettings.page + 1})}"
+             th:href="@{/reviews/search(page=${pageSettings.page + 1},category=${reviewSearchForm.category}, keyword=${reviewSearchForm.keyword})}"
           >다음</a
           >
         </div>

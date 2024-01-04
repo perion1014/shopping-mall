@@ -61,4 +61,14 @@
     <select id="getItemName" parameterType="Long" resultType="String">
         SELECT item_name FROM item WHERE item_no = #{itemNo}
     </select>
+
+    <select id="searchReviewByPaging" parameterType="com.example.shoppingmall.review.form.ReviewSearchForm" resultType="com.example.shoppingmall.review.domain.Review">
+        SELECT * FROM review
+        WHERE ${category} = #{keyword} ORDER BY review_no DESC LIMIT #{startPage}, #{perPageReview}
+    </select>
+
+    <select id="countSearchedReview" parameterType="com.example.shoppingmall.review.form.ReviewSearchForm" resultType="Long">
+        SELECT count(review_no) FROM review
+        WHERE ${category} = #{keyword}
+    </select>
 </mapper>

@@ -2,6 +2,7 @@ package com.example.shoppingmall.review.mapper;
 
 import com.example.shoppingmall.review.domain.Review;
 import com.example.shoppingmall.review.dto.ReviewAddDTO;
+import com.example.shoppingmall.review.form.ReviewSearchForm;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -33,4 +34,8 @@ public interface ReviewMapper {
     Long countReview();
 
     String getItemName(Long itemNo);
+
+    List<Review> searchReviewByPaging(ReviewSearchForm reviewSearchForm);
+
+    Long countSearchedReview(ReviewSearchForm reviewSearchForm);
 }
