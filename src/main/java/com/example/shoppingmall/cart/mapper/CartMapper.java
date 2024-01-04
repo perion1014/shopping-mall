@@ -1,6 +1,7 @@
 package com.example.shoppingmall.cart.mapper;
 
 import com.example.shoppingmall.cart.domain.Cart;
+import com.example.shoppingmall.cart.dto.CartDeleteDTO;
 import com.example.shoppingmall.cart.service.CartService;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -19,4 +20,6 @@ public interface CartMapper {
     void deleteCartItem(@Param("cartNo") Long cartNo);
 
     void addCartItem(Cart cart);
+
+    void deleteCartItemByItemNoAndItemSize(CartDeleteDTO cartDeleteDTO);
 }

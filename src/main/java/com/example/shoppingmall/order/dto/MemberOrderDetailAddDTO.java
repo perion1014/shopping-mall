@@ -15,16 +15,16 @@ public class MemberOrderDetailAddDTO {
     private Long memberOrderDetailNo;
     private Long memberOrderNo;
     private Long itemNo;
-    private Long itemStockNo;
     private Integer itemQuantity;
+    private String itemSize;
 
     public static MemberOrderDetail toMemberOrderDetail(MemberOrderDetailAddDTO memberOrderDetailAddDTO) {
         MemberOrderDetail memberOrderDetail = new MemberOrderDetail();
         memberOrderDetail.setMemberOrderDetailNo(memberOrderDetailAddDTO.getMemberOrderDetailNo());
         memberOrderDetail.setMemberOrderNo(memberOrderDetailAddDTO.getMemberOrderNo());
         memberOrderDetail.setItemNo(memberOrderDetailAddDTO.getItemNo());
-        memberOrderDetail.setItemStockNo(memberOrderDetailAddDTO.getItemStockNo());
         memberOrderDetail.setItemQuantity(memberOrderDetailAddDTO.getItemQuantity());
+        memberOrderDetail.setItemSize(memberOrderDetailAddDTO.getItemSize());
         return memberOrderDetail;
     }
 }

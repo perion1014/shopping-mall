@@ -27,19 +27,20 @@ public class MemberOrderAddDTO {
     private Integer orderStatus;
 
     private List<MemberOrderDetailDTO> memberOrderDetailDTOList;
+    private List<MemberOrderDetailAddDTO> memberOrderDetailAddDTOList;
 
-    public static MemberOrder toMemberOrder(MemberOrderAddDTO memberOrderAddDTO) {
+    public static MemberOrder toMemberOrder(Long memberNo, MemberOrderAddDTO memberOrderAddDTO) {
         MemberOrder memberOrder = new MemberOrder();
         memberOrder.setMemberOrderNo(memberOrderAddDTO.getMemberOrderNo());
-        memberOrder.setMemberNo(memberOrderAddDTO.getMemberNo());
+        memberOrder.setMemberNo(memberNo);
         memberOrder.setOrderTime(memberOrderAddDTO.getOrderTime());
         memberOrder.setOrderHp(memberOrderAddDTO.getOrderHp());
         memberOrder.setOrderPostalCode(memberOrderAddDTO.getOrderPostalCode());
         memberOrder.setOrderAddressBasic(memberOrderAddDTO.getOrderAddressBasic());
         memberOrder.setOrderAddressDetail(memberOrderAddDTO.getOrderAddressDetail());
         memberOrder.setReceiverName(memberOrderAddDTO.getReceiverName());
-        memberOrder.setOrderStatus(memberOrderAddDTO.getOrderStatus());
-        memberOrder.setMemberOrderDetailDTOList(memberOrderAddDTO.getMemberOrderDetailDTOList());
+        memberOrder.setOrderStatus(1);
+        //memberOrder.setMemberOrderDetailDTOList(memberOrderAddDTO.getMemberOrderDetailDTOList());
         return memberOrder;
     }
 
@@ -56,6 +57,8 @@ public class MemberOrderAddDTO {
         memberOrderDTO.setOrderStatus(memberOrderAddDTO.getOrderStatus());
         return memberOrderDTO;
     }
+
+
 
 //    public static MemberOrderDetail toMemberOrderDetail(MemberOrderAddDTO memberOrderAddDTO) {
 //        MemberOrderDetail memberOrderDetail = new MemberOrderDetail();

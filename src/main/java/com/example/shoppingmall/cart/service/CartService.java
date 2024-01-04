@@ -1,6 +1,7 @@
 package com.example.shoppingmall.cart.service;
 
 import com.example.shoppingmall.cart.domain.Cart;
+import com.example.shoppingmall.cart.dto.CartDeleteDTO;
 import com.example.shoppingmall.cart.dto.CartReadDTO;
 import com.example.shoppingmall.cart.dto.nonMemberCartAddDTO;
 import com.example.shoppingmall.cart.repository.CartRepository;
@@ -121,4 +122,7 @@ public class CartService {
         return tempDTOList;
     }
 
+    public void deleteCartItemByItemNoAndItemSize(CartDeleteDTO cartDeleteDTO) {
+        cartRepository.deleteCartItemByItemNoAndItemSize(cartDeleteDTO);
+    }
 }

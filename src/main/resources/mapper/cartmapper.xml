@@ -31,4 +31,8 @@
     VALUES(#{cartNo}, #{memberNo}, #{itemNo}, #{cartItemQuantity}, #{itemSize})
     </insert>
 
+    <delete id="deleteCartItemByItemNoAndItemSize" parameterType="com.example.shoppingmall.cart.dto.CartDeleteDTO">
+        delete from cart where member_no = #{memberNo} and item_no = #{itemNo} and item_size = #{itemSize}
+    </delete>
+
 </mapper>
