@@ -89,7 +89,7 @@ public class CartController {
                                           @RequestParam(name = "itemSize", required = false) String itemSize,
                                           @RequestParam(name = "itemPrice", required = false) Integer itemPrice,
                                           @RequestParam(name = "itemQuantity", required = false) Integer itemQuantity,
-                                          @RequestParam(name = "itemNo", required = false) Integer itemNo,
+                                          @RequestParam(name = "itemNo", required = false) Long itemNo,
                                           HttpServletRequest req){
 
         System.out.println("비회원 - 받아온 썸네일 : " + itemThumbnail);
@@ -97,9 +97,10 @@ public class CartController {
         System.out.println("비회원 - 받아온 상품사이즈 : " + itemSize);
         System.out.println("비회원 - 받아온 상품가격 : " + itemPrice);
         System.out.println("비회원 - 받아온 상품수량 : " + itemQuantity);
+        System.out.println("비회원 - 받아온 상품번호 : " + itemNo);
 
         HttpSession session = req.getSession();
-        session.setAttribute("nonmemberCartList", cartService.nonMemberAddCartItem(itemThumbnail, itemName, itemSize, itemPrice, itemQuantity, req));
+        session.setAttribute("nonmemberCartList", cartService.nonMemberAddCartItem(itemThumbnail, itemName, itemSize, itemPrice, itemQuantity, itemNo, req));
 
         return "redirect:/items/" + itemNo;
     }

@@ -1,6 +1,5 @@
 //alert('nonmember-updatecart.js 적용 확인');
 
-
 //비회원 장바구니 조회 내 수량 변경 함수
 function updateQuantity(changeQuantity, cartListIndex){
     let currentQuantityInput = document.getElementById('inputvalue_' + cartListIndex);
@@ -105,33 +104,30 @@ function calculatePriceSum(cartDTOListSize){
 
 function checkItemStock(cartDTOListSize){
 
-    var jsonData= [];
+    alert('함수 진입');
 
-    var itemName = '';
-    var itemSize = '';
-    var selectedItemQuantity = 0;
+    let jsonData= [];
+
+    let itemNo = 0;
+    let itemName = '';
+    let itemSize = '';
+    let itemQuantity = 0;
 
     for(var i = 0; i < cartDTOListSize; i++){
         if(document.getElementById('cartCheckBox_' + i).checked === true){
+            itemNo = document.getElementById('itemNo_' + i).value;
+            // alert('itemNo : ' + itemNo);
             itemName = document.getElementById('itemName_' + i).innerText;
+            // alert('itemName : ' + itemName);
             itemSize = document.getElementById('itemSize_' + i).innerText;
-            selectedItemQuantity = document.getElementById('inputvalue_' + i).value;
+            // alert('itemSize : ' + itemSize);
+            itemQuantity = document.getElementById('inputvalue_' + i).value;
+            // alert('itemQuantity : ' + itemQuantity);
 
-            alert('itemName : ' + itemName);
-            alert('itemSize : ' + itemSize);
-            alert('selectedItemQuantity : ' + selectedItemQuantity);
-
-            var jsonItem = {itemName: itemName, itemSize: itemSize, selectedItemQuantity : selectedItemQuantity};
+            var jsonItem = {itemNo:itemNo, itemName: itemName, itemSize: itemSize, itemQuantity : itemQuantity};
             jsonData.push(jsonItem);
-            // alert('아이템 명 : ' + itemName);
-            // alert('아이템 사이즈 : ' + itemSize);
         }
     }
-
-    // for(var i = 0; i < jsonData.length; i++){
-    //     alert('JSON담은 이름 : ' + jsonData[i].itemName);
-    //     alert('JSON담은 사이즈 : ' + jsonData[i].itemSize);
-    // }
 
     fetch('/orders/check-itemstock', {
         method: 'POST',
@@ -141,8 +137,23 @@ function checkItemStock(cartDTOListSize){
         body:JSON.stringify(jsonData)
     }).then(response => response.json())
         .then(data => {
+            if(JSON.stringify(data.response) !== '데이터 전달/처리 성공'){
+                var stocksArray = JSON.stringify(data.response).split(',');
+                var noStockMessage = '';
+                for(var i = 0; i < stocksArray.length; i++){
+                noStockMessage += stocksArray[i] + '\n';
+                }
+                alert(noStockMessage.replaceAll('"', '') + '상품의 재고가 부족합니다.');
+            } else{
+              fetch('/orders/create',{
+                  method:'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(jsonData)
+              })
 
-            alert(JSON.stringify(data.response));
+            }
 
         }).catch(error => {
         alert('JSON 전송 실패 - 사유 : ' + error);

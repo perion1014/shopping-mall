@@ -11,6 +11,7 @@ import lombok.Setter;
 public class nonMemberCartAddDTO {
 
     private Long cartNo;
+    private Long itemNo;
     private String itemThumbnail;
     private String itemName;
     private String itemSize;

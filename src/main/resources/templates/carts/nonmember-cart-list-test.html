@@ -34,6 +34,7 @@
         <!--반복 구간(tr -> th:each)-->
         <div th:each = "nonMemberCartDTO, Index : ${session.nonmemberCartList}">
         <tr>
+            <input style="display: none" th:id = "'itemNo_' + ${Index.index}" th:value = "${nonMemberCartDTO.itemNo}">
             <td class="cart__checkbox">
                 <input type="checkbox"
                        th:id = "'cartCheckBox_' + ${Index.index}"
@@ -46,8 +47,8 @@
                 <img class="cart__img" src="/images/itemImages/33/thumb/1777156461.g_350-w-et-pj_g.jpg">
             </td>
             <td>
-                <h4 th:text="${nonMemberCartDTO.itemName}"></h4>
-                <span th:text="${nonMemberCartDTO.itemSize}">사이즈</span>
+                <h4 th:id="'itemName_' + ${Index.index}" th:text="${nonMemberCartDTO.itemName}"></h4>
+                <span th:id="'itemSize_' + ${Index.index}" th:text="${nonMemberCartDTO.itemSize}"></span>
             </td>
             <input th:id = "'itemPrice_' + ${Index.index}" th:value="${nonMemberCartDTO.itemPrice}" style="display:none;">
             <td class="cart__price" th:text="${nonMemberCartDTO.itemPrice} + '원'"></td>
@@ -59,7 +60,11 @@
                 </div>
             </td>
             <td class="cart__btn">
-                <button class="btn btn--xs btn--black">삭제</button>
+                <button class="btn btn--xs btn--black"
+                        th:id = "'deleteBtn_' + ${nonMemberCartDTO.cartNo}"
+                        th:cartIndex = "${Index.index}"
+                        th:onclick= "sendCartDeleteJson(this.getAttribute('cartIndex'))"
+                >삭제</button>
             </td>
         </tr>
         </div>
@@ -80,7 +85,10 @@
     </div>
     <div class="cart-order__btns">
         <button class="btn btn--white btn--mi">선택상품 삭제</button>
-        <button class="btn btn--black btn--mi">선택상품 구매</button>
+        <button class="btn btn--black btn--mi"
+                th:cartDTOListSize ="${session.nonmemberCartList.size()}"
+                th:onclick="checkItemStock(this.getAttribute('cartDTOListSize'))"
+        >선택상품 구매</button>
     </div>
 </main>
 </div>
