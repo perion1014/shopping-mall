@@ -100,7 +100,12 @@ public class MemberController {
 
     /*유저 회원 정보 수정*/
     @PostMapping("/{memberNo}/update")
-    public String updateMemberInfo(@ModelAttribute MemberUpdateDTO memberUpdateDTO, RedirectAttributes redirectAttributes){
+    public String updateMemberInfo(@Validated @ModelAttribute MemberUpdateDTO memberUpdateDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+
+        if(bindingResult.hasErrors()){
+            return "members/update-member";
+        }
+
         memberService.update(memberUpdateDTO);
         redirectAttributes.addFlashAttribute("memberUpdateSuccess", "회원 정보가 업데이트되었습니다.");
         return "redirect:/members/{memberNo}/update";

@@ -65,30 +65,30 @@
     <form id="display2" method="post" th:action="@{/members/{memberNo}/orders/create-success(memberNo=${session.loginMember.memberNo})}">
         <label class="label" for="memberHp2">
             <h5 class="label__title">주문자 휴대폰 번호*</h5>
-            <input id="memberHp2" name="orderHp" class="input input--lg" type="text"  />
+            <input id="memberHp2" name="orderHp" class="input input--lg" type="text" th:value="${session.memberOrderDTO.orderHp}" />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberName2">
             <h5 class="label__title">수령자명*</h5>
-            <input id="memberName2" name ="receiverName" class="input input--lg" type="text"  />
+            <input id="memberName2" name ="receiverName" class="input input--lg" type="text" th:value="${session.memberOrderDTO.receiverName}" />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberPostalCode2">
             <h5 class="label__title">우편번호*</h5>
-            <input id="memberPostalCode2" name=orderPostalCode class="input input--mi" type="text"  />
-            <button type="button" class="btn btn--mi btn--black btn--address" onclick="execDaumPostalcode()">우편번호 찾기</button>
+            <input id="memberPostalCode2" name=orderPostalCode class="input input--mi" type="text"  readonly onclick="execDaumPostalcode()"/>
+            <button type="button" class="btn btn--mi btn--black btn--address"  onclick="execDaumPostalcode()">우편번호 찾기</button>
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberAddressBasic2">
             <h5 class="label__title">기본 주소*</h5>
-            <input id="memberAddressBasic2" name="orderAddressBasic" class="input input--lg" type="text" />
-            <div class="label__error-container">
+            <input id="memberAddressBasic2" name="orderAddressBasic" class="input input--lg" type="text" readonly/>
+            <div class="label__error-container" onclick="execDaumPostalcode()">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
