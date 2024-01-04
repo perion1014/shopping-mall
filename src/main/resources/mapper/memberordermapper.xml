@@ -42,6 +42,10 @@
         update member_order set order_status = 0 where member_order_no = #{memberOrderNo}
     </update>
 
+    <select id="findMemberOrderAdminList" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order order by member_order_no desc limit #{startPage}, #{memberOrdersPerPage}
+    </select>
+
 
 
 

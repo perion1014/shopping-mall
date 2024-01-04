@@ -2,6 +2,7 @@ package com.example.shoppingmall.order.repository;
 
 import com.example.shoppingmall.order.domain.MemberOrder;
 import com.example.shoppingmall.order.domain.MemberOrderDetail;
+import com.example.shoppingmall.order.form.MemberOrderAdminViewForm;
 import com.example.shoppingmall.order.form.MemberOrderViewForm;
 import com.example.shoppingmall.order.mapper.MemberOrderMapper;
 import lombok.RequiredArgsConstructor;
@@ -73,5 +74,9 @@ public class MyBatisMemberOrderRepository implements MemberOrderRepository{
         memberOrderMapper.cancelMemberOrder(memberOrderNo);
     }
 
-
+    @Override
+    public List<MemberOrder> findMemberOrderAdminList(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.findMemberOrderAdminList(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
 }

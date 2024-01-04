@@ -11,6 +11,7 @@ import com.example.shoppingmall.member.dto.MemberDTO;
 import com.example.shoppingmall.member.service.MemberService;
 import com.example.shoppingmall.order.domain.MemberOrderDetail;
 import com.example.shoppingmall.order.dto.*;
+import com.example.shoppingmall.order.form.MemberOrderAdminViewForm;
 import com.example.shoppingmall.order.form.MemberOrderPageForm;
 import com.example.shoppingmall.order.form.MemberOrderViewForm;
 import com.example.shoppingmall.order.service.MemberOrderService;
@@ -218,11 +219,21 @@ public class OrderControllerPYM {
     }
 
 
-    @GetMapping("/admin/members")
-    public String showMemberOrderList(Model model) {
-        List<MemberOrderDTO> memberOrderDTOList = memberOrderService.getMemberOrderList();
+    @GetMapping("/orders/admin/members")
+    public String showMemberOrderList(@RequestParam(value="page", required=false, defaultValue="1") int page,
+                                      HttpServletRequest request,
+                                      Model model) {
+
+        HttpSession session = request.getSession();
+
+        MemberOrderAdminViewForm memberOrderAdminViewForm = new MemberOrderAdminViewForm();
+
+        model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPage(page));
+
+        List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPage(page, memberOrderAdminViewForm);
+
         model.addAttribute("memberOrderDTOList", memberOrderDTOList);
-        return "admins/admins-order";    // html 파일이 생성되면 그때 수정할 예정.
+        return "admins/admins-order-pym";
     }
 
     @PostMapping("/admin/members/{orderNo}")

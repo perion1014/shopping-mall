@@ -2,6 +2,7 @@ package com.example.shoppingmall.order.mapper;
 
 import com.example.shoppingmall.order.domain.MemberOrder;
 import com.example.shoppingmall.order.domain.MemberOrderDetail;
+import com.example.shoppingmall.order.form.MemberOrderAdminViewForm;
 import com.example.shoppingmall.order.form.MemberOrderViewForm;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -44,4 +45,5 @@ public interface MemberOrderMapper {
     void cancelMemberOrder(Long memberOrderNo);
 
 
+    List<MemberOrder> findMemberOrderAdminList(MemberOrderAdminViewForm memberOrderAdminViewForm);
 }

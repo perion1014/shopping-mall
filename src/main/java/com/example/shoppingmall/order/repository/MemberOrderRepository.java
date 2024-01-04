@@ -2,6 +2,7 @@ package com.example.shoppingmall.order.repository;
 
 import com.example.shoppingmall.order.domain.MemberOrder;
 import com.example.shoppingmall.order.domain.MemberOrderDetail;
+import com.example.shoppingmall.order.form.MemberOrderAdminViewForm;
 import com.example.shoppingmall.order.form.MemberOrderViewForm;
 
 import java.util.Collection;
@@ -37,4 +38,5 @@ public interface MemberOrderRepository {
     void cancelMemberOrder(Long memberOrderNo);
 
 
+    List<MemberOrder> findMemberOrderAdminList(MemberOrderAdminViewForm memberOrderAdminViewForm);
 }
