@@ -3,13 +3,13 @@
 <mapper namespace="com.example.shoppingmall.review.mapper.ReviewMapper">
     <insert id="addReview" parameterType="com.example.shoppingmall.review.dto.ReviewAddDTO">
         INSERT INTO review
-        VALUES (null,#{memberNo},#{itemNo}, #{reviewContext},DATE_ADD(NOW(), INTERVAL -9 HOUR),#{reviewScore},#{memberOrderNo})
+        VALUES (null,#{memberNo},#{itemNo}, #{reviewContext},DATE_ADD(NOW(), INTERVAL -9 HOUR),#{reviewScore},#{memberOrderDetailNo})
     </insert>
 
     <select id="findByItemNo" parameterType="Long" resultType="com.example.shoppingmall.review.domain.Review">
         SELECT *
         FROM review
-        WHERE item_no = #{itemNo}
+        WHERE item_no = #{itemNo} ORDER BY review_no DESC
     </select>
 
     <select id="getItemStockNo" parameterType="Long" resultType="Long">
@@ -18,16 +18,18 @@
         WHERE member_order_no = #{memberOrderNo}
     </select>
 
+<!--    -->
+
     <select id="getItemSize" parameterType="Long" resultType="String">
         SELECT  item_size
-        FROM item_stock
-        WHERE item_stock_no = #{itemStockNo}
+        FROM member_order_detail
+        WHERE member_order_detail_no = #{memberOrderDetailNo}
     </select>
 
     <select id="getMemberId" parameterType="Long" resultType="String">
         SELECT member_id
         FROM  member
-        where member_id = #{memberId}
+        where member_no = #{memberNo}
     </select>
     
     <delete id="deleteReview" parameterType="Long">
@@ -39,7 +41,7 @@
     <select id="findMReviewByPaging" resultType="com.example.shoppingmall.review.domain.Review">
         SELECT *
         FROM review
-        WHERE member_no = #{memberNo}
+        WHERE member_no = #{memberNo} ORDER BY review_no DESC
         LIMIT #{startPage}, #{pagePerReview}
     </select>
 
@@ -48,10 +50,25 @@
     </select>
 
     <select id="findReviewByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.review.domain.Review">
-        SELECT * FROM review LIMIT #{startPage}, #{pagePerReview}
+        SELECT * FROM review ORDER BY review_no DESC
+            LIMIT #{startPage}, #{pagePerReview}
     </select>
 
     <select id="countReview" resultType="Long">
         SELECT count(review_no) FROM review
+    </select>
+
+    <select id="getItemName" parameterType="Long" resultType="String">
+        SELECT item_name FROM item WHERE item_no = #{itemNo}
+    </select>
+
+    <select id="searchReviewByPaging" parameterType="com.example.shoppingmall.review.form.ReviewSearchForm" resultType="com.example.shoppingmall.review.domain.Review">
+        SELECT * FROM review
+        WHERE ${category} = #{keyword} ORDER BY review_no DESC LIMIT #{startPage}, #{perPageReview}
+    </select>
+
+    <select id="countSearchedReview" parameterType="com.example.shoppingmall.review.form.ReviewSearchForm" resultType="Long">
+        SELECT count(review_no) FROM review
+        WHERE ${category} = #{keyword}
     </select>
 </mapper>

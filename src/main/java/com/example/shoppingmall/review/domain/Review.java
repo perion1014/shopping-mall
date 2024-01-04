@@ -19,5 +19,5 @@ public class Review {
     private String reviewContext;
     private Timestamp reviewCreatedTime;
     private Long reviewScore;
-    private Long memberOrderNo;
+    private Long memberOrderDetailNo;
 }

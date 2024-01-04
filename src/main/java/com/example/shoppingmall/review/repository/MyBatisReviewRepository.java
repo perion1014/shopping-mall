@@ -2,6 +2,7 @@ package com.example.shoppingmall.review.repository;
 
 import com.example.shoppingmall.review.domain.Review;
 import com.example.shoppingmall.review.dto.ReviewAddDTO;
+import com.example.shoppingmall.review.form.ReviewSearchForm;
 import com.example.shoppingmall.review.mapper.ReviewMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -27,7 +28,7 @@ public class MyBatisReviewRepository implements ReviewRepository{
     public Long getItemStockNo(Long memberOrderNo) { return reviewMapper.getItemStockNo(memberOrderNo);}
 
     @Override
-    public String getItemSize(Long itemStockNo) { return reviewMapper.getItemSize(itemStockNo); }
+    public String getItemSize(Long memberOrderDetailNo) { return reviewMapper.getItemSize(memberOrderDetailNo); }
 
     @Override
     public String getMemberId(Long memberNo) { return reviewMapper.getMemberId(memberNo); }
@@ -50,4 +51,15 @@ public class MyBatisReviewRepository implements ReviewRepository{
 
     @Override
     public Long countReview() { return reviewMapper.countReview(); }
+
+    @Override
+    public String getItemName(Long itemNo) { return reviewMapper.getItemName(itemNo); }
+
+    @Override
+    public List<Review> searchReviewByPaging(ReviewSearchForm reviewSearchForm) { return reviewMapper.searchReviewByPaging(reviewSearchForm);}
+
+    @Override
+    public Long countSearchedReview(ReviewSearchForm reviewSearchForm) {
+        return reviewMapper.countSearchedReview(reviewSearchForm);
+    }
 }

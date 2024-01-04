@@ -16,8 +16,16 @@
   margin-bottom : 30px;
 }
 
+.margin {
+  margin-top : 30px;
+}
 
+.btn--drop {
+  border: none;
+  background: none;
+  padding: 0;
 
+}
 .review_container {
   display: flex;
   justify-content: space-between;

@@ -4,6 +4,7 @@ import com.example.shoppingmall.review.domain.Review;
 import com.example.shoppingmall.review.dto.ReviewAddDTO;
 import com.example.shoppingmall.review.dto.ReviewDTO;
 import com.example.shoppingmall.review.form.ReviewPageForm;
+import com.example.shoppingmall.review.form.ReviewSearchForm;
 import com.example.shoppingmall.review.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,10 +35,11 @@ public class ReviewService {
 
         for (Review review : reviews) {
 
-            Long memberOrderNo = review.getMemberOrderNo();
-            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
+            Long memberOrderDetilNo = review.getMemberOrderDetailNo();
 
-            String itemSize = reviewRepository.getItemSize(itemStockNo);
+//            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
+
+            String itemSize = reviewRepository.getItemSize(memberOrderDetilNo);
             String memberId = reviewRepository.getMemberId(review.getMemberNo());
 
             reviewDTOList.add(reivewToReviewDTO(review,itemSize,memberId));
@@ -63,10 +65,10 @@ public class ReviewService {
 
         for (Review review : reviews) {
 
-            Long memberOrderNo = review.getMemberOrderNo();
-            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
+            Long memberOrderDetailNo = review.getMemberOrderDetailNo();
+//            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
 
-            String itemSize = reviewRepository.getItemSize(itemStockNo);
+            String itemSize = reviewRepository.getItemSize(memberOrderDetailNo);
             String memberId = reviewRepository.getMemberId(review.getMemberNo());
 
             resultList.add(reivewToReviewDTO(review,itemSize,memberId));
@@ -81,9 +83,9 @@ public class ReviewService {
         int pagePerQna = 12;
         int pageLimit = 10;
 
-        Long qnaCount = reviewRepository.countMemberReview(memberNo);
+        Long reviewCount = reviewRepository.countMemberReview(memberNo);
 
-        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerQna));
+        int totalPage = (int) (Math.ceil((double) reviewCount / pagePerQna));
 
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
@@ -100,8 +102,8 @@ public class ReviewService {
     // 마이페이지 리뷰 가져오고 페이징
     public List<ReviewDTO> getAllReviewList(int page) {
 
-        int startPage = (page-1) * 12;
-        int pagePerReview = 12;
+        int startPage = (page-1) * 7;
+        int pagePerReview = 7;
 
         Map<String, Integer> pagingSettings = new HashMap<>();
         pagingSettings.put("startPage", startPage);
@@ -113,13 +115,18 @@ public class ReviewService {
 
         for (Review review : reviews) {
 
-            Long memberOrderNo = review.getMemberOrderNo();
-            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
+            Long memberOrderDetailNo = review.getMemberOrderDetailNo();
 
-            String itemSize = reviewRepository.getItemSize(itemStockNo);
+            String ItemName = reviewRepository.getItemName(review.getItemNo());
+//            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
+
+            String itemSize = reviewRepository.getItemSize(memberOrderDetailNo);
             String memberId = reviewRepository.getMemberId(review.getMemberNo());
 
-            resultList.add(reivewToReviewDTO(review,itemSize,memberId));
+            ReviewDTO reviewDTO = reivewToReviewDTO(review,itemSize,memberId);
+
+            reviewDTO.setItemName(ItemName);
+            resultList.add(reviewDTO);
 
         }
 
@@ -128,12 +135,12 @@ public class ReviewService {
 
     public ReviewPageForm setReviewPage(int page) {
 
-        int pagePerQna = 12;
+        int pagePerReview = 7;
         int pageLimit = 10;
 
-        Long qnaCount = reviewRepository.countReview();
+        Long reviewCount = reviewRepository.countReview();
 
-        int totalPage = (int) (Math.ceil((double) qnaCount / pagePerQna));
+        int totalPage = (int) (Math.ceil((double) reviewCount / pagePerReview));
 
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
@@ -145,4 +152,56 @@ public class ReviewService {
         return new ReviewPageForm(page,totalPage,startPage,endPage);
     }
 
+
+    // 어드민 검색 페이징
+    public List<ReviewDTO> getSearchedReviewList(int page, ReviewSearchForm reviewSearchForm) {
+
+        int startPage = (page-1) * 7;
+        int pagePerReview = 7;
+
+
+        reviewSearchForm.setStartPage(startPage);
+        reviewSearchForm.setPerPageReview(pagePerReview);
+
+        List<Review> reviews = reviewRepository.searchReviewByPaging(reviewSearchForm);
+
+        List<ReviewDTO> resultList = new ArrayList<>();
+
+        for (Review review : reviews) {
+
+            Long memberOrderDetailNo = review.getMemberOrderDetailNo();
+
+            String ItemName = reviewRepository.getItemName(review.getItemNo());
+
+            String itemSize = reviewRepository.getItemSize(memberOrderDetailNo);
+            String memberId = reviewRepository.getMemberId(review.getMemberNo());
+
+            ReviewDTO reviewDTO = reivewToReviewDTO(review,itemSize,memberId);
+            System.out.println( reviewDTO.getReviewNo());
+            reviewDTO.setItemName(ItemName);
+            resultList.add(reviewDTO);
+
+        }
+
+        return resultList;
+    }
+
+    public ReviewPageForm setSearchedReviewPage(int page, ReviewSearchForm reviewSearchForm) {
+
+        int pagePerReview = 7;
+        int pageLimit = 10;
+
+        Long reviewCount = reviewRepository.countSearchedReview(reviewSearchForm);
+
+        int totalPage = (int) (Math.ceil((double) reviewCount / pagePerReview));
+
+        int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
+
+        int endPage = startPage + pageLimit - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        return new ReviewPageForm(page,totalPage,startPage,endPage);
+    }
 }
