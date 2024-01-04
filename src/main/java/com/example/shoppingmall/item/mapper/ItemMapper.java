@@ -70,4 +70,6 @@ public interface ItemMapper {
     List<Item> findItemListPageBySearchAndCategory(ItemCategoricalSearchPageForm itemCategoricalSearchPageForm);
 
     Integer getItemStockValueByItemNoAndItemSize(ItemStockDTO itemStockDTO);
+
+    String getItemThumbByNo(Long itemNo);
 }

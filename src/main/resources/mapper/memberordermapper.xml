@@ -11,7 +11,7 @@
     </select>
 
     <insert id="saveMemberOrderDetail" parameterType="com.example.shoppingmall.order.domain.MemberOrderDetail">
-        insert into member_order_detail values (#{memberOrderDetailNo}, #{memberOrderNo}, #{itemNo}, #{itemQuantity}, #{itemSize})
+        insert into member_order_detail values (#{memberOrderDetailNo}, #{memberOrderNo}, #{itemNo}, #{itemQuantity}, #{itemSize}, #{itemName}, #{itemPrice})
     </insert>
 
     <select id="findMemberOrderList" parameterType="com.example.shoppingmall.order.form.MemberOrderViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
@@ -41,6 +41,7 @@
     <update id="cancelMemberOrder" parameterType="Long">
         update member_order set order_status = 0 where member_order_no = #{memberOrderNo}
     </update>
+
 
 
 

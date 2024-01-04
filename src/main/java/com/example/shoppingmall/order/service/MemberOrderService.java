@@ -130,4 +130,11 @@ public class MemberOrderService {
     public void cancelMemberOrder(Long memberOrderNo) {
         memberOrderRepository.cancelMemberOrder(memberOrderNo);
     }
+
+    public MemberOrderDTO findMemberOrderByNo(Long memberOrderNo) {
+        MemberOrder memberOrder = memberOrderRepository.findMemberOrderByNo(memberOrderNo);
+        List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetail(memberOrderNo);
+        memberOrder.setMemberOrderDetailList(memberOrderDetailList);
+        return MemberOrderDTO.toMemberOrderDTO(memberOrder);
+    }
 }

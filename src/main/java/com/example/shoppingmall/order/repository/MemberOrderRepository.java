@@ -35,4 +35,6 @@ public interface MemberOrderRepository {
     List<MemberOrder> findAllMemberOrdersByNo(Long memberNo);
 
     void cancelMemberOrder(Long memberOrderNo);
+
+
 }

@@ -105,7 +105,7 @@ public class OrderControllerPYM {
         return "orders/member-order";
     }
 
-    @GetMapping("/temp")
+    @GetMapping("/members/orders/create")
     public String tempMethod() {
         return "orders/member-order";
     }
@@ -188,9 +188,13 @@ public class OrderControllerPYM {
         if (session.getAttribute("loginMember") == null ) {
             return "redirect:/members/login";
         }
-        //List<MemberOrderDetailDTO> memberOrderDetailDTO = memberOrderService.findMemberOrderDetail(orderNo);
-        //model.addAttribute("memberOrderDetailDTO", memberOrderDetailDTO);
-        return null;
+        MemberOrderDTO memberOrderDTO = memberOrderService.findMemberOrderByNo(orderNo);
+        for (MemberOrderDetailDTO memberOrderDetailDTO: memberOrderDTO.getMemberOrderDetailDTOList()) {
+            String itemThumb = itemService.getItemThumbByNo(memberOrderDetailDTO.getItemNo());
+            memberOrderDetailDTO.setItemThumb(itemThumb);
+        }
+        model.addAttribute("memberOrderDTO", memberOrderDTO);
+        return "orders/member-order-detail-test";
     }
 
     //..

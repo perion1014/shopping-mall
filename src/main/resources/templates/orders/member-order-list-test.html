@@ -25,7 +25,12 @@
             <tbody>
             <tr th:each="memberOrder, memberOrderIndex: ${memberOrderDTOList}">
                 <td class="table__no" th:text="${memberOrder.memberOrderNo}"></td>
-                <td th:text="(${memberOrder.memberOrderDetailDTOList.size()} == 1)? ${memberOrder.memberOrderDetailDTOList[0].itemName}: (${memberOrder.memberOrderDetailDTOList.get(0).itemName} + '...외 ' + (${memberOrder.memberOrderDetailDTOList.size()} -1) + '종')"></td>
+                <td >
+                    <a th:text="(${memberOrder.memberOrderDetailDTOList.size()} == 1)? ${memberOrder.memberOrderDetailDTOList[0].itemName}: (${memberOrder.memberOrderDetailDTOList.get(0).itemName} + '...외 ' + (${memberOrder.memberOrderDetailDTOList.size()} -1) + '종')"
+                        th:href="@{/members/{memberNo}/orders/{orderNo}(memberNo=${session.loginMember.memberNo}, orderNo=${memberOrder.memberOrderNo})}">
+
+                    </a>
+                </td>
                 <td class="table__regtime" th:text="${memberOrder.priceSum} + '원'"></td>
 <!--                <td class="table__regtime">25000원</td>-->
                 <td class="table__regtime" th:text="${memberOrder.orderTime}"></td>

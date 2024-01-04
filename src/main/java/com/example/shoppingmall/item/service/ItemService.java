@@ -543,5 +543,7 @@ public class ItemService {
         return itemStockValue;
     }
 
-
+    public String getItemThumbByNo(Long itemNo) {
+        return itemRepository.getItemThumbByNo(itemNo);
+    }
 }
