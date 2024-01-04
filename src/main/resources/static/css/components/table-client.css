@@ -36,6 +36,9 @@
 .table__user{
     width: 9rem;
 }
+.table__order-status{
+    width: 5.5rem;
+}
 .table__row{
     cursor: pointer;
 }

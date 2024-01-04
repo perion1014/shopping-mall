@@ -1,3 +1,14 @@
 .order__greet{
     margin-bottom: 2rem;
 }
+
+.btn--order{
+    margin:0;
+    width: 4rem;
+    height: 1.25rem;
+    font-size: 0.75rem;
+}
+
+.order__quantity{
+    text-align:center;
+}
