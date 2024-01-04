@@ -21,8 +21,8 @@ public class MemberOrderService {
     private final MemberOrderRepository memberOrderRepository;
 
     /* user */
-    public void saveMemberOrder(MemberOrderAddDTO memberOrderAddDTO) {
-        MemberOrder memberOrder = MemberOrderAddDTO.toMemberOrder(memberOrderAddDTO);
+    public void saveMemberOrder(Long memberNo, MemberOrderAddDTO memberOrderAddDTO) {
+        MemberOrder memberOrder = MemberOrderAddDTO.toMemberOrder(memberNo, memberOrderAddDTO);
         //MemberOrderDetail memberOrderDetail = MemberOrderAddDTO.toMemberOrderDetail(memberOrderAddDTO);
         memberOrderRepository.saveMemberOrder(memberOrder);
         //memberOrderRepository.saveMemberOrderDetail(memberOrderDetail);
@@ -32,6 +32,31 @@ public class MemberOrderService {
 //        MemberOrderDetail memberOrderDetail = MemberOrderDetailAddDTO.toMemberOrderDetail(memberOrderDetailAddDTO);
 //        memberOrderRepository.saveMemberOrderDetail(memberOrderDetail);
 //    }
+
+    /* user */
+    public Long getMaxMemberOrderNo() {
+        Long maxMemberOrderNo = memberOrderRepository.getMaxMemberOrderNo();
+        return maxMemberOrderNo;
+    }
+
+    /* user */
+    public void saveMemberOrderDetail(Long maxMemberOrderNo, List<MemberOrderDetailAddDTO> memberOrderDetailAddDTOList) {
+        List<MemberOrderDetail> memberOrderDetailList = new ArrayList<>();
+        for (MemberOrderDetailAddDTO memberOrderDetailAddDTO: memberOrderDetailAddDTOList) {
+            MemberOrderDetail memberOrderDetail = new MemberOrderDetail();
+            memberOrderDetail.setMemberOrderDetailNo(memberOrderDetailAddDTO.getMemberOrderDetailNo());
+            memberOrderDetail.setMemberOrderNo(maxMemberOrderNo);
+            memberOrderDetail.setItemNo(memberOrderDetailAddDTO.getItemNo());
+            memberOrderDetail.setItemQuantity(memberOrderDetailAddDTO.getItemQuantity());
+            memberOrderDetail.setItemSize(memberOrderDetailAddDTO.getItemSize());
+            memberOrderDetailList.add(memberOrderDetail);
+        }
+        for (MemberOrderDetail memberOrderDetail: memberOrderDetailList) {
+            memberOrderRepository.saveMemberOrderDetail(memberOrderDetail);
+        }
+        MemberOrder memberOrder = memberOrderRepository.findMemberOrderByNo(maxMemberOrderNo);
+        memberOrder.setMemberOrderDetailList(memberOrderDetailList);
+    }
 
 
     /* user */
@@ -68,6 +93,8 @@ public class MemberOrderService {
         MemberOrderDetailDTO memberOrderDetailDTO = MemberOrderDetailDTO.toMemberOrderDetailDTO(memberOrderDetail);
         return memberOrderDetailDTO;
     }
+
+
 
 
 }

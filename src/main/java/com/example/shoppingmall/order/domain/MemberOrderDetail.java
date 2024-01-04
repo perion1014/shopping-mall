@@ -15,8 +15,8 @@ public class MemberOrderDetail {
     private Long memberOrderDetailNo;
     private Long memberOrderNo;
     private Long itemNo;
-    private Long itemStockNo;
     private Integer itemQuantity;
+    private String itemSize;
 
     private MemberOrder memberOrder;
     private MemberOrderDTO memberOrderDTO;

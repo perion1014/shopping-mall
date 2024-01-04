@@ -68,4 +68,6 @@ public interface ItemRepository {
     List<Item> getItemListPageBySearch(ItemSearchForm itemSearchForm);
 
     List<Item> findItemsByNameAndCategory(ItemCategoricalSearchPageForm itemCategoricalSearchPageForm);
+
+    Integer getItemStockValueByItemNoAndItemSize(ItemStockDTO itemStockDTO);
 }

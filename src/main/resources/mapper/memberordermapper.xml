@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.shoppingmall.order.domain.MemberOrder">
+<mapper namespace="com.example.shoppingmall.order.mapper.MemberOrderMapper">
 
     <insert id="saveMemberOrder" parameterType="com.example.shoppingmall.order.domain.MemberOrder">
-        insert into member_order values (#{memberOrderNo}, #{memberNo}, #{orderTime}, #{orderHp}, #{orderPostalCode}, #{orderAddressBasic}, #{orderAddressDetail}, #{receiverName}, #{orderStatus})
+        insert into member_order values (#{memberOrderNo}, #{memberNo}, DATE_ADD(NOW(), INTERVAL 0 HOUR), #{orderHp}, #{orderPostalCode}, #{orderAddressBasic}, #{orderAddressDetail}, #{receiverName}, 1)
     </insert>
 
+    <select id="getMaxMemberOrderNo" resultType="Long">
+        select max(member_order_no) from member_order
+    </select>
+
     <insert id="saveMemberOrderDetail" parameterType="com.example.shoppingmall.order.domain.MemberOrderDetail">
-        insert into member_order_detail values (#{memberOrderDetailNo}, #{memberOrderNo}, #{itemNo}, #{itemStockNo}, #{itemQuantity})
+        insert into member_order_detail values (#{memberOrderDetailNo}, #{memberOrderNo}, #{itemNo}, #{itemQuantity}, #{itemSize})
     </insert>
 
     <select id="findMemberOrderList" parameterType="Long" resultType="com.example.shoppingmall.order.domain.MemberOrder">
@@ -25,6 +29,17 @@
     <select id="getMemberOrderDetail" resultType="com.example.shoppingmall.order.domain.MemberOrderDetail">
         select * from member_order_detail
     </select>
+
+    <select id="findMemberOrderByNo" parameterType="Long" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where member_order_no = #{memberOrderNo}
+    </select>
+
+
+
+
+
+
+
 
     <resultMap id="memberOrderResultMap" type="com.example.shoppingmall.order.domain.MemberOrder">
         <id column="member_order_no" property="memberOrderNo"/>

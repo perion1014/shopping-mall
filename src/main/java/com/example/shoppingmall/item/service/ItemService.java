@@ -538,5 +538,10 @@ public class ItemService {
         return new ItemPageForm(page, totalPage, startPage, endPage);
     }
 
+    public Integer getItemStockValueByItemNoAndItemSize(ItemStockDTO itemStockDTO) {
+        Integer itemStockValue = itemRepository.getItemStockValueByItemNoAndItemSize(itemStockDTO);
+        return itemStockValue;
+    }
+
 
 }

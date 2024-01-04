@@ -21,64 +21,65 @@
     </form>
 
     <!--기존 주소-->
-    <form id="display1" method="post">
+    <form id="display1" method="post" th:action="@{/members/{memberNo}/orders/create-success(memberNo=${session.loginMember.memberNo})}">
         <label class="label" for="memberHp">
             <h5 class="label__title">주문자 휴대폰 번호*</h5>
-            <input id="memberHp" name="memberHp" class="input input--lg" type="text" />
+            <input id="memberHp" name="orderHp" class="input input--lg" type="text" th:value="${session.memberOrderDTO.orderHp}" />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberName">
             <h5 class="label__title">수령자명*</h5>
-            <input id="memberName" name ="memberName" class="input input--lg" type="text" />
+            <input id="memberName" name ="receiverName" class="input input--lg" type="text" th:value="${session.memberOrderDTO.receiverName}"/>
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberPostalCode">
             <h5 class="label__title">우편번호*</h5>
-            <input id="memberPostalCode" name=memberPostalCode class="input input--lg" type="text" readonly />
+            <input id="memberPostalCode" name="orderPostalCode" class="input input--lg" type="text" readonly th:value="${session.memberOrderDTO.orderPostalCode}"/>
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberAddressBasic">
             <h5 class="label__title">기본 주소*</h5>
-            <input id="memberAddressBasic" name="memberAddressBasic" class="input input--lg" type="text" readonly />
+            <input id="memberAddressBasic" name="orderAddressBasic" class="input input--lg" type="text" readonly th:value="${session.memberOrderDTO.orderAddressBasic}"/>
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberAddressDetail">
             <h5 class="label__title">상세 주소</h5>
-            <input id="memberAddressDetail" name="memberAddressDetail" class="input input--lg" type="text" readonly />
+            <input id="memberAddressDetail" name="orderAddressDetail" class="input input--lg" type="text" readonly th:value="(${session.memberOrderDTO.orderAddressDetail} == null or ${session.loginMember.memberAddressDetail.replace(' ', '').length()} == 0)? '':  ${session.loginMember.memberAddressDetail}"/>
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <button type="submit" class="btn btn--lg btn--black">주문하기</button>
+
     </form>
 
     <!--배송지 새로 입력-->
-    <form id="display2" method="post">
+    <form id="display2" method="post" th:action="@{/members/{memberNo}/orders/create-success(memberNo=${session.loginMember.memberNo})}">
         <label class="label" for="memberHp2">
             <h5 class="label__title">주문자 휴대폰 번호*</h5>
-            <input id="memberHp2" name="memberHp" class="input input--lg" type="text"  />
+            <input id="memberHp2" name="orderHp" class="input input--lg" type="text"  />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberName2">
             <h5 class="label__title">수령자명*</h5>
-            <input id="memberName2" name ="memberName" class="input input--lg" type="text"  />
+            <input id="memberName2" name ="receiverName" class="input input--lg" type="text"  />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberPostalCode2">
             <h5 class="label__title">우편번호*</h5>
-            <input id="memberPostalCode2" name=memberPostalCode class="input input--mi" type="text"  />
+            <input id="memberPostalCode2" name=orderPostalCode class="input input--mi" type="text"  />
             <button type="button" class="btn btn--mi btn--black btn--address" onclick="execDaumPostalcode()">우편번호 찾기</button>
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
@@ -86,14 +87,14 @@
         </label>
         <label class="label" for="memberAddressBasic2">
             <h5 class="label__title">기본 주소*</h5>
-            <input id="memberAddressBasic2" name="memberAddressBasic" class="input input--lg" type="text" />
+            <input id="memberAddressBasic2" name="orderAddressBasic" class="input input--lg" type="text" />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberAddressDetail2">
             <h5 class="label__title">상세 주소</h5>
-            <input id="memberAddressDetail2" name="memberAddressDetail" class="input input--lg" type="text" />
+            <input id="memberAddressDetail2" name="orderAddressDetail" class="input input--lg" type="text" />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
