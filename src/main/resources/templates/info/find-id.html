@@ -10,9 +10,8 @@
 <header th:replace="~{/fragments/header :: header}"></header>
 <main class="main__container">
     <h1 class="main__title">아이디 조회 성공</h1>
-    <div name="memberId"></div>
-    <h5>회원님의 아이디는 test****입니다</h5>
-    <form action="/members/info/id/find-success" method="get">
+    <h4 th:text="'회원님의 아이디는 ' + ${memberSearchDTO.getMemberId()} + ' 입니다.'"></h4>
+    <form action="/members/login" method="get">
         <button type="submit" class="btn btn--black btn--member-login">로그인 페이지로</button>
     </form>
     <form action="/members/info/pw" method="post">

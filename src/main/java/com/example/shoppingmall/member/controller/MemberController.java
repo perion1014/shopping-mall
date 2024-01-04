@@ -157,22 +157,23 @@ public class MemberController {
     }
 
     /*아이디 찾기*/
-    @PostMapping("/info/id")
-    public String findId(String memberEmail, Model model){
-        model.addAttribute("memberSearchDTO", memberInfoService.getMemberIdByEmail(memberEmail));
-        return "info/find-id";
-    }
+//    @PostMapping("/info/id")
+//    public String findId(@RequestParam("memberEmail")String memberEmail, Model model){
+//        model.addAttribute("memberSearchDTO", memberInfoService.getMemberIdByEmail(memberEmail));
+//        return "info/find-id";
+//    }
 
     /*아이디 찾기 성공 페이지*/
-    @GetMapping("/info/id/find-success")
-    public String findIdSuccess(){
-        return "members/member-login";
+    @PostMapping("/info/id/find-success")
+    public String findIdSuccess(@RequestParam("memberEmail")String memberEmail, Model model){
+        model.addAttribute("memberSearchDTO", memberInfoService.getMemberIdByEmail(memberEmail));
+        return "info/find-id";
     }
 
     /*비밀번호 찾기*/
     @PostMapping("/info/pw")
     public String findPw(){
-        return"info/reset-pw";
+        return"info/find-pw";
     }
 
     /*비빌번호 재설정 페이지*///아이디 찾기와 비밀번호 찾기가 한페이지에서 출력되기때문에 나눌필요없음
@@ -184,13 +185,13 @@ public class MemberController {
     /*비밀번호 재설정 */
     @PostMapping("/info/pw/update")
     public String updatePw(){
-        return "info/reset-pw-ok";
+        return "info/find-pw-ok";
     }
 
     /*비밀번호 재설정 완료*/
     @GetMapping("/info/pw/update-success")
     public String updatePwSuccess (){
-        return "info/reset-pw-ok";
+        return "info/find-pw-ok";
     }
 }
 
