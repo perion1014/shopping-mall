@@ -63,13 +63,14 @@ public class CartService {
     cartRepository.addCartItem(cart);
     }
 
-    public List<nonMemberCartAddDTO> nonMemberAddCartItem(String thumbnail, String name, String size, Integer price, Integer Quantity, HttpServletRequest req){
+    public List<nonMemberCartAddDTO> nonMemberAddCartItem(String thumbnail, String name, String size, Integer price, Integer Quantity, Long itemNo, HttpServletRequest req){
         HttpSession session = req.getSession();
         List<nonMemberCartAddDTO> nonmemberCartList = new ArrayList<>();
 
         if(session.getAttribute("nonmemberCartList") == null){
             nonMemberCartAddDTO tempDTO = new nonMemberCartAddDTO();
             tempDTO.setCartNo(0L);
+            tempDTO.setItemNo(itemNo);
             tempDTO.setItemThumbnail(thumbnail);
             tempDTO.setItemName(name);
             tempDTO.setItemSize(size);
@@ -82,12 +83,14 @@ public class CartService {
             nonmemberCartList = (List<nonMemberCartAddDTO>)session.getAttribute("nonmemberCartList");
             nonMemberCartAddDTO tempDTO = new nonMemberCartAddDTO();
             tempDTO.setCartNo(Long.valueOf(nonmemberCartList.size()));
+            tempDTO.setItemNo(itemNo);
             tempDTO.setItemThumbnail(thumbnail);
             tempDTO.setItemName(name);
             tempDTO.setItemSize(size);
             tempDTO.setItemPrice(price);
             tempDTO.setItemQuantity(Quantity);
             nonmemberCartList.add(tempDTO);
+
             return nonmemberCartList;
         }
 

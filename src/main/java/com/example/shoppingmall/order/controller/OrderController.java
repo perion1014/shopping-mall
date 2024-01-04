@@ -1,5 +1,9 @@
 package com.example.shoppingmall.order.controller;
 
+import com.example.shoppingmall.item.domain.ItemStock;
+import com.example.shoppingmall.item.dto.ItemStockDTO;
+import com.example.shoppingmall.item.service.ItemService;
+import com.example.shoppingmall.item.service.ItemService_CMS;
 import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.order.domain.MemberOrder;
 import com.example.shoppingmall.order.dto.*;
@@ -17,7 +21,7 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 public class OrderController {
-
+    private final ItemService_CMS itemService_cms;
     private final MemberOrderService memberOrderService;
 
 //    @PostMapping("/members/{memberNo}/orders/check-itemstock")
@@ -46,15 +50,30 @@ public class OrderController {
     public Map<String, Object> checkNonMemberOrderItemStock(@RequestBody List<MemberOrderItemStockCheckDTO> jsonData){
 
         System.out.println("컨트롤러 도착 확인");
+        Map<String, Object> responseData = new HashMap<>();
+        List<ItemStockDTO> stockCheckFalseList = new ArrayList<>();
+        String SendResponseString = "";
 
         for(int i = 0; i < jsonData.size(); i++){
-            System.out.println(jsonData.get(i).getItemNo());
-            System.out.println(jsonData.get(i).getItemSize());
-            System.out.println(jsonData.get(i).getItemQuantity());
+            ItemStockDTO itemStockDTO = new ItemStockDTO();
+            itemStockDTO.setItemNo(jsonData.get(i).getItemNo());
+            itemStockDTO.setItemSize(jsonData.get(i).getItemSize());
+
+            if(!itemService_cms.CompareStockValuesFromCartAndDB(itemStockDTO, jsonData.get(i).getItemQuantity())){
+                SendResponseString += jsonData.get(i).getItemName() + " : " + jsonData.get(i).getItemSize() + "사이즈" + ",";
+            }
+
+//            System.out.println(jsonData.get(i).getItemNo());
+//            System.out.println(jsonData.get(i).getItemName());
+//            System.out.println(jsonData.get(i).getItemSize());
+//            System.out.println(jsonData.get(i).getItemQuantity());
         }
 
-        Map<String, Object> responseData = new HashMap<>();
-        responseData.put("response", "데이터 전달 후 응답 확인");
+        if(SendResponseString.isEmpty()) {
+            responseData.put("response", "데이터 전달/처리 성공");
+        } else{
+            responseData.put("response", SendResponseString);
+        }
 
         return responseData;
     }
