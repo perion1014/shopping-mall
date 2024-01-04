@@ -33,7 +33,6 @@
             </tbody>
         </table>
     </div>
-    </form>
     <div class="items__page">
         <span th:if="${HomeNoticePageSettings.page &lt;= 1}">이전</span>
         <span th:unless="${HomeNoticePageSettings.page &lt;= 1}">
@@ -52,7 +51,6 @@
            th:href="@{/notice(page=${HomeNoticePageSettings.page + 1})}"
         >다음</a
         >
-    </div>
     </div><!--main div-->
 </main>
 </body>

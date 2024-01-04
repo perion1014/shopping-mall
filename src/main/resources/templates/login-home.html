@@ -37,7 +37,7 @@
                </div>
             </div>
             <div class="banner__btns">
-               <button class="btn btn--index btn--black btn--member-info" th:onclick="@{|window.location='/members/${session.loginMember.getMemberNo()}/show-info'|}">회원정보</button>
+               <button class="btn btn--index btn--black btn--member-info" th:onclick="@{|window.location='/members/${session.loginMember.getMemberNo()}/show-info'|}">마이페이지</button>
                <button class="btn btn--index btn--black btn--notice" onclick="location.href='/notice'">공지사항</button>
                <button class="btn btn--index btn--black btn--items" onclick="location.href='/items'">상품 보기</button>
             </div>

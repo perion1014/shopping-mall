@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
+    <title>PERION - 회원 주문 상세 조회</title>
+    <script src="/js/pages/order.js"></script>
 </head>
 <body>
-
+<header th:replace="~{/fragments/login-header :: header}"></header>
+<main class="main__container section">
+        <h1 class="main__title">회원님의 주문 상품</h1>
+        <table class="table__client table--2">
+            <thead>
+            <tr>
+                <th class="cart__checkbox">번호</th>
+                <th colspan="2" style="text-align: center">상품명</th>
+                <th class="cart__price">상품 가격</th>
+                <th class="cart__quantity" style="text-align: center">수량</th>
+                <th class="cart__btn"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--반복 구간(tr -> th:each)-->
+            <div>
+                <tr>
+                    <td class="cart__checkbox">1</td>
+                    <td class="cart__imgbox">
+                        <img class="cart__img" src="/images/itemImages/1/thumb/p1.jpg">
+                    </td>
+                    <td>
+                        <h4>상품명</h4>
+                        <span>사이즈:S</span>
+                        <!--
+                        <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
+                        -->
+                    </td>
+                    <td class="cart__price">100000원</td>
+                    <td class="cart__quantity order__quantity">2</td>
+                    <td class="cart__btn">
+                        <button class="btn btn--order btn--black">리뷰 작성</button>
+                    </td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+        <div class="items__page notice__link">
+            <a href="#" onclick="history.back()">이전 페이지로</a>
+            <a href="#">주문 목록으로</a>
+        </div>
+    </main>
 </body>
 </html>
