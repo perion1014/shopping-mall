@@ -14,6 +14,9 @@ public interface MemberOrderMapper {
     void saveMemberOrder(MemberOrder memberOrder);
 
     /* user */
+    Long getMaxMemberOrderNo();
+
+    /* user */
     void saveMemberOrderDetail(MemberOrderDetail memberOrderDetail);
 
     /* user */
@@ -30,5 +33,5 @@ public interface MemberOrderMapper {
     MemberOrder joinMemeberOrderByMemberOrderNo(Long orderNo);
 
 
-
+    MemberOrder findMemberOrderByNo(Long memberOrderNo);
 }

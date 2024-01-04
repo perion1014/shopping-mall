@@ -38,14 +38,29 @@ function checkItemStock2(cartDTOListSize, memberNo){
 
     fetch(`/members/${memberNo}/orders/check-itemstock`, {
         method: 'POST',
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         },
         body:JSON.stringify(jsonData)
     }).then(response => response.json())
         .then(data => {
 
-            alert(JSON.stringify(data.response));
+            // alert(JSON.stringify(data.response));
+
+            if(JSON.stringify(data.response) === '선택하신 상품의 재고가 없습니다.'){
+                alert('aaa');
+                location.reload();
+            } else {
+                fetch(`/members/${memberNo}/orders/create`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData)
+                }).then( data => {
+                    location.href = '/temp';
+                })
+            }
 
         }).catch(error => {
         alert('JSON 전송 실패 - 사유 : ' + error);

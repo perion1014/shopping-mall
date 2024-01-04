@@ -21,6 +21,12 @@ public class MyBatisMemberOrderRepository implements MemberOrderRepository{
     }
 
     @Override   /* user */
+    public Long getMaxMemberOrderNo() {
+        Long maxMemberOrderNo = memberOrderMapper.getMaxMemberOrderNo();
+        return maxMemberOrderNo;
+    }
+
+    @Override   /* user */
     public void saveMemberOrderDetail(MemberOrderDetail memberOrderDetail) {
         memberOrderMapper.saveMemberOrderDetail(memberOrderDetail);
     }
@@ -47,5 +53,11 @@ public class MyBatisMemberOrderRepository implements MemberOrderRepository{
     public MemberOrderDetail getMemberOrderDetail() {
         MemberOrderDetail memberOrderDetail = memberOrderMapper.getMemberOrderDetail();
         return memberOrderDetail;
+    }
+
+    @Override
+    public MemberOrder findMemberOrderByNo(Long memberOrderNo) {
+        MemberOrder memberOrder = memberOrderMapper.findMemberOrderByNo(memberOrderNo);
+        return memberOrder;
     }
 }

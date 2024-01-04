@@ -1,6 +1,9 @@
 package com.example.shoppingmall.member.domain;
 
+import com.example.shoppingmall.order.domain.MemberOrderDetail;
 import lombok.*;
+
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -15,4 +18,6 @@ public class Member {
     private Integer memberPostalCode;
     private String memberAddressBasic;
     private String memberAddressDetail;
+
+    private List<MemberOrderDetail> memberOrderDetailList;
 }

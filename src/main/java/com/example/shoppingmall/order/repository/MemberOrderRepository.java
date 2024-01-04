@@ -12,6 +12,9 @@ public interface MemberOrderRepository {
     void saveMemberOrder(MemberOrder memberOrder);
 
     /* user */
+    Long getMaxMemberOrderNo();
+
+    /* user */
     void saveMemberOrderDetail(MemberOrderDetail memberOrderDetail);
 
     /* user */
@@ -25,5 +28,5 @@ public interface MemberOrderRepository {
     MemberOrderDetail getMemberOrderDetail();
 
 
-
+    MemberOrder findMemberOrderByNo(Long memberOrderNo);
 }

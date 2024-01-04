@@ -3,6 +3,7 @@ package com.example.shoppingmall.item.repository;
 import com.example.shoppingmall.item.domain.Item;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
+import com.example.shoppingmall.item.dto.ItemStockDTO;
 import com.example.shoppingmall.item.form.ItemCategoricalSearchPageForm;
 import com.example.shoppingmall.item.form.ItemCategoryPageForm;
 import com.example.shoppingmall.item.form.ItemSearchForm;
@@ -158,6 +159,11 @@ public class MyBatisItemRepository implements ItemRepository{
     @Override
     public List<Item> findItemsByNameAndCategory(ItemCategoricalSearchPageForm itemCategoricalSearchPageForm) {
         return itemMapper.findItemListPageBySearchAndCategory(itemCategoricalSearchPageForm);
+    }
+
+    @Override
+    public Integer getItemStockValueByItemNoAndItemSize(ItemStockDTO itemStockDTO) {
+        return itemMapper.getItemStockValueByItemNoAndItemSize(itemStockDTO);
     }
 
 }

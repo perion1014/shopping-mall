@@ -1,6 +1,7 @@
 package com.example.shoppingmall.cart.repository;
 
 import com.example.shoppingmall.cart.domain.Cart;
+import com.example.shoppingmall.cart.dto.CartDeleteDTO;
 import com.example.shoppingmall.cart.mapper.CartMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -44,4 +45,9 @@ public class MyBatisCartRepository implements CartRepository{
     }
 
     public void addCartItem(Cart cart) { cartMapper.addCartItem(cart);}
+
+    @Override
+    public void deleteCartItemByItemNoAndItemSize(CartDeleteDTO cartDeleteDTO) {
+        cartMapper.deleteCartItemByItemNoAndItemSize(cartDeleteDTO);
+    }
 }

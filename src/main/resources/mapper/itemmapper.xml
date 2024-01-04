@@ -149,4 +149,8 @@
         select * from item where item_name like concat('%', #{searchKeyword}, '%') and item_category = #{category} and item_onsale = 1 order by item_no desc
     </select>
 
+    <select id="getItemStockValueByItemNoAndItemSize" parameterType="com.example.shoppingmall.item.dto.ItemStockDTO" resultType="Integer">
+        select item_stock_value from item_stock where item_no = #{itemNo} and item_size = #{itemSize}
+    </select>
+
 </mapper>
