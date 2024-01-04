@@ -58,15 +58,4 @@ public class MemberOrderAddDTO {
         return memberOrderDTO;
     }
 
-
-
-//    public static MemberOrderDetail toMemberOrderDetail(MemberOrderAddDTO memberOrderAddDTO) {
-//        MemberOrderDetail memberOrderDetail = new MemberOrderDetail();
-//        memberOrderDetail.setMemberOrderDetailNo(memberOrderAddDTO.getMemberOrderDetailNo());
-//        memberOrderDetail.setItemNo(memberOrderAddDTO.getItemNo());
-//        memberOrderDetail.setMemberOrderNo(memberOrderAddDTO.getMemberOrderNo());
-//        memberOrderDetail.setItemStockNo(memberOrderAddDTO.getItemStockNo());
-//        memberOrderDetail.setItemQuantity(memberOrderAddDTO.getItemQuantity());
-//        return memberOrderDetail;
-//    }
 }

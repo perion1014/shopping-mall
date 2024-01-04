@@ -12,4 +12,6 @@ public class MemberOrderItemStockCheckDTO {
     private Long itemNo;
     private String itemSize;
     private Integer itemQuantity;
+    private String itemName;
+
 }

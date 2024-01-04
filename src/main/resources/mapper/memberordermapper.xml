@@ -14,8 +14,8 @@
         insert into member_order_detail values (#{memberOrderDetailNo}, #{memberOrderNo}, #{itemNo}, #{itemQuantity}, #{itemSize})
     </insert>
 
-    <select id="findMemberOrderList" parameterType="Long" resultType="com.example.shoppingmall.order.domain.MemberOrder">
-        select * from member_order where member_no = #{memberNo}
+    <select id="findMemberOrderList" parameterType="com.example.shoppingmall.order.form.MemberOrderViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where member_no = #{memberNo} order by member_order_no desc limit #{startPage}, #{memberOrdersPerPage}
     </select>
 
     <select id="findMemberOrderDetail" parameterType="long" resultType="com.example.shoppingmall.order.domain.MemberOrderDetail">
@@ -34,6 +34,9 @@
         select * from member_order where member_order_no = #{memberOrderNo}
     </select>
 
+    <select id="findAllMemberOrdersByNo" parameterType="Long" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where member_order_no = #{memberOrderNo}
+    </select>
 
 
 

@@ -18,6 +18,9 @@ public class MemberOrderDetailAddDTO {
     private Integer itemQuantity;
     private String itemSize;
 
+    private String itemName;
+    private Integer itemPrice;
+
     public static MemberOrderDetail toMemberOrderDetail(MemberOrderDetailAddDTO memberOrderDetailAddDTO) {
         MemberOrderDetail memberOrderDetail = new MemberOrderDetail();
         memberOrderDetail.setMemberOrderDetailNo(memberOrderDetailAddDTO.getMemberOrderDetailNo());
@@ -25,6 +28,7 @@ public class MemberOrderDetailAddDTO {
         memberOrderDetail.setItemNo(memberOrderDetailAddDTO.getItemNo());
         memberOrderDetail.setItemQuantity(memberOrderDetailAddDTO.getItemQuantity());
         memberOrderDetail.setItemSize(memberOrderDetailAddDTO.getItemSize());
+        memberOrderDetail.setItemName(memberOrderDetailAddDTO.getItemName());
         return memberOrderDetail;
     }
 }

@@ -2,6 +2,7 @@ package com.example.shoppingmall.order.repository;
 
 import com.example.shoppingmall.order.domain.MemberOrder;
 import com.example.shoppingmall.order.domain.MemberOrderDetail;
+import com.example.shoppingmall.order.form.MemberOrderViewForm;
 import com.example.shoppingmall.order.mapper.MemberOrderMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -32,8 +33,8 @@ public class MyBatisMemberOrderRepository implements MemberOrderRepository{
     }
 
     @Override   /* user */
-    public List<MemberOrder> findMemberOrderList(Long memberNo) {
-        List<MemberOrder> memberOrderList = memberOrderMapper.findMemberOrderList(memberNo);
+    public List<MemberOrder> findMemberOrderList(MemberOrderViewForm memberOrderViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.findMemberOrderList(memberOrderViewForm);
         return memberOrderList;
     }
 
@@ -59,5 +60,11 @@ public class MyBatisMemberOrderRepository implements MemberOrderRepository{
     public MemberOrder findMemberOrderByNo(Long memberOrderNo) {
         MemberOrder memberOrder = memberOrderMapper.findMemberOrderByNo(memberOrderNo);
         return memberOrder;
+    }
+
+    @Override
+    public List<MemberOrder> findAllMemberOrdersByNo(Long memberNo) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.findAllMemberOrdersByNo(memberNo);
+        return memberOrderList;
     }
 }
