@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.shoppingmall.member.mapper.MemberMapper">
-    <insert id="save" parameterType="com.example.shoppingmall.member.domain.Member"> insert into member values (#{memberNo},#{memberId},#{memberHp},#{memberEmail},#{memberPw},#{memberName},#{memberPostalCode},#{memberAddressBasic},#{memberAddressDetail}) </insert>
-    <select id="findById" resultType="com.example.shoppingmall.member.domain.Member"> select * from member where member_id = #{memberId} </select>
-    <select id="findByNo" resultType="com.example.shoppingmall.member.domain.Member"> select * from member where member_no = #{memberNo} </select>
-    <select id="findByEmail" resultType="com.example.shoppingmall.member.domain.Member"> select * from member where member_email = #{memberEmail} </select>
-    <select id="findByNoContaining" resultType="com.example.shoppingmall.member.domain.Member"> select * from member where member_no = #{memberNo} </select>
+    <insert id="save" parameterType="com.example.shoppingmall.member.domain.Member">
+        insert into member values (#{memberNo},#{memberId},#{memberHp},#{memberEmail},#{memberPw},#{memberName},#{memberPostalCode},#{memberAddressBasic},#{memberAddressDetail})
+    </insert>
+
+    <select id="findById" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member where member_id = #{memberId}
+    </select>
+
+    <select id="findByNo" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member where member_no = #{memberNo}
+    </select>
+
+    <select id="findByEmail" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member where member_email = #{memberEmail}
+    </select>
+
+    <select id="findByHp" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member where member_email = #{memberHp}
+    </select>
+
+    <select id="findByNoContaining" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member where member_no = #{memberNo}
+    </select>
+
     <select id="findByKeyword" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.member.domain.Member">
         select * from member
         <where>
@@ -16,11 +35,30 @@
             <if test="category.equals('memberAddressBasic')"> AND member_address_basic LIKE CONCAT('%', #{keyword}, '%') </if>
         </where>
     </select>
-    <select id="findAll" resultType="com.example.shoppingmall.member.domain.Member"> select * from member order by member_no desc </select>
-    <select id="findAllByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.member.domain.Member"> select * from member order by member_no desc limit #{startPage}, #{memberPerPage} </select>
-    <select id="findAllByKeyword" parameterType="com.example.shoppingmall.member.form.MemberSearchForm" resultType="com.example.shoppingmall.member.domain.Member"> select * from member where ${category} LIKE CONCAT('%', #{keyword}, '%') LIMIT #{startPage}, #{memberPerPage} </select>
+
+    <select id="findAll" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member order by member_no desc
+    </select>
+
+    <select id="findAllByPaging" parameterType="java.util.HashMap" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member order by member_no desc limit #{startPage}, #{memberPerPage}
+    </select>
+
+    <select id="findAllByKeyword" parameterType="com.example.shoppingmall.member.form.MemberSearchForm" resultType="com.example.shoppingmall.member.domain.Member">
+        select * from member where ${category} LIKE CONCAT('%', #{keyword}, '%') LIMIT #{startPage}, #{memberPerPage}
+    </select>
+
     <select id="countAll" resultType="Long"> select count(member_no) from member </select>
-    <select id="countAllByKeyword" parameterType="com.example.shoppingmall.member.form.MemberSearchForm" resultType="Long"> select count(member_id) from member where ${category} LIKE CONCAT('%', #{keyword}, '%') </select>
-    <update id="update" parameterType="com.example.shoppingmall.member.domain.Member"> UPDATE member SET member_pw = #{memberPw}, member_name = #{memberName}, member_hp = #{memberHp}, member_postal_code = #{memberPostalCode}, member_address_basic = #{memberAddressBasic}, member_address_detail = #{memberAddressDetail} where member_id = #{memberId} </update>
-    <delete id="deleteByNo" parameterType="com.example.shoppingmall.member.domain.Member"> delete from member where member_no = #{memberNo} </delete>
+
+    <select id="countAllByKeyword" parameterType="com.example.shoppingmall.member.form.MemberSearchForm" resultType="Long">
+        select count(member_id) from member where ${category} LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+    <update id="update" parameterType="com.example.shoppingmall.member.domain.Member">
+        UPDATE member SET member_pw = #{memberPw}, member_name = #{memberName}, member_hp = #{memberHp}, member_postal_code = #{memberPostalCode}, member_address_basic = #{memberAddressBasic}, member_address_detail = #{memberAddressDetail} where member_id = #{memberId}
+    </update>
+
+    <delete id="deleteByNo" parameterType="com.example.shoppingmall.member.domain.Member">
+        delete from member where member_no = #{memberNo}
+    </delete>
 </mapper>

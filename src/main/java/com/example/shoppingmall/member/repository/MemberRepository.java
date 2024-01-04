@@ -15,6 +15,7 @@ public interface MemberRepository {
     Optional<Member> findByNo(Long memberNo);
     Optional<Member> findById(String memberId);
     Optional<Member> findByEmail(String memberEmail);
+    Optional<Member> findByHp(String memberHp);
     List<Member> findAllByPaging(Map<String, Integer> pagingSettings);
     Long countAll();
     Long countAllByKeyword(MemberSearchForm memberSearchForm);
