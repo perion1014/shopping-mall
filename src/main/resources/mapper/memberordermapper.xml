@@ -38,7 +38,9 @@
         select * from member_order where member_order_no = #{memberOrderNo}
     </select>
 
-
+    <update id="cancelMemberOrder" parameterType="Long">
+        update member_order set order_status = 0 where member_order_no = #{memberOrderNo}
+    </update>
 
 
 

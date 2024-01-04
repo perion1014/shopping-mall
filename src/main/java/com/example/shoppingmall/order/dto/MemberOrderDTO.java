@@ -29,6 +29,8 @@ public class MemberOrderDTO {
 
     private List<MemberOrderDetailDTO> memberOrderDetailDTOList;
 
+    private Integer priceSum;
+
     public static MemberOrderDTO toMemberOrderDTO(MemberOrder memberOrder) {
         MemberOrderDTO memberOrderDTO = new MemberOrderDTO();
         memberOrderDTO.setMemberOrderNo(memberOrder.getMemberOrderNo());

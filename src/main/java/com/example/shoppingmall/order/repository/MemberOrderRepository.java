@@ -23,7 +23,7 @@ public interface MemberOrderRepository {
     List<MemberOrder> findMemberOrderList(MemberOrderViewForm memberOrderViewForm);
 
     /* user */
-    MemberOrderDetail findMemberOrderDetail(Long memberOrderNo);
+    List<MemberOrderDetail> findMemberOrderDetail(Long memberOrderNo);
 
     List<MemberOrder> getMemberOrderList();
 
@@ -33,4 +33,6 @@ public interface MemberOrderRepository {
     MemberOrder findMemberOrderByNo(Long memberOrderNo);
 
     List<MemberOrder> findAllMemberOrdersByNo(Long memberNo);
+
+    void cancelMemberOrder(Long memberOrderNo);
 }
