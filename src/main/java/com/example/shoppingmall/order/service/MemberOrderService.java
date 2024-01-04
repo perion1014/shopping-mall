@@ -2,10 +2,8 @@ package com.example.shoppingmall.order.service;
 
 import com.example.shoppingmall.order.domain.MemberOrder;
 import com.example.shoppingmall.order.domain.MemberOrderDetail;
-import com.example.shoppingmall.order.dto.MemberOrderAddDTO;
-import com.example.shoppingmall.order.dto.MemberOrderDTO;
-import com.example.shoppingmall.order.dto.MemberOrderDetailAddDTO;
-import com.example.shoppingmall.order.dto.MemberOrderDetailDTO;
+import com.example.shoppingmall.order.dto.*;
+import com.example.shoppingmall.order.form.MemberOrderAdminViewForm;
 import com.example.shoppingmall.order.form.MemberOrderPageForm;
 import com.example.shoppingmall.order.form.MemberOrderViewForm;
 import com.example.shoppingmall.order.repository.MemberOrderRepository;
@@ -118,7 +116,6 @@ public class MemberOrderService {
         List<MemberOrder> memberOrderList = memberOrderRepository.findMemberOrderList(memberOrderViewForm);
         List<MemberOrderDTO> memberOrderDTOList = new ArrayList<>();
         for (MemberOrder memberOrder: memberOrderList) {
-            MemberOrderDTO memberOrderDTO = new MemberOrderDTO();
             Long memberOrderNo = memberOrder.getMemberOrderNo();
             List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetail(memberOrderNo);
             memberOrder.setMemberOrderDetailList(memberOrderDetailList);
@@ -136,5 +133,57 @@ public class MemberOrderService {
         List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetail(memberOrderNo);
         memberOrder.setMemberOrderDetailList(memberOrderDetailList);
         return MemberOrderDTO.toMemberOrderDTO(memberOrder);
+    }
+
+
+    /* admin */
+    @Transactional(readOnly = true)
+    public MemberOrderPageForm setMemberOrderAdminListPage(int page) {
+
+        int memberOrdersPerPage = 10;
+        int pageLimit = 5;
+
+        int itemCount = memberOrderRepository.getMemberOrderList().size();
+
+        int totalPage = (int) (Math.ceil((double) itemCount / memberOrdersPerPage));
+
+        int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
+
+        int endPage = startPage + pageLimit - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+        return new MemberOrderPageForm(page, totalPage, startPage, endPage);
+    }
+
+    /* admin */
+    @Transactional(readOnly = true)
+    public List<MemberOrderAdminViewDTO> getMemberOrderAdminListPage(int page, MemberOrderAdminViewForm memberOrderAdminViewForm) {
+
+        int memberOrdersPerPage = 10;
+        int startPage = (page - 1) * memberOrdersPerPage;
+
+        memberOrderAdminViewForm.setStartPage(startPage);
+        memberOrderAdminViewForm.setMemberOrdersPerPage(memberOrdersPerPage);
+
+        List<MemberOrder> memberOrderList = memberOrderRepository.findMemberOrderAdminList(memberOrderAdminViewForm);
+        List<MemberOrderAdminViewDTO> memberOrderAdminViewDTOList = new ArrayList<>();
+        for (MemberOrder memberOrder: memberOrderList) {
+            MemberOrderAdminViewDTO memberOrderAdminViewDTO = new MemberOrderAdminViewDTO();
+            Long memberOrderNo = memberOrder.getMemberOrderNo();
+            ///////////////////////////////////////
+            memberOrderAdminViewDTO.setMemberOrderNo(memberOrderNo);
+            memberOrderAdminViewDTO.setMemberNo(memberOrder.getMemberNo());
+            memberOrderAdminViewDTO.setReceiverName(memberOrder.getReceiverName());
+            memberOrderAdminViewDTO.setOrderHp(memberOrder.getOrderHp());
+            memberOrderAdminViewDTO.setOrderPostalCode(memberOrder.getOrderPostalCode());
+            memberOrderAdminViewDTO.setOrderAddressBasic(memberOrder.getOrderAddressBasic());
+            memberOrderAdminViewDTO.setOrderStatus(memberOrder.getOrderStatus());
+            ///////////////////////////////////////
+            List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetail(memberOrderNo);
+            memberOrder.setMemberOrderDetailList(memberOrderDetailList);
+            memberOrderAdminViewDTOList.add(MemberOrderAdminViewDTO.toMemberOrderAdminViewDTO(memberOrder));
+        }
+        return memberOrderAdminViewDTOList;
     }
 }
