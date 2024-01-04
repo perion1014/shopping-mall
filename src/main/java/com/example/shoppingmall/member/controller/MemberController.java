@@ -75,8 +75,13 @@ public class MemberController {
         }
 
         //성공 시
-        memberService.join(memberAddDTO);
-        return "redirect:/members/add-success";
+        try{
+            memberService.join(memberAddDTO);
+            return "redirect:/members/add-success";
+        }
+        catch (IllegalStateException e){
+            return "/members/add-member";
+        }
     }
 
     @GetMapping("/add-success")
@@ -102,6 +107,7 @@ public class MemberController {
     @PostMapping("/{memberNo}/update")
     public String updateMemberInfo(@Validated @ModelAttribute MemberUpdateDTO memberUpdateDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
+        //필드 에러
         if(bindingResult.hasErrors()){
             return "members/update-member";
         }
@@ -119,7 +125,13 @@ public class MemberController {
     }
 
     @PostMapping("/{memberNo}/delete")
-    public String deleteMember(@PathVariable(name="memberNo") Long memberNo,@ModelAttribute MemberDeleteDTO memberDeleteDTO, RedirectAttributes redirectAttributes, HttpServletRequest request){
+    public String deleteMember(@PathVariable(name="memberNo") Long memberNo,@Validated @ModelAttribute MemberDeleteDTO memberDeleteDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpServletRequest request){
+
+        //필드 에러
+        if(bindingResult.hasErrors()){
+            return "members/delete-member";
+        }
+
         memberService.withdraw(memberNo, memberDeleteDTO);
         HttpSession session = request.getSession(false);
         session.invalidate();

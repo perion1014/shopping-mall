@@ -9,19 +9,19 @@
 </header>
 <main class="main__container">
     <h1 class="main__title">회원 탈퇴</h1>
-    <form th:action method="post" >
+    <form th:action method="post" th:object="${memberDeleteDTO}" >
         <label class="label" for="memberPw">
             <h5 class="label__title">비밀번호</h5>
             <input id="memberPw" name="memberPw" class="input" type="password" />
             <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+                <h6 class="label__error" th:errors="*{memberPw}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberPw2">
             <h5 class="label__title">비밀번호 확인</h5>
             <input id="memberPw2" name ="memberPw2" class="input" type="password" />
             <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+                <h6 class="label__error" th:errors="*{memberPw2}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <button type="submit" class="btn btn--black ">회원탈퇴</button>
