@@ -2,7 +2,9 @@ package com.example.shoppingmall.order.repository;
 
 import com.example.shoppingmall.order.domain.MemberOrder;
 import com.example.shoppingmall.order.domain.MemberOrderDetail;
+import com.example.shoppingmall.order.form.MemberOrderViewForm;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public interface MemberOrderRepository {
     void saveMemberOrderDetail(MemberOrderDetail memberOrderDetail);
 
     /* user */
-    List<MemberOrder> findMemberOrderList(Long memberNo);
+    List<MemberOrder> findMemberOrderList(MemberOrderViewForm memberOrderViewForm);
 
     /* user */
     MemberOrderDetail findMemberOrderDetail(Long memberOrderNo);
@@ -29,4 +31,6 @@ public interface MemberOrderRepository {
 
 
     MemberOrder findMemberOrderByNo(Long memberOrderNo);
+
+    List<MemberOrder> findAllMemberOrdersByNo(Long memberNo);
 }

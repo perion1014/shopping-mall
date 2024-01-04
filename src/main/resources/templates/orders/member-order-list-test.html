@@ -23,30 +23,37 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td class="table__no">1</td>
-                <td>pants01...외 5종</td>
-                <td class="table__regtime">250000원</td>
-                <td class="table__regtime">2024-01-02</td>
-                <td class="table__answer">주문 완료</td>
-                <td class="table__order-status"><form method="post">
-                    <button class="btn btn--white btn--order">주문 취소</button>
-                </form></td>
+            <tr th:each="memberOrder, memberOrderIndex: ${memberOrderDTOList}">
+                <td class="table__no" th:text="${memberOrder.memberOrderNo}"></td>
+                <td th:text="(${memberOrder.memberOrderDetailDTOList.size()} == 1)? ${memberOrder.memberOrderDetailDTOList.get(0).itemName}: (${memberOrder.memberOrderDetailDTOList.get(0).itemName} + '...' + (${memberOrder.memberOrderDetailDTOList.size()} -1) + '종')">pants01...외 5종</td>
+                <td class="table__regtime" th:text="${priceSumDTOList.get(memberOrderIndex)} + '원'">250000원</td>
+                <td class="table__regtime" th:text="${memberOrder.orderTime}"></td>
+                <td class="table__answer" th:text="(${memberOrder.orderStatus} == 1)? '주문 완료': '주문 취소'"></td>
+                <td class="table__order-status">
+                    <form th:action="@{/members/${memberNo}/orders(memberNo=${session.loginMember.memberNo})}" method="post">
+                        <button class="btn btn--white btn--order">주문 취소</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
     <div class="items__page">
-        <span class="now__page">1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>5</span>
-        <span>6</span>
-        <span>7</span>
-        <span>8</span>
-        <span>9</span>
-        <span>10</span>
+        <span th:if="${pageSettings.page &lt;= 1}">이전</span>
+        <span th:unless="${pageSettings.page &lt;= 1}">
+        <a th:href="@{/members/{memberNo}/orders(memberNo=${session.loginMember.memberNo}, page=${pageSettings.page - 1})}">이전</a>
+    </span>
+
+        <span th:each="i: ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
+        <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
+        <a th:if="${i != pageSettings.page}"
+           th:href="@{/members/{memberNo}/orders(memberNo=${session.loginMember.memberNo}, page=${i})}"
+           th:text="${i}"></a>
+    </span>
+
+        <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
+        <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
+           th:href="@{/members/{memberNo}/orders(memberNo=${session.loginMember.memberNo}, page=${pageSettings.page + 1})}">다음</a>
     </div><!--main div-->
 </main>
 </body>

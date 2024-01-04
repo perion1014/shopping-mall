@@ -15,7 +15,7 @@
 </section>
 <ul class="myinfo__container">
         <li class="myinfo__list"><a th:href="@{|/members/${session.loginMember.getMemberNo()}/update|}"><img class="myinfo__icons" src="/images/icons/user.svg"><h4 class="myinfo__text">회원정보 수정</h4></a></li>
-        <li class="myinfo__list"><a><img class="myinfo__icons" src="/images/icons/order.svg"> <h4 class="myinfo__text">주문목록 조회</h4></a></li>
+        <li class="myinfo__list"><a th:href="@{|/members/${session.loginMember.getMemberNo()}/orders|}"><img class="myinfo__icons" src="/images/icons/order.svg"> <h4 class="myinfo__text">주문목록 조회</h4></a></li>
         <li class="myinfo__list"><a><img class="myinfo__icons" src="/images/icons/review.svg"> <h4 class="myinfo__text">리뷰목록 조회</h4></a></li>
         <li class="myinfo__list"><a><img class="myinfo__icons" src="/images/icons/qna.svg"> <h4 class="myinfo__text">나의 질문 조회</h4></a></li>
 </ul>

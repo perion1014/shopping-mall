@@ -3,12 +3,16 @@ package com.example.shoppingmall.order.controller;
 import com.example.shoppingmall.cart.dto.CartDeleteDTO;
 import com.example.shoppingmall.cart.dto.CartReadDTO;
 import com.example.shoppingmall.cart.service.CartService;
+import com.example.shoppingmall.item.dto.ItemDTO;
 import com.example.shoppingmall.item.dto.ItemStockDTO;
 import com.example.shoppingmall.item.service.ItemService;
 import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.MemberDTO;
 import com.example.shoppingmall.member.service.MemberService;
+import com.example.shoppingmall.order.domain.MemberOrderDetail;
 import com.example.shoppingmall.order.dto.*;
+import com.example.shoppingmall.order.form.MemberOrderPageForm;
+import com.example.shoppingmall.order.form.MemberOrderViewForm;
 import com.example.shoppingmall.order.service.MemberOrderService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -38,15 +42,7 @@ public class OrderControllerPYM {
     public Map<String, Object> checkMemberOrderItemStock(@RequestBody List<MemberOrderItemStockCheckDTO> jsonData,
                                                          @PathVariable(name="memberNo") Integer memberNo){
 
-//        System.out.println(jsonData);
-//        System.out.println(memberNo);
         System.out.println("컨트롤러에 도착 확인");
-
-//        for(int i =0; i <jsonData.size(); i++){
-//            System.out.println(jsonData.get(i).getItemNo());
-//            System.out.println(jsonData.get(i).getItemSize());
-//            System.out.println(jsonData.get(i).getItemQuantity());
-//        }
 
         boolean isStockEnough = true;   // 재고가 충분한지? -> default value: true
 
@@ -88,6 +84,7 @@ public class OrderControllerPYM {
         for (int i = 0; i < jsonData.size(); i++) {
             MemberOrderDetailAddDTO memberOrderDetailAddDTO = new MemberOrderDetailAddDTO();
             memberOrderDetailAddDTO.setItemNo(jsonData.get(i).getItemNo());
+            memberOrderDetailAddDTO.setItemName(jsonData.get(i).getItemName());
             memberOrderDetailAddDTO.setItemSize(jsonData.get(i).getItemSize());
             memberOrderDetailAddDTO.setItemQuantity(jsonData.get(i).getItemQuantity());
             memberOrderDetailAddDTOList.add(memberOrderDetailAddDTO);
@@ -133,7 +130,7 @@ public class OrderControllerPYM {
             CartDeleteDTO cartDeleteDTO = new CartDeleteDTO(memberNo, memberOrderDetailAddDTO.getItemNo(), memberOrderDetailAddDTO.getItemSize());
             cartService.deleteCartItemByItemNoAndItemSize(cartDeleteDTO);
         }
-
+        session.setAttribute("memberOrderDTO", null);
 
         return "orders/member-order-success-test";
     }
@@ -142,16 +139,42 @@ public class OrderControllerPYM {
     /* user */
     @GetMapping("/members/{memberNo}/orders")
     public String showMemberOrderList(@PathVariable(name="memberNo") Long memberNo,
+                                      @RequestParam(value="page", required=false, defaultValue="1") int page,
+                                      @ModelAttribute MemberOrderViewForm memberOrderViewForm,
                                       HttpServletRequest request,
                                       Model model) {
+
         HttpSession session = request.getSession();
         if (session.getAttribute("loginMember") == null ) {
             return "redirect:/members/login";
         }
+        memberOrderViewForm.setMemberNo(memberNo);
+        model.addAttribute("pageSettings", memberOrderService.setMemberOrderListPage(page, memberOrderViewForm));
 
-        List<MemberOrderDTO> memberOrderDTOList = memberOrderService.findMemberOrderList(memberNo);
+        List<MemberOrderDTO> memberOrderDTOList = memberOrderService.findMemberOrderList(page, memberOrderViewForm);
         model.addAttribute("memberOrderDTOList", memberOrderDTOList);
-        return null;
+
+        List<Integer> priceSumList = new ArrayList<>();
+        for (MemberOrderDTO memberOrderDTO: memberOrderDTOList) {
+            Integer priceSum = 0;
+            for (MemberOrderDetailDTO memberOrderDetailDTO: memberOrderDTO.getMemberOrderDetailDTOList()) {
+                priceSum += memberOrderDetailDTO.getItemPrice();
+            }
+            priceSumList.add(priceSum);
+        }
+        List<Integer> priceSumDTOList = new ArrayList<>();
+        for (int i = 0; i < priceSumList.size(); i++) {
+            priceSumDTOList.add(priceSumList.get(priceSumList.size() - i - 1));
+        }
+        model.addAttribute("priceSumDTOList", priceSumDTOList);
+
+        return "orders/member-order-list-test";
+    }
+
+    /* user */
+    @PostMapping("/members/{memberNo}/orders")
+    public String cancelMemberOrder(@PathVariable(name = "memberNo") Long memberNo) {
+        return "redirect:/members/" + memberNo + "/orders";
     }
 
     /* user */
