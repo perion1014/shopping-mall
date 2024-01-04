@@ -31,38 +31,38 @@
     </form>
 
     <!--아이디 찾기-->
-    <form action="/members/info/id/find-success" name="memberEmail" method="post" id="display1">
+    <form action="/members/info/id/find-success" name="memberEmail" method="post" id="display1"><!--th:object="${memberIdDTO}"-->
         <label class="label" for="memberEmail">
             <h5 class="label__title">이메일*</h5>
-            <input id="memberEmail" name="memberEmail" class="input" type="text"/>
+            <input id="memberEmail" name="memberEmail" class="input" type="text"/><!--th:field="*{memberEmail}"추가 예정-->
             <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberEmail}-->
             </div>
         </label>
         <button type="submit" class="btn btn--black btn--member-login">아이디 조회</button>
     </form>
 
     <!--비밀번호 찾기-->
-    <form action="/members/info/pw" method="post" id="display2">
+    <form action="/members/info/pw" method="post" id="display2"><!--th:object="${memberPwDTO}"-->
         <label class="label" for="memberId">
             <h5 class="label__title">아이디*</h5>
             <input id="memberId" name="memberId" class="input" type="text"/>
             <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberId}-->
             </div>
         </label>
         <label class="label" for="Email">
             <h5 class="label__title">이메일*</h5>
             <input id="Email" name="Email" class="input" type="text"/>
             <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberEmail}-->
             </div>
         </label>
         <label class="label" for="Email">
-            <h5 class="label__title">인증번호*</h5>
+            <h5 class="label__title">핸드폰번호*</h5>
             <input id="verification code" name="verification code" class="input" type="text"/>
             <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
+                <h6 class="label__error">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberHp}-->
             </div>
         </label>
         <button type="submit" class="btn btn--black btn--member-login">비밀번호 찾기</button>
