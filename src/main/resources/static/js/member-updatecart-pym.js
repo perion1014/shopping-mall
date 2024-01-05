@@ -34,6 +34,7 @@ function checkItemStock2(cartDTOListSize, memberNo){
         .then(data => {
 
             if(JSON.stringify(data.response).replaceAll('"', '') === '선택하신 상품의 재고가 없습니다.'){
+                alert(JSON.stringify(data.response));
                 location.reload();
             } else {
                 fetch(`/members/${memberNo}/orders/create`, {
@@ -75,6 +76,7 @@ function checkItemStockPurchase(memberNo, itemNo, itemName, itemPrice){
     jsonData.push(jsonItem);
 
 
+    // fetch(`/carts/${memberNo}`) {}
 
     fetch(`/members/${memberNo}/orders/check-itemstock`, {
         method: 'POST',
@@ -86,6 +88,7 @@ function checkItemStockPurchase(memberNo, itemNo, itemName, itemPrice){
         .then(data => {
 
             if(JSON.stringify(data.response).replaceAll('"', '') === '선택하신 상품의 재고가 없습니다.'){
+                alert(JSON.stringify(data.response));
                 location.reload();
             } else {
                 fetch(`/members/${memberNo}/orders/create`, {
@@ -102,5 +105,16 @@ function checkItemStockPurchase(memberNo, itemNo, itemName, itemPrice){
         }).catch(error => {
         alert('JSON 전송 실패 - 사유 : ' + error);
     })
+}
+
+function checkCartExists(ifAdded) {
+
+    if (ifAdded === false) {
+        let p = prompt('이미 장바구니에 담겨 있는 상품입니다.\n장바구니로 이동하시겠습니까?');
+        if (p === true) {
+
+        }
+    }
+
 }
 

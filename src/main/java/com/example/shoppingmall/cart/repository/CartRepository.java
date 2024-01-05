@@ -4,6 +4,7 @@ import com.example.shoppingmall.cart.domain.Cart;
 import com.example.shoppingmall.cart.dto.CartDeleteDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface CartRepository {
 
@@ -19,4 +20,6 @@ public interface CartRepository {
     void addCartItem(Cart cart);
 
     void deleteCartItemByItemNoAndItemSize(CartDeleteDTO cartDeleteDTO);
+
+    List<Cart> getAllCarts();
 }

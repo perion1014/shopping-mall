@@ -54,13 +54,28 @@ public class CartService {
         cartRepository.deleteCartItem(cartNo);
     }
 
-    public void addCartItem(Long memberNo, Long itemNo, String cartAddItemSize, Integer addCartItemQuantiy){
-    Cart cart = new Cart();
-    cart.setMemberNo(memberNo);
-    cart.setItemNo(itemNo);
-    cart.setItemSize(cartAddItemSize);
-    cart.setCartItemQuantity(addCartItemQuantiy);
-    cartRepository.addCartItem(cart);
+    public boolean addCartItem(Long memberNo, Long itemNo, String cartAddItemSize, Integer addCartItemQuantiy){
+        Cart cart = new Cart();
+        cart.setMemberNo(memberNo);
+        cart.setItemNo(itemNo);
+        cart.setItemSize(cartAddItemSize);
+        cart.setCartItemQuantity(addCartItemQuantiy);
+
+        boolean ifExists = false;
+        List<Cart> cartList = cartRepository.getAllCarts();
+        for (Cart c: cartList) {
+            if (c.getItemNo().equals(itemNo) && c.getItemSize().equals(cartAddItemSize)) {
+                ifExists = true;
+                break;
+            }
+        }
+        if (ifExists == false) {
+            cartRepository.addCartItem(cart);
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public List<nonMemberCartAddDTO> nonMemberAddCartItem(String thumbnail, String name, String size, Integer price, Integer Quantity, Long itemNo, HttpServletRequest req){
