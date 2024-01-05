@@ -184,8 +184,6 @@ public class ItemController {
                               @RequestParam(value="page", required=false, defaultValue="1") int page,
                               Model model) {
 
-
-
         if (itemSearchForm.getSearchKeyword() == null || itemSearchForm.getSearchKeyword().isEmpty()) {
             model.addAttribute("pageSettings", itemService.setItemListPage(page));
             List<ItemDTO> itemDTOList = itemService.getItemListPage(page);

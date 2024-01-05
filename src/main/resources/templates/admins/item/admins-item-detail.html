@@ -49,9 +49,9 @@
             <div class="middle">
               <div class="photo">
                 <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/thumb/__${itemPhotosDTO.itemThumb}__}"/>
-                <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg1}__}"/>
-                <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg2}__}"/>
-                <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg3}__}"/>
+                <img th:if="${itemPhotosDTO.itemImg1} != null" th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg1}__}"/>
+                <img th:if="${itemPhotosDTO.itemImg2} != null" th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg2}__}"/>
+                <img th:if="${itemPhotosDTO.itemImg3} != null" th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg3}__}"/>
               </div>
 
               <div class="contents">
@@ -92,13 +92,13 @@
             </div>
 
             <div class="item_btn">
-              <button>수정</button>
-              <form th:action="@{/items/admin/{itemNo}/delete(itemNo=${itemDTO.itemNo})}">
-                <button>삭제</button>
-              </form>
+              <button>수정</button>        </form>
+                <form th:action="@{/items/admin/{itemNo}/delete(itemNo=${itemDTO.itemNo})}" method="get">
+                  <button>삭제</button>
+                </form>
             </div>
           </div>
-        </form>
+
       </div>
       <!--main div-->
     </main>
