@@ -8,6 +8,7 @@ function checkItemStock2(cartDTOListSize, memberNo){
     let itemName = '';
     let itemSize = '';
     let itemQuantity = 0;
+    let itemPrice = 0;
 
     for(var i = 0; i < cartDTOListSize; i++){
         // alert(`i: ${i}`);
@@ -16,8 +17,9 @@ function checkItemStock2(cartDTOListSize, memberNo){
             itemName = document.getElementById(`itemName_${i}`).innerText;
             itemSize = document.getElementById(`itemSize_${i}`).innerText;
             itemQuantity = document.getElementById(`inputvalue_${i}`).value;
+            itemPrice = document.getElementById(`itemPrice_${i}`).value;
 
-            let jsonItem = {itemNo: itemNo, itemName: itemName, itemSize: itemSize, itemQuantity: itemQuantity};
+            let jsonItem = {itemNo: itemNo, itemName: itemName, itemSize: itemSize, itemQuantity: itemQuantity, itemPrice: itemPrice};
             jsonData.push(jsonItem);
         }
     }
