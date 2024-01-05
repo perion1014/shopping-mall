@@ -104,14 +104,13 @@ function calculatePriceSum(cartDTOListSize){
 
 function checkItemStock(cartDTOListSize){
 
-    alert('함수 진입');
-
     let jsonData= [];
 
     let itemNo = 0;
     let itemName = '';
     let itemSize = '';
     let itemQuantity = 0;
+    let itemPrice = 0;
 
     for(var i = 0; i < cartDTOListSize; i++){
         if(document.getElementById('cartCheckBox_' + i).checked === true){
@@ -123,8 +122,9 @@ function checkItemStock(cartDTOListSize){
             // alert('itemSize : ' + itemSize);
             itemQuantity = document.getElementById('inputvalue_' + i).value;
             // alert('itemQuantity : ' + itemQuantity);
-
-            var jsonItem = {itemNo:itemNo, itemName: itemName, itemSize: itemSize, itemQuantity : itemQuantity};
+            itemPrice = document.getElementById('itemPrice_' + i).value;
+            // alert('itemPrice :' + itemPrice);
+            var jsonItem = {itemNo:itemNo, itemName: itemName, itemSize: itemSize, itemQuantity : itemQuantity, itemPrice: itemPrice};
             jsonData.push(jsonItem);
         }
     }
@@ -137,27 +137,19 @@ function checkItemStock(cartDTOListSize){
         body:JSON.stringify(jsonData)
     }).then(response => response.json())
         .then(data => {
-            if(JSON.stringify(data.response) !== '데이터 전달/처리 성공'){
+            //alert(JSON.stringify(data.response));
+                if(JSON.stringify(data.response).replaceAll('"', '') !== '데이터 전달/처리 성공'){
                 var stocksArray = JSON.stringify(data.response).split(',');
                 var noStockMessage = '';
+
                 for(var i = 0; i < stocksArray.length; i++){
                 noStockMessage += stocksArray[i] + '\n';
                 }
+
                 alert(noStockMessage.replaceAll('"', '') + '상품의 재고가 부족합니다.');
             } else{
-              fetch('/orders/create',{
-                  method:'POST',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify(jsonData)
-              }).then(data =>{
-                  location.href = '/temp';
-              })
-
-
+              location.href = '/orders/create';
             }
-
         }).catch(error => {
         alert('JSON 전송 실패 - 사유 : ' + error);
     })
