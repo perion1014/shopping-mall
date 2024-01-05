@@ -70,9 +70,11 @@ public class ReviewController {
     // 어드민 리뷰 삭제
     @PostMapping("delete")
     public String deleteReview(@RequestParam(name = "reviewNo") Long reviewNo) {
-        reviewService.deleteReview(reviewNo);
 
-        reviewService.updateItemGradeForDelete(reviewNo);
+        Long itemNo = reviewService.getItemNoByReviewNo(reviewNo);
+
+        reviewService.deleteReview(reviewNo);
+        reviewService.updateItemGrade(itemNo);
         return "redirect:/reviews";
     }
     @GetMapping("search")
