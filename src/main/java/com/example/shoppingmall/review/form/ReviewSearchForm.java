@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ReviewSearchForm {
     private String category;
-    private String keyword;
+    private Long keyword;
     private Integer startPage;
     private Integer perPageReview;
 }

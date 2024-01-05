@@ -8,6 +8,6 @@ public class ReviewMemberControllerKHM {
 
     @GetMapping("/members/review-list")
     public String reviewListTest(){
-        return "reviews/member-review-list";
+        return "reviews/member-reviews";
     }
 }
