@@ -9,6 +9,13 @@
     <select id="findByNo" resultType="com.example.shoppingmall.notice.domain.Notice">
         select * from notice where notice_no = #{noticeNo}
     </select>
+    
+<!--    <select id="joinNoticeByAdminNo" resultType="com.example.shoppingmall.notice.domain.Notice">resultType재설정-->
+<!--        SELECT admin.admin_no, admin.admin_id-->
+<!--        FROM notice as notice-->
+<!--                 JOIN admin as admin ON notice.admin_no = admin.admin_no-->
+<!--        WHERE admin.admin_no = 3;-->
+<!--    </select>-->
 
     <select id="countAllNotice" resultType="Long">
         select count(notice_no) from notice
