@@ -1,5 +1,6 @@
 package com.example.shoppingmall.order.dto;
 
+import com.example.shoppingmall.order.domain.NonMemberOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,15 +13,27 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class NonMemberOrderAddDTO {
 
-    private Long nonMemberOrderNo;
     private String nonMemberName;
-    private Timestamp orderTime;
     private String orderHp;
     private String orderEmail;
     private String receiverName;
     private Integer orderPostalCode;
     private String orderAddressBasic;
     private String orderAddressDetail;
-    private Integer orderStatus;
+
+    public static NonMemberOrder toNonMemberOrder(NonMemberOrderAddDTO nonMemberOrderAddDTO){
+        NonMemberOrder nonMemberOrder = new NonMemberOrder();
+        nonMemberOrder.setNonMemberOrderNo(null);
+        nonMemberOrder.setOrderTime(null);
+        nonMemberOrder.setOrderStatus(null);
+        nonMemberOrder.setNonMemberName(nonMemberOrderAddDTO.getNonMemberName());
+        nonMemberOrder.setOrderHp(nonMemberOrderAddDTO.getOrderHp());
+        nonMemberOrder.setOrderEmail(nonMemberOrderAddDTO.getOrderEmail());
+        nonMemberOrder.setReceiverName(nonMemberOrderAddDTO.getReceiverName());
+        nonMemberOrder.setOrderPostalCode(nonMemberOrderAddDTO.getOrderPostalCode());
+        nonMemberOrder.setOrderAddressBasic(nonMemberOrderAddDTO.getOrderAddressBasic());
+        nonMemberOrder.setOrderAddressDetail(nonMemberOrderAddDTO.getOrderAddressDetail());
+        return nonMemberOrder;
+    }
 
 }

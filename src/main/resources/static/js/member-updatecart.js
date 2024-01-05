@@ -110,16 +110,18 @@ function checkItemStock(cartDTOListSize, memberNo){
     let itemName = '';
     let itemSize = '';
     let itemQuantity = 0;
+    let itemPrice = 0;
 
     for(var i = 0; i < cartDTOListSize; i++){
         if(document.getElementById('cartCheckBox_' + i).checked === true){
             itemName = document.getElementById('itemName_' + i).innerText;
             itemSize = document.getElementById('itemSize_' + i).innerText;
             itemQuantity = document.getElementById('inputvalue_' + i).value;
+            itemPrice = document.getElementById('itemPrice_' + i).value;
             // alert('자스에서 받아온 아이템 명 : ' + itemName);
             // alert('자스에서 받아온 아이템 사이즈 : ' + itemSize);
             // alert('자스에서 받아온 아이템 수량 : ' + selectedItemQuantity);
-            let jsonItem = {itemName: itemName, itemSize: itemSize, itemQuantity: itemQuantity};
+            let jsonItem = {itemName: itemName, itemSize: itemSize, itemQuantity: itemQuantity, itemPrice: itemPrice};
             jsonData.push(jsonItem);
             // alert('아이템 명 : ' + itemName);
             // alert('아이템 사이즈 : ' + itemSize);

@@ -8,6 +8,9 @@ import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.order.domain.MemberOrder;
 import com.example.shoppingmall.order.dto.*;
 import com.example.shoppingmall.order.service.MemberOrderService;
+import com.example.shoppingmall.order.service.NonMemberOrderService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +26,7 @@ import java.util.Map;
 public class OrderController {
     private final ItemService_CMS itemService_cms;
     private final MemberOrderService memberOrderService;
+    private final NonMemberOrderService nonMemberOrderService;
 
 //    @PostMapping("/members/{memberNo}/orders/check-itemstock")
 //    @ResponseBody
@@ -47,12 +51,13 @@ public class OrderController {
 
     @PostMapping("orders/check-itemstock")
     @ResponseBody
-    public Map<String, Object> checkNonMemberOrderItemStock(@RequestBody List<MemberOrderItemStockCheckDTO> jsonData){
+    public Map<String, Object> checkNonMemberOrderItemStock(@RequestBody List<MemberOrderItemStockCheckDTO> jsonData,
+                                                            HttpServletRequest req){
 
         System.out.println("컨트롤러 도착 확인");
         Map<String, Object> responseData = new HashMap<>();
         List<ItemStockDTO> stockCheckFalseList = new ArrayList<>();
-        String SendResponseString = "";
+        String sendResponseString = "";
 
         for(int i = 0; i < jsonData.size(); i++){
             ItemStockDTO itemStockDTO = new ItemStockDTO();
@@ -60,7 +65,7 @@ public class OrderController {
             itemStockDTO.setItemSize(jsonData.get(i).getItemSize());
 
             if(!itemService_cms.CompareStockValuesFromCartAndDB(itemStockDTO, jsonData.get(i).getItemQuantity())){
-                SendResponseString += jsonData.get(i).getItemName() + " : " + jsonData.get(i).getItemSize() + "사이즈" + ",";
+                sendResponseString += jsonData.get(i).getItemName() + " : " + jsonData.get(i).getItemSize() + "사이즈" + ",";
             }
 
 //            System.out.println(jsonData.get(i).getItemNo());
@@ -69,10 +74,25 @@ public class OrderController {
 //            System.out.println(jsonData.get(i).getItemQuantity());
         }
 
-        if(SendResponseString.isEmpty()) {
+        if(sendResponseString.isEmpty()) {
+            List<NonMemberOrderDetailAddDTO> nonMemberOrderDetailAddDTOList = new ArrayList<>();
+            NonMemberOrderDetailAddDTO nonMemberOrderDetailAddDTO = null;
+
+            for(int i = 0; i < jsonData.size(); i++){
+                nonMemberOrderDetailAddDTO = new NonMemberOrderDetailAddDTO();
+                nonMemberOrderDetailAddDTO.setItemNo(jsonData.get(i).getItemNo());
+                nonMemberOrderDetailAddDTO.setItemName(jsonData.get(i).getItemName());
+                nonMemberOrderDetailAddDTO.setItemSize(jsonData.get(i).getItemSize());
+                nonMemberOrderDetailAddDTO.setItemQuantity(jsonData.get(i).getItemQuantity());
+                nonMemberOrderDetailAddDTO.setItemPrice(jsonData.get(i).getItemPrice());
+                nonMemberOrderDetailAddDTOList.add(nonMemberOrderDetailAddDTO);
+            }
+
+            HttpSession session = req.getSession();
+            session.setAttribute("nonMemberOrderDetailAddDTOList", nonMemberOrderDetailAddDTOList);
             responseData.put("response", "데이터 전달/처리 성공");
         } else{
-            responseData.put("response", SendResponseString);
+            responseData.put("response", sendResponseString);
         }
 
         return responseData;
@@ -81,6 +101,43 @@ public class OrderController {
     @GetMapping("/orders/non-members")
     public String goToNonMemberOrderPage(){
         return "orders/nonmember-order-check";
+    }
+
+    @GetMapping("/orders/create")
+    public String goToInputNonMemberOrderPage(HttpServletRequest req){
+
+//        HttpSession session = req.getSession();
+//        List<NonMemberOrderDetailAddDTO> nonMemberOrderDetailAddDTOList = (List<NonMemberOrderDetailAddDTO>) session.getAttribute("nonMemberOrderDetailAddDTOList");
+//        System.out.println("세션으로 받아온 리스트 사이즈 : " + nonMemberOrderDetailAddDTOList.size());
+//
+//        for(int i = 0; i < nonMemberOrderDetailAddDTOList.size(); i++){
+//            System.out.println(nonMemberOrderDetailAddDTOList.get(i).getItemNo());
+//            System.out.println(nonMemberOrderDetailAddDTOList.get(i).getItemName());
+//            System.out.println(nonMemberOrderDetailAddDTOList.get(i).getItemSize());
+//            System.out.println(nonMemberOrderDetailAddDTOList.get(i).getItemQuantity());
+//            System.out.println(nonMemberOrderDetailAddDTOList.get(i).getItemPrice());
+//        }
+
+        return "orders/nonmember-order";
+    }
+
+    @PostMapping("/orders/create")
+    public String makeNonMemberOrder(@ModelAttribute NonMemberOrderAddDTO nonMemberOrderAddDTO,
+                                     HttpServletRequest req){
+
+        System.out.println("입력받은 주문자명 : " + nonMemberOrderAddDTO.getNonMemberName());
+        System.out.println("입력받은 휴대폰 번호 : " + nonMemberOrderAddDTO.getOrderHp());
+        System.out.println("입력받은 이메일 : " + nonMemberOrderAddDTO.getOrderEmail());
+        System.out.println("입력받은 수령자명 : " + nonMemberOrderAddDTO.getReceiverName());
+        System.out.println("입력받은 우편번호 : " + nonMemberOrderAddDTO.getOrderPostalCode());
+        System.out.println("입력받은 기본주소 : " + nonMemberOrderAddDTO.getOrderAddressBasic());
+        System.out.println("입력받은 상세주소 : " + nonMemberOrderAddDTO.getOrderAddressDetail());
+
+        nonMemberOrderService.saveNonMemberOrder(nonMemberOrderAddDTO);
+        List<NonMemberOrderDetailAddDTO> nonMemberOrderDetailAddDTOList = (List<NonMemberOrderDetailAddDTO>) req.getSession().getAttribute("nonMemberOrderDetailAddDTOList");
+        nonMemberOrderService.saveNonMemberOrderDetail(nonMemberOrderDetailAddDTOList);
+
+        return "orders/nonmember-order-success-test";
     }
 
 }

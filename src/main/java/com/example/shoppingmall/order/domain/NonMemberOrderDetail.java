@@ -15,5 +15,7 @@ public class NonMemberOrderDetail {
     private Long itemNo;
     private Integer itemQuantity;
     private String itemSize;
+    private String itemName;
+    private Integer itemPrice;
 
 }

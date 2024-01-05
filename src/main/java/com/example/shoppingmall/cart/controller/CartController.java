@@ -39,6 +39,7 @@ public class CartController {
         System.out.println("회원 - 받아온 아이템 번호 : " + itemNo);
         System.out.println("회원 - 받아온 아이템 사이즈 : " + itemSize);
         System.out.println("회원 - 받아온 아이템 수량 : " + itemQuantity);
+        System.out.println("회원 - 받아온 아이템 수량 : " + itemQuantity);
 
         cartService.addCartItem(memberNo, itemNo, itemSize, itemQuantity);
         //return "redirect:/carts/" + memberNo;

@@ -5,29 +5,31 @@
     <title>PERION - 비회원 주문</title>
     <meta name="description" content="20대 선호도 1위 쇼핑몰! 지금 로그인하면 다양한 이벤트 정보를 확인할 수 있습니다.">
     <link rel="stylesheet" href="/css/pages/user/order.css">
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/kakao-address.js"></script>
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
 <main class="main__container">
     <h1 class="main__title">비회원 주문 정보 입력</h1>
-    <form method="post">
+    <form action = "/orders/create" method="post">
         <label class="label" for="memberName">
             <h5 class="label__title">주문자명*</h5>
-            <input id="memberName" name ="memberName" class="input input--lg" type="text" />
+            <input id="memberName" name ="nonMemberName" class="input input--lg" type="text" />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberHp">
             <h5 class="label__title">주문자 휴대폰 번호*</h5>
-            <input id="memberHp" name="memberHp" class="input input--lg" type="text" />
+            <input id="memberHp" name="orderHp" class="input input--lg" type="text" />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberEmail">
             <h5 class="label__title">주문자 이메일*</h5>
-            <input id="memberEmail" name="memberEmail" class="input input--lg" type="text" />
+            <input id="memberEmail" name="orderEmail" class="input input--lg" type="text" />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
@@ -41,7 +43,7 @@
         </label>
         <label class="label" for="memberPostalCode">
             <h5 class="label__title">우편번호*</h5>
-            <input id="memberPostalCode" name=memberPostalCode class="input input--mi" type="text" readonly onclick="execDaumPostalcode()"/>
+            <input id="memberPostalCode" name=orderPostalCode class="input input--mi" type="text" readonly onclick="execDaumPostalcode()"/>
             <button type="button" class="btn btn--mi btn--black btn--address"  onclick="execDaumPostalcode()">우편번호 찾기</button>
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
@@ -49,14 +51,14 @@
         </label>
         <label class="label" for="memberAddressBasic">
             <h5 class="label__title">기본 주소*</h5>
-            <input id="memberAddressBasic" name="memberAddressBasic" class="input input--lg" type="text" readonly onclick="execDaumPostalcode()"/>
+            <input id="memberAddressBasic" name="orderAddressBasic" class="input input--lg" type="text" readonly onclick="execDaumPostalcode()"/>
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberAddressDetail">
             <h5 class="label__title">상세 주소</h5>
-            <input id="memberAddressDetail" name="memberAddressDetail" class="input input--lg" type="text" />
+            <input id="memberAddressDetail" name="orderAddressDetail" class="input input--lg" type="text" />
             <div class="label__error-container">
                 <h6 class="label__error">에러 메시지를 출력합니다.</h6>
             </div>
