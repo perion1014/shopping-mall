@@ -190,8 +190,8 @@ public class MemberController {
 
     /*아이디 찾기 성공 페이지*/
     @PostMapping("/info/id/find-success")
-    public String findIdSuccess(@RequestParam("memberEmail")String memberEmail, Model model){
-        model.addAttribute("memberSearchDTO", memberInfoService.getMemberIdByEmail(memberEmail));
+    public String findIdSuccess(@Validated@RequestParam("memberEmail")String memberEmail, Model model){
+        model.addAttribute("memberIdDTO", memberInfoService.getMemberIdByEmail(memberEmail));
         return "info/find-id";
     }
 
