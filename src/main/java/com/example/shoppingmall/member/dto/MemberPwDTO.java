@@ -18,12 +18,15 @@ public class MemberPwDTO {
     private String memberEmail;
     @NotBlank(message = "핸드폰번호를 입력해주세요")
     private String memberHp;
+    private String memberPw;
 
     public static MemberPwDTO MemberToMemberPwDTO(Member member){
         MemberPwDTO memberPwDTO = new MemberPwDTO();
         memberPwDTO.setMemberId(member.getMemberId());
         memberPwDTO.setMemberEmail(member.getMemberEmail());
         memberPwDTO.setMemberHp(member.getMemberHp());
+        memberPwDTO.setMemberPw(member.getMemberPw());
         return memberPwDTO;
     }
+
 }

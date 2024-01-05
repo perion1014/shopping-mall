@@ -19,4 +19,5 @@ public interface NoticeRepository {
     Long countAllNoticeByKeyword(NoticeSearchForm noticeSearchForm);
     List<Notice> findAllNoticeByKeyword(NoticeSearchForm noticeSearchForm);
 
+    String getAdminIdByAdminNo(int adminNo);
 }

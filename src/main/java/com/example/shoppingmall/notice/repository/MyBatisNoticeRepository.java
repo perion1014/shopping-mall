@@ -55,4 +55,9 @@ public class MyBatisNoticeRepository implements NoticeRepository{
     public List<Notice> findAllNoticeByKeyword(NoticeSearchForm noticeSearchForm){
         return noticeMapper.findAllNoticeByKeyword(noticeSearchForm);
     }
+
+    @Override
+    public String getAdminIdByAdminNo(int adminNo){
+        return noticeMapper.getAdminIdByAdminNo(adminNo);
+    }
 }

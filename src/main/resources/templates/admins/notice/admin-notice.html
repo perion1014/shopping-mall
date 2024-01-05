@@ -45,14 +45,14 @@
             <tr th:onclick="|location.href='@{|/notice/admin/${noticeSearchDTO.noticeNo}|}'|" style="cursor: pointer;">
                 <td th:text="${noticeSearchDTO.noticeNo}"></td>
                 <td th:text="${noticeSearchDTO.noticeTitle}"></td>
-                <td name="writer">admin</td>
+                <td name="writer" th:text="${noticeSearchDTO.adminId}"></td>
                 <!--                <td name="writer" th:text="${session.loginAdmin.getAdminId()}"></td>-->
                 <td th:text="${#dates.format(noticeSearchDTO.noticeCreatedTime, 'yyyy-MM-dd')}"></td>
                 <td th:text="${noticeSearchDTO.noticeViewcount}"></td>
                 <td>
                     <form name="deleteNotice" th:action="@{|/notice/admin/${noticeSearchDTO.noticeNo}/delete|}"
                           method="post">
-                        <button th:if="${session.loginAdmin.getAdminId()} != null" class="btn btn--index btn--black btn--xs">삭제</button>
+                        <button th:if="${session.loginAdmin} != null" class="btn btn--index btn--black btn--xs">삭제</button>
                     </form>
                 </td>
             </tr>

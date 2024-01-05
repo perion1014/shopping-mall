@@ -9,6 +9,10 @@
     <select id="findByNo" resultType="com.example.shoppingmall.notice.domain.Notice">
         select * from notice where notice_no = #{noticeNo}
     </select>
+
+    <select id="getAdminIdByAdminNo" parameterType="Integer" resultType="String">
+        select admin_id from admin where admin_no = #{adminNo}
+    </select>
     
 <!--    <select id="joinNoticeByAdminNo" resultType="com.example.shoppingmall.notice.domain.Notice">resultType재설정-->
 <!--        SELECT admin.admin_no, admin.admin_id-->
