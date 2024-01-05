@@ -211,15 +211,6 @@ public class OrderControllerPYM {
         return "/orders/nonmember-order";
     }
 
-    @GetMapping("/members/{memberNo}/orders/create")
-    public String goToInputMemberOrder(@PathVariable(name="memberNo") Long memberNo) {
-
-        System.out.println("goToInputMemberOrder 진입");
-
-        return null;    // html 파일이 생성되면 그때 수정할 예정.
-    }
-
-
     @GetMapping("/orders/admin/members")
     public String showMemberOrderList(@RequestParam(value="page", required=false, defaultValue="1") int page,
                                       HttpServletRequest request,
@@ -243,6 +234,12 @@ public class OrderControllerPYM {
         List<MemberOrderDetailDTO> memberOrderDetailDTOList = memberOrderService.getMemberOrderDetailList(orderNo);
         model.addAttribute("memberOrderDetailDTOList", memberOrderDetailDTOList);
         return "admins/admins-order-detail-pym";    // html 파일이 생성되면 그때 수정할 예정.
+    }
+
+    @GetMapping("/orders/admin/members/{orderNo}/cancel")
+    public String cancelMemberOrderAdmin(@PathVariable(name="orderNo") Long orderNo) {
+        memberOrderService.cancelMemberOrder(orderNo);
+        return "redirect:/orders/admin/members";
     }
 
 

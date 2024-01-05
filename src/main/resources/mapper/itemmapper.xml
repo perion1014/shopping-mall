@@ -98,15 +98,16 @@
     <update id="updateItemByNo" parameterType="com.example.shoppingmall.item.domain.Item">
         update item
         set item_name = #{itemName},
-            item_category=#{itemCategory},
-            item_detail=#{itemDetail},
+            item_category = #{itemCategory},
+            item_detail = #{itemDetail},
+            item_price = #{itemPrice}
         where item_no = #{itemNo}
     </update>
 
-    <update id="updateItemStockByNo" parameterType="com.example.shoppingmall.item.domain.ItemStock">
+    <update id="updateItemStock" parameterType="com.example.shoppingmall.item.domain.ItemStock">
         update item_stock
-        set item_stock = #{itemStockValue}
-        where item_stock_no=#{item_stock_no}
+        set item_stock_value = #{itemStockValue}
+        where item_no = #{itemNo} and item_size = #{itemSize}
     </update>
 
     <select id="findItemStocksByItemNo" parameterType="com.example.shoppingmall.item.domain.Item" resultType="java.util.List">

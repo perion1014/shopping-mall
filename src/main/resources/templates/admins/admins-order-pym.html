@@ -58,7 +58,10 @@
                 <td th:text="${memberOrder.orderPostalCode}"></td>
                 <td th:text="${memberOrder.orderAddressBasic} + ' ' + ${memberOrder.orderAddressDetail}"></td>
                 <td th:text="(${memberOrder.orderStatus} == 1)? '주문 완료': '주문 취소'"></td>
-                <td><a>취소</a></td>
+                <td>
+                    <a th:if="${memberOrder.orderStatus} == 1" th:href="@{|/orders/admin/members/${memberOrder.memberOrderNo}/cancel|}">취소</a>
+                    <a th:unless="${memberOrder.orderStatus} == 1">취소 완료</a>
+                </td>
             </tr>
 
             </tbody>

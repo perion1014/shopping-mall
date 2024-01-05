@@ -50,6 +50,8 @@ public interface ItemRepository {
 
     void updateItemByNo(Item item);
 
+    void updateItemStock(ItemStock itemStock);
+
     void deleteItemStockByItemNo(Long itemNo);
 
     void deleteItemPhotosByItemNo(Long itemNo);
@@ -72,4 +74,6 @@ public interface ItemRepository {
     Integer getItemStockValueByItemNoAndItemSize(ItemStockDTO itemStockDTO);
 
     String getItemThumbByNo(Long itemNo);
+
+
 }
