@@ -237,11 +237,12 @@ public class OrderControllerPYM {
         return "admins/admins-order-pym";
     }
 
-    @PostMapping("/admin/members/{orderNo}")
-    public String showMemberOrderDetail(@PathVariable(name="orderNo") Long orderNo, Model model) {
-        MemberOrderDetailDTO memberOrderDetailDTO = memberOrderService.getMemberOrderDetail();
-        model.addAttribute("memberOrderDetailDTO", memberOrderDetailDTO);
-        return null;    // html 파일이 생성되면 그때 수정할 예정.
+    @GetMapping("/orders/admin/members/{orderNo}")
+    public String showMemberOrderDetail(@PathVariable(name="orderNo") Long orderNo,
+                                        Model model) {
+        List<MemberOrderDetailDTO> memberOrderDetailDTOList = memberOrderService.getMemberOrderDetailList(orderNo);
+        model.addAttribute("memberOrderDetailDTOList", memberOrderDetailDTOList);
+        return "admins/admins-order-detail-pym";    // html 파일이 생성되면 그때 수정할 예정.
     }
 
 

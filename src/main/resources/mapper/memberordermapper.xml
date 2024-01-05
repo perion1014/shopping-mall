@@ -18,7 +18,7 @@
         select * from member_order where member_no = #{memberNo} order by member_order_no desc limit #{startPage}, #{memberOrdersPerPage}
     </select>
 
-    <select id="findMemberOrderDetail" parameterType="long" resultType="com.example.shoppingmall.order.domain.MemberOrderDetail">
+    <select id="findMemberOrderDetailList" parameterType="long" resultType="com.example.shoppingmall.order.domain.MemberOrderDetail">
         select * from member_order_detail where member_order_no = #{memberOrderNo}
     </select>
 

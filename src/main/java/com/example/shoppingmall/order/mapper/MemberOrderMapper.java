@@ -25,7 +25,7 @@ public interface MemberOrderMapper {
     List<MemberOrder> findMemberOrderList(MemberOrderViewForm memberOrderViewForm);
 
     /* user */
-    List<MemberOrderDetail> findMemberOrderDetail(Long memberOrderNo);
+    List<MemberOrderDetail> findMemberOrderDetailList(Long memberOrderNo);
 
     /* admin */
     List<MemberOrder> getMemberOrderList();
