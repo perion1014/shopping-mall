@@ -66,12 +66,16 @@ public class ReviewService {
         for (Review review : reviews) {
 
             Long memberOrderDetailNo = review.getMemberOrderDetailNo();
-//            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
+
+            String ItemName = reviewRepository.getItemName(review.getItemNo());
 
             String itemSize = reviewRepository.getItemSize(memberOrderDetailNo);
             String memberId = reviewRepository.getMemberId(review.getMemberNo());
 
-            resultList.add(reivewToReviewDTO(review,itemSize,memberId));
+            ReviewDTO reviewDTO = reivewToReviewDTO(review,itemSize,memberId);
+
+            reviewDTO.setItemName(ItemName);
+            resultList.add(reviewDTO);
 
         }
 
@@ -99,7 +103,7 @@ public class ReviewService {
 
     // 어드민 리뷰 페이징
 
-    // 마이페이지 리뷰 가져오고 페이징
+
     public List<ReviewDTO> getAllReviewList(int page) {
 
         int startPage = (page-1) * 7;
@@ -157,11 +161,11 @@ public class ReviewService {
     public List<ReviewDTO> getSearchedReviewList(int page, ReviewSearchForm reviewSearchForm) {
 
         int startPage = (page-1) * 7;
-        int pagePerReview = 7;
+        int perPageReview = 7;
 
 
         reviewSearchForm.setStartPage(startPage);
-        reviewSearchForm.setPerPageReview(pagePerReview);
+        reviewSearchForm.setPerPageReview(perPageReview);
 
         List<Review> reviews = reviewRepository.searchReviewByPaging(reviewSearchForm);
 
@@ -177,7 +181,9 @@ public class ReviewService {
             String memberId = reviewRepository.getMemberId(review.getMemberNo());
 
             ReviewDTO reviewDTO = reivewToReviewDTO(review,itemSize,memberId);
-            System.out.println( reviewDTO.getReviewNo());
+
+            System.out.println( reviewDTO.getItemNo());
+
             reviewDTO.setItemName(ItemName);
             resultList.add(reviewDTO);
 
@@ -203,5 +209,32 @@ public class ReviewService {
         }
 
         return new ReviewPageForm(page,totalPage,startPage,endPage);
+    }
+
+    public void updateItemGrade(Long itemNo) {
+
+        Long reviewScoreTotal = reviewRepository.getSumReviewScore(itemNo);
+        Long reviewCount = reviewRepository.countReviewByItemNo(itemNo);
+
+        float result = (float) reviewScoreTotal / reviewCount ;
+
+        float itemGrade = (float) (Math.round(result * 10.0) / 10.0);
+
+        reviewRepository.updateItemGrade(itemGrade,itemNo);
+    }
+
+    public void updateItemGradeForDelete(Long reviewNo) {
+
+        Long itemNo = reviewRepository.getItemNoByReviewNo(reviewNo);
+        System.out.println(itemNo);
+        Long reviewScoreTotal = reviewRepository.getSumReviewScore(itemNo);
+        Long reviewCount = reviewRepository.countReviewByItemNo(itemNo);
+        System.out.println(reviewCount);
+
+        float result = (float) reviewScoreTotal / reviewCount ;
+
+        float itemGrade = (float) (Math.round(result * 10.0) / 10.0);
+
+        reviewRepository.updateItemGrade(itemGrade,itemNo);
     }
 }

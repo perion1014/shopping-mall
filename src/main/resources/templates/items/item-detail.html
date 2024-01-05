@@ -19,11 +19,12 @@
         <div class="slide__info item__info">
             <h1 class="item__card-name" th:text="${itemDTO.itemName}"></h1>
             <div class="item__rank">
-                <img class="item__star" src="/images/icons/star.svg">
-                <img class="item__star" src="/images/icons/star.svg">
-                <img class="item__star" src="/images/icons/star.svg">
-                <img class="item__star" src="/images/icons/star.svg">
-                <img class="item__star" src="/images/icons/star.svg">
+<!--                <img class="item__star" src="/images/icons/star.svg">-->
+                <h1 class="item__card-name" th:text="${itemDTO.itemGrade != null ? '★' + itemDTO.itemGrade : '★'}"></h1>
+<!--                <img class="item__star" src="/images/icons/star.svg">-->
+<!--                <img class="item__star" src="/images/icons/star.svg">-->
+<!--                <img class="item__star" src="/images/icons/star.svg">-->
+<!--                <img class="item__star" src="/images/icons/star.svg">-->
             </div>
             <h2 class="item__card-price item__price" th:text="${itemDTO.itemPrice} + '원'"></h2>
 
@@ -219,7 +220,7 @@
 <!--            </tr>-->
         </table>
         <div class="qna__form">
-            <button class="btn btn--mi btn--white btn--qna" th:if="${session.loginMember != null}" th:onclick="|window.open('/qna/${session.loginMember.getMemberNo()}/${itemNo}', 'name', 'resizable=no,width=600,height=500'); return false;|">질문 등록</button>
+            <button class="btn btn--mi btn--white btn--qna" th:if="${session.loginMember != null}" th:onclick="|window.open('/qna/${session.loginMember.getMemberNo()}/${itemNo}', 'name', 'resizable=no,width=380,height=580'); return false;|">질문 등록</button>
             <button class="btn btn--mi btn--white btn--qna" th:unless="${session.loginMember != null}" th:onclick="|window.location.href='/members/login'|">
                 질문 등록
             </button>

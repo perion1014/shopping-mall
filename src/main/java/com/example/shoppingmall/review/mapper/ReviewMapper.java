@@ -38,4 +38,13 @@ public interface ReviewMapper {
     List<Review> searchReviewByPaging(ReviewSearchForm reviewSearchForm);
 
     Long countSearchedReview(ReviewSearchForm reviewSearchForm);
+
+    Long getSumReviewScore(Long itemNo);
+
+    Long countReviewByItemNo(Long itemNo);
+
+    void updateItemGrade(@Param("itemGrade")float itemGrade,
+                         @Param("itemNo") Long itemNo);
+
+    Long getItemNoByReviewNo(Long reviewNo);
 }
