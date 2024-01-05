@@ -157,13 +157,14 @@ public class ReviewService {
     public List<ReviewDTO> getSearchedReviewList(int page, ReviewSearchForm reviewSearchForm) {
 
         int startPage = (page-1) * 7;
-        int pagePerReview = 7;
+        int perPageReview = 7;
 
 
         reviewSearchForm.setStartPage(startPage);
-        reviewSearchForm.setPerPageReview(pagePerReview);
+        reviewSearchForm.setPerPageReview(perPageReview);
 
         List<Review> reviews = reviewRepository.searchReviewByPaging(reviewSearchForm);
+        System.out.println("응 그냥 니가 못한거야~");
 
         List<ReviewDTO> resultList = new ArrayList<>();
 
@@ -177,7 +178,10 @@ public class ReviewService {
             String memberId = reviewRepository.getMemberId(review.getMemberNo());
 
             ReviewDTO reviewDTO = reivewToReviewDTO(review,itemSize,memberId);
-            System.out.println( reviewDTO.getReviewNo());
+
+            System.out.println( reviewDTO.getItemNo());
+            System.out.println("응 그냥 니가 못한거야~");
+
             reviewDTO.setItemName(ItemName);
             resultList.add(reviewDTO);
 

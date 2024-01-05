@@ -23,9 +23,9 @@
         <div class="admin_review_search">
           <form action="/reviews/search" method="get">
           <select name="category">
-            <option value="item_no">상품 번호</option>
+            <option value="item_no" th:selected="${reviewSearchForm.category == 'item_no'}">상품 번호</option>
 
-            <option value="review_score">평점 ★</option>
+            <option value="review_score" th:selected="${reviewSearchForm.category == 'review_score'}">평점 ★</option>
           </select>
           <input type="text" name="keyword" />
           <button>검색</button>

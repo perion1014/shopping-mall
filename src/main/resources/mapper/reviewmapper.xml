@@ -63,8 +63,7 @@
     </select>
 
     <select id="searchReviewByPaging" parameterType="com.example.shoppingmall.review.form.ReviewSearchForm" resultType="com.example.shoppingmall.review.domain.Review">
-        SELECT * FROM review
-        WHERE ${category} = #{keyword} ORDER BY review_no DESC LIMIT #{startPage}, #{perPageReview}
+        SELECT * FROM review WHERE ${category} = #{keyword} LIMIT #{startPage}, #{perPageReview}
     </select>
 
     <select id="countSearchedReview" parameterType="com.example.shoppingmall.review.form.ReviewSearchForm" resultType="Long">
