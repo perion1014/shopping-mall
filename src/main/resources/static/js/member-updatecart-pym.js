@@ -33,10 +33,7 @@ function checkItemStock2(cartDTOListSize, memberNo){
     }).then(response => response.json())
         .then(data => {
 
-            // alert(JSON.stringify(data.response));
-
-            if(JSON.stringify(data.response) === '선택하신 상품의 재고가 없습니다.'){
-                alert('aaa');
+            if(JSON.stringify(data.response).replaceAll('"', '') === '선택하신 상품의 재고가 없습니다.'){
                 location.reload();
             } else {
                 fetch(`/members/${memberNo}/orders/create`, {
@@ -56,7 +53,7 @@ function checkItemStock2(cartDTOListSize, memberNo){
 }
 
 function checkItemStockPurchase(memberNo, itemNo, itemName, itemPrice){
-    alert('온클릭 진입');
+    // alert('온클릭 진입');
 
     let jsonData= [];
 
@@ -70,13 +67,10 @@ function checkItemStockPurchase(memberNo, itemNo, itemName, itemPrice){
             itemSize = itemSizelist.item(i).value;
         }
     }
-    alert(itemSize);
+
     itemQuantity = document.getElementById(`item__count`).value;
-    alert(itemQuantity);
-    alert(itemPrice);
 
     let jsonItem = {memberNo: memberNo, itemNo: itemNo, itemName: itemName, itemSize: itemSize, itemQuantity: itemQuantity, itemPrice: itemPrice};
-    alert(`memberNo: ${memberNo}, itemNo: ${itemNo}, itemName: ${itemName}, itemSize: ${itemSize}, itemQuantity: ${itemQuantity}, itemPrice: ${itemPrice}`);
 
     jsonData.push(jsonItem);
 
@@ -91,10 +85,7 @@ function checkItemStockPurchase(memberNo, itemNo, itemName, itemPrice){
     }).then(response => response.json())
         .then(data => {
 
-            // alert(JSON.stringify(data.response));
-
-            if(JSON.stringify(data.response) === '선택하신 상품의 재고가 없습니다.'){
-                alert('aaa');
+            if(JSON.stringify(data.response).replaceAll('"', '') === '선택하신 상품의 재고가 없습니다.'){
                 location.reload();
             } else {
                 fetch(`/members/${memberNo}/orders/create`, {
