@@ -57,12 +57,16 @@ public class OrderControllerPYM {
             }
         }
 
+        System.out.println("재고 여부 : " + isStockEnough);
+
         Map<String, Object> responseData = new HashMap<>();
 
-        if (!isStockEnough) {   // 재고가 더 적은 cart 객체가 하나라도 있을 경우
+        if (isStockEnough == false) {   // 재고가 더 적은 cart 객체가 하나라도 있을 경우
             responseData.put("response", "선택하신 상품의 재고가 없습니다.");
+            System.out.println(responseData.get("response"));
         } else {                // 모든 cart 장바구니 객체에 대하여 재고가 충분할 경우
             responseData.put("response", jsonData);
+            System.out.println(responseData.get("response"));
         }
         return responseData;
     }
