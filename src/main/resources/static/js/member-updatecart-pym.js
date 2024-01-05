@@ -107,14 +107,4 @@ function checkItemStockPurchase(memberNo, itemNo, itemName, itemPrice){
     })
 }
 
-function checkCartExists(ifAdded) {
-
-    if (ifAdded === false) {
-        let p = prompt('이미 장바구니에 담겨 있는 상품입니다.\n장바구니로 이동하시겠습니까?');
-        if (p === true) {
-
-        }
-    }
-
-}
 
