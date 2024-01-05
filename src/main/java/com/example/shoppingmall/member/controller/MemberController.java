@@ -7,6 +7,7 @@ import com.example.shoppingmall.member.form.MemberSearchForm;
 import com.example.shoppingmall.member.service.MemberInfoService;
 import com.example.shoppingmall.member.service.MemberLoginService;
 import com.example.shoppingmall.member.service.MemberService;
+import com.example.shoppingmall.member.validation.MemberValidationSequence;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String memberLogin(@Validated @ModelAttribute("memberLoginDTO") MemberLoginDTO memberLoginDTO, BindingResult bindingResult,HttpServletRequest request){
+    public String memberLogin(@Validated(MemberValidationSequence.class) @ModelAttribute("memberLoginDTO") MemberLoginDTO memberLoginDTO, BindingResult bindingResult,HttpServletRequest request){
         //로그인 실패 시 (아이디, 비밀번호 미입력 시[필드 에러])
         if(bindingResult.hasErrors()){
             return "members/member-login";
@@ -68,7 +69,7 @@ public class MemberController {
     }
 
     @PostMapping("/add")
-    public String addMember(@Validated @ModelAttribute("memberAddDTO") MemberAddDTO memberAddDTO, BindingResult bindingResult){
+    public String addMember(@Validated(MemberValidationSequence.class) @ModelAttribute("memberAddDTO") MemberAddDTO memberAddDTO, BindingResult bindingResult){
         //회원 가입 실패 시 (필드 에러)
         if(bindingResult.hasErrors()){
             return "/members/add-member";
@@ -105,7 +106,7 @@ public class MemberController {
 
     /*유저 회원 정보 수정*/
     @PostMapping("/{memberNo}/update")
-    public String updateMemberInfo(@Validated @ModelAttribute MemberUpdateDTO memberUpdateDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+    public String updateMemberInfo(@Validated(MemberValidationSequence.class) @ModelAttribute MemberUpdateDTO memberUpdateDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
         //필드 에러
         if(bindingResult.hasErrors()){

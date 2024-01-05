@@ -21,15 +21,14 @@
 <header th:replace="~{/fragments/header :: header}"></header>
 <main class="main__container">
     <h1 class="main__title">아이디/비밀번호 찾기</h1>
-    <form>
-        <label>
-            <input type="radio" name="option" value="1" id="findIdRadio" onclick="change_form('findIdRadio')" checked>아이디 찾기
-        </label>
-        <label>
-            <input type="radio" name="option" value="2" id="findPwRadio" onclick="change_form('findPwRadio')">비밀번호 찾기
-        </label>
-    </form>
-
+        <form class="radio__container2">
+            <label>
+                <input type="radio" name="option" value="1" id="findIdRadio" onclick="change_form('findIdRadio')" checked>아이디 찾기
+            </label>
+            <label>
+                <input type="radio" name="option" value="2" id="findPwRadio" onclick="change_form('findPwRadio')">비밀번호 찾기
+            </label>
+        </form>
     <!--아이디 찾기-->
     <form action="/members/info/id/find-success" name="memberEmail" method="post" id="display1"><!--th:object="${memberIdDTO}"-->
         <label class="label" for="memberEmail">

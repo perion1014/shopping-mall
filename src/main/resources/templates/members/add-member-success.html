@@ -8,31 +8,7 @@
 <header th:replace="~{/fragments/header :: header}"></header>
 <main class="main__container">
     <img class="main__logo" src="/images/spartan-helmet.svg">
-    <h3>회원가입이 완료되었습니다.</h3>
-    <h3>지금 로그인 하시겠어요?</h3>
-    <form action="/members/login" method="post" >
-        <label class="label" for="memberId">
-            <h5 class="label__title">아이디</h5>
-            <input id="memberId" class="input" type="text"/>
-            <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
-            </div>
-        </label>
-        <label class="label" for="memberPw">
-            <h5 class="label__title">비밀번호</h5>
-            <input id="memberPw" class="input" type="password" />
-            <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
-            </div>
-        </label>
-        <button type="submit" class="btn btn--black btn--member-login">로그인</button>
-    </form>
-    <nav class="info__nav">
-        <ul class="info__links">
-            <a href="/members/info">아이디/비밀번호 찾기</a>
-            <a href="/orders/non-members">비회원 주문 조회하기</a>
-        </ul>
-    </nav>
+    <h1>회원가입이 완료되었습니다.</h1>
 </main>
 </body>
 </html>
