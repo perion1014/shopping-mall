@@ -19,8 +19,12 @@ import org.springframework.web.bind.annotation.*;
     public String deleteMyReview(@PathVariable(name = "reviewNo") Long reviewNo,
                                  @PathVariable("memberNo") Long memberNo
                                  ) {
+
+        Long itemNo = reviewService.getItemNoByReviewNo(reviewNo);
+
         reviewService.deleteReview(reviewNo);
-        reviewService.updateItemGradeForDelete(reviewNo);
+        reviewService.updateItemGrade(itemNo);
+
         return "redirect:/members/{memberNo}/reviews";
     }
 
