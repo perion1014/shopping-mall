@@ -23,11 +23,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="memberOrder, memberOrderIndex: ${memberOrderDTOList}">
+            <tr th:each="memberOrder: ${memberOrderDTOList}">
                 <td class="table__no" th:text="${memberOrder.memberOrderNo}"></td>
                 <td >
-                    <a th:text="(${memberOrder.memberOrderDetailDTOList.size()} == 1)? ${memberOrder.memberOrderDetailDTOList[0].itemName}: (${memberOrder.memberOrderDetailDTOList.get(0).itemName} + '...외 ' + (${memberOrder.memberOrderDetailDTOList.size()} -1) + '종')"
-                        th:href="@{/members/{memberNo}/orders/{orderNo}(memberNo=${session.loginMember.memberNo}, orderNo=${memberOrder.memberOrderNo})}">
+                    <a th:text="(${memberOrder.memberOrderDetailDTOList.size()} == 1)? ${memberOrder.memberOrderDetailDTOList.get(0).itemName}: (${memberOrder.memberOrderDetailDTOList.get(0).itemName} + '... 외 ' + (${memberOrder.memberOrderDetailDTOList.size()} -1) + '종')"
+                       th:href="@{/members/{memberNo}/orders/{orderNo}(memberNo=${session.loginMember.memberNo}, orderNo=${memberOrder.memberOrderNo})}">
 
                     </a>
                 </td>

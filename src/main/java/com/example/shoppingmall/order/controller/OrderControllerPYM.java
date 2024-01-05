@@ -88,6 +88,7 @@ public class OrderControllerPYM {
             memberOrderDetailAddDTO.setItemName(jsonData.get(i).getItemName());
             memberOrderDetailAddDTO.setItemSize(jsonData.get(i).getItemSize());
             memberOrderDetailAddDTO.setItemQuantity(jsonData.get(i).getItemQuantity());
+            memberOrderDetailAddDTO.setItemPrice(jsonData.get(i).getItemPrice());
             memberOrderDetailAddDTOList.add(memberOrderDetailAddDTO);
         }
 
