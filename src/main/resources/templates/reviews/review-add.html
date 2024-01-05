@@ -1,26 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
+    <title>PERION - 질문 등록</title>
+    <link rel="stylesheet" href="/css/pages/user/qna-add.css">
+    <link rel="stylesheet" href="/css/pages/user/review-add.css">
 </head>
-<body>
-    <form th:action="@{'/reviews/' + ${memberNo} + '/' + ${itemNo} + '/add'}" method="post" >
-        <input type="hidden" name= "memberOrderDetailNo" th:value="${memberOrderDetailNo}">
-    평점
-    <input type="radio" name="reviewScore" value="1" >
-    <input type="radio" name="reviewScore" value="2" >
-    <input type="radio" name="reviewScore" value="3" >
-    <input type="radio" name="reviewScore" value="4" >
-    <input type="radio" name="reviewScore" value="5" >
+<body class="main__container">
+    <h2 class="main__title qna-add__title review-add__title">리뷰 작성</h2>
+    <div class="qna-add__container">
+        <form th:action="@{'/reviews/' + ${memberNo} + '/' + ${itemNo} + '/add'}" method="post" >
+            <input type="hidden" name= "memberOrderDetailNo" th:value="${memberOrderDetailNo}">
+            <fieldset>
+                <div class="qna-add__header">
+                    <input type="radio" name="reviewScore" value="1" id="rate1" >
+                    <label for="rate1">★</label>
+                    <input type="radio" name="reviewScore" value="2" id="rate2">
+                    <label for="rate2">★</label>
 
-        <p></p>
-    리뷰
-        <textarea
-                name="reviewContext"
-                maxlength="400"
-        ></textarea>
-        <button>전송</button>
-    </form>
+                    <input type="radio" name="reviewScore" value="3" id="rate3">
+                    <label for="rate3">★</label>
+
+                    <input type="radio" name="reviewScore" value="4" id="rate4">
+                    <label for="rate4">★</label>
+
+                    <input type="radio" name="reviewScore" value="5" id="rate5">
+                    <label for="rate5">★</label>
+            </div>
+            </fieldset>
+
+             <textarea
+                     name="reviewContext"
+             ></textarea>
+            <div>
+                <button class="btn btn--black btn--mi" type="submit">등록</button>
+            </div>
+
+        </form>
+    </div>
 </body>
 </html>

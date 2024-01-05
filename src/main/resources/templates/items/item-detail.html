@@ -230,7 +230,7 @@
 <!--            </tr>-->
         </table>
         <div class="qna__form">
-            <button class="btn btn--mi btn--white btn--qna" th:if="${session.loginMember != null}" th:onclick="|window.open('/qna/${session.loginMember.getMemberNo()}/${itemNo}', 'name', 'resizable=no,width=380,height=580'); return false;|">질문 등록</button>
+            <button class="btn btn--mi btn--white btn--qna" th:if="${session.loginMember != null}" th:onclick="|window.open('/qna/${session.loginMember.getMemberNo()}/${itemNo}', 'name', 'resizable=no,width=380,height=600'); return false;|">질문 등록</button>
             <button class="btn btn--mi btn--white btn--qna" th:unless="${session.loginMember != null}" th:onclick="|window.location.href='/members/login'|">
                 질문 등록
             </button>

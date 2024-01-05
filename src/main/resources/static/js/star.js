@@ -37,3 +37,5 @@ window.addEventListener('DOMContentLoaded',()=>{
         document.querySelector('input[name=ratevalue]').value = Math.floor((maskMax - maskSize) / (starSize + gutter)) + parseFloat(((maskMax - maskSize) % (starSize + gutter) / starSize).toFixed(1));
     })
 })
+
+// https://apost.dev/1142/ 에서 가져옴
