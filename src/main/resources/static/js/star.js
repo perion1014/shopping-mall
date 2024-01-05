@@ -29,13 +29,6 @@ window.addEventListener('DOMContentLoaded',()=>{
         document.querySelector('.overlay').style.width = parseInt(maskMax - val * starSize - Math.floor(val) * gutter) + 'px';//마스크 크기 변경해서 별점 마킹
     }
 
-    //마우스 클릭 별점 변경 이벤트 리스너
-    document.querySelector('.rating').addEventListener('click',(e)=>{
-        //closest()로 .rating 요소의 왼쪽 위치를 찾아서 현재 클릭한 위치에서 빼야 상대 클릭 위치를 찾을 수 있음.
-        const maskSize = parseInt(maskMax - parseInt(e.clientX) + e.target.closest('.rating').getBoundingClientRect().left);//클릭한 위치 기준 마스크 크기 재계산
-        document.querySelector('.overlay').style.width = maskSize + 'px'; //오버레이 마스크 크기 변경해서 별점 마킹
-        document.querySelector('input[name=ratevalue]').value = Math.floor((maskMax - maskSize) / (starSize + gutter)) + parseFloat(((maskMax - maskSize) % (starSize + gutter) / starSize).toFixed(1));
-    })
 })
 
 // https://apost.dev/1142/ 에서 가져옴
