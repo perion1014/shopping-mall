@@ -5,8 +5,10 @@
     <title>PERION - 상품 상세</title>
     <meta name="description" content="상품 정보, Q&A, 가격 등 다양한 상품의 정보를 확인하세요.">
     <link rel="stylesheet" href="/css/pages/user/items.css">
+    <link rel="stylesheet" href="/css/components/star.css">
     <script type="module" src="/js/pages/item-detail.js"></script>
     <script src = "/js/item-detail-CMS.js"></script>
+    <script src = "/js/star.js"></script>
 </head>
 <body>
 <header th:if="${session.loginMember != null}" th:replace="~{/fragments/login-header :: header}">
@@ -20,11 +22,19 @@
             <h1 class="item__card-name" th:text="${itemDTO.itemName}"></h1>
             <div class="item__rank">
 <!--                <img class="item__star" src="/images/icons/star.svg">-->
-                <h1 class="item__card-name" th:text="${itemDTO.itemGrade != null ? '★' + itemDTO.itemGrade : '★'}"></h1>
-<!--                <img class="item__star" src="/images/icons/star.svg">-->
-<!--                <img class="item__star" src="/images/icons/star.svg">-->
-<!--                <img class="item__star" src="/images/icons/star.svg">-->
-<!--                <img class="item__star" src="/images/icons/star.svg">-->
+                <input
+                        type="hidden"
+                        name="ratevalue"
+                        th:value="${itemDTO.itemGrade != null ?  itemDTO.itemGrade : 0}"
+                        step="0.1"
+                        min="0"
+                        max="5"
+                />
+                <div class="rating-wrap">
+                    <div class="rating">
+                        <div class="overlay"></div>
+                    </div>
+                </div>
             </div>
             <h2 class="item__card-price item__price" th:text="${itemDTO.itemPrice} + '원'"></h2>
 
