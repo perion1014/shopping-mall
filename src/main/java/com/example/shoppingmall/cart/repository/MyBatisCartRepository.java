@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -49,5 +50,10 @@ public class MyBatisCartRepository implements CartRepository{
     @Override
     public void deleteCartItemByItemNoAndItemSize(CartDeleteDTO cartDeleteDTO) {
         cartMapper.deleteCartItemByItemNoAndItemSize(cartDeleteDTO);
+    }
+
+    @Override
+    public List<Cart> getAllCarts() {
+        return cartMapper.getAllCarts();
     }
 }

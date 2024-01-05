@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Mapper
 public interface CartMapper {
@@ -22,4 +23,6 @@ public interface CartMapper {
     void addCartItem(Cart cart);
 
     void deleteCartItemByItemNoAndItemSize(CartDeleteDTO cartDeleteDTO);
+
+    List<Cart> getAllCarts();
 }

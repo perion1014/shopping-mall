@@ -2,6 +2,12 @@ package com.example.shoppingmall.cart.controller;
 
 import com.example.shoppingmall.cart.dto.CartReadDTO;
 import com.example.shoppingmall.cart.service.CartService;
+import com.example.shoppingmall.item.dto.ItemDTO;
+import com.example.shoppingmall.item.dto.ItemPhotosDTO;
+import com.example.shoppingmall.item.dto.ItemStockDTO;
+import com.example.shoppingmall.item.service.ItemService;
+import com.example.shoppingmall.qna.dto.QnaDTO;
+import com.example.shoppingmall.qna.service.QnaService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +26,8 @@ import java.util.Map;
 public class CartController {
 
     private final CartService cartService;
+    private final ItemService itemService;
+    private final QnaService qnaService;
 
     @GetMapping("/{memberNo}")
     public String showMemberCartList(@PathVariable(name = "memberNo") Long memberNo, Model model) {
@@ -34,15 +42,28 @@ public class CartController {
     public String addItemsToMemberCart(@PathVariable(name = "memberNo", required = false) Long memberNo,
                                        @RequestParam(name = "itemNo", required = false) Long itemNo,
                                        @RequestParam(name = "itemSize", required = false) String itemSize,
-                                       @RequestParam(name = "itemQuantity", required = false) Integer itemQuantity){
+                                       @RequestParam(name = "itemQuantity", required = false) Integer itemQuantity,
+                                       Model model){
 
-        System.out.println("회원 - 받아온 아이템 번호 : " + itemNo);
-        System.out.println("회원 - 받아온 아이템 사이즈 : " + itemSize);
-        System.out.println("회원 - 받아온 아이템 수량 : " + itemQuantity);
 
-        cartService.addCartItem(memberNo, itemNo, itemSize, itemQuantity);
-        //return "redirect:/carts/" + memberNo;
-        return "redirect:/items/" + itemNo;
+        boolean ifAdded = cartService.addCartItem(memberNo, itemNo, itemSize, itemQuantity);
+        model.addAttribute("ifAdded", ifAdded);
+
+        System.out.println("ifAdded: " + ifAdded);
+        if (ifAdded == true) {
+            return "redirect:/items/" + itemNo;
+        } else {
+            List<QnaDTO> qnaByItemNo = qnaService.getQnaByItemNo(itemNo);
+            model.addAttribute("qnaByItemNo",qnaByItemNo);
+            /////////////////////////////////////////////////////////////////////////
+            ItemDTO itemDTO = itemService.findItemByNo2(itemNo);
+            ItemPhotosDTO itemPhotosDTO = itemService.findItemPhotosByNo(itemNo);
+            List<ItemStockDTO> itemStockDTOList = itemService.findItemStockListByNo(itemNo);
+            model.addAttribute("itemDTO", itemDTO);
+            model.addAttribute("itemPhotosDTO", itemPhotosDTO);
+            model.addAttribute("itemStockDTOList", itemStockDTOList);
+            return "items/item-detail";
+        }
     }
 
     @PostMapping("/{memberNo}/{cartNo}/update")
