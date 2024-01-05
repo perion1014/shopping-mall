@@ -9,6 +9,7 @@
     <script type="module" src="/js/pages/item-detail.js"></script>
     <script src = "/js/item-detail-CMS.js"></script>
     <script src = "/js/star.js"></script>
+    <script src = "/js/member-updatecart-pym.js"></script>
 </head>
 <body>
 <header th:if="${session.loginMember != null}" th:replace="~{/fragments/login-header :: header}">
@@ -65,9 +66,21 @@
                 <div class="slide__btns item__btns"></div> <br>
                 <button class="btn btn--index btn--white">장바구니 추가</button>
             </form>
-                <form style="display: inline">
-                <button class="btn btn--index btn--black">구매하기</button>
-                </form>
+                <button th:if="${session.loginMember} != null"
+                        th:memberNo="${session.loginMember.memberNo}"
+                        th:itemNo="${itemDTO.itemNo}"
+                        th:itemName="${itemDTO.itemName}"
+                        th:itemPrice="${itemDTO.itemPrice}"
+                        th:onclick="checkItemStockPurchase(this.getAttribute('memberNo'), this.getAttribute('itemNo'), this.getAttribute('itemName'), this.getAttribute('itemPrice'))"
+                        class="btn btn--index btn--black"
+                        th:text="구매하기"></button>
+                <button th:unless="${session.loginMember} != null"
+                        th:itemNo="${itemDTO.itemNo}"
+                        th:itemName="${itemDTO.itemName}"
+                        th:itemPrice="${itemDTO.itemPrice}"
+                        th:onclick="checkItemStockPurchase(this.getAttribute('itemNo'), this.getAttribute('itemName'), this.getAttribute('itemPrice'))"
+                        class="btn btn--index btn--black"
+                        th:text="구매하기"></button>
             </div>
         </div>
     </section>
