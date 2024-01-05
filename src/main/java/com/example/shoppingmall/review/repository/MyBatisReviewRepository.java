@@ -62,4 +62,24 @@ public class MyBatisReviewRepository implements ReviewRepository{
     public Long countSearchedReview(ReviewSearchForm reviewSearchForm) {
         return reviewMapper.countSearchedReview(reviewSearchForm);
     }
+
+    @Override
+    public Long getSumReviewScore(Long itemNo) {
+        return reviewMapper.getSumReviewScore(itemNo);
+    }
+
+    @Override
+    public Long countReviewByItemNo(Long itemNo){
+        return reviewMapper.countReviewByItemNo(itemNo);
+    }
+
+    @Override
+    public void updateItemGrade(float itemGrade, Long itemNo){
+        reviewMapper.updateItemGrade(itemGrade, itemNo);
+    }
+
+    @Override
+    public Long getItemNoByReviewNo(Long reviewNo) {
+       return reviewMapper.getItemNoByReviewNo(reviewNo);
+    }
 }

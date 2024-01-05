@@ -42,6 +42,8 @@ public class ReviewController {
 
         reviewService.addReview(reviewAddDTO);
 
+        reviewService.updateItemGrade(itemNo);
+
         return "redirect:/reviews/{itemNo}";
     }
 
@@ -70,12 +72,12 @@ public class ReviewController {
     public String deleteReview(@RequestParam(name = "reviewNo") Long reviewNo) {
         reviewService.deleteReview(reviewNo);
 
+        reviewService.updateItemGradeForDelete(reviewNo);
         return "redirect:/reviews";
     }
     @GetMapping("search")
     public String searchReviews(@ModelAttribute ReviewSearchForm reviewSearchForm,Model model,
                                 @RequestParam(value="page", required=false, defaultValue="1") int page) {
-        System.out.println("왜 안돼;;");
         model.addAttribute("reviewSearchForm", reviewSearchForm );
         model.addAttribute("pageSettings", reviewService.setSearchedReviewPage(page,reviewSearchForm) );
         model.addAttribute("reviewListByPaging", reviewService.getSearchedReviewList(page, reviewSearchForm));

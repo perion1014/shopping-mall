@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
                                  @PathVariable("memberNo") Long memberNo
                                  ) {
         reviewService.deleteReview(reviewNo);
-
+        reviewService.updateItemGradeForDelete(reviewNo);
         return "redirect:/members/{memberNo}/reviews";
     }
 
@@ -31,9 +31,9 @@ import org.springframework.web.bind.annotation.*;
                                    @PathVariable("memberNo") Long memberNo, Model model) {
 
         model.addAttribute("pageSettings", reviewService.setReviewPageByMember(page,memberNo));
-        model.addAttribute("itemReviewList", reviewService.getReviewListByMember(memberNo,page));
+        model.addAttribute("memberReviewList", reviewService.getReviewListByMember(memberNo,page));
 
-        return "reviews/member-review";
+        return "reviews/member-reviews";
     }
 }
 

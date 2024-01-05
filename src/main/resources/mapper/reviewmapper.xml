@@ -63,11 +63,27 @@
     </select>
 
     <select id="searchReviewByPaging" parameterType="com.example.shoppingmall.review.form.ReviewSearchForm" resultType="com.example.shoppingmall.review.domain.Review">
-        SELECT * FROM review WHERE ${category} = #{keyword} LIMIT #{startPage}, #{perPageReview}
+        SELECT * FROM review WHERE ${category} = #{keyword} ORDER BY review_no DESC LIMIT #{startPage}, #{perPageReview}
     </select>
 
     <select id="countSearchedReview" parameterType="com.example.shoppingmall.review.form.ReviewSearchForm" resultType="Long">
         SELECT count(review_no) FROM review
         WHERE ${category} = #{keyword}
+    </select>
+
+    <select id="getSumReviewScore" parameterType="Long" resultType="Long">
+        SELECT SUM(review_score) FROM review WHERE item_no = #{itemNo}
+    </select>
+
+    <select id="countReviewByItemNo" parameterType="Long" resultType="Long">
+        SELECT count(review_no) FROM review WHERE item_no = #{itemNo}
+    </select>
+    
+    <update id="updateItemGrade" >
+        UPDATE item SET item_grade = #{itemGrade} WHERE item_no = #{itemNo}
+    </update>
+
+    <select id="getItemNoByReviewNo" parameterType="Long" resultType="Long">
+        SELECT item_no FROM review WHERE review_no = #{reviewNo}
     </select>
 </mapper>

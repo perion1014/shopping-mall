@@ -22,6 +22,7 @@ textarea{
     width: 100%;
     height: 25rem;
     margin-top: 1rem;
+    margin-bottom: 0.8rem;
 }
 .qna-add__container{
     text-align: center;
