@@ -17,13 +17,15 @@ public class NoticeSearchDTO {
     private String noticeTitle;
     private Timestamp noticeCreatedTime;
     private Long noticeViewcount;
+    private String adminId;
 
-    public static NoticeSearchDTO NoticeToNoticeSearchDTO(Notice notice){
+    public static NoticeSearchDTO NoticeToNoticeSearchDTO(Notice notice, String adminId){
         NoticeSearchDTO noticeSearchDTO = new NoticeSearchDTO();
         noticeSearchDTO.setNoticeNo(notice.getNoticeNo());
         noticeSearchDTO.setNoticeTitle(notice.getNoticeTitle());
         noticeSearchDTO.setNoticeCreatedTime(notice.getNoticeCreatedTime());
         noticeSearchDTO.setNoticeViewcount(notice.getNoticeViewcount());
+        noticeSearchDTO.setAdminId(adminId);
         return noticeSearchDTO;
     }
 }

@@ -24,6 +24,7 @@ public class NoticeService {
     @Transactional(readOnly = true)
     public List<NoticeListDTO> findAllNotice() {
         List<Notice> noticeList = noticeRepository.findAllNotice();
+
         List<NoticeListDTO> noticeListDTOList = new ArrayList<>();
         for (Notice notice : noticeList) {
             noticeListDTOList.add(NoticeListDTO.NoticeToNoticeListDTO(notice));
@@ -100,11 +101,15 @@ public class NoticeService {
         pagingSettings.put("pagePerNotice", pagePerNotice);
 //        System.out.println("startPage = " + startPage);
 //        System.out.println("pagePerNotice = " + pagePerNotice);
+
         List<Notice> noticeList = noticeRepository.findAllNoticeByPaging(pagingSettings);
         List<NoticeSearchDTO> resultList = new ArrayList<>();
 
         for(Notice notice : noticeList){
-            resultList.add(NoticeSearchDTO.NoticeToNoticeSearchDTO(notice));
+            int adminNo = notice.getAdminNo();
+
+            String adminId= noticeRepository.getAdminIdByAdminNo(adminNo);
+            resultList.add(NoticeSearchDTO.NoticeToNoticeSearchDTO(notice,adminId));
         }
         return resultList;
     }
@@ -144,7 +149,9 @@ public class NoticeService {
         List<NoticeSearchDTO>resultList = new ArrayList<>();
 
         for(Notice notice: noticeList){
-            resultList.add(NoticeSearchDTO.NoticeToNoticeSearchDTO(notice));
+            int adminNo = notice.getAdminNo();
+            String adminId= noticeRepository.getAdminIdByAdminNo(adminNo);
+            resultList.add(NoticeSearchDTO.NoticeToNoticeSearchDTO(notice, adminId));
         }
         return resultList;
     }

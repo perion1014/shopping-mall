@@ -14,10 +14,12 @@ import lombok.Setter;
 public class MemberIdDTO {
     @NotBlank(message = "이메일을 입력해주세요")
     private String memberEmail;
+    private String memberId;
 
     public static MemberIdDTO MemberToMemberIdDTO(Member member){
         MemberIdDTO memberIdDTO = new MemberIdDTO();
         memberIdDTO.setMemberEmail(member.getMemberEmail());
+        memberIdDTO.setMemberId(member.getMemberId());
         return memberIdDTO;
     }
 }

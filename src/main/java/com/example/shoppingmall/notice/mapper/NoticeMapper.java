@@ -19,4 +19,6 @@ public interface NoticeMapper {//이곳의 이름과 쿼리 이름 동일
     Notice findByNo(Long memberNo);
     Long countAllNoticeByKeyword(NoticeSearchForm noticeSearchForm);
     List<Notice> findAllNoticeByKeyword(NoticeSearchForm noticeSearchForm);
+
+    String getAdminIdByAdminNo(int adminNo);
 }
