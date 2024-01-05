@@ -45,13 +45,6 @@ public class CartController {
                                        @RequestParam(name = "itemQuantity", required = false) Integer itemQuantity,
                                        Model model){
 
-
-        System.out.println("회원 - 받아온 아이템 번호 : " + itemNo);
-        System.out.println("회원 - 받아온 아이템 사이즈 : " + itemSize);
-        System.out.println("회원 - 받아온 아이템 수량 : " + itemQuantity);
-        System.out.println("회원 - 받아온 아이템 수량 : " + itemQuantity);
-
-
         boolean ifAdded = cartService.addCartItem(memberNo, itemNo, itemSize, itemQuantity);
         model.addAttribute("ifAdded", ifAdded);
 

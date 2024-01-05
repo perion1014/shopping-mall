@@ -137,7 +137,15 @@ public class OrderController {
         List<NonMemberOrderDetailAddDTO> nonMemberOrderDetailAddDTOList = (List<NonMemberOrderDetailAddDTO>) req.getSession().getAttribute("nonMemberOrderDetailAddDTOList");
         nonMemberOrderService.saveNonMemberOrderDetail(nonMemberOrderDetailAddDTOList);
 
+        req.getSession().setAttribute("nonMemberOrderDetailAddDTOList", null);
+
         return "orders/nonmember-order-success-test";
+    }
+
+    @PostMapping("/orders/non-members")
+    public String gotoNonMemberOrderDetailCheckTest(){
+
+        return "orders/nonmember-order-detail-check-test";
     }
 
 }
