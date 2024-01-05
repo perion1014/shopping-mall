@@ -151,7 +151,10 @@ function checkItemStock(cartDTOListSize){
                       'Content-Type': 'application/json'
                   },
                   body: JSON.stringify(jsonData)
+              }).then(data =>{
+                  location.href = '/temp';
               })
+
 
             }
 

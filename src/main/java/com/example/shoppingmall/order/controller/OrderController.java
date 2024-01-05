@@ -83,4 +83,9 @@ public class OrderController {
         return "orders/nonmember-order-check";
     }
 
+    @GetMapping("/temp")
+    public String gototest(){
+        return "orders/nonmember-order";
+    }
+
 }
