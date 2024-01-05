@@ -21,74 +21,84 @@
 
         <form th:action="@{/items/admin/{itemNo}/update(itemNo=${itemDTO.itemNo})}" method="post" enctype="multipart/form-data">
 
-        </form>
-        <div class="item_detail_container">
-          <div class="top">
-            <div>
-              <span th:text="'no.' + ${itemDTO.itemNo}"></span>
-              <span>
-                <select name="itemCategory" th:value="${itemDTO.itemCategory}">
-                  <option value="outer" th:selected="${itemDTO.itemCategory == 'outer'}">outer</option>
-                  <option value="inner" th:selected="${itemDTO.itemCategory == 'inner'}">inner</option>
-                  <option value="pants" th:selected="${itemDTO.itemCategory == 'pants'}">pants</option>
-                </select>
-              </span>
-              <span>
-                <select name="itemOnsale" th:value="${itemDTO.itemOnsale}">
-                  <option value="1" th:selected="${itemDTO.itemOnsale == 1}">On sale</option>
-                  <option value="0" th:selected="${itemDTO.itemOnsale == 0}">Not on sale</option>
-                </select>
-              </span>
-            </div>
-            <span>상품명: <input name="itemName" th:value="${itemDTO.itemName}"></span>
-            <span th:if="${itemDTO.itemGrade != null}" th:text="'평점: ' + ${itemDTO.itemGrade}"></span>
-            <span th:unless="${itemDTO.itemGrade != null}" th:text="'평점: 없음'"></span>
-            <br>
-          </div>
 
-          <div class="middle">
-            <div class="photo">
-              <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/thumb/__${itemPhotosDTO.itemThumb}__}"/>
-              <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg1}__}"/>
-              <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg2}__}"/>
-              <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg3}__}"/>
+          <div class="item_detail_container">
+            <div class="top">
+              <div>
+                <span th:text="'no.' + ${itemDTO.itemNo}"></span>
+                <span>
+                  <select name="itemCategory" th:value="${itemDTO.itemCategory}">
+                    <option value="outer" th:selected="${itemDTO.itemCategory == 'outer'}">outer</option>
+                    <option value="inner" th:selected="${itemDTO.itemCategory == 'inner'}">inner</option>
+                    <option value="pants" th:selected="${itemDTO.itemCategory == 'pants'}">pants</option>
+                  </select>
+                </span>
+                <span>
+                  <select name="itemOnsale" th:value="${itemDTO.itemOnsale}">
+                    <option value="1" th:selected="${itemDTO.itemOnsale == 1}">On sale</option>
+                    <option value="0" th:selected="${itemDTO.itemOnsale == 0}">Not on sale</option>
+                  </select>
+                </span>
+              </div>
+              <span>상품명: <input name="itemName" th:value="${itemDTO.itemName}"></span>
+              <span th:if="${itemDTO.itemGrade != null}" th:text="'평점: ' + ${itemDTO.itemGrade}"></span>
+              <span th:unless="${itemDTO.itemGrade != null}" th:text="'평점: 없음'"></span>
+              <br>
             </div>
 
-            <div class="contents">
-              <div class="contents_info">
-                <div class="size_stock">
-                  <div>S <input name="itemSize1" th:value="${itemStockDTOList[0].itemStockValue}"></div>
-                  <div>M <input name="itemSize2" th:value="${itemStockDTOList[1].itemStockValue}"></div>
-                  <div>L <input name="itemSize3" th:value="${itemStockDTOList[2].itemStockValue}"></div>
-                </div>
+            <div class="middle">
+              <div class="photo">
+                <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/thumb/__${itemPhotosDTO.itemThumb}__}"/>
+                <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg1}__}"/>
+                <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg2}__}"/>
+                <img th:src="@{/images/itemImages/__${itemDTO.itemNo}__/__${itemPhotosDTO.itemImg3}__}"/>
+              </div>
 
-                <div class="image">
-                  <div>thumbnail: <a th:text="${itemPhotosDTO.itemThumb}"></a></div>
-                  <p></p>
-                  <span th:if="${itemPhotosDTO.itemImg1} != null" th:text="'image1: ' + ${itemPhotosDTO.itemImg1}"></span>
-                  <br>
-                  <span th:if="${itemPhotosDTO.itemImg2} != null" th:text="'image2: ' + ${itemPhotosDTO.itemImg2}"></span>
-                  <br>
-                  <span th:if="${itemPhotosDTO.itemImg3} != null" th:text="'image3: ' + ${itemPhotosDTO.itemImg3}"></span>
-                  <br>
-                </div>
+              <div class="contents">
+                <div class="contents_info">
+                  <div class="size_stock">
+                    <div>S
+                      <input name="itemStockNo1" th:value="${itemStockDTOList[0].itemStockNo}" type="hidden">
+                      <input name="itemStockValue1" th:value="${itemStockDTOList[0].itemStockValue}"></div>
+                    <div>M
+                      <input name="itemStockNo2" th:value="${itemStockDTOList[1].itemStockNo}" type="hidden">
+                      <input name="itemStockValue2" th:value="${itemStockDTOList[1].itemStockValue}"></div>
+                    <div>L
+                      <input name="itemStockNo3" th:value="${itemStockDTOList[2].itemStockNo}" type="hidden">
+                      <input name="itemStockValue3" th:value="${itemStockDTOList[2].itemStockValue}"></div>
+                  </div>
 
-                <div class="detail_info">
-                  상세 내용<br>
-                  <input name="itemDetail" th:value="${itemDTO.itemDetail}">
-                </div>
+                  <div class="image">
+                    <div>thumbnail: <a th:text="${itemPhotosDTO.itemThumb}"></a></div>
+                    <p></p>
+                    <span th:if="${itemPhotosDTO.itemImg1} != null" th:text="'image1: ' + ${itemPhotosDTO.itemImg1}"></span>
+                    <br>
+                    <span th:if="${itemPhotosDTO.itemImg2} != null" th:text="'image2: ' + ${itemPhotosDTO.itemImg2}"></span>
+                    <br>
+                    <span th:if="${itemPhotosDTO.itemImg3} != null" th:text="'image3: ' + ${itemPhotosDTO.itemImg3}"></span>
+                    <br>
+                  </div>
 
-                <div class="price">
-                  가격: <input name="itemPrice" th:value="${itemDTO.itemPrice}">원
+                  <div class="detail_info">
+                    상세 내용<br>
+                    <input name="itemDetail" th:value="${itemDTO.itemDetail}">
+                  </div>
+
+                  <div class="price">
+                    가격: <input name="itemPrice" th:value="${itemDTO.itemPrice}">원
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="item_btn">
-            <button>수정</button> <button>삭제</button>
+            <div class="item_btn">
+              <button>수정</button>
+              <form th:action="@{/items/admin/{itemNo}/delete(itemNo=${itemDTO.itemNo})}">
+                <button>삭제</button>
+              </form>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
       <!--main div-->
     </main>

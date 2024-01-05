@@ -28,7 +28,6 @@
                 <td >
                     <a th:text="(${memberOrder.memberOrderDetailDTOList.size()} == 1)? ${memberOrder.memberOrderDetailDTOList.get(0).itemName}: (${memberOrder.memberOrderDetailDTOList.get(0).itemName} + '... 외 ' + (${memberOrder.memberOrderDetailDTOList.size()} -1) + '종')"
                        th:href="@{/members/{memberNo}/orders/{orderNo}(memberNo=${session.loginMember.memberNo}, orderNo=${memberOrder.memberOrderNo})}">
-
                     </a>
                 </td>
                 <td class="table__regtime" th:text="${memberOrder.priceSum} + '원'"></td>

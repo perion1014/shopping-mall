@@ -49,8 +49,8 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody>
-            <tr th:each="memberOrder: ${memberOrderDTOList}">
+            <tbody th:each="memberOrder: ${memberOrderDTOList}">
+            <tr th:onclick="|location.href='@{|/orders/admin/members/${memberOrder.memberOrderNo}|}'|" style="cursor: pointer;">
                 <td th:text="${memberOrder.memberOrderNo}"></td>
                 <td th:text="${memberOrder.memberNo}"></td>
                 <td th:text="${memberOrder.receiverName}"></td>
@@ -58,7 +58,10 @@
                 <td th:text="${memberOrder.orderPostalCode}"></td>
                 <td th:text="${memberOrder.orderAddressBasic} + ' ' + ${memberOrder.orderAddressDetail}"></td>
                 <td th:text="(${memberOrder.orderStatus} == 1)? '주문 완료': '주문 취소'"></td>
-                <td><a>취소</a></td>
+                <td>
+                    <a th:if="${memberOrder.orderStatus} == 1" th:href="@{|/orders/admin/members/${memberOrder.memberOrderNo}/cancel|}">취소</a>
+                    <a th:unless="${memberOrder.orderStatus} == 1">취소 완료</a>
+                </td>
             </tr>
 
             </tbody>
@@ -68,74 +71,23 @@
             <div class="items__page">
                 <span th:if="${pageSettings.page &lt;= 1}">이전</span>
                 <span th:unless="${pageSettings.page &lt;= 1}">
-        <a th:href="@{/orders/admin/members(page=${pageSettings.page - 1})}">이전</a>
-    </span>
+                    <a th:href="@{/orders/admin/members(page=${pageSettings.page - 1})}">이전</a>
+                </span>
 
                 <span th:each="i: ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
-        <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
-        <a th:if="${i != pageSettings.page}"
-           th:href="@{/orders/admin/members(page=${i})}"
-           th:text="${i}"></a>
-    </span>
+                <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
+                    <a th:if="${i != pageSettings.page}"
+                       th:href="@{/orders/admin/members(page=${i})}"
+                       th:text="${i}">
+                    </a>
+                </span>
 
                 <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
                 <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
-                   th:href="@{/orders/admin/members(page=${pageSettings.page + 1})}">다음</a>
+                   th:href="@{/orders/admin/members(page=${pageSettings.page + 1})}">
+                    다음
+                </a>
         </div>
-
-        <div class="admin_order_detail">주문 상세</div>
-        <div class="admin_order_detail_search" align="center">
-            <input type="text" />
-            <button>검색</button>
-        </div>
-        <table class="order_detail_table">
-            <thead>
-            <tr>
-                <th>No</th>
-                <th>주문번호</th>
-                <th>상품번호</th>
-                <th>사이즈</th>
-                <th>수량</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>as14x3e</td>
-                <td>123</td>
-                <td>M</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>as14x3e</td>
-                <td>123</td>
-                <td>M</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>as14x3e</td>
-                <td>123</td>
-                <td>M</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>as14x3e</td>
-                <td>123</td>
-                <td>M</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>as14x3e</td>
-                <td>123</td>
-                <td>M</td>
-                <td>3</td>
-            </tr>
-            </tbody>
-        </table>
     </div>
     <!--main div-->
 </main>

@@ -40,8 +40,8 @@ public class MyBatisMemberOrderRepository implements MemberOrderRepository{
     }
 
     @Override   /* user */
-    public List<MemberOrderDetail> findMemberOrderDetail(Long memberOrderNo) {
-        List<MemberOrderDetail> memberOrderDetailList = memberOrderMapper.findMemberOrderDetail(memberOrderNo);
+    public List<MemberOrderDetail> findMemberOrderDetailList(Long memberOrderNo) {
+        List<MemberOrderDetail> memberOrderDetailList = memberOrderMapper.findMemberOrderDetailList(memberOrderNo);
         return memberOrderDetailList;
     }
 

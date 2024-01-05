@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,8 +33,28 @@ public class MemberOrderDetailDTO {
         memberOrderDetailDTO.setItemNo(memberOrderDetail.getItemNo());
         memberOrderDetailDTO.setItemQuantity(memberOrderDetail.getItemQuantity());
         memberOrderDetailDTO.setItemSize(memberOrderDetail.getItemSize());
-        memberOrderDetailDTO.setItemSize(memberOrderDetailDTO.getItemSize());
-        memberOrderDetailDTO.setItemPrice(memberOrderDetailDTO.getItemPrice());
+        memberOrderDetailDTO.setItemName(memberOrderDetail.getItemName());
+        memberOrderDetailDTO.setItemPrice(memberOrderDetail.getItemPrice());
         return memberOrderDetailDTO;
+    }
+
+    public static MemberOrderDetailDTO toMemberOrderDetailDTO(Long memberOrderNo, MemberOrderDetail memberOrderDetail) {
+        MemberOrderDetailDTO memberOrderDetailDTO = new MemberOrderDetailDTO();
+        memberOrderDetailDTO.setMemberOrderDetailNo(memberOrderDetail.getMemberOrderDetailNo());
+        memberOrderDetailDTO.setMemberOrderNo(memberOrderNo);
+        memberOrderDetailDTO.setItemNo(memberOrderDetail.getItemNo());
+        memberOrderDetailDTO.setItemQuantity(memberOrderDetail.getItemQuantity());
+        memberOrderDetailDTO.setItemSize(memberOrderDetail.getItemSize());
+        memberOrderDetailDTO.setItemName(memberOrderDetail.getItemName());
+        memberOrderDetailDTO.setItemPrice(memberOrderDetail.getItemPrice());
+        return memberOrderDetailDTO;
+    }
+
+    public static List<MemberOrderDetailDTO> toMemberOrderDetailDTOList(Long memberOrderNo, List<MemberOrderDetail> memberOrderDetailList) {
+        List<MemberOrderDetailDTO> memberOrderDetailDTOList = new ArrayList<>();
+        for (MemberOrderDetail memberOrderDetail: memberOrderDetailList) {
+            memberOrderDetailDTOList.add(MemberOrderDetailDTO.toMemberOrderDetailDTO(memberOrderNo, memberOrderDetail));
+        }
+        return memberOrderDetailDTOList;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.shoppingmall.member.service;
 
 import com.example.shoppingmall.member.domain.Member;
+import com.example.shoppingmall.member.dto.MemberIdDTO;
 import com.example.shoppingmall.member.dto.MemberLoginDTO;
 import com.example.shoppingmall.member.dto.MemberSearchDTO;
 import com.example.shoppingmall.member.dto.MemberUpdateDTO;
@@ -16,8 +17,8 @@ public class MemberInfoService {
     private final MemberRepository memberRepository;
 
     @Transactional(readOnly = true)
-    public MemberSearchDTO getMemberIdByEmail(String memberEmail) {
+    public MemberIdDTO getMemberIdByEmail(String memberEmail) {
         Member member = memberRepository.findByEmail(memberEmail).orElse(null);
-        return  MemberSearchDTO.fromEntity(member);
+        return  MemberIdDTO.MemberToMemberIdDTO(member);
     }
 }
