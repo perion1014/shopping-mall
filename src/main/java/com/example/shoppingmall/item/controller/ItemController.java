@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -250,7 +251,39 @@ public class ItemController {
     }
 
     @PostMapping("/admin/{itemNo}/update")
-    public String updateItem(@PathVariable(name="itemNo") Long itemNo, @ModelAttribute ItemUpdateDTO itemUpdateDTO) {
+    public String updateItem(@PathVariable(name="itemNo") Long itemNo,
+                             @ModelAttribute ItemUpdateDTO itemUpdateDTO,
+                             @RequestParam(name = "itemStockNo1") Long itemStockNo1,
+                             @RequestParam(name = "itemStockNo2") Long itemStockNo2,
+                             @RequestParam(name = "itemStockNo3") Long itemStockNo3,
+                             @RequestParam(name = "itemStockValue1") Integer itemStockValue1,
+                             @RequestParam(name = "itemStockValue2") Integer itemStockValue2,
+                             @RequestParam(name = "itemStockValue3") Integer itemStockValue3
+                             ) {
+        List<ItemStockDTO> itemStockDTOList = new ArrayList<>();
+        ItemStockDTO itemStockDTO1 = new ItemStockDTO();
+        itemStockDTO1.setItemStockNo(itemStockNo1);
+        itemStockDTO1.setItemNo(itemNo);
+        itemStockDTO1.setItemSize("S");
+        itemStockDTO1.setItemStockValue(itemStockValue1);
+        itemStockDTOList.add(itemStockDTO1);
+
+        ItemStockDTO itemStockDTO2 = new ItemStockDTO();
+        itemStockDTO2.setItemStockNo(itemStockNo2);
+        itemStockDTO2.setItemNo(itemNo);
+        itemStockDTO2.setItemSize("M");
+        itemStockDTO2.setItemStockValue(itemStockValue2);
+        itemStockDTOList.add(itemStockDTO2);
+
+        ItemStockDTO itemStockDTO3 = new ItemStockDTO();
+        itemStockDTO3.setItemStockNo(itemStockNo3);
+        itemStockDTO3.setItemNo(itemNo);
+        itemStockDTO3.setItemSize("L");
+        itemStockDTO3.setItemStockValue(itemStockValue3);
+        itemStockDTOList.add(itemStockDTO3);
+
+        itemUpdateDTO.setItemStockDTOList(itemStockDTOList);
+
         itemService.updateItemByNo(itemNo, itemUpdateDTO);
         return "redirect:/items/admin/{itemNo}";
     }

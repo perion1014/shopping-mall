@@ -302,6 +302,9 @@ public class ItemService {
     public void updateItemByNo(Long itemNo, ItemUpdateDTO itemUpdateDTO) {
         Item item = ItemUpdateDTO.itemUpdateDTOToItem(itemNo, itemUpdateDTO);
         itemRepository.updateItemByNo(item);
+        for (ItemStock itemStock: item.getItemStockList()) {
+            itemRepository.updateItemStock(itemStock);
+        }
     }
 
     public void deleteItemStockByItemNo(Long itemNo) {
