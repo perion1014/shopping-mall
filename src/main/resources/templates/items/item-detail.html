@@ -16,33 +16,6 @@
 </header>
 <header th:unless="${session.loginMember == null}" th:replace="~{/fragments/header :: header}">
 </header>
-<div>
-    <input type="hidden" th:value="${ifAdded}" id="ifAdded">
-    <input type="hidden" id="hiddenMemberNo" th:value="${session.loginMember.memberNo}">
-</div>
-<script>
-    (function () {
-        const ifAdded = document.getElementById("ifAdded");
-        const hiddenMemberNo = document.getElementById("hiddenMemberNo");
-
-        if (ifAdded.value === false) {
-            // 알림창을 표시합니다.
-            alert("이미 장바구니에 담겨 있는 상품입니다. 장바구니로 이동하시겠습니까?");
-
-            // 확인 버튼을 누르면 "/carts/{memberNo}" API로 이동합니다.
-            const confirmButton = document.querySelector(".confirm");
-            confirmButton.addEventListener("click", () => {
-                location.href = `/carts/${hiddenMemberNo.value}`;
-            });
-
-            // 취소 버튼을 누르면 해당 페이지를 새로고침합니다.
-            const cancelButton = document.querySelector(".cancel");
-            cancelButton.addEventListener("click", () => {
-                location.reload();
-            });
-        }
-    })();
-</script>
 <main class="main__container">
     <section id="item__info" class="item__container">
         <img class="item__img" th:src="@{/images/itemImages/__${itemDTO.itemNo}__/thumb/__${itemPhotosDTO.itemThumb}__}"/>
