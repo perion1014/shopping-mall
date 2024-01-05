@@ -114,10 +114,11 @@ public class MemberOrderService {
         memberOrderViewForm.setMemberOrdersPerPage(memberOrdersPerPage);
 
         List<MemberOrder> memberOrderList = memberOrderRepository.findMemberOrderList(memberOrderViewForm);
+        System.out.println("MemberOrderService.getMemberOrderListPage(page, memberOrderViewForm)");
         List<MemberOrderDTO> memberOrderDTOList = new ArrayList<>();
         for (MemberOrder memberOrder: memberOrderList) {
             Long memberOrderNo = memberOrder.getMemberOrderNo();
-            List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetail(memberOrderNo);
+            List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetailList(memberOrderNo);
             memberOrder.setMemberOrderDetailList(memberOrderDetailList);
             memberOrderDTOList.add(MemberOrderDTO.toMemberOrderDTO(memberOrder));
         }
@@ -130,7 +131,7 @@ public class MemberOrderService {
 
     public MemberOrderDTO findMemberOrderByNo(Long memberOrderNo) {
         MemberOrder memberOrder = memberOrderRepository.findMemberOrderByNo(memberOrderNo);
-        List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetail(memberOrderNo);
+        List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetailList(memberOrderNo);
         memberOrder.setMemberOrderDetailList(memberOrderDetailList);
         return MemberOrderDTO.toMemberOrderDTO(memberOrder);
     }
@@ -180,10 +181,15 @@ public class MemberOrderService {
             memberOrderAdminViewDTO.setOrderAddressBasic(memberOrder.getOrderAddressBasic());
             memberOrderAdminViewDTO.setOrderStatus(memberOrder.getOrderStatus());
             ///////////////////////////////////////
-            List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetail(memberOrderNo);
+            List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetailList(memberOrderNo);
             memberOrder.setMemberOrderDetailList(memberOrderDetailList);
             memberOrderAdminViewDTOList.add(MemberOrderAdminViewDTO.toMemberOrderAdminViewDTO(memberOrder));
         }
         return memberOrderAdminViewDTOList;
+    }
+
+    public List<MemberOrderDetailDTO> getMemberOrderDetailList(Long memberOrderNo) {
+        List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetailList(memberOrderNo);
+        return MemberOrderDetailDTO.toMemberOrderDetailDTOList(memberOrderNo, memberOrderDetailList);
     }
 }

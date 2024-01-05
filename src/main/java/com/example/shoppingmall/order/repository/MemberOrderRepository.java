@@ -24,7 +24,7 @@ public interface MemberOrderRepository {
     List<MemberOrder> findMemberOrderList(MemberOrderViewForm memberOrderViewForm);
 
     /* user */
-    List<MemberOrderDetail> findMemberOrderDetail(Long memberOrderNo);
+    List<MemberOrderDetail> findMemberOrderDetailList(Long memberOrderNo);
 
     List<MemberOrder> getMemberOrderList();
 

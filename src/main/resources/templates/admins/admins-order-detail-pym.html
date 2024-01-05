@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:admin-head>
+    <div
+            th:remove="tag"
+            th:replace="~{/fragments/admin-head :: admin-head} "
+    ></div>
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/pages/admins/admins-order.css" />
+</head>
+<body>
+<header
+        th:replace="~{/fragments/admin-login-header :: admin-login-header}"
+></header>
+
+<aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}"></aside>
+
+<main>
+    <div class="main">
+
+            <div class="admin_order_detail">주문 상세</div>
+            <table class="order_detail_table">
+                <thead>
+                <tr>
+                    <th>주문 번호</th>
+                    <th>주문 상세 번호</th>
+                    <th>상품 번호</th>
+                    <th>상품명</th>
+                    <th>사이즈</th>
+                    <th>수량</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="memberOrderDetail: ${memberOrderDetailDTOList}">
+                    <td th:text="${memberOrderDetail.memberOrderNo}"></td>
+                    <td th:text="${memberOrderDetail.memberOrderDetailNo}"></td>
+                    <td th:text="${memberOrderDetail.itemNo}"></td>
+                    <td th:text="${memberOrderDetail.itemName}"></td>
+                    <td th:text="${memberOrderDetail.itemSize}"></td>
+                    <td th:text="${memberOrderDetail.itemQuantity}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--main div-->
+</main>
+</body>
+</html>
