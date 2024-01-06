@@ -10,9 +10,9 @@
     <img class="main__logo" src="/images/spartan-helmet.svg">
     <h1 class="main__title after--logo">주문이 무사히 완료되었습니다.</h1>
     <h2 th:text="'회원님의 주문번호는 ' + ${memberOrderNo} + '입니다.'"></h2>
-    <div class="items__page notice__link">
-        <a href="/" >홈으로</a>
-        <a href="#">주문 목록으로</a>
+    <div class="cart-order__btns">
+        <button type=button class="btn btn--white btn--mi">홈으로</button>
+        <button type=button class="btn btn--black btn--mi">주문 목록으로</button>
     </div>
 </main>
 </body>
