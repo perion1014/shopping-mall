@@ -232,12 +232,20 @@ public class OrderControllerPYM {
         return "admins/admins-order-pym";
     }
 
+    /* admin */
     @GetMapping("/orders/admin/members/{orderNo}")
     public String showMemberOrderDetail(@PathVariable(name="orderNo") Long orderNo,
                                         Model model) {
         List<MemberOrderDetailDTO> memberOrderDetailDTOList = memberOrderService.getMemberOrderDetailList(orderNo);
         model.addAttribute("memberOrderDetailDTOList", memberOrderDetailDTOList);
-        return "admins/admins-order-detail-pym";    // html 파일이 생성되면 그때 수정할 예정.
+
+        Integer priceSum = 0;
+        for (MemberOrderDetailDTO memberOrderDetailDTO: memberOrderDetailDTOList) {
+            priceSum += memberOrderDetailDTO.getItemPrice() * memberOrderDetailDTO.getItemQuantity();
+        }
+        model.addAttribute("priceSum", priceSum);
+
+        return "admins/admins-order-detail-pym";
     }
 
     @GetMapping("/orders/admin/members/{orderNo}/cancel")
