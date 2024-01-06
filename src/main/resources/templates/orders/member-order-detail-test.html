@@ -20,10 +20,10 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="cart__price">1</td>
-                    <td class="cart__price">박아무개</td>
-                    <td class="order__hp">01012345678</td>
-                    <td>서울시 동작구 대방동</td>
+                    <td class="cart__price" th:text="${memberOrderDTO.memberOrderNo}"></td>
+                    <td class="cart__price" th:text="${memberOrderDTO.receiverName}"></td>
+                    <td class="order__hp" th:text="${memberOrderDTO.orderHp}"></td>
+                    <td th:text="${memberOrderDTO.orderAddressBasic} + ' ' + ${memberOrderDTO.orderAddressDetail}"></td>
                 </tr>
             </tbody>
         </table>
