@@ -175,4 +175,9 @@ public class MyBatisItemRepository implements ItemRepository{
     public String getItemThumbByNo(Long itemNo) {
         return itemMapper.getItemThumbByNo(itemNo);
     }
+
+    @Override
+    public List<Item> findAllItemsByReview() {
+        return itemMapper.findAllItemsByReview();
+    }
 }

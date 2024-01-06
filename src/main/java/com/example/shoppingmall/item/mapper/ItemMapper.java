@@ -76,4 +76,5 @@ public interface ItemMapper {
     String getItemThumbByNo(Long itemNo);
 
 
+    List<Item> findAllItemsByReview();
 }

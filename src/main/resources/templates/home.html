@@ -50,13 +50,15 @@
       <h1 class="section__title">Best Items</h1>
       <div class="slide__wrap">
          <div class="slide__container clearfix">
-            <div id="top1" class="slide__box">
-               <button type="button" class="btn--slide slide__prev1 "><img class="btn--slide-img" alt="back" src="/images/icons/left-arrow.svg"></button>
-               <img src="/images/itemImages/1/thumb/p1.jpg">
+            <div th:each="itemReviewDTO: ${itemDTOListByReview}"
+                 th:if="${itemReviewDTOStat.index} < 3"
+                 th:id="'top' + ${itemReviewDTOStat.index + 1}" class="slide__box">
+               <button type="button" th:class="'btn--slide slide__prev' + ${itemReviewDTOStat.index + 1}"><img class="btn--slide-img" alt="back" src="/images/icons/left-arrow.svg"></button>
+               <img th:src="@{/images/itemImages/__${itemReviewDTO.itemNo}__/thumb/__${itemReviewDTO.itemPhotosDTO.itemThumb}__}">
                <div class="slide__info">
-                  <h2 class="item__card-name item__card-name--rank" >1위</h2>
-                  <h2 class="item__card-name">상품명을 입력해주세요</h2>
-                  <h2 class="item__card-price">100,000원</h2>
+                  <h2 class="item__card-name item__card-name--rank" th:text="${itemReviewDTOStat.index + 1} + '위'"></h2>
+                  <h2 class="item__card-name" th:text="${itemReviewDTO.itemName}"></h2>
+                  <h2 class="item__card-price" th:text="${itemReviewDTO.itemPrice} + '원'"></h2>
                   <div class="item__rank">
                      <img class="item__star" src="/images/icons/star.svg">
                      <img class="item__star" src="/images/icons/star.svg">
@@ -65,50 +67,12 @@
                      <img class="item__star" src="/images/icons/star.svg">
                   </div>
                   <div class="slide__btns">
-                     <button class="btn btn--index btn--black">상품 자세히 보기</button>
+                     <form th:action="@{/items/{itemNo}(itemNo=${itemReviewDTO.itemNo})}" method="get">
+                        <button class="btn btn--index btn--black">상품 자세히 보기</button>
+                     </form>
                   </div>
                </div>
-               <button type="button" class="btn--slide slide__next1"><img class="btn--slide-img" alt="forward" src="/images/icons/right-arrow.svg"></button>
-            </div>
-            <div id="top2" class="slide__box">
-               <button type="button" class="btn--slide slide__prev2 "><img class="btn--slide-img" alt="back" src="/images/icons/left-arrow.svg"></button>
-               <img src="/images/itemImages/1/thumb/p1.jpg">
-               <div class="slide__info">
-                  <h2 class="item__card-name item__card-name--rank" >2위</h2>
-                  <h2 class="item__card-name">상품명을 입력해주세요</h2>
-                  <h2 class="item__card-price">100,000원</h2>
-                  <div class="item__rank">
-                     <img class="item__star" src="/images/icons/star.svg">
-                     <img class="item__star" src="/images/icons/star.svg">
-                     <img class="item__star" src="/images/icons/star.svg">
-                     <img class="item__star" src="/images/icons/star.svg">
-                     <img class="item__star" src="/images/icons/star.svg">
-                  </div>
-                  <div class="slide__btns">
-                     <button class="btn btn--index btn--black">상품 자세히 보기</button>
-                  </div>
-               </div>
-               <button type="button" class="btn--slide slide__next2"><img class="btn--slide-img" alt="forward" src="/images/icons/right-arrow.svg"></button>
-            </div>
-            <div id="top3" class="slide__box">
-               <button type="button" class="btn--slide slide__prev3 "><img class="btn--slide-img" alt="back" src="/images/icons/left-arrow.svg"></button>
-               <img src="/images/itemImages/1/thumb/p1.jpg">
-               <div class="slide__info">
-                  <h2 class="item__card-name item__card-name--rank" >3위</h2>
-                  <h2 class="item__card-name">상품명을 입력해주세요</h2>
-                  <h2 class="item__card-price">100,000원</h2>
-                  <div class="item__rank">
-                     <img class="item__star" src="/images/icons/star.svg">
-                     <img class="item__star" src="/images/icons/star.svg">
-                     <img class="item__star" src="/images/icons/star.svg">
-                     <img class="item__star" src="/images/icons/star.svg">
-                     <img class="item__star" src="/images/icons/star.svg">
-                  </div>
-                  <div class="slide__btns">
-                     <button class="btn btn--index btn--black">상품 자세히 보기</button>
-                  </div>
-               </div>
-               <button type="button" class="btn--slide slide__next3"><img class="btn--slide-img" alt="forward" src="/images/icons/right-arrow.svg"></button>
+               <button type="button" th:class="'btn--slide slide__next' + ${itemReviewDTOStat.index + 1}"><img class="btn--slide-img" alt="forward" src="/images/icons/right-arrow.svg"></button>
             </div>
          </div>
       </div>
