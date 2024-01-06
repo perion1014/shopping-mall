@@ -12,10 +12,4 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ItemSearchDTO {
     private String itemName;
-
-    public static Item itemSearchDTOToItem(ItemSearchDTO itemSearchDTO) {
-        Item item = new Item();
-        item.setItemName(itemSearchDTO.getItemName());
-        return item;
-    }
 }

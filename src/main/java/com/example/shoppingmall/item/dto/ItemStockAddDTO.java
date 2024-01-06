@@ -17,21 +17,4 @@ public class ItemStockAddDTO {
     private String itemSize;
     private Integer itemStockValue;
 
-    public static ItemStock toItemStock(ItemStockAddDTO itemStockAddDTO) {
-        ItemStock itemstock = new ItemStock();
-        itemstock.setItemStockNo(itemStockAddDTO.getItemStockNo());
-        itemstock.setItemNo(itemStockAddDTO.getItemNo());
-        itemstock.setItemSize(itemStockAddDTO.getItemSize());
-        itemstock.setItemStockValue(itemStockAddDTO.getItemStockValue());
-        return itemstock;
-    }
-
-    public static ItemStockAddDTO toItemStockAddDTO(ItemStock itemStock) {
-        ItemStockAddDTO itemStockAddDTO = new ItemStockAddDTO();
-        itemStockAddDTO.setItemStockNo(itemStock.getItemStockNo());
-        itemStockAddDTO.setItemNo(itemStock.getItemNo());
-        itemStockAddDTO.setItemSize(itemStock.getItemSize());
-        itemStockAddDTO.setItemStockValue(itemStock.getItemStockValue());
-        return itemStockAddDTO;
-    }
 }

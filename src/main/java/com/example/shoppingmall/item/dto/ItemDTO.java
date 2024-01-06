@@ -63,32 +63,5 @@ public class ItemDTO {
         return itemDTO;
     }
 
-    public static List<ItemStockDTO> itemToItemStockDTOList(Long itemNo, Item item, List<ItemStock> itemStockList) {
-        List<ItemStockDTO> itemStockDTOList = new ArrayList<>();
-        ItemDTO itemDTO = new ItemDTO();
-        itemDTO.setItemNo(itemNo);
-        itemDTO.setItemName(item.getItemName());
-        itemDTO.setItemCategory(item.getItemCategory());
-        itemDTO.setItemGrade(item.getItemGrade());
-        itemDTO.setItemDetail(item.getItemDetail());
-        itemDTO.setItemPrice(item.getItemPrice());
-        itemDTO.setItemOnsale(item.getItemOnsale());
-        itemDTO.setItemRegisteredTime(item.getItemRegisteredTime());
-        return itemStockDTOList;
-    }
-
-    public static Item itemDTOToItemWithItemNo(ItemDTO itemDTO) {
-        Item item = new Item();
-        item.setItemNo(itemDTO.getItemNo());
-        item.setItemName(itemDTO.getItemName());
-        item.setItemCategory(itemDTO.getItemCategory());
-        item.setItemGrade(itemDTO.getItemGrade());
-        item.setItemDetail(itemDTO.getItemDetail());
-        item.setItemPrice(itemDTO.getItemPrice());
-        item.setItemOnsale(itemDTO.getItemOnsale());
-        item.setItemRegisteredTime(itemDTO.getItemRegisteredTime());
-        //item.setItemStockList(itemDTO.getItemStockList());
-        return item;
-    }
 
 }
