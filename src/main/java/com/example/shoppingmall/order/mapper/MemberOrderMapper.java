@@ -55,6 +55,10 @@ public interface MemberOrderMapper {
 
     List<MemberOrder> getMemberOrderListPageBySearch2(MemberOrderAdminViewForm memberOrderAdminViewForm);
 
+    List<MemberOrder> getMemberOrderListBySearch3(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
+    List<MemberOrder> getMemberOrderListPageBySearch3(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
     List<MemberOrder> getMemberOrderListBySearchLong(MemberOrderAdminViewForm memberOrderAdminViewForm);
 
     List<MemberOrder> getMemberOrderListPageBySearchLong(MemberOrderAdminViewForm memberOrderAdminViewForm);

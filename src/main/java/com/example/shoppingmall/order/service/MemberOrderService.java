@@ -295,6 +295,55 @@ public class MemberOrderService {
 
     /* admin */
     @Transactional(readOnly = true)
+    public MemberOrderPageForm setMemberOrderAdminListPageBySearch3(int page, MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        int memberOrdersPerPage = 10;
+        int pageLimit = 5;
+
+        int memberOrderCount = memberOrderRepository.getMemberOrderListBySearch3(memberOrderAdminViewForm).size();
+
+        int totalPage = (int) (Math.ceil((double) memberOrderCount / memberOrdersPerPage));
+
+        int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
+
+        int endPage = startPage + pageLimit - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+        return new MemberOrderPageForm(page, totalPage, startPage, endPage);
+    }
+
+    /* admin */
+    @Transactional(readOnly = true)
+    public List<MemberOrderAdminViewDTO> getMemberOrderAdminListPageBySearch3(int page, MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        int memberOrdersPerPage = 10;
+        int startPage = (page - 1) * memberOrdersPerPage;
+
+        memberOrderAdminViewForm.setStartPage(startPage);
+        memberOrderAdminViewForm.setMemberOrdersPerPage(memberOrdersPerPage);
+
+        List<MemberOrder> memberOrderList = memberOrderRepository.getMemberOrderListPageBySearch3(memberOrderAdminViewForm);
+        List<MemberOrderAdminViewDTO> memberOrderAdminViewDTOList = new ArrayList<>();
+        for (MemberOrder memberOrder: memberOrderList) {
+            MemberOrderAdminViewDTO memberOrderAdminViewDTO = new MemberOrderAdminViewDTO();
+            Long memberOrderNo = memberOrder.getMemberOrderNo();
+            ///////////////////////////////////////
+            memberOrderAdminViewDTO.setMemberOrderNo(memberOrderNo);
+            memberOrderAdminViewDTO.setMemberNo(memberOrder.getMemberNo());
+            memberOrderAdminViewDTO.setReceiverName(memberOrder.getReceiverName());
+            memberOrderAdminViewDTO.setOrderHp(memberOrder.getOrderHp());
+            memberOrderAdminViewDTO.setOrderPostalCode(memberOrder.getOrderPostalCode());
+            memberOrderAdminViewDTO.setOrderAddressBasic(memberOrder.getOrderAddressBasic());
+            memberOrderAdminViewDTO.setOrderStatus(memberOrder.getOrderStatus());
+            ///////////////////////////////////////
+            List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetailList(memberOrderNo);
+            memberOrder.setMemberOrderDetailList(memberOrderDetailList);
+            memberOrderAdminViewDTOList.add(MemberOrderAdminViewDTO.toMemberOrderAdminViewDTO(memberOrder));
+        }
+        return memberOrderAdminViewDTOList;
+    }
+
+    /* admin */
+    @Transactional(readOnly = true)
     public MemberOrderPageForm setMemberOrderAdminListPageBySearchLong(int page, MemberOrderAdminViewForm memberOrderAdminViewForm) {
         int memberOrdersPerPage = 10;
         int pageLimit = 5;

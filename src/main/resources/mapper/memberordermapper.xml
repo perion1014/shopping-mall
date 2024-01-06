@@ -62,6 +62,14 @@
         select * from member_order where order_hp like concat('%', #{searchKeywordString}, '%') order by member_order_no desc limit #{startPage}, #{memberOrdersPerPage}
     </select>
 
+    <select id="getMemberOrderListBySearch3" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where concat(order_address_basic, ' ', order_address_detail) like concat('%', #{searchKeywordString}, '%') order by member_order_no desc
+    </select>
+
+    <select id="getMemberOrderListPageBySearch3" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where concat(order_address_basic, ' ', order_address_detail) like concat('%', #{searchKeywordString}, '%') order by member_order_no desc limit #{startPage}, #{memberOrdersPerPage}
+    </select>
+
     <select id="getMemberOrderListBySearchLong" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
         select * from member_order where member_order_no = #{searchKeywordLong} order by member_order_no desc
     </select>
