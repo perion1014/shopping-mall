@@ -160,11 +160,7 @@ public class OrderControllerPYM {
         }
         memberOrderViewForm.setMemberNo(memberNo);
         model.addAttribute("pageSettings", memberOrderService.setMemberOrderListPage(page, memberOrderViewForm));
-
         List<MemberOrderDTO> memberOrderDTOList = memberOrderService.getMemberOrderListPage(page, memberOrderViewForm);
-
-
-
         List<Integer> priceSumList = new ArrayList<>();
         for (MemberOrderDTO memberOrderDTO: memberOrderDTOList) {
             Integer priceSum = 0;
