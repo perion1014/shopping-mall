@@ -105,6 +105,18 @@ public class MyBatisMemberOrderRepository implements MemberOrderRepository{
     }
 
     @Override
+    public List<MemberOrder> getMemberOrderListBySearch3(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListBySearch3(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
+
+    @Override
+    public List<MemberOrder> getMemberOrderListPageBySearch3(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListPageBySearch3(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
+
+    @Override
     public List<MemberOrder> getMemberOrderListBySearchLong(MemberOrderAdminViewForm memberOrderAdminViewForm) {
         List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListBySearchLong(memberOrderAdminViewForm);
         return memberOrderList;

@@ -22,11 +22,12 @@
         <div class="admin_order_search">
             <form action="/orders/admin/members" method="get">
                 <select name="searchCategory">
-                    <option value="member_order_no">주문번호</option>
-                    <option value="member_no" selected>회원번호</option>
-                    <option value="receiver_name">이름</option>
-                    <option value="order_hp">전화번호</option>
-                    <option value="order_postal_code">우편번호</option>
+                    <option value="member_order_no" th:selected="${session.adminSearchCategory == null or session.adminSearchCategory == 'member_order_no'}">주문번호</option>
+                    <option value="member_no" th:selected="${session.adminSearchCategory == 'member_no'}">회원번호</option>
+                    <option value="receiver_name" th:selected="${session.adminSearchCategory == 'receiver_name'}">이름</option>
+                    <option value="order_hp" th:selected="${session.adminSearchCategory == 'order_hp'}">전화번호</option>
+                    <option value="order_postal_code" th:selected="${session.adminSearchCategory == 'order_postal_code'}">우편번호</option>
+                    <option value="order_address" th:selected="${session.adminSearchCategory == 'order_address'}">주소</option>
                 </select>
                 <input type="text" name="searchKeyword"/>
                 <button>검색</button>

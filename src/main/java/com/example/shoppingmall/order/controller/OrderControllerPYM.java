@@ -223,6 +223,7 @@ public class OrderControllerPYM {
                                       Model model) {
 
         HttpSession session = request.getSession();
+        session.setAttribute("adminSearchCategory", searchCategory);
 
         System.out.println("searchCategory: " + searchCategory);
         System.out.println("searchKeyword: " + searchKeyword);
@@ -287,9 +288,13 @@ public class OrderControllerPYM {
                     model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPageBySearch(page, memberOrderAdminViewForm));
                     List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPageBySearch(page, memberOrderAdminViewForm);
                     model.addAttribute("memberOrderDTOList", memberOrderDTOList);
-                } else {
+                } else if (searchCategory.equals("order_hp")){
                     model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPageBySearch2(page, memberOrderAdminViewForm));
                     List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPageBySearch2(page, memberOrderAdminViewForm);
+                    model.addAttribute("memberOrderDTOList", memberOrderDTOList);
+                } else {
+                    model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPageBySearch3(page, memberOrderAdminViewForm));
+                    List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPageBySearch3(page, memberOrderAdminViewForm);
                     model.addAttribute("memberOrderDTOList", memberOrderDTOList);
                 }
                 ////////////////////////////////////////////////////////////////////////////// DTO 담기
