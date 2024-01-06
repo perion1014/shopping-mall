@@ -31,11 +31,7 @@ public class ItemService {
     private String fileDir;
 
     public void saveItem(ItemAddDTO itemAddDTO) {
-        //Debugging
-        System.out.println("itemService.saveItem(itemAddDTO) ==> item_no = " + itemAddDTO.getItemNo());
-        System.out.println("itemService.saveItem(itemAddDTO) ==> item_name = " + itemAddDTO.getItemName());
         Item item = ItemAddDTO.itemAddDTOToItem(itemAddDTO);
-        System.out.println("itemService.saveItem(itemAddDTO) ==> item.item_registered_time = " + item.getItemRegisteredTime());
         itemRepository.saveItem(item);
     }
 
@@ -46,9 +42,6 @@ public class ItemService {
 
     public void saveItemPhotos(Long itemNo, ItemAddDTO itemAddDTO, MultipartFile itemThumb, MultipartFile itemImg1, MultipartFile itemImg2, MultipartFile itemImg3) throws IOException{
         ItemPhotos itemPhotos = ItemAddDTO.itemAddDTOToItemPhotos(itemNo, itemAddDTO);
-        //Debugging
-        System.out.println("itemService.saveItemPhotos(itemAddDTO) ==> item_no = " + itemNo);
-        System.out.println("itemService.saveItemPhotos(itemAddDTO) ==> item_thumb = " + itemAddDTO.getItemThumb());
         itemRepository.saveItemPhotos(itemPhotos);
         // 파일 처리 (추가)
         String myPath = "D:/intellij/workspace/";
@@ -76,22 +69,7 @@ public class ItemService {
         }
     }
 
-    public void saveItemPhotos(Long itemNo, ItemPhotosDTO itemPhotosDTO) {
-        //Debugging
-        System.out.println("itemService.saveItemPhotos(itemAddDTO) ==> item_no = " + itemNo);
-        System.out.println("itemService.saveItemPhotos(itemAddDTO) ==> item_thumb = " + itemPhotosDTO.getItemThumb());
-        ItemPhotos itemPhotos = ItemPhotosDTO.toItemPhotos(itemNo, itemPhotosDTO);
-
-        itemRepository.saveItemPhotos(itemPhotos);
-    }
-
-
-
     public void saveItemStock(Long itemNo, ItemAddDTO itemAddDTO) {
-        //Debugging
-        System.out.println("itemService.saveItemStock(itemAddDTO) ==> item_stock_no = " + itemAddDTO.getItemStockNo());
-        System.out.println("itemService.saveItemStock(itemAddDTO) ==> item_no = " + itemNo);
-        System.out.println("itemService.saveItemStock(itemAddDTO) ==> item_stock_value = " + itemAddDTO.getItemStockValue());
         List<ItemStock> itemStockList = ItemAddDTO.itemAddToItemStockList(itemNo, itemAddDTO);
         for (ItemStock itemStock: itemStockList) {
             itemRepository.saveItemStock(itemStock);
@@ -100,24 +78,6 @@ public class ItemService {
 
     public List<ItemDTO> findAllItems() {
         List<Item> itemList = itemRepository.findAllItems();
-        for (Item item: itemList) {
-            Long itemNo = item.getItemNo();
-            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
-            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
-            item.setItemStockList(itemStockList);
-        }
-        List<ItemDTO> itemDTOList = new ArrayList<>();
-        for (Item item: itemList) {
-            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
-            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
-            item.setItemStockDTOList(itemStockDTOList);
-            itemDTOList.add(ItemDTO.itemToItemDTO(item));
-        }
-        return itemDTOList;
-    }
-
-    public List<ItemDTO> findAllItemsByCategory(String category) {
-        List<Item> itemList = itemRepository.findAllItemsByCategory(category);
         for (Item item: itemList) {
             Long itemNo = item.getItemNo();
             item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
@@ -168,11 +128,6 @@ public class ItemService {
             itemDTOList.add(ItemDTO.itemToItemDTO(item));
         }
         return itemDTOList;
-    }
-
-    public ItemDTO findItemByNo(Long itemNo) {
-        Item item =  itemRepository.findItemByNo(itemNo);
-        return ItemDTO.itemToItemDTO(item);
     }
 
     public List<ItemDTO> findItemsByName(ItemSearchDTO itemSearchDTO) {
@@ -347,12 +302,6 @@ public class ItemService {
         List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
         return ItemStockDTO.toItemStockDTOList(itemStockList);
     }
-
-    public String selectItemThumbByItemNo(Long itemNo) {
-        return itemRepository.selectItemThumbByItemNo(itemNo);
-    }
-
-
 
     @Transactional(readOnly = true)
     public ItemPageForm setItemListPage(int page) { // setter

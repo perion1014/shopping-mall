@@ -115,12 +115,6 @@ public class MyBatisItemRepository implements ItemRepository{
     }
 
     @Override
-    public List<ItemStock> findItemStocksByItemNo(Long itemNo) {
-        List<ItemStock> itemStockList = itemMapper.findItemStocksByItemNo(itemNo);
-        return itemStockList;
-    }
-
-    @Override
     public void deleteItemStockByItemNo(Long itemNo) {
         itemMapper.deleteItemStockByItemNo(itemNo);
     }

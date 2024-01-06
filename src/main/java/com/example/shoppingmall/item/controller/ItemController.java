@@ -74,7 +74,6 @@ public class ItemController {
         session.setAttribute("ifSearched", false);
         session.setAttribute("ifCategorySelected", true);
 
-        //List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Outer");
         List<ItemDTO> itemDTOList = itemService.getItemListPageByCategory(page, itemCategoryPageForm);
         model.addAttribute("itemDTOList", itemDTOList);
         model.addAttribute("Category", "outer");
@@ -93,7 +92,6 @@ public class ItemController {
         session.setAttribute("ifSearched", false);
         session.setAttribute("ifCategorySelected", true);
 
-        //List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Inner");
         List<ItemDTO> itemDTOList = itemService.getItemListPageByCategory(page, itemCategoryPageForm);
         model.addAttribute("itemDTOList", itemDTOList);
         model.addAttribute("Category", "inner");
@@ -112,7 +110,6 @@ public class ItemController {
         session.setAttribute("ifSearched", false);
         session.setAttribute("ifCategorySelected", true);
 
-        //List<ItemDTO> itemDTOList = itemService.findAllItemsByCategory("Pants");
         List<ItemDTO> itemDTOList = itemService.getItemListPageByCategory(page, itemCategoryPageForm);
         model.addAttribute("itemDTOList", itemDTOList);
         model.addAttribute("Category", "pants");
@@ -134,7 +131,7 @@ public class ItemController {
         if (searchKeyword.isEmpty()) {
             return "redirect:/items/searched";
         }
-        //List<ItemDTO> itemDTOList = itemService.findAllItemsBySearchKeyword(searchKeyword);
+
         List<ItemDTO> itemDTOList = itemService.getItemListPageBySearch(page, itemSearchForm);
         model.addAttribute("itemDTOList", itemDTOList);
         return "items/item-list";

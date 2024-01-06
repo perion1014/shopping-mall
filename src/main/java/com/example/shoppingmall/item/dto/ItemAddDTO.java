@@ -115,15 +115,4 @@ public class ItemAddDTO {
         return itemStockList;
     }
 
-    public static ItemAddDTO itemToItemAddDTO(Item item) {
-        ItemAddDTO itemAddDTO = new ItemAddDTO();
-        itemAddDTO.setItemNo(item.getItemNo());
-        itemAddDTO.setItemName(item.getItemName());
-        itemAddDTO.setItemCategory(item.getItemCategory());
-        itemAddDTO.setItemPrice(item.getItemPrice());
-        itemAddDTO.setItemPrice((item.getItemOnsale()));
-        itemAddDTO.setItemDetail(item.getItemDetail());
-        return itemAddDTO;
-    }
-
 }

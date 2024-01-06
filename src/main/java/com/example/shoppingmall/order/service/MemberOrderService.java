@@ -54,34 +54,6 @@ public class MemberOrderService {
         memberOrder.setMemberOrderDetailList(memberOrderDetailList);
     }
 
-
-
-
-    /* user */
-//    public MemberOrderDetailDTO findMemberOrderDetail(Long memberOrderNo) {
-//        MemberOrderDetail memberOrderDetail = memberOrderRepository.findMemberOrderDetail(memberOrderNo);
-//        MemberOrderDetailDTO memberOrderDetailDTO = MemberOrderDetailDTO.toMemberOrderDetailDTO(memberOrderDetail);
-//        return memberOrderDetailDTO;
-//    }
-
-
-
-    /* admin */
-    public List<MemberOrderDTO> getMemberOrderList() {
-        List<MemberOrder> memberOrderList = memberOrderRepository.getMemberOrderList();
-        List<MemberOrderDTO> memberOrderDTOList = new ArrayList<>();
-        for (MemberOrder memberOrder: memberOrderList) {
-            memberOrderDTOList.add(MemberOrderDTO.toMemberOrderDTO(memberOrder));
-        }
-        return memberOrderDTOList;
-    }
-
-    public MemberOrderDetailDTO getMemberOrderDetail() {
-        MemberOrderDetail memberOrderDetail = memberOrderRepository.getMemberOrderDetail();
-        MemberOrderDetailDTO memberOrderDetailDTO = MemberOrderDetailDTO.toMemberOrderDetailDTO(memberOrderDetail);
-        return memberOrderDetailDTO;
-    }
-
     /* user */
     @Transactional(readOnly = true)
     public MemberOrderPageForm setMemberOrderListPage(int page, MemberOrderViewForm memberOrderViewForm) {
