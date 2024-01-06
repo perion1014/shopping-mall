@@ -38,7 +38,7 @@ public class MemberAddDTO {
     private String memberEmail;
     @NotNull(message = "우편번호를 입력해주세요.", groups = MemberNotBlankGroup.class)
     private Integer memberPostalCode;
-    @NotBlank(message = "기본번호를 입력해주세요." ,groups = MemberNotBlankGroup.class)
+    @NotBlank(message = "기본주소를 입력해주세요." ,groups = MemberNotBlankGroup.class)
     private String memberAddressBasic;
     @Pattern(regexp = "[가-힣]{0,50}", message = "최대 50자까지 가능합니다.", groups = MemberPatternGroup.class)
     private String memberAddressDetail;

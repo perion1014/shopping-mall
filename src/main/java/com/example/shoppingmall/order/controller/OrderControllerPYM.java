@@ -15,11 +15,14 @@ import com.example.shoppingmall.order.form.MemberOrderAdminViewForm;
 import com.example.shoppingmall.order.form.MemberOrderPageForm;
 import com.example.shoppingmall.order.form.MemberOrderViewForm;
 import com.example.shoppingmall.order.service.MemberOrderService;
+import com.example.shoppingmall.order.validation.OrderValidationSequence;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -113,17 +116,27 @@ public class OrderControllerPYM {
     }
 
     @GetMapping("/members/orders/create")
-    public String tempMethod() {
+    public String tempMethod(@ModelAttribute("memberOrderAddDTO") MemberOrderAddDTO memberOrderAddDTO) {
         return "orders/member-order";
     }
 
     /* 3 */
     /* user */
+
+    /**
+     * PRG 패턴 써주세요!
+     */
     @PostMapping("/members/{memberNo}/orders/create-success")
     public String makeMemberOrderSuccess(@PathVariable(name="memberNo") Long memberNo,
-                                         @ModelAttribute MemberOrderAddDTO memberOrderAddDTO,
+                                         @Validated(OrderValidationSequence.class)
+                                         @ModelAttribute("memberOrderAddDTO") MemberOrderAddDTO memberOrderAddDTO,
+                                         BindingResult bindingResult,
                                          HttpServletRequest request,
                                          Model model) {
+
+        if(bindingResult.hasErrors()){
+            return "orders/member-order";
+        }
 
         HttpSession session = request.getSession();
 

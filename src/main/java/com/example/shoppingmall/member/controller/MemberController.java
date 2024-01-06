@@ -54,8 +54,6 @@ public class MemberController {
         session.setMaxInactiveInterval(1800);
         return "redirect:/";
 
-
-
     }
 
     /* 유저 로그 아웃 */

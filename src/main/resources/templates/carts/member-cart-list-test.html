@@ -71,7 +71,7 @@
                                 this.getAttribute('itemNo'),
                                 this.getAttribute('itemSize'))"
                          >-</button>
-                         <input th:id="'inputvalue_' + ${cartIndex.index}" style = "text-align:center;" class="input input--item-cart" th:value="${cartDTO.itemQuantity}">
+                         <input th:id="'inputvalue_' + ${cartIndex.index}" class="input input--item-cart" th:value="${cartDTO.itemQuantity}">
                          <button type = "button"
                                  class="btn btn--xs btn--white btn--item-cart"
                                  th:id="'increaseButton_' + ${cartIndex.index}"
