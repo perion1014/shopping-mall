@@ -158,4 +158,8 @@
         select item_thumb from item_photos where item_no = #{itemNo}
     </select>
 
+    <select id="findAllItemsByReview" resultType="com.example.shoppingmall.item.domain.Item">
+        select * from item where item_no in (select item_no from item_stock where item_stock_value > 0) and item_grade is not null order by item_grade desc, item_no desc
+    </select>
+
 </mapper>

@@ -30,13 +30,17 @@ public class HomeController {
         session.setAttribute("ifSearched", false);
         session.setAttribute("ifCategorySelected", true);
 
+        List<ItemDTO> itemDTOListByReview = itemService.findAllItemsByReview();
+        if (itemDTOListByReview == null || itemDTOListByReview.isEmpty() || itemDTOListByReview.size() < 3) {
+            itemDTOListByReview = itemDTOList;
+        }
+        model.addAttribute("itemDTOListByReview", itemDTOListByReview);
+
 
         //세션에 회원 데이터가 없으면 일반 홈으로 이동
         if(loginMember == null){
             return "home";
         }
-
-
 
         ///회원 세션이 회원 전용 홈으로 이동
         model.addAttribute("member",loginMember);
