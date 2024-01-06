@@ -18,7 +18,7 @@
     </select>
 
     <select id="findByHp" resultType="com.example.shoppingmall.member.domain.Member">
-        select * from member where member_email = #{memberHp}
+        select * from member where member_hp = #{memberHp}
     </select>
 
     <select id="findByNoContaining" resultType="com.example.shoppingmall.member.domain.Member">

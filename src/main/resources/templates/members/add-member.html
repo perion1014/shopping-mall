@@ -17,6 +17,7 @@
             <input id="memberId" name ="memberId" class="input input--lg" type="text" th:field="*{memberId}" placeholder="영소문자 및 숫자(5~20자)"/>
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{memberId}">에러 메시지를 출력합니다.</h6>
+                <h6 class="label__error" th:with="fieldName='memberId', errorMessage=${errorMessage}" th:if="${fieldName}" th:text="${errorMessage}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberPw">
