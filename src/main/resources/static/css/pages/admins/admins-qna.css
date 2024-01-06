@@ -1,0 +1,12 @@
+.answer {
+    margin-top: 12px;
+    text-align : center;
+}
+
+.answer a{
+    font-weight: bold;
+}
+
+.answer a:hover {
+    color: #ffb94f;
+}

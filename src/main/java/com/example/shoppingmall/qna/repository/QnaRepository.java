@@ -45,4 +45,6 @@ public interface QnaRepository {
     List<Qna> findUnansweredQna(Map<String, Integer> pagingSettings);
 
     Long countUnansweredQna();
+
+    String getItemName(Long itemNo);
 }

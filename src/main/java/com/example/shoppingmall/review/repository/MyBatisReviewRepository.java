@@ -82,4 +82,14 @@ public class MyBatisReviewRepository implements ReviewRepository{
     public Long getItemNoByReviewNo(Long reviewNo) {
        return reviewMapper.getItemNoByReviewNo(reviewNo);
     }
+
+    @Override
+    public List<Review> findReviewByItemNo(int startPage, int pagePerReview, Long itemNo) {
+        return reviewMapper.findReviewByItemNo(startPage,pagePerReview,itemNo);
+    }
+
+    @Override
+    public Long countItemReview(Long itemNo) {
+        return reviewMapper.countItemReview(itemNo);
+    }
 }

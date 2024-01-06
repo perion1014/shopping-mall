@@ -2,36 +2,46 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
-    <title>PERION - 나의 질문 목록</title>
-    <link rel="stylesheet" href="/css/pages/user/member-qna.css">
+    <title>PERION - Q&A</title>
     <script src="/js/pages/order.js"></script>
     <script src="/js/qna-detail.js"></script>
+    <style>
+        .qna__page {
+            text-align: center;
+            margin-top: 0.5rem;
+            padding-bottom: 1rem;
+        }
+
+        td {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<header th:replace="~{/fragments/login-header :: header}"></header>
+<header th:if="${session.loginMember != null}" th:replace="~{/fragments/login-header :: header}">
+</header>
+<header th:unless="${session.loginMember != null}" th:replace="~{/fragments/header :: header}">
+</header>
 <main class="notice__container">
     <div class="main__container">
-        <h1 class="main__title">나의 질문 목록</h1>
+        <h1 class="main__title">
+            <a th:text="${itemName}+' Q&A'"
+               th:href="@{/items/{itemNo}(itemNo=${itemNo})}"></a>
+        </h1>
         <!-- table Ex-->
         <table class="table__client">
             <thead>
             <tr>
                 <th class="table__no">질문번호</th>
-                <th class="table__category">상품명</th>
                 <th class="table__category">구분</th>
                 <th>내용</th>
                 <th class="table__regtime">등록일자</th>
                 <th class="table__answer">답변 여부</th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="QnaDTO : ${qnaListByPaging}">
                 <td th:text="${QnaDTO.qnaNo}" th:onclick="|return openQnaWindow('${QnaDTO.itemNo}', '${QnaDTO.qnaNo}');|"></td>
-                <td>
-                    <a class="item__link" th:text="${QnaDTO.ItemName}"
-                       th:href="@{/items/{itemNo}(itemNo=${QnaDTO.itemNo})}"></a>
-                </td>
                 <td th:text="${QnaDTO.qnaClassification}" th:onclick="|return openQnaWindow('${QnaDTO.itemNo}', '${QnaDTO.qnaNo}');|"></td>
                 <td th:text="${QnaDTO.qnaTitle}" th:onclick="|return openQnaWindow('${QnaDTO.itemNo}', '${QnaDTO.qnaNo}');|"></td>
                 <td th:text="${#dates.format(QnaDTO.qnaQuestionCreatedTime, 'yyyy-MM-dd')}"
@@ -40,12 +50,6 @@
                     <span th:if="${QnaDTO.qnaAnswer != null}" >답변완료</span>
                     <span th:unless="${QnaDTO.qnaAnswer != null}">답변대기</span>
                 </td>
-                <td class="qna__drop">
-                    <form th:action="'/members/'+${QnaDTO.memberNo}+'/qna'" method="post" >
-                        <input type="hidden" name="qnaNo" th:value="${QnaDTO.qnaNo}" />
-                        <button type="submit" class="btn--xs btn--black">삭제</button>
-                    </form>
-                </td>
             </tr>
             </tbody>
         </table>
@@ -53,19 +57,19 @@
     <div class="qna__page">
         <span th:if="${pageSettings.page &lt;= 1}">이전</span>
         <span th:unless="${pageSettings.page &lt;= 1}">
-            <a th:href="@{/members/{memberNo}/qna(memberNo=${memberNo},page=${pageSettings.page - 1})}">이전</a>
+            <a th:href="@{/items/{itemNo}/qna(itemNo=${itemNo},page=${pageSettings.page - 1})}">이전</a>
           </span>
 
         <span th:each="i : ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
             <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
             <a th:unless="${i == pageSettings.page}"
-               th:href="@{/members/{memberNo}/qna(memberNo=${memberNo},page=${i})}"
+               th:href="@{/items/{itemNo}/qna(itemNo=${itemNo},page=${i})}"
                th:text="${i}"></a>
           </span>
 
         <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
         <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
-           th:href="@{/members/{memberNo}/qna(memberNo=${memberNo},page=${pageSettings.page + 1})}"
+           th:href="@{/items/{itemNo}/qna(itemNo=${itemNo},page=${pageSettings.page + 1})}"
         >다음</a
         >
     </div><!--main div-->

@@ -30,7 +30,7 @@ public class QnaMemberC {
         model.addAttribute("qnaListByPaging",qnaService.getMQnaListPage(page,memberNo));
 
 
-        return "/qna/member-qna";
+        return "qna/member-qna";
     }
 
     @GetMapping("/{memberNo}/qna/{qnaNo}/update")
