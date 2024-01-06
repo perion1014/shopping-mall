@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -120,14 +121,17 @@ public class OrderControllerPYM {
     /* user */
     @PostMapping("/members/{memberNo}/orders/create-success")
     public String makeMemberOrderSuccess(@PathVariable(name="memberNo") Long memberNo,
+                                         @ModelAttribute MemberOrderAddDTO memberOrderAddDTO,
                                          HttpServletRequest request,
                                          Model model) {
 
         HttpSession session = request.getSession();
 
-        MemberOrderAddDTO memberOrderAddDTO = (MemberOrderAddDTO) session.getAttribute("memberOrderDTO");
-        List<MemberOrderDetailAddDTO> memberOrderDetailAddDTOList = memberOrderAddDTO.getMemberOrderDetailAddDTOList();
-        memberOrderService.saveMemberOrder(memberNo, memberOrderAddDTO);
+        MemberOrderAddDTO memberOrderDTO = (MemberOrderAddDTO) session.getAttribute("memberOrderDTO");
+        memberOrderDTO.setOrderAddressBasic(memberOrderAddDTO.getOrderAddressBasic());
+        memberOrderDTO.setOrderAddressDetail(memberOrderAddDTO.getOrderAddressDetail());
+        List<MemberOrderDetailAddDTO> memberOrderDetailAddDTOList = memberOrderDTO.getMemberOrderDetailAddDTOList();
+        memberOrderService.saveMemberOrder(memberNo, memberOrderDTO);
         Long maxMemberOrderNo = memberOrderService.getMaxMemberOrderNo();
         memberOrderService.saveMemberOrderDetail(maxMemberOrderNo, memberOrderDetailAddDTOList);
         model.addAttribute("memberOrderNo", maxMemberOrderNo);
@@ -217,18 +221,84 @@ public class OrderControllerPYM {
 
     @GetMapping("/orders/admin/members")
     public String showMemberOrderList(@RequestParam(value="page", required=false, defaultValue="1") int page,
+                                      @RequestParam(value = "searchCategory", defaultValue = "member_no") String searchCategory,
+                                      @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
                                       HttpServletRequest request,
                                       Model model) {
 
         HttpSession session = request.getSession();
 
+        System.out.println("searchCategory: " + searchCategory);
+        System.out.println("searchKeyword: " + searchKeyword);
+
         MemberOrderAdminViewForm memberOrderAdminViewForm = new MemberOrderAdminViewForm();
 
-        model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPage(page));
+        memberOrderAdminViewForm.setSearchCategory(searchCategory);
 
-        List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPage(page, memberOrderAdminViewForm);
-
-        model.addAttribute("memberOrderDTOList", memberOrderDTOList);
+        if ( searchKeyword == null || searchKeyword.replace("+", "").replace(" ", "").equals("")) {
+            model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPage(page));
+            List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPage(page, memberOrderAdminViewForm);
+            model.addAttribute("memberOrderDTOList", memberOrderDTOList);
+        } else {
+            if (searchCategory.equals("member_order_no") || searchCategory.equals("member_no")) {                           // Long 타입
+                try {
+                    memberOrderAdminViewForm.setSearchKeywordLong(Long.parseLong(searchKeyword));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPage(page));
+                    List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPage(page, memberOrderAdminViewForm);
+                    model.addAttribute("memberOrderDTOList", memberOrderDTOList);
+                    return "admins/admins-order-pym";
+                }
+                ////////////////////////////////////////////////////////////////////////////// 예외 처리 끝
+                if (searchCategory.equals("member_order_no")) {
+                    model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPageBySearchLong(page, memberOrderAdminViewForm));
+                    List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPageBySearchLong(page, memberOrderAdminViewForm);
+                    model.addAttribute("memberOrderDTOList", memberOrderDTOList);
+                } else {
+                    model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPageBySearchLong2(page, memberOrderAdminViewForm));
+                    List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPageBySearchLong2(page, memberOrderAdminViewForm);
+                    model.addAttribute("memberOrderDTOList", memberOrderDTOList);
+                }
+                ////////////////////////////////////////////////////////////////////////////// DTO 담기
+            } else if (searchCategory.equals("order_postal_code")) {                                                        // Integer 타입
+                try {
+                    memberOrderAdminViewForm.setSearchKeywordInteger(Integer.parseInt(searchKeyword));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPage(page));
+                    List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPage(page, memberOrderAdminViewForm);
+                    model.addAttribute("memberOrderDTOList", memberOrderDTOList);
+                    return "admins/admins-order-pym";
+                }
+                ////////////////////////////////////////////////////////////////////////////// 예외 처리 끝
+                model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPageBySearchInteger(page, memberOrderAdminViewForm));
+                List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPageBySearchInteger(page, memberOrderAdminViewForm);
+                model.addAttribute("memberOrderDTOList", memberOrderDTOList);
+                ////////////////////////////////////////////////////////////////////////////// DTO 담기
+            } else {                                                                                                        // String 타입
+                try {
+                    memberOrderAdminViewForm.setSearchKeywordString(searchKeyword);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPage(page));
+                    List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPage(page, memberOrderAdminViewForm);
+                    model.addAttribute("memberOrderDTOList", memberOrderDTOList);
+                    return "admins/admins-order-pym";
+                }
+                ////////////////////////////////////////////////////////////////////////////// 예외 처리 끝
+                if (searchCategory.equals("receiver_name")) {
+                    model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPageBySearch(page, memberOrderAdminViewForm));
+                    List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPageBySearch(page, memberOrderAdminViewForm);
+                    model.addAttribute("memberOrderDTOList", memberOrderDTOList);
+                } else {
+                    model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPageBySearch2(page, memberOrderAdminViewForm));
+                    List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPageBySearch2(page, memberOrderAdminViewForm);
+                    model.addAttribute("memberOrderDTOList", memberOrderDTOList);
+                }
+                ////////////////////////////////////////////////////////////////////////////// DTO 담기
+            }
+        }
         return "admins/admins-order-pym";
     }
 
@@ -248,6 +318,7 @@ public class OrderControllerPYM {
         return "admins/admins-order-detail-pym";
     }
 
+    /* admin */
     @GetMapping("/orders/admin/members/{orderNo}/cancel")
     public String cancelMemberOrderAdmin(@PathVariable(name="orderNo") Long orderNo) {
         memberOrderService.cancelMemberOrder(orderNo);

@@ -16,4 +16,9 @@ public class MemberOrderAdminViewForm {
     private int endPage; // 현재 페이지 기준 시작 페이지 값
 
     private int memberOrdersPerPage;
+
+    private String searchCategory;
+    private Long searchKeywordLong;
+    private Integer searchKeywordInteger;
+    private String searchKeywordString;
 }

@@ -46,9 +46,45 @@
         select * from member_order order by member_order_no desc limit #{startPage}, #{memberOrdersPerPage}
     </select>
 
+    <select id="getMemberOrderListBySearch" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where receiver_name like concat('%', #{searchKeywordString}, '%') order by member_order_no desc
+    </select>
 
+    <select id="getMemberOrderListPageBySearch" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where receiver_name like concat('%', #{searchKeywordString}, '%') order by member_order_no desc limit #{startPage}, #{memberOrdersPerPage}
+    </select>
 
+    <select id="getMemberOrderListBySearch2" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where order_hp like concat('%', #{searchKeywordString}, '%') order by member_order_no desc
+    </select>
 
+    <select id="getMemberOrderListPageBySearch2" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where order_hp like concat('%', #{searchKeywordString}, '%') order by member_order_no desc limit #{startPage}, #{memberOrdersPerPage}
+    </select>
+
+    <select id="getMemberOrderListBySearchLong" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where member_order_no = #{searchKeywordLong} order by member_order_no desc
+    </select>
+
+    <select id="getMemberOrderListPageBySearchLong" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where member_order_no = #{searchKeywordLong} order by member_order_no desc limit #{startPage}, #{memberOrdersPerPage}
+    </select>
+
+    <select id="getMemberOrderListBySearchLong2" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where member_no = #{searchKeywordLong} order by member_order_no desc
+    </select>
+
+    <select id="getMemberOrderListPageBySearchLong2" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where member_no = #{searchKeywordLong} order by member_order_no desc limit #{startPage}, #{memberOrdersPerPage}
+    </select>
+
+    <select id="getMemberOrderListBySearchInteger" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where order_postal_code = #{searchKeywordInteger} order by member_order_no desc
+    </select>
+
+    <select id="getMemberOrderListPageBySearchInteger" parameterType="com.example.shoppingmall.order.form.MemberOrderAdminViewForm" resultType="com.example.shoppingmall.order.domain.MemberOrder">
+        select * from member_order where order_postal_code = #{searchKeywordInteger} order by member_order_no desc limit #{startPage}, #{memberOrdersPerPage}
+    </select>
 
 
     <resultMap id="memberOrderResultMap" type="com.example.shoppingmall.order.domain.MemberOrder">
