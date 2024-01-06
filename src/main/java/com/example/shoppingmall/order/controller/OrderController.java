@@ -143,7 +143,8 @@ public class OrderController {
     }
 
     @PostMapping("/orders/non-members")
-    public String gotoNonMemberOrderDetailCheckTest(){
+    @ResponseBody
+    public String showNonMemberOrderList(@RequestBody Map<String, String> jsonData){
 
         return "orders/nonmember-order-detail-check-test";
     }
