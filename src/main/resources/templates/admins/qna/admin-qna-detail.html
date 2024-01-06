@@ -1,47 +1,100 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        form {
-            display: inline;
-        }
-    </style>
-</head>
-<body>
-    번호 <span th:text="${qnaDetail.qnaNo}"></span> <p>
-    제목 <span th:text="${qnaDetail.qnaTitle}"></span> <p>
-    작성시간 <span th:text="${qnaDetail.qnaQuestionCreatedTime}"></span><p>
-    <p></p>
-    상품 번호 <span th:text="${qnaDetail.ItemNo}"></span><p>
-    구분 <span th:text="${qnaDetail.qnaClassification}"></span><p>
-    <p></p>
-    내용 <span th:text="${qnaDetail.qnaQuestion}"></span><p>
+  <!DOCTYPE html>
+  <html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+  <head th:admin-head>
+    <div th:remove="tag" th:replace="~{/fragments/admin-head :: admin-head} "></div>
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/pages/admins/admins-member.css">
+    <link rel="stylesheet" href="/css/pages/admins/admins-qna-detail.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/components/custom.css">
+  </head>
+  <body>
+    <header th:replace="~{/fragments/admin-login-header :: admin-login-header}"></header>
+    <aside th:replace="~{/fragments/admin-sidebar :: admin-sidebar}"></aside>
+    <main>
+      <div class="main">
 
-    <div th:if="${qnaDetail.qnaAnswer != null}">
-        <form th:action="@{'/qna/' + ${qnaDetail.qnaNo}}" method="post" >
-        <textarea name="qnaAnswer" th:text="${qnaDetail.qnaAnswer}"></textarea>
-            <button>수정</button>
-        </form>
+        <div class="container">
+          <div class="logo"><img src="/images/spartan-helmet.svg" alt="logo" /></div>
 
-        <form th:action="@{'/qna/' + ${qnaDetail.qnaNo} + '/answer-delete'}" method="post" >
-            <button>삭제</button>
-        </form>
-    </div>
-    <div th:unless="${qnaDetail.qnaAnswer != null}">
-        <form th:action="@{'/qna/' + ${qnaDetail.qnaNo}}" method="post" >
-            <textarea name="qnaAnswer"></textarea>
-            <button>등록</button>
-        </form>
+          <div class="line"></div>
 
-    </div>
+          <div class="title">
+            <span class="t">제목: <span th:text="${qnaDetail.qnaTitle}"></span> </span>
+            <span th:text="${qnaDetail.qnaClassification}"></span>
+            <span class="d" th:text="${#dates.format(qnaDetail.qnaQuestionCreatedTime, 'yyyy-MM-dd')}"></span>
+          </div>
 
+          <div class="line"></div>
 
+          <div class="context">
 
+            <div class="inner-div">
+              <div class="inner">
+                <span th:text="${#strings.substring(qnaDetail.memberId, 0, 3)} + '***'"></span>
+              </div>
+            </div>
 
-</body>
-</html>
+            <div class="inner--context">
+              <div th:text="${qnaDetail.qnaQuestion}"></div>
+            </div>
+
+            <div class="inner-div">
+              <div class="inner">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="line"></div>
+
+          <div class="context">
+
+            <div class="inner-div">
+              <div class="inner">어드민</div>
+            </div>
+
+            <div class="inner--context">
+              <div th:if="${qnaDetail.qnaAnswer != null}">
+                <form th:action="@{'/qna/' + ${qnaDetail.qnaNo}}" method="post" >
+                  <textarea name="qnaAnswer" th:text="${qnaDetail.qnaAnswer}" maxlength="400"></textarea>
+<!--                  <button>수정</button>-->
+<!--                </form>-->
+              </div>
+
+              <div th:unless="${qnaDetail.qnaAnswer != null}">
+                <form th:action="@{'/qna/' + ${qnaDetail.qnaNo}}" method="post" >
+                  <textarea name="qnaAnswer" maxlength="400"></textarea>
+<!--                  <button>등록</button>-->
+<!--                </form>-->
+
+              </div>
+            </div>
+
+            <div class="inner-div">
+              <div class="inner">
+                <div th:if="${qnaDetail.qnaAnswer != null}">
+                  <button class="btn btn--black btn--xs">수정</button>
+                  </form>
+                  <p></p>
+                  <form th:action="@{'/qna/' + ${qnaDetail.qnaNo} + '/answer-delete'}" method="post" >
+                    <button class="btn btn--black btn--xs">삭제</button>
+                  </form>
+                </div>
+
+                <div th:unless="${qnaDetail.qnaAnswer != null}">
+                  <button class="btn btn--black btn--xs">등록</button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="line"></div>
+      </div>
+       <!--main div-->
+    </main>
+  </body>
+  </html>

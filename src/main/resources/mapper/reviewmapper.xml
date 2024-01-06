@@ -86,4 +86,15 @@
     <select id="getItemNoByReviewNo" parameterType="Long" resultType="Long">
         SELECT item_no FROM review WHERE review_no = #{reviewNo}
     </select>
+
+    <select id="findReviewByItemNo" resultType="com.example.shoppingmall.review.domain.Review">
+        SELECT *
+        FROM review
+        WHERE item_no = #{itemNo} ORDER BY review_no DESC
+            LIMIT #{startPage}, #{pagePerReview}
+    </select>
+
+    <select id="countItemReview" parameterType="Long" resultType="Long">
+        SELECT count(review_no) FROM review WHERE item_no = #{itemNo}
+    </select>
 </mapper>

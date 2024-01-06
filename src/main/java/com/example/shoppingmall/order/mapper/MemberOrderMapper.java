@@ -46,4 +46,28 @@ public interface MemberOrderMapper {
 
 
     List<MemberOrder> findMemberOrderAdminList(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
+    List<MemberOrder> getMemberOrderListBySearch(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
+    List<MemberOrder> getMemberOrderListPageBySearch(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
+    List<MemberOrder> getMemberOrderListBySearch2(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
+    List<MemberOrder> getMemberOrderListPageBySearch2(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
+    List<MemberOrder> getMemberOrderListBySearch3(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
+    List<MemberOrder> getMemberOrderListPageBySearch3(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
+    List<MemberOrder> getMemberOrderListBySearchLong(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
+    List<MemberOrder> getMemberOrderListPageBySearchLong(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
+    List<MemberOrder> getMemberOrderListBySearchLong2(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
+    List<MemberOrder> getMemberOrderListPageBySearchLong2(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
+    List<MemberOrder> getMemberOrderListBySearchInteger(MemberOrderAdminViewForm memberOrderAdminViewForm);
+
+    List<MemberOrder> getMemberOrderListPageBySearchInteger(MemberOrderAdminViewForm memberOrderAdminViewForm);
 }

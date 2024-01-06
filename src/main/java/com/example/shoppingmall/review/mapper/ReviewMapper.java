@@ -47,4 +47,10 @@ public interface ReviewMapper {
                          @Param("itemNo") Long itemNo);
 
     Long getItemNoByReviewNo(Long reviewNo);
+
+    List<Review> findReviewByItemNo(@Param("startPage")int startPage,
+                                    @Param("pagePerReview") int pagePerReview,
+                                    @Param("itemNo") Long itemNo);
+
+    Long countItemReview(Long itemNo);
 }

@@ -20,20 +20,18 @@
         <div class="admin_order">회원 주문 목록</div>
 
         <div class="admin_order_search">
-            <select name="category">
-                <option value="member_order_no">주문번호</option>
-
-                <option value="member_no" selected>회원번호</option>
-
-                <option value="receiver_namme">이름</option>
-
-                <option value="order_hp">전화번호</option>
-                <option value="order_postal_code">우편번호</option>
-                <option value="order_address_basic">주소</option>
-            </select>
-
-            <input type="text" name="order_search" />
-            <button>검색</button>
+            <form action="/orders/admin/members" method="get">
+                <select name="searchCategory">
+                    <option value="member_order_no" th:selected="${session.adminSearchCategory == null or session.adminSearchCategory == 'member_order_no'}">주문번호</option>
+                    <option value="member_no" th:selected="${session.adminSearchCategory == 'member_no'}">회원번호</option>
+                    <option value="receiver_name" th:selected="${session.adminSearchCategory == 'receiver_name'}">이름</option>
+                    <option value="order_hp" th:selected="${session.adminSearchCategory == 'order_hp'}">전화번호</option>
+                    <option value="order_postal_code" th:selected="${session.adminSearchCategory == 'order_postal_code'}">우편번호</option>
+                    <option value="order_address" th:selected="${session.adminSearchCategory == 'order_address'}">주소</option>
+                </select>
+                <input type="text" name="searchKeyword"/>
+                <button>검색</button>
+            </form>
         </div>
         <!-- table Ex-->
         <table class="order_table">
@@ -46,7 +44,7 @@
                 <th>우편번호</th>
                 <th>주소</th>
                 <th>주문 상태</th>
-                <th></th>
+                <th>주문 취소</th>
             </tr>
             </thead>
             <tbody th:each="memberOrder: ${memberOrderDTOList}">
@@ -59,8 +57,8 @@
                 <td th:text="${memberOrder.orderAddressBasic} + ' ' + ${memberOrder.orderAddressDetail}"></td>
                 <td th:text="(${memberOrder.orderStatus} == 1)? '주문 완료': '주문 취소'"></td>
                 <td>
-                    <a th:if="${memberOrder.orderStatus} == 1" th:href="@{|/orders/admin/members/${memberOrder.memberOrderNo}/cancel|}">취소</a>
-                    <a th:unless="${memberOrder.orderStatus} == 1">취소 완료</a>
+                    <a th:if="${memberOrder.orderStatus} == 1" th:href="@{|/orders/admin/members/${memberOrder.memberOrderNo}/cancel|}">취소하기</a>
+                    <a th:unless="${memberOrder.orderStatus} == 1">ㅡㅡ</a>
                 </td>
             </tr>
 

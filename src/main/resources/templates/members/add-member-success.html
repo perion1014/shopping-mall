@@ -3,12 +3,15 @@
 <head>
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
     <title>PERION - 회원가입을 축하합니다.</title>
+    <script type="text/javascript" src="/js/pages/member-add-success.js" defer></script>
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
 <main class="main__container">
     <img class="main__logo" src="/images/spartan-helmet.svg">
     <h1>회원가입이 완료되었습니다.</h1>
+    <button type="button" class="btn btn--white btn--home btn--home-member-add-success">홈으로</button>
+    <button type="button" class="btn btn--black btn--login">로그인 하기</button>
 </main>
 </body>
 </html>

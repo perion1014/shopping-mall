@@ -1,7 +1,6 @@
 package com.example.shoppingmall.review.controller;
 
 import com.example.shoppingmall.review.service.ReviewService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +36,7 @@ import org.springframework.web.bind.annotation.*;
         model.addAttribute("pageSettings", reviewService.setReviewPageByMember(page,memberNo));
         model.addAttribute("memberReviewList", reviewService.getReviewListByMember(memberNo,page));
 
-        return "reviews/member-reviews";
+        return "reviews/member-review";
     }
 }
 

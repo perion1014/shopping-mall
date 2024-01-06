@@ -74,6 +74,5 @@ public interface ItemRepository {
     Integer getItemStockValueByItemNoAndItemSize(ItemStockDTO itemStockDTO);
 
     String getItemThumbByNo(Long itemNo);
-
-
+    List<Item> findAllItemsByReview();
 }

@@ -56,8 +56,8 @@ public class ReviewService {
     // 마이페이지 리뷰 가져오고 페이징
     public List<ReviewDTO> getReviewListByMember(Long memberNo, int page) {
 
-        int startPage = (page-1) * 12;
-        int pagePerReview = 12;
+        int startPage = (page-1) * 10;
+        int pagePerReview = 10;
 
         List<Review> reviews = reviewRepository.findMReviewByPaging(startPage,pagePerReview,memberNo);
 
@@ -84,12 +84,12 @@ public class ReviewService {
 
     public ReviewPageForm setReviewPageByMember(int page,Long memberNo) {
 
-        int pagePerQna = 12;
+        int pagePerReview = 10;
         int pageLimit = 10;
 
         Long reviewCount = reviewRepository.countMemberReview(memberNo);
 
-        int totalPage = (int) (Math.ceil((double) reviewCount / pagePerQna));
+        int totalPage = (int) (Math.ceil((double) reviewCount / pagePerReview));
 
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
@@ -182,7 +182,6 @@ public class ReviewService {
 
             ReviewDTO reviewDTO = reivewToReviewDTO(review,itemSize,memberId);
 
-            System.out.println( reviewDTO.getItemNo());
 
             reviewDTO.setItemName(ItemName);
             resultList.add(reviewDTO);
@@ -226,5 +225,58 @@ public class ReviewService {
 
     public Long getItemNoByReviewNo(Long reviewNo) {
         return reviewRepository.getItemNoByReviewNo(reviewNo);
+    }
+
+    // 아이템 관련 더보기
+    // 마이페이지 리뷰 가져오고 페이징
+    public List<ReviewDTO> getReviewListByItemNo(int page, Long itemNo) {
+
+        int startPage = (page-1) * 10;
+        int pagePerReview = 10;
+
+        List<Review> reviews = reviewRepository.findReviewByItemNo(startPage,pagePerReview,itemNo);
+
+        List<ReviewDTO> resultList = new ArrayList<>();
+
+        for (Review review : reviews) {
+
+            Long memberOrderDetailNo = review.getMemberOrderDetailNo();
+
+            String ItemName = reviewRepository.getItemName(review.getItemNo());
+
+            String itemSize = reviewRepository.getItemSize(memberOrderDetailNo);
+            String memberId = reviewRepository.getMemberId(review.getMemberNo());
+
+            ReviewDTO reviewDTO = reivewToReviewDTO(review,itemSize,memberId);
+
+            reviewDTO.setItemName(ItemName);
+            resultList.add(reviewDTO);
+
+        }
+
+        return resultList;
+    }
+
+    public ReviewPageForm setReviewPageByItemNo(int page,Long itemNo) {
+
+        int pagePerReview = 10;
+        int pageLimit = 10;
+
+        Long reviewCount = reviewRepository.countItemReview(itemNo);
+
+        int totalPage = (int) (Math.ceil((double) reviewCount / pagePerReview));
+
+        int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
+
+        int endPage = startPage + pageLimit - 1;
+        if (endPage > totalPage) {
+            endPage = totalPage;
+        }
+
+        return new ReviewPageForm(page,totalPage,startPage,endPage);
+    }
+
+    public String getItemName(Long itemNo) {
+        return reviewRepository.getItemName(itemNo);
     }
 }

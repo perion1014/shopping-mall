@@ -1,0 +1,62 @@
+
+.btn--drop {
+    border: none;
+    background: none;
+    padding: 0;
+
+}
+.review_container {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    padding-top: 0.5rem;
+}
+
+.review_info span{
+    padding-left : 20px;
+}
+
+.review_drop {
+    margin-right: 20px;
+    font-size:12px;
+}
+
+
+.review_content {
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+}
+
+.review__myPage {
+    width: 60%;
+    margin: 0 auto;
+    border-top: 1px solid black;
+    padding-bottom: 0.5rem;
+}
+
+.main__title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.line {
+    width:60%;
+    border-bottom: 1px solid black;
+    margin: 0 auto;
+}
+
+.review__page {
+    margin-top: 2rem;
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+.item__link {
+    padding-left: 1rem;
+}
+
+.item__link:hover {
+    color:#ffb94f;
+}

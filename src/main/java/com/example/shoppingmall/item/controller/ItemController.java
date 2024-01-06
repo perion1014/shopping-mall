@@ -295,7 +295,6 @@ public class ItemController {
     }
 
 
-    // kch QnA test
     @GetMapping("/{itemNo}")
     public  String showItemDetail(@PathVariable(name="itemNo") Long itemNo, Model model) {
         model.addAttribute("itemNo", itemNo);

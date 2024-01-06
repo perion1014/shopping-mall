@@ -79,4 +79,76 @@ public class MyBatisMemberOrderRepository implements MemberOrderRepository{
         List<MemberOrder> memberOrderList = memberOrderMapper.findMemberOrderAdminList(memberOrderAdminViewForm);
         return memberOrderList;
     }
+
+    @Override
+    public List<MemberOrder> getMemberOrderListBySearch(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListBySearch(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
+
+    @Override
+    public List<MemberOrder> getMemberOrderListPageBySearch(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListPageBySearch(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
+
+    @Override
+    public List<MemberOrder> getMemberOrderListBySearch2(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListBySearch2(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
+
+    @Override
+    public List<MemberOrder> getMemberOrderListPageBySearch2(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListPageBySearch2(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
+
+    @Override
+    public List<MemberOrder> getMemberOrderListBySearch3(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListBySearch3(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
+
+    @Override
+    public List<MemberOrder> getMemberOrderListPageBySearch3(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListPageBySearch3(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
+
+    @Override
+    public List<MemberOrder> getMemberOrderListBySearchLong(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListBySearchLong(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
+
+    @Override
+    public List<MemberOrder> getMemberOrderListPageBySearchLong(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListPageBySearchLong(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
+
+    @Override
+    public List<MemberOrder> getMemberOrderListBySearchLong2(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListBySearchLong2(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
+
+    @Override
+    public List<MemberOrder> getMemberOrderListPageBySearchLong2(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListPageBySearchLong2(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
+
+    @Override
+    public List<MemberOrder> getMemberOrderListBySearchInteger(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListBySearchInteger(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
+
+    @Override
+    public List<MemberOrder> getMemberOrderListPageBySearchInteger(MemberOrderAdminViewForm memberOrderAdminViewForm) {
+        List<MemberOrder> memberOrderList = memberOrderMapper.getMemberOrderListPageBySearchInteger(memberOrderAdminViewForm);
+        return memberOrderList;
+    }
 }

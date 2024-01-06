@@ -113,4 +113,8 @@
         FROM qna
         where qna_answer is null
     </select>
+
+    <select id="getItemName" parameterType="Long" resultType="String">
+        SELECT item_name FROM item WHERE item_no = #{itemName}
+    </select>
 </mapper>

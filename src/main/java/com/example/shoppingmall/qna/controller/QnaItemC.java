@@ -23,13 +23,15 @@ public class QnaItemC {
 
         model.addAttribute("itemNo", itemNo);
 
+        model.addAttribute("itemName", qnaService.getItemName(itemNo));
+
         model.addAttribute("pageSettings", qnaService.setQnaListPageByItemNo(page,itemNo));
         model.addAttribute("qnaListByPaging",qnaService.getQnaListByItemNo(page, itemNo));
 
 //        List<QnaDTO> qnaByItemNo = qnaService.getQnaByItemNo(itemNo);
 //        model.addAttribute("qnaByItemNo",qnaByItemNo);
 
-        return "qna/item-qna";
+        return "qna/item-qna-all";
     }
 
 

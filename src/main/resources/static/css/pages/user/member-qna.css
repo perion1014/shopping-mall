@@ -1,0 +1,17 @@
+.qna__drop {
+    width: 4rem;
+}
+
+.qna__page {
+    text-align: center;
+    margin-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+.item__link:hover {
+    color:#ffb94f;
+}
+
+td {
+    cursor: pointer;
+}

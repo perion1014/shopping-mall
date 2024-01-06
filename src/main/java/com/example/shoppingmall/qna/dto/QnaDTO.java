@@ -27,6 +27,8 @@ public class QnaDTO {
     private Long memberNo;
     private Long itemNo;
 
+    private String itemName;
+
     public static QnaDTO qnaToQnaDTO(Qna qna, String memberId) {
         QnaDTO qnaDTO = new QnaDTO();
 

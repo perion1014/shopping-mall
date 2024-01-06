@@ -85,4 +85,7 @@ public class MyBatisQnaRepository implements QnaRepository {
 
     @Override
     public Long countUnansweredQna() { return qnaMapper.countUnansweredQna(); }
+
+    @Override
+    public String getItemName(Long itemNo) {return qnaMapper.getItemName(itemNo); }
 }

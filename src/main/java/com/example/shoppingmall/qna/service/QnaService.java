@@ -190,8 +190,8 @@ public class QnaService {
 
     public List<QnaDTO> getMQnaListPage(int page, Long memberNo) {
 
-        int startPage = (page-1) * 12; //시작 페이지
-        int pagePerQna = 12; // 멤버 수s
+        int startPage = (page-1) * 12;
+        int pagePerQna = 12;
 
 
         List<Qna> qnaList = qnaRepository.findMQnaByPaging(startPage,pagePerQna,memberNo);
@@ -200,11 +200,17 @@ public class QnaService {
         List<QnaDTO> resultList = new ArrayList<>();
 
         for(Qna qna : qnaList){
+            QnaDTO qnaDTO;
+
+            String itemName = qnaRepository.getItemName(qna.getItemNo());
 
             Long memberNoForId = qna.getMemberNo();
             String memberId = qnaRepository.getMemberIdByNo(memberNoForId);
 
-            resultList.add(QnaDTO.fromEntity(qna,memberId));
+            qnaDTO = QnaDTO.fromEntity(qna,memberId);
+            qnaDTO.setItemName(itemName);
+
+            resultList.add(qnaDTO);
         }
 
         return resultList;
@@ -306,5 +312,9 @@ public class QnaService {
         }
 
         return new QnaPageForm(page,totalPage,startPage,endPage);
+    }
+
+    public String getItemName(long itemNo) {
+        return qnaRepository.getItemName(itemNo);
     }
 }
