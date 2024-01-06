@@ -3,10 +3,13 @@
 <head>
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
     <title>PERION - 회원 정보 페이지</title>
+    <script type="module" src="/js/redirect-alert.js" defer></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/js/kakao-address.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10" defer></script>
 </head>
 <body>
+<div id="successMessage" th:attr="data-success-message=${memberUpdateSuccess}"></div>
 <header th:replace="~{/fragments/login-header :: header}">
 </header>
 <main class="main__container">
@@ -28,28 +31,28 @@
         </label>
         <label class="label" for="memberPw">
             <h5 class="label__title">비밀번호*</h5>
-            <input id="memberPw" name ="memberPw" class="input input--lg" type="password" placeholder="공백 이외의 모든 문자(8~20자)" />
+            <input id="memberPw" name ="memberPw" class="input input--member input--lg" type="password" placeholder="공백 이외의 모든 문자(8~20자)" />
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{memberPw}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberPw2">
             <h5 class="label__title">비밀번호 확인*</h5>
-            <input id="memberPw2" name ="memberPw2" class="input input--lg" type="password" placeholder="공백 이외의 모든 문자(8~20자)" />
+            <input id="memberPw2" name ="memberPw2" class="input input--member input--lg" type="password" placeholder="공백 이외의 모든 문자(8~20자)" />
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{memberPw2}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberName">
             <h5 class="label__title">성명*</h5>
-            <input id="memberName" name ="memberName" class="input input--lg"  type="text" th:field="*{memberName}" placeholder="한글(2~40자)"/>
+            <input id="memberName" name ="memberName" class="input input--member input--lg"  type="text" th:field="*{memberName}" placeholder="한글(2~40자)"/>
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{memberName}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberHp">
             <h5 class="label__title">휴대폰 번호*</h5>
-            <input id="memberHp" name="memberHp" class="input input--lg" type="text" th:field="*{memberHp}" placeholder="-를 제외한 숫자(11자)"/>
+            <input id="memberHp" name="memberHp" class="input input--member input--lg" type="text" th:field="*{memberHp}" placeholder="-를 제외한 숫자(11자)"/>
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{memberHp}">에러 메시지를 출력합니다.</h6>
             </div>
@@ -64,14 +67,14 @@
         </label>
         <label class="label" for="memberAddressBasic">
             <h5 class="label__title">기본 주소*</h5>
-            <input id="memberAddressBasic" name="memberAddressBasic" class="input input--lg" type="text" th:field="*{memberAddressBasic}" readonly placeholder="클릭 시 자동입력" onclick="execDaumPostalcode()" />
+            <input id="memberAddressBasic" name="memberAddressBasic" class="input input--member input--lg" type="text" th:field="*{memberAddressBasic}" readonly placeholder="클릭 시 자동입력" onclick="execDaumPostalcode()" />
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{memberAddressBasic}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberAddressDetail">
             <h5 class="label__title">상세 주소</h5>
-            <input id="memberAddressDetail" name="memberAddressDetail" class="input input--lg" placeholder="한글(최대 50자)" th:field="*{memberAddressDetail}" type="text" />
+            <input id="memberAddressDetail" name="memberAddressDetail" class="input input--member input--lg" placeholder="한글(최대 50자)" th:field="*{memberAddressDetail}" type="text" />
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{memberAddressDetail}">에러 메시지를 출력합니다.</h6>
             </div>

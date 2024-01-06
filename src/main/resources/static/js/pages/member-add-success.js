@@ -7,3 +7,4 @@ const loginBtnMemberAddSuccess = document.querySelector('.btn--login');
 loginBtnMemberAddSuccess.addEventListener('click',()=>{
     location.href="/members/login"
 });
+

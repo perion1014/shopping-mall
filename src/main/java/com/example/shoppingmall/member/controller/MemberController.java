@@ -73,7 +73,7 @@ public class MemberController {
     }
 
     @PostMapping("/add")
-    public String addMember(@Validated(MemberValidationSequence.class) @ModelAttribute("memberAddDTO") MemberAddDTO memberAddDTO, BindingResult bindingResult){
+    public String addMember(@Validated(MemberValidationSequence.class) @ModelAttribute("memberAddDTO") MemberAddDTO memberAddDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         //회원 가입 실패 1 (필드 유효성 에러)
         if(bindingResult.hasErrors()){
             return "members/add-member";
@@ -87,6 +87,7 @@ public class MemberController {
         //성공 시
         try{
             memberService.join(memberAddDTO);
+            redirectAttributes.addFlashAttribute("memberAddSuccess", "회원 가입이 완료되었습니다.");
             return "redirect:/members/add-success";
         }
 
@@ -99,7 +100,8 @@ public class MemberController {
     }
 
     @GetMapping("/add-success")
-    public String goToAddMemberSuccess(){
+    public String goToAddMemberSuccess(RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("memberAddSuccess", "회원 가입이 완료되었습니다.");
         return "members/add-member-success";
     }
 
