@@ -2,12 +2,13 @@ package com.example.shoppingmall.member.service;
 
 import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.*;
+import com.example.shoppingmall.member.exception.DuplicatedEmailException;
+import com.example.shoppingmall.member.exception.DuplicatedHpException;
+import com.example.shoppingmall.member.exception.DuplicatedIdException;
 import com.example.shoppingmall.member.form.MemberPageForm;
 import com.example.shoppingmall.member.form.MemberSearchForm;
 import com.example.shoppingmall.member.repository.MemberRepository;
-import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,11 +27,11 @@ public class MemberService {
     public void join(MemberAddDTO memberAddDTO){
         Member member = MemberAddDTO.MemberAddDTOToMember(memberAddDTO);
         memberRepository.findById(member.getMemberId())
-                .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 아이디입니다.");});
+                .ifPresent(m -> {throw new DuplicatedIdException("이미 존재하는 아이디입니다.");});
         memberRepository.findByEmail(member.getMemberEmail())
-                .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 이메일입니다.");});
+                .ifPresent(m -> {throw new DuplicatedEmailException("이미 존재하는 이메일입니다.");});
         memberRepository.findByHp(member.getMemberHp())
-                .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 휴대폰 번호입니다.");});
+                .ifPresent(m -> {throw new DuplicatedHpException("이미 존재하는 휴대폰 번호입니다.");});
         memberRepository.save(member);
     }
 
