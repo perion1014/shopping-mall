@@ -14,4 +14,10 @@
     insert into non_member_order_detail values(#{nonMemberOrderDetailNo}, #{nonMemberOrderNo}, #{itemNo}, #{itemQuantity}, #{itemSize}, #{itemName}, #{itemPrice});
     </insert>
 
+    <select id="" parameterType="com.example.shoppingmall.order.domain.NonMemberOrderDetail">
+
+    select * from non_member_order_detail where
+
+    </select>
+
 </mapper>
