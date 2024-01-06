@@ -2,6 +2,9 @@ package com.example.shoppingmall.member.controller;
 
 import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.*;
+import com.example.shoppingmall.member.exception.DuplicatedEmailException;
+import com.example.shoppingmall.member.exception.DuplicatedHpException;
+import com.example.shoppingmall.member.exception.DuplicatedIdException;
 import com.example.shoppingmall.member.form.MemberPageForm;
 import com.example.shoppingmall.member.form.MemberSearchForm;
 import com.example.shoppingmall.member.service.MemberInfoService;
@@ -80,9 +83,19 @@ public class MemberController {
             memberService.join(memberAddDTO);
             return "redirect:/members/add-success";
         }
-        catch (IllegalStateException e){
+        catch (DuplicatedIdException e){
+            bindingResult.rejectValue("memberId", null, e.getMessage());
             return "/members/add-member";
         }
+        catch (DuplicatedEmailException e){
+            bindingResult.rejectValue("memberEmail", null, e.getMessage());
+            return "/members/add-member";
+        }
+        catch (DuplicatedHpException e){
+            bindingResult.rejectValue("memberHp", null, e.getMessage());
+            return "/members/add-member";
+        }
+
     }
 
     @GetMapping("/add-success")
