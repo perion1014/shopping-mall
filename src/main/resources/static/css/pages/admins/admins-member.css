@@ -35,3 +35,16 @@ a {
   color:black;
   text-decoration: none;
 }
+
+.answer {
+  margin-top: 16px;
+  text-align : center;
+}
+
+.answer a{
+  font-weight: bold;
+}
+
+.answer a:hover {
+  color: #ffb94f;
+}

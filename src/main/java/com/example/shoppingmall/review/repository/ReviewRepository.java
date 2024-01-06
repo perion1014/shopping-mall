@@ -41,4 +41,8 @@ public interface ReviewRepository {
     void updateItemGrade(float itemGrade,Long itemNo);
 
     Long getItemNoByReviewNo(Long reviewNo);
+
+    List<Review> findReviewByItemNo(int startPage, int pagePerReview, Long itemNo);
+
+    Long countItemReview(Long itemNo);
 }
