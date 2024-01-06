@@ -13,17 +13,17 @@
     <div class="label__error-container" th:object="${memberLoginDTO}">
         <h6 class="label__error" th:if="${#fields.hasGlobalErrors()}" th:each="err: ${#fields.globalErrors()}"  th:text="${err}">에러 메시지를 출력합니다.</h6>
     </div>
-    <form th:action method="post" th:object="${memberLoginDTO}">
+    <form class="login__form" th:action method="post" th:object="${memberLoginDTO}">
         <label class="label" for="memberId">
             <h5 class="label__title">아이디</h5>
-            <input id="memberId" name="memberId" class="input" type="text" th:field="*{memberId}"/>
+            <input id="memberId" name="memberId" class="input input--member login__id" type="text" th:field="*{memberId}"/>
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{memberId}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberPw">
             <h5 class="label__title">비밀번호</h5>
-            <input id="memberPw" name="memberPw" class="input" type="password" />
+            <input id="memberPw" name="memberPw" class="input input--member login__pw" type="password" />
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{memberPw}">에러 메시지를 출력합니다.</h6>
             </div>

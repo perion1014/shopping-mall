@@ -9,11 +9,14 @@ import com.example.shoppingmall.order.domain.MemberOrder;
 import com.example.shoppingmall.order.dto.*;
 import com.example.shoppingmall.order.service.MemberOrderService;
 import com.example.shoppingmall.order.service.NonMemberOrderService;
+import com.example.shoppingmall.order.validation.OrderValidationSequence;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -103,6 +106,8 @@ public class OrderController {
         return "orders/nonmember-order-check";
     }
 
+
+
     @GetMapping("/orders/create")
     public String goToInputNonMemberOrderPage(HttpServletRequest req){
 
@@ -121,9 +126,15 @@ public class OrderController {
         return "orders/nonmember-order";
     }
 
+    /*PRG 패턴 반드시 써주세요 */
     @PostMapping("/orders/create")
-    public String makeNonMemberOrder(@ModelAttribute NonMemberOrderAddDTO nonMemberOrderAddDTO,
+    public String makeNonMemberOrder(@Validated(OrderValidationSequence.class) @ModelAttribute("nonMemberOrderAddDTO") NonMemberOrderAddDTO nonMemberOrderAddDTO,
+                                     BindingResult bindingResult,
                                      HttpServletRequest req){
+
+        if(bindingResult.hasErrors()){
+            return "orders/nonmember-order";
+        }
 
         System.out.println("입력받은 주문자명 : " + nonMemberOrderAddDTO.getNonMemberName());
         System.out.println("입력받은 휴대폰 번호 : " + nonMemberOrderAddDTO.getOrderHp());

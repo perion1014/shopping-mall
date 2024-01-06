@@ -35,13 +35,14 @@ public class AdminController {
 
         Admin loginAdmin = adminLoginService.loginAdmin(adminLoginDTO);
 
-        if(loginAdmin != null){
-            HttpSession session = request.getSession();
-            session.setAttribute("loginAdmin", loginAdmin);
-            return "admins/admin-home";
+        if(loginAdmin == null){
+            bindingResult.reject("loginFail","아이디 또는 비밀번호가 일치하지 않습니다.");
+            return "admins/admin-login";
         }
 
-        return "admins/admin-login";
+        HttpSession session = request.getSession();
+        session.setAttribute("loginAdmin", loginAdmin);
+        return "admins/admin-home";
     }
     @PostMapping("/logout")
     public String adminLogout(HttpServletRequest request){

@@ -40,6 +40,8 @@
     height: 1.5rem;
     border-width: 1px 0 1px 0;
     border-radius: 0;
+    text-align: left;
+    font-size: 0.75rem;
 }
 .item__countbtns{
     display: flex;
@@ -116,10 +118,20 @@
 .item__aside{
     position: fixed;
     right:0;
-    top:50%;
+    top:40%;
 }
 .btn--aside{
     display: block;
+    border-radius: 0;
+    font-size: 0.75rem;
+    transition: all 200ms ease-in;
+}
+.btn--aside:hover{
+    background-color: var(--color-text);
+    color: var(--color-accent);
+}
+.btn--no-border-bottom{
+    border-width: 1px 1px 0 1px;
 }
 .item__countbtns--cart{
     width: 60%;
