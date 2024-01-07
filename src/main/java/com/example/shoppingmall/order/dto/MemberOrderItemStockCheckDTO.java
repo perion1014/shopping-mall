@@ -14,4 +14,6 @@ public class MemberOrderItemStockCheckDTO {
     private Integer itemQuantity;
     private String itemName;
     private Integer itemPrice;
+    private String itemThumbnail;
+    private Boolean isPurchaseInItemDetailPage;
 }

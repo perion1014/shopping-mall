@@ -23,7 +23,11 @@
     <table class="table__client table--2">
         <thead>
         <tr>
-            <th class="cart__checkbox"><input class="btn__all-check" type="checkbox" /></th>
+            <th class="cart__checkbox">
+                <input
+                    class="btn__all-check"
+                    type="checkbox"
+                    onclick="toggleAllCartCheckbox('cartCheckboxes')"/></th>
             <th colspan="2" style="text-align: center">상품명</th>
             <th class="cart__price">상품 가격</th>
             <th class="cart__quantity" style="text-align: center">수량</th>
@@ -44,7 +48,7 @@
                 />
             </td>
             <td class="cart__imgbox">
-                <img class="cart__img" src="/images/itemImages/33/thumb/1777156461.g_350-w-et-pj_g.jpg">
+                <img class="cart__img" th:src="@{/images/itemImages/__${nonMemberCartDTO.getItemNo()}__/thumb/__${nonMemberCartDTO.getItemThumb()}__}">
             </td>
             <td>
                 <h4 th:id="'itemName_' + ${Index.index}" th:text="${nonMemberCartDTO.itemName}"></h4>

@@ -1,5 +1,6 @@
 package com.example.shoppingmall.order.controller;
 
+import com.example.shoppingmall.cart.service.CartService;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.ItemStockDTO;
 import com.example.shoppingmall.item.service.ItemService;
@@ -28,19 +29,22 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class OrderController {
     private final ItemService_CMS itemService_cms;
+    private final ItemService itemService;
     private final MemberOrderService memberOrderService;
     private final NonMemberOrderService nonMemberOrderService;
+    private final CartService cartService;
 
-    //비회원 - 장바구니 / 상세정보 보고있는 상품 재고 체크
+    //비회원 - 장바구니 목록에서 구매 누를 때 재고 체크하고
     //시간되면 코드 Service로 빼볼 예정
     @PostMapping("/orders/check-itemstock")
     @ResponseBody
     public Map<String, Object> checkNonMemberOrderItemStock(@RequestBody List<MemberOrderItemStockCheckDTO> jsonData,
                                                             HttpServletRequest req){
 
-        System.out.println("컨트롤러 도착 확인");
+        HttpSession session = req.getSession();
         Map<String, Object> responseData = new HashMap<>();
         List<ItemStockDTO> stockCheckFalseList = new ArrayList<>();
+        Boolean isPurchaseInItemDetailPage = jsonData.get(0).getIsPurchaseInItemDetailPage();
         String sendResponseString = "";
 
         for(int i = 0; i < jsonData.size(); i++){
@@ -51,34 +55,57 @@ public class OrderController {
             if(!itemService_cms.CompareStockValuesFromCartAndDB(itemStockDTO, jsonData.get(i).getItemQuantity())){
                 sendResponseString += jsonData.get(i).getItemName() + " : " + jsonData.get(i).getItemSize() + "사이즈" + ",";
             }
-
 //            System.out.println(jsonData.get(i).getItemNo());
 //            System.out.println(jsonData.get(i).getItemName());
 //            System.out.println(jsonData.get(i).getItemSize());
 //            System.out.println(jsonData.get(i).getItemQuantity());
+//            System.out.println(jsonData.get(i).getItemPrice());
         }
+        //장바구니에서 항목선택해서 구매 눌렀을 때 - 구매 페이지로 이동
+        if(isPurchaseInItemDetailPage == null){
 
-        if(sendResponseString.isEmpty()) {
-            List<NonMemberOrderDetailAddDTO> nonMemberOrderDetailAddDTOList = new ArrayList<>();
-            NonMemberOrderDetailAddDTO nonMemberOrderDetailAddDTO = null;
+            if(sendResponseString.isEmpty()) {
+                List<NonMemberOrderDetailAddDTO> nonMemberOrderDetailAddDTOList = new ArrayList<>();
+                NonMemberOrderDetailAddDTO nonMemberOrderDetailAddDTO = null;
 
-            for(int i = 0; i < jsonData.size(); i++){
-                nonMemberOrderDetailAddDTO = new NonMemberOrderDetailAddDTO();
-                nonMemberOrderDetailAddDTO.setItemNo(jsonData.get(i).getItemNo());
-                nonMemberOrderDetailAddDTO.setItemName(jsonData.get(i).getItemName());
-                nonMemberOrderDetailAddDTO.setItemSize(jsonData.get(i).getItemSize());
-                nonMemberOrderDetailAddDTO.setItemQuantity(jsonData.get(i).getItemQuantity());
-                nonMemberOrderDetailAddDTO.setItemPrice(jsonData.get(i).getItemPrice());
-                nonMemberOrderDetailAddDTOList.add(nonMemberOrderDetailAddDTO);
+                for(int i = 0; i < jsonData.size(); i++){
+                    nonMemberOrderDetailAddDTO = new NonMemberOrderDetailAddDTO();
+                    nonMemberOrderDetailAddDTO.setItemNo(jsonData.get(i).getItemNo());
+    //                System.out.println("구매하기 누른 후 세션에 들어갈 상품 No : " + nonMemberOrderDetailAddDTO.getItemNo());
+                    nonMemberOrderDetailAddDTO.setItemName(jsonData.get(i).getItemName());
+    //                System.out.println("구매하기 누른 후 세션에 들어갈 상품 이름 : " + nonMemberOrderDetailAddDTO.getItemName());
+                    nonMemberOrderDetailAddDTO.setItemSize(jsonData.get(i).getItemSize());
+    //                System.out.println("구매하기 누른 후 세션에 들어갈 상품 사이즈 : " + nonMemberOrderDetailAddDTO.getItemSize());
+                    nonMemberOrderDetailAddDTO.setItemQuantity(jsonData.get(i).getItemQuantity());
+    //                System.out.println("구매하기 누른 후 세션에 들어갈 상품 수량 : " + nonMemberOrderDetailAddDTO.getItemQuantity());
+                    nonMemberOrderDetailAddDTO.setItemPrice(jsonData.get(i).getItemPrice());
+    //                System.out.println("구매하기 누른 후 세션에 들어갈 상품 가격 : " + nonMemberOrderDetailAddDTO.getItemPrice());
+                    nonMemberOrderDetailAddDTOList.add(nonMemberOrderDetailAddDTO);
+                }
+
+                session.setAttribute("nonMemberOrderDetailAddDTOList", nonMemberOrderDetailAddDTOList);
             }
 
-            HttpSession session = req.getSession();
-            session.setAttribute("nonMemberOrderDetailAddDTOList", nonMemberOrderDetailAddDTOList);
+        }
+        //상품 상세에서 구매 눌렀을 때 - 비회원 장바구니 목록 세션에 넘어온 값만 추가
+        else{
+            if(sendResponseString.isEmpty() == true){
+                session.setAttribute("nonmemberCartList", cartService.nonMemberAddCartItem(
+                        itemService.getItemThumbByNo(jsonData.get(0).getItemNo()),
+                        jsonData.get(0).getItemName(),
+                        jsonData.get(0).getItemSize(),
+                        jsonData.get(0).getItemPrice(),
+                        jsonData.get(0).getItemQuantity(),
+                        jsonData.get(0).getItemNo(),
+                        req));
+            }
+        }
+
+        if(sendResponseString.isEmpty()){
             responseData.put("response", "데이터 전달/처리 성공");
         } else{
             responseData.put("response", sendResponseString);
         }
-
         return responseData;
     }
 
@@ -89,7 +116,7 @@ public class OrderController {
 
     //비회원 - 재고 체크 후 주문 입력 페이지로 이동
     @GetMapping("/orders/create")
-    public String goToInputNonMemberOrderPage(){
+    public String goToInputNonMemberOrderPage(@ModelAttribute("nonMemberOrderAddDTO") NonMemberOrderAddDTO nonMemberOrderAddDTO){
         return "orders/nonmember-order";
     }
 

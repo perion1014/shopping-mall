@@ -111,15 +111,18 @@ public class CartController {
                                           @RequestParam(name = "itemNo", required = false) Long itemNo,
                                           HttpServletRequest req){
 
-//        System.out.println("비회원 - 받아온 썸네일 : " + itemThumbnail);
-//        System.out.println("비회원 - 받아온 상품이름 : " + itemName);
-//        System.out.println("비회원 - 받아온 상품사이즈 : " + itemSize);
-//        System.out.println("비회원 - 받아온 상품가격 : " + itemPrice);
-//        System.out.println("비회원 - 받아온 상품수량 : " + itemQuantity);
-//        System.out.println("비회원 - 받아온 상품번호 : " + itemNo);
+        System.out.println("비회원 - 받아온 썸네일 : " + itemThumbnail);
+        System.out.println("비회원 - 받아온 상품이름 : " + itemName);
+        System.out.println("비회원 - 받아온 상품사이즈 : " + itemSize);
+        System.out.println("비회원 - 받아온 상품가격 : " + itemPrice);
+        System.out.println("비회원 - 받아온 상품수량 : " + itemQuantity);
+        System.out.println("비회원 - 받아온 상품번호 : " + itemNo);
+
+        String itemThumb = itemService.getItemThumbByNo(itemNo);
+        //System.out.println("db에서 받아온 썸넬 : " + itemThumb);
 
         HttpSession session = req.getSession();
-        session.setAttribute("nonmemberCartList", cartService.nonMemberAddCartItem(itemThumbnail, itemName, itemSize, itemPrice, itemQuantity, itemNo, req));
+        session.setAttribute("nonmemberCartList", cartService.nonMemberAddCartItem(itemThumb, itemName, itemSize, itemPrice, itemQuantity, itemNo, req));
 
         return "redirect:/items/" + itemNo;
     }
