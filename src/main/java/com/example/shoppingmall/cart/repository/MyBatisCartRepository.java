@@ -53,7 +53,7 @@ public class MyBatisCartRepository implements CartRepository{
     }
 
     @Override
-    public List<Cart> getAllCarts() {
-        return cartMapper.getAllCarts();
+    public List<Cart> getAllCarts(Long memberNo) {
+        return cartMapper.getAllCarts(memberNo);
     }
 }

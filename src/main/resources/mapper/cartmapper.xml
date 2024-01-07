@@ -35,8 +35,8 @@
         delete from cart where member_no = #{memberNo} and item_no = #{itemNo} and item_size = #{itemSize}
     </delete>
 
-    <select id="getAllCarts" resultType="com.example.shoppingmall.cart.domain.Cart">
-        select * from cart
+    <select id="getAllCarts" parameterType="long" resultType="com.example.shoppingmall.cart.domain.Cart">
+        select * from cart where member_no = #{memberNo}
     </select>
 
 </mapper>
