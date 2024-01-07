@@ -29,38 +29,38 @@
             </label>
         </form>
     <!--아이디 찾기-->
-    <form action="/members/info/id/find-success" name="memberEmail" method="post" id="display1"><!--th:object="${memberIdDTO}"-->
+    <form action="/members/info/id/find-success" name="memberEmail" method="post" id="display1" th:object="${memberIdDTO}"><!--th:object="${memberIdDTO}"-->
         <label class="label" for="memberEmail">
             <h5 class="label__title">이메일*</h5>
-            <input id="memberEmail" name="memberEmail" class="input input--member" type="text"/><!--th:field="*{memberEmail}"추가 예정-->
+            <input id="memberEmail" name="memberEmail" class="input input--member" type="text" th:field="*{memberEmail}"/><!--th:field="*{memberEmail}"추가 예정-->
             <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberEmail}-->
+                <h6 class="label__error" th:errors="*{memberEmail}">에러 메시지를 출력합니다.</h6> <!--th:errors="*{memberEmail}-->
             </div>
         </label>
         <button type="submit" class="btn btn--black">아이디 조회</button>
     </form>
 
     <!--비밀번호 찾기-->
-    <form action="/members/info/pw" method="post" id="display2"><!--th:object="${memberPwDTO}"-->
+    <form action="/members/info/pw" method="post" id="display2" th:object="${memberPwDTO}"><!--th:object="${memberPwDTO}"-->
         <label class="label" for="memberId">
             <h5 class="label__title">아이디*</h5>
             <input id="memberId" name="memberId" class="input input--member" type="text"/>
             <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberId}-->
+                <h6 class="label__error" th:errors="*{memberId}">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberId}-->
             </div>
         </label>
         <label class="label" for="Email">
             <h5 class="label__title">이메일*</h5>
             <input id="Email" name="Email" class="input input--member" type="text"/>
             <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberEmail}-->
+                <h6 class="label__error"th:errors="*{memberEmail}">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberEmail}"-->
             </div>
         </label>
         <label class="label" for="Email">
             <h5 class="label__title">핸드폰번호*</h5>
             <input id="verification code" name="verification code" class="input input--member" type="text"/>
             <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberHp}-->
+                <h6 class="label__error" th:errors="*{memberHp}">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberHp}"-->
             </div>
         </label>
         <button type="submit" class="btn btn--black">비밀번호 찾기</button>
