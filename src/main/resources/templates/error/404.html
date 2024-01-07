@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
+    <!--CSS-->
+    <link rel="stylesheet" href="/css/pages/user/error.css">
+    <script type="text/javascript" src="/js/pages/member-add-success.js" defer></script>
+</head>
+<body class="errorpage__body">
+<header th:if="${session.loginMember != null}" th:replace="~{/fragments/login-header :: header}">
+</header>
+<header th:unless="${session.loginMember == null}" th:replace="~{/fragments/header :: header}">
+</header>
+<main class="main__container">
+    <img class="main__logo" src="/images/spartan-helmet.svg">
+    <h1>404 errors</h1>
+    <h3>잘못된 요청입니다.</h3>
+    <button type="button" class="btn btn--black btn--home btn--error">홈으로 돌아가기</button>
+</main>
+</body>
+</html>
