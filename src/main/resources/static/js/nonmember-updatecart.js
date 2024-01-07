@@ -115,15 +115,15 @@ function checkItemStock(cartDTOListSize){
     for(var i = 0; i < cartDTOListSize; i++){
         if(document.getElementById('cartCheckBox_' + i).checked === true){
             itemNo = document.getElementById('itemNo_' + i).value;
-             alert('itemNo : ' + itemNo);
+             // alert('itemNo : ' + itemNo);
             itemName = document.getElementById('itemName_' + i).innerText;
-             alert('itemName : ' + itemName);
+             // alert('itemName : ' + itemName);
             itemSize = document.getElementById('itemSize_' + i).innerText;
-             alert('itemSize : ' + itemSize);
+             // alert('itemSize : ' + itemSize);
             itemQuantity = document.getElementById('inputvalue_' + i).value;
-             alert('itemQuantity : ' + itemQuantity);
+             // alert('itemQuantity : ' + itemQuantity);
             itemPrice = document.getElementById('itemPrice_' + i).value;
-             alert('itemPrice :' + itemPrice);
+             // alert('itemPrice :' + itemPrice);
             var jsonItem = {itemNo:itemNo, itemName: itemName, itemSize: itemSize, itemQuantity : itemQuantity, itemPrice: itemPrice};
             jsonData.push(jsonItem);
         }

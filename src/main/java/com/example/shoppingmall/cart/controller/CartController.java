@@ -111,12 +111,12 @@ public class CartController {
                                           @RequestParam(name = "itemNo", required = false) Long itemNo,
                                           HttpServletRequest req){
 
-//        System.out.println("비회원 - 받아온 썸네일 : " + itemThumbnail);
-//        System.out.println("비회원 - 받아온 상품이름 : " + itemName);
-//        System.out.println("비회원 - 받아온 상품사이즈 : " + itemSize);
-//        System.out.println("비회원 - 받아온 상품가격 : " + itemPrice);
-//        System.out.println("비회원 - 받아온 상품수량 : " + itemQuantity);
-//        System.out.println("비회원 - 받아온 상품번호 : " + itemNo);
+        System.out.println("비회원 - 받아온 썸네일 : " + itemThumbnail);
+        System.out.println("비회원 - 받아온 상품이름 : " + itemName);
+        System.out.println("비회원 - 받아온 상품사이즈 : " + itemSize);
+        System.out.println("비회원 - 받아온 상품가격 : " + itemPrice);
+        System.out.println("비회원 - 받아온 상품수량 : " + itemQuantity);
+        System.out.println("비회원 - 받아온 상품번호 : " + itemNo);
 
         HttpSession session = req.getSession();
         session.setAttribute("nonmemberCartList", cartService.nonMemberAddCartItem(itemThumbnail, itemName, itemSize, itemPrice, itemQuantity, itemNo, req));

@@ -16,7 +16,7 @@ function changeCartAddQuantity(number, inputname){
 }
 
 function checkNonMemberItemStockPurchase(itemNo, itemName, itemPrice){
-    alert('checkNonMemberItemStockPurchase 진입');
+    //alert('checkNonMemberItemStockPurchase 진입');
 
     let jsonData= [];
 
@@ -38,11 +38,7 @@ function checkNonMemberItemStockPurchase(itemNo, itemName, itemPrice){
     alert('itemSize : ' + itemSize);
     alert('itemQuantity : ' + itemQuantity);
 
-    //let jsonItem = {itemNo: itemNo, itemName: itemName, itemSize: itemSize, itemQuantity: itemQuantity, itemPrice: itemPrice};
-
     jsonData.push({itemNo: itemNo, itemName: itemName, itemSize: itemSize, itemQuantity: itemQuantity, itemPrice: itemPrice});
-
-    // fetch(`/carts/${memberNo}`) {}
 
     fetch(`/orders/check-itemstock`, {
         method: 'POST',
@@ -53,19 +49,13 @@ function checkNonMemberItemStockPurchase(itemNo, itemName, itemPrice){
     }).then(response => response.json())
         .then(data => {
 
+            alert(JSON.stringify(data.response));
+
             if(JSON.stringify(data.response).replaceAll('"', '') === '선택하신 상품의 재고가 없습니다.'){
                 alert(JSON.stringify(data.response));
                 location.reload();
             } else {
-                fetch(`/members/${memberNo}/orders/create`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(jsonData)
-                }).then( data => {
-                    location.href = '/members/orders/create';
-                })
+                location.href = '/carts'
             }
 
         }).catch(error => {
