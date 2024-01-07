@@ -5,6 +5,8 @@
    <title>PERION 공식 온라인 쇼핑몰</title>
    <meta name="description" content="웹페이지 설명">
    <script type="module" src="/js/pages/home.js" defer></script>
+   <link rel="stylesheet" href="/css/components/star.css">
+   <script src = "/js/star-home.js" defer></script>
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}">
@@ -60,11 +62,20 @@
                   <h2 class="item__card-name" th:text="${itemReviewDTO.itemName}"></h2>
                   <h2 class="item__card-price" th:text="${itemReviewDTO.itemPrice} + '원'"></h2>
                   <div class="item__rank">
-                     <img class="item__star" src="/images/icons/star.svg">
-                     <img class="item__star" src="/images/icons/star.svg">
-                     <img class="item__star" src="/images/icons/star.svg">
-                     <img class="item__star" src="/images/icons/star.svg">
-                     <img class="item__star" src="/images/icons/star.svg">
+                     <input
+                             type="hidden"
+                             th:name="${'ratevalue'+ itemReviewDTOStat.count}"
+                             th:value="${itemReviewDTO.itemGrade != null ?  itemReviewDTO.itemGrade : 0}"
+                             step="0.1"
+                             min="0"
+                             max="5"
+                     />
+                     <div class="rating-wrap">
+                        <div th:class="${'rating'+ itemReviewDTOStat.count}">
+                           <div th:class="${'overlay'+ itemReviewDTOStat.count}"></div>
+                        </div>
+                     </div>
+
                   </div>
                   <div class="slide__btns">
                      <form th:action="@{/items/{itemNo}(itemNo=${itemReviewDTO.itemNo})}" method="get">

@@ -31,7 +31,7 @@ public class MemberOrderAddDTO {
     private Integer orderPostalCode;
     @NotBlank(message = "기본주소를 입력해주세요.", groups = OrderNotBlankGroup.class)
     private String orderAddressBasic;
-    @Pattern(regexp = "[가-힣0-9]{0,50}", message = "최대 50자까지 가능합니다.", groups = OrderPatternGroup.class)
+    @Pattern(regexp = "[가-힣a-zA-Z0-9]{0,50}", message = "최대 50자까지 가능합니다.", groups = OrderPatternGroup.class)
     private String orderAddressDetail;
     @NotBlank(message = "성명을 입력해주세요.", groups = OrderNotBlankGroup.class)
     @Pattern(regexp = "[가-힣]{2,40}", message = "잘못된 이름 형식입니다.", groups = OrderPatternGroup.class)
@@ -54,20 +54,6 @@ public class MemberOrderAddDTO {
         memberOrder.setOrderStatus(1);
         //memberOrder.setMemberOrderDetailDTOList(memberOrderAddDTO.getMemberOrderDetailDTOList());
         return memberOrder;
-    }
-
-    public static MemberOrderDTO toMemberOrderDTO(MemberOrderAddDTO memberOrderAddDTO) {
-        MemberOrderDTO memberOrderDTO = new MemberOrderDTO();
-        memberOrderDTO.setMemberOrderNo(memberOrderAddDTO.getMemberOrderNo());
-        memberOrderDTO.setMemberNo(memberOrderAddDTO.getMemberNo());
-        memberOrderDTO.setOrderTime(memberOrderAddDTO.getOrderTime());
-        memberOrderDTO.setOrderHp(memberOrderAddDTO.getOrderHp());
-        memberOrderDTO.setOrderPostalCode(memberOrderAddDTO.getOrderPostalCode());
-        memberOrderDTO.setOrderAddressBasic(memberOrderAddDTO.getOrderAddressBasic());
-        memberOrderDTO.setOrderAddressDetail(memberOrderAddDTO.getOrderAddressDetail());
-        memberOrderDTO.setReceiverName(memberOrderAddDTO.getReceiverName());
-        memberOrderDTO.setOrderStatus(memberOrderAddDTO.getOrderStatus());
-        return memberOrderDTO;
     }
 
 }

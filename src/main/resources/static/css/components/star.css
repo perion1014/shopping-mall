@@ -18,19 +18,74 @@ input[type=number]{
     align-items: center;
     position: relative;
 }
+
+.rating1 {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.rating2 {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.rating3 {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
 .star {
     width: 30px;
     height: 30px;
     margin-right: 2px;
 }
+
+
 .starcolor{
     fill: #ff8844;
 }
+
 .star:last-of-type {
     margin-right: 0;
 }
 .overlay {
-    background-color: #000;
+    background-color: #ffffff;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+.overlay1 {
+    background-color: #ffffff;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+.overlay2 {
+    background-color: #ffffff;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+.overlay3 {
+    background-color: #ffffff;
     opacity: 0.5;
     position: absolute;
     top: 0;
@@ -41,6 +96,21 @@ input[type=number]{
 }
 @supports (mix-blend-mode: color) {
     .overlay{
+        mix-blend-mode: color;
+        opacity: unset;
+    }
+
+    .overlay1{
+        mix-blend-mode: color;
+        opacity: unset;
+    }
+
+    .overlay2{
+        mix-blend-mode: color;
+        opacity: unset;
+    }
+
+    .overlay3{
         mix-blend-mode: color;
         opacity: unset;
     }
