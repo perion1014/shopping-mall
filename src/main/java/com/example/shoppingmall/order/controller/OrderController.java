@@ -67,27 +67,26 @@ public class OrderController {
             if(sendResponseString.isEmpty()) {
                 List<NonMemberOrderDetailAddDTO> nonMemberOrderDetailAddDTOList = new ArrayList<>();
                 NonMemberOrderDetailAddDTO nonMemberOrderDetailAddDTO = null;
+                List<Long> deleteNonmemberCartIndexList = new ArrayList<>();
 
                 for(int i = 0; i < jsonData.size(); i++){
+                    deleteNonmemberCartIndexList.add(jsonData.get(i).getNonMemberCartNo());
+                    System.out.println("카트 번호 : " + jsonData.get(i).getNonMemberCartNo());
                     nonMemberOrderDetailAddDTO = new NonMemberOrderDetailAddDTO();
                     nonMemberOrderDetailAddDTO.setItemNo(jsonData.get(i).getItemNo());
-    //                System.out.println("구매하기 누른 후 세션에 들어갈 상품 No : " + nonMemberOrderDetailAddDTO.getItemNo());
                     nonMemberOrderDetailAddDTO.setItemName(jsonData.get(i).getItemName());
-    //                System.out.println("구매하기 누른 후 세션에 들어갈 상품 이름 : " + nonMemberOrderDetailAddDTO.getItemName());
                     nonMemberOrderDetailAddDTO.setItemSize(jsonData.get(i).getItemSize());
-    //                System.out.println("구매하기 누른 후 세션에 들어갈 상품 사이즈 : " + nonMemberOrderDetailAddDTO.getItemSize());
                     nonMemberOrderDetailAddDTO.setItemQuantity(jsonData.get(i).getItemQuantity());
-    //                System.out.println("구매하기 누른 후 세션에 들어갈 상품 수량 : " + nonMemberOrderDetailAddDTO.getItemQuantity());
                     nonMemberOrderDetailAddDTO.setItemPrice(jsonData.get(i).getItemPrice());
-    //                System.out.println("구매하기 누른 후 세션에 들어갈 상품 가격 : " + nonMemberOrderDetailAddDTO.getItemPrice());
                     nonMemberOrderDetailAddDTOList.add(nonMemberOrderDetailAddDTO);
                 }
 
+                session.setAttribute("deleteNonmemberCartIndexList", deleteNonmemberCartIndexList);
                 session.setAttribute("nonMemberOrderDetailAddDTOList", nonMemberOrderDetailAddDTOList);
             }
 
         }
-        //상품 상세에서 구매 눌렀을 때 - 비회원 장바구니 목록 세션에 넘어온 값만 추가
+        //상품 상세에서 구매 눌렀을 때 - 비회원 장바구니 목록 세션에 넘어온 값만 추가하고 장바구니 목록으로 이동
         else{
             if(sendResponseString.isEmpty() == true){
                 session.setAttribute("nonmemberCartList", cartService.nonMemberAddCartItem(
@@ -143,12 +142,10 @@ public class OrderController {
 
         nonMemberOrderService.saveNonMemberOrder(nonMemberOrderAddDTO);
         List<NonMemberOrderDetailAddDTO> nonMemberOrderDetailAddDTOList = (List<NonMemberOrderDetailAddDTO>) req.getSession().getAttribute("nonMemberOrderDetailAddDTOList");
-        nonMemberOrderService.saveNonMemberOrderDetail(nonMemberOrderDetailAddDTOList);
-        Long nowOrderNo = nonMemberOrderService.getNowOrderNo();
-        System.out.println("주문 번호 : " + nowOrderNo);
+        nonMemberOrderService.saveNonMemberOrderDetail(nonMemberOrderDetailAddDTOList, req);
+        nonMemberOrderService.setNowOrderNo(req.getSession());
+        nonMemberOrderService.deleteOrderedCarts(req.getSession());
 
-        model.addAttribute("nowOrderNo", nowOrderNo);
-        req.getSession().setAttribute("nonMemberOrderDetailAddDTOList", null);
 
         return "redirect:/orders/create-success";
     }

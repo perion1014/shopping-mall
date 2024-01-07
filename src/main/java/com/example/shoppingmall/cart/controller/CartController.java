@@ -97,7 +97,15 @@ public class CartController {
 
     //비회원 - 장바구니 목록 조회
     @GetMapping("")
-    public String showNonMemberCartList(){
+    public String showNonMemberCartList(HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        Object nonmemberCartList = session.getAttribute("nonmemberCartList");
+        if(nonmemberCartList instanceof List && ((List<?>) nonmemberCartList).isEmpty()){
+            session.removeAttribute("nonmemberCartList");
+        }
+
+        System.out.println("세션객체 확인 : " + session.getAttribute("nonmemberCartList"));
+
         return "carts/nonmember-cart-list-test";
     }
 
