@@ -53,4 +53,6 @@ public interface ReviewMapper {
                                     @Param("itemNo") Long itemNo);
 
     Long countItemReview(Long itemNo);
+
+    Integer countReviewByMemberOrderDetailNo(Long memberOrderDetailNo);
 }
