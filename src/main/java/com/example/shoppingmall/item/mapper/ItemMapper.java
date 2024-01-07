@@ -43,8 +43,6 @@ public interface ItemMapper {
 
     void updateItemStock(ItemStock itemStock);
 
-    List<ItemStock> findItemStocksByItemNo(Long itemNo);
-
     void deleteItemStockByItemNo(Long itemNo);
 
     void deleteItemPhotosByItemNo(Long itemNo);
@@ -74,7 +72,6 @@ public interface ItemMapper {
     Integer getItemStockValueByItemNoAndItemSize(ItemStockDTO itemStockDTO);
 
     String getItemThumbByNo(Long itemNo);
-
 
     List<Item> findAllItemsByReview();
 }

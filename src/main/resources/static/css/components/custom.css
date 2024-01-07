@@ -53,6 +53,15 @@
     width: 17rem;
 }
 
+.input--member{
+    transition: all 200ms ease-in;
+}
+
+.input--member:focus{
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+}
+
 .select input[type=radio]{
     display: none;
 }
@@ -119,6 +128,18 @@
     color: var(--color-text);
 }
 
+.btn--member-login{
+    opacity: 0.5;
+    transition: all 200ms ease-in;
+}
+
+.active--btn{
+    background-color: var(--color-text);
+    color: var(--color-accent);
+    opacity: 1;
+    transition: all 200ms ease-in;
+}
+
 .info__nav{
     width: 23rem;
     font-size: 1rem;
@@ -171,6 +192,9 @@
     display: flex;
     justify-content: center;
     gap:2rem;
+}
+.radio{
+    accent-color: var(--color-accent);
 }
 .after--logo{
     margin-top: 1rem;

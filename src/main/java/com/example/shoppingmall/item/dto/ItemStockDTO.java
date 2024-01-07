@@ -31,15 +31,6 @@ public class ItemStockDTO {
         return itemStockDTO;
     }
 
-    public static ItemStock toItemStock(ItemStockDTO itemStockDTO) {
-        ItemStock itemStock = new ItemStock();
-        itemStock.setItemStockNo(itemStockDTO.getItemStockNo());
-        itemStock.setItemNo(itemStockDTO.getItemNo());
-        itemStock.setItemSize(itemStockDTO.getItemSize());
-        itemStock.setItemStockValue(itemStockDTO.getItemStockValue());
-        return itemStock;
-    }
-
     public static List<ItemStockDTO> toItemStockDTOList(List<ItemStock> itemStockList) {
         List<ItemStockDTO> itemStockDTOList = new ArrayList<>();
         for (ItemStock itemStock: itemStockList) {

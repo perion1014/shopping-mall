@@ -9,6 +9,9 @@
 <header th:replace="~{/fragments/admin-header :: admin-header}"></header>
 <main class="main__container">
     <img class="main__logo" src="/images/spartan-helmet.svg">
+    <div class="label__error-container" th:object="${adminLoginDTO}">
+        <h6 class="label__error" th:if="${#fields.hasGlobalErrors()}" th:each="err: ${#fields.globalErrors()}"  th:text="${err}">에러 메시지를 출력합니다.</h6>
+    </div>
     <form th:action method="post" th:object="${adminLoginDTO}">
         <label class="label" for="adminId">
             <h5 class="label__title">관리자 아이디</h5>

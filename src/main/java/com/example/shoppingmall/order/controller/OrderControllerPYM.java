@@ -15,11 +15,14 @@ import com.example.shoppingmall.order.form.MemberOrderAdminViewForm;
 import com.example.shoppingmall.order.form.MemberOrderPageForm;
 import com.example.shoppingmall.order.form.MemberOrderViewForm;
 import com.example.shoppingmall.order.service.MemberOrderService;
+import com.example.shoppingmall.order.validation.OrderValidationSequence;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -44,8 +47,6 @@ public class OrderControllerPYM {
     public Map<String, Object> checkMemberOrderItemStock(@RequestBody List<MemberOrderItemStockCheckDTO> jsonData,
                                                          @PathVariable(name="memberNo") Integer memberNo){
 
-        System.out.println("컨트롤러에 도착 확인");
-
         boolean isStockEnough = true;   // 재고가 충분한지? -> default value: true
 
         for (int i = 0; i < jsonData.size(); i++) {
@@ -58,16 +59,12 @@ public class OrderControllerPYM {
             }
         }
 
-        System.out.println("재고 여부 : " + isStockEnough);
-
         Map<String, Object> responseData = new HashMap<>();
 
         if (isStockEnough == false) {   // 재고가 더 적은 cart 객체가 하나라도 있을 경우
             responseData.put("response", "선택하신 상품의 재고가 없습니다.");
-            System.out.println(responseData.get("response"));
         } else {                // 모든 cart 장바구니 객체에 대하여 재고가 충분할 경우
             responseData.put("response", jsonData);
-            System.out.println(responseData.get("response"));
         }
         return responseData;
     }
@@ -113,17 +110,27 @@ public class OrderControllerPYM {
     }
 
     @GetMapping("/members/orders/create")
-    public String tempMethod() {
+    public String tempMethod(@ModelAttribute("memberOrderAddDTO") MemberOrderAddDTO memberOrderAddDTO) {
         return "orders/member-order";
     }
 
     /* 3 */
     /* user */
+
+    /**
+     * PRG 패턴 써주세요!
+     */
     @PostMapping("/members/{memberNo}/orders/create-success")
     public String makeMemberOrderSuccess(@PathVariable(name="memberNo") Long memberNo,
-                                         @ModelAttribute MemberOrderAddDTO memberOrderAddDTO,
+                                         @Validated(OrderValidationSequence.class)
+                                         @ModelAttribute("memberOrderAddDTO") MemberOrderAddDTO memberOrderAddDTO,
+                                         BindingResult bindingResult,
                                          HttpServletRequest request,
                                          Model model) {
+
+        if(bindingResult.hasErrors()){
+            return "orders/member-order";
+        }
 
         HttpSession session = request.getSession();
 
@@ -325,6 +332,5 @@ public class OrderControllerPYM {
         memberOrderService.cancelMemberOrder(orderNo);
         return "redirect:/orders/admin/members";
     }
-
 
 }

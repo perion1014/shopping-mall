@@ -9,11 +9,14 @@ import com.example.shoppingmall.order.domain.MemberOrder;
 import com.example.shoppingmall.order.dto.*;
 import com.example.shoppingmall.order.service.MemberOrderService;
 import com.example.shoppingmall.order.service.NonMemberOrderService;
+import com.example.shoppingmall.order.validation.OrderValidationSequence;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -34,7 +37,6 @@ public class OrderController {
 //                                                         @PathVariable Integer memberNo){
 //
 ////        System.out.println(jsonData);
-////        System.out.println(memberNo);
 //        System.out.println("컨트롤러에 도착 확인");
 //
 //        for(int i =0; i <jsonData.size(); i++){
@@ -49,7 +51,7 @@ public class OrderController {
 //        return responseData;
 //    }
 
-    @PostMapping("orders/check-itemstock")
+    @PostMapping("/orders/check-itemstock")
     @ResponseBody
     public Map<String, Object> checkNonMemberOrderItemStock(@RequestBody List<MemberOrderItemStockCheckDTO> jsonData,
                                                             HttpServletRequest req){
@@ -103,15 +105,15 @@ public class OrderController {
         return "orders/nonmember-order-check";
     }
 
-    @PostMapping("/orders/check-itemstock")
-    @ResponseBody
-    public Map<String, Object> checkNonMemberOrderItemStock(@RequestBody Map<String, String> jsonData){
-
-        Map<String, Object> responseData = new HashMap<>();
-        responseData.put("response", "데이터 전달 성공");
-
-        return responseData;
-    }
+//    @PostMapping("/orders/check-itemstock")
+//    @ResponseBody
+//    public Map<String, Object> checkNonMemberOrderItemStock(@RequestBody Map<String, String> jsonData){
+//
+//        Map<String, Object> responseData = new HashMap<>();
+//        responseData.put("response", "데이터 전달 성공");
+//
+//        return responseData;
+//    }
 
     @GetMapping("/orders/create")
     public String goToInputNonMemberOrderPage(HttpServletRequest req){
@@ -131,9 +133,15 @@ public class OrderController {
         return "orders/nonmember-order";
     }
 
+    /*PRG 패턴 반드시 써주세요 */
     @PostMapping("/orders/create")
-    public String makeNonMemberOrder(@ModelAttribute NonMemberOrderAddDTO nonMemberOrderAddDTO,
+    public String makeNonMemberOrder(@Validated(OrderValidationSequence.class) @ModelAttribute("nonMemberOrderAddDTO") NonMemberOrderAddDTO nonMemberOrderAddDTO,
+                                     BindingResult bindingResult,
                                      HttpServletRequest req){
+
+        if(bindingResult.hasErrors()){
+            return "orders/nonmember-order";
+        }
 
         System.out.println("입력받은 주문자명 : " + nonMemberOrderAddDTO.getNonMemberName());
         System.out.println("입력받은 휴대폰 번호 : " + nonMemberOrderAddDTO.getOrderHp());

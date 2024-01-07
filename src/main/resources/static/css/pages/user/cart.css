@@ -21,3 +21,7 @@
     justify-content: center;
     gap:1rem;
 }
+#cartListAllCheckBtn,.btn__all-check, .cartCheckboxes{
+    accent-color: var(--color-accent);
+}
+

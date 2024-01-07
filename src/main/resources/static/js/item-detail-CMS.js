@@ -16,7 +16,7 @@ function changeCartAddQuantity(number, inputname){
 }
 
 function checkNonMemberItemStockPurchase(itemNo, itemName, itemPrice){
-     alert('checkNonMemberItemStockPurchase 진입');
+    alert('checkNonMemberItemStockPurchase 진입');
 
     let jsonData= [];
 
@@ -30,10 +30,13 @@ function checkNonMemberItemStockPurchase(itemNo, itemName, itemPrice){
             itemSize = itemSizelist.item(i).value;
         }
     }
-
-    alert(itemSize);
-
     itemQuantity = document.getElementById(`item__count`).value;
+
+    alert('itemNo : ' + itemNo);
+    alert('itemName : ' + itemName);
+    alert('itemPrice : ' + itemPrice);
+    alert('itemSize : ' + itemSize);
+    alert('itemQuantity : ' + itemQuantity);
 
     //let jsonItem = {itemNo: itemNo, itemName: itemName, itemSize: itemSize, itemQuantity: itemQuantity, itemPrice: itemPrice};
 

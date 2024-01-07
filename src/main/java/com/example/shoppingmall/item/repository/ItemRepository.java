@@ -32,8 +32,6 @@ public interface ItemRepository {
 
     Item findItemByNo(Long itemNo);
 
-    List<ItemStock> findItemStocksByItemNo(Long itemNo);
-
     List<Item> findItemsByName(String itemName);
 
     List<Item> findAllItemsBySearchKeyword(ItemCategoricalSearchPageForm itemCategoricalSearchPageForm);
@@ -74,5 +72,6 @@ public interface ItemRepository {
     Integer getItemStockValueByItemNoAndItemSize(ItemStockDTO itemStockDTO);
 
     String getItemThumbByNo(Long itemNo);
+
     List<Item> findAllItemsByReview();
 }
