@@ -1,10 +1,8 @@
 package com.example.shoppingmall.order.dto;
 
+import com.example.shoppingmall.item.service.ItemService;
 import com.example.shoppingmall.order.domain.MemberOrderDetail;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -20,15 +18,6 @@ public class MemberOrderDetailAddDTO {
 
     private String itemName;
     private Integer itemPrice;
+    private String itemThumb;
 
-    public static MemberOrderDetail toMemberOrderDetail(MemberOrderDetailAddDTO memberOrderDetailAddDTO) {
-        MemberOrderDetail memberOrderDetail = new MemberOrderDetail();
-        memberOrderDetail.setMemberOrderDetailNo(memberOrderDetailAddDTO.getMemberOrderDetailNo());
-        memberOrderDetail.setMemberOrderNo(memberOrderDetailAddDTO.getMemberOrderNo());
-        memberOrderDetail.setItemNo(memberOrderDetailAddDTO.getItemNo());
-        memberOrderDetail.setItemQuantity(memberOrderDetailAddDTO.getItemQuantity());
-        memberOrderDetail.setItemSize(memberOrderDetailAddDTO.getItemSize());
-        memberOrderDetail.setItemName(memberOrderDetailAddDTO.getItemName());
-        return memberOrderDetail;
-    }
 }
