@@ -87,3 +87,11 @@ button {
   margin-top: 50px;
   text-align: center;
 }
+
+.item__detail {
+  padding-left: 20px;
+}
+
+textarea {
+  height: 30%;
+}

@@ -3,6 +3,7 @@ package com.example.shoppingmall.order.controller;
 import com.example.shoppingmall.cart.dto.CartDeleteDTO;
 import com.example.shoppingmall.cart.service.CartService;
 import com.example.shoppingmall.item.dto.ItemStockDTO;
+import com.example.shoppingmall.item.dto.ItemStockReduceDTO;
 import com.example.shoppingmall.item.service.ItemService;
 import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.order.dto.*;
@@ -137,6 +138,8 @@ public class OrderControllerPYM {
         model.addAttribute("memberOrderNo", maxMemberOrderNo);
 
         for (MemberOrderDetailAddDTO memberOrderDetailAddDTO: memberOrderDetailAddDTOList) {
+            ItemStockReduceDTO itemStockReduceDTO = new ItemStockReduceDTO(memberOrderDetailAddDTO.getItemNo(), memberOrderDetailAddDTO.getItemSize(), memberOrderDetailAddDTO.getItemQuantity());
+            itemService.reduceItemStocks(itemStockReduceDTO);
             CartDeleteDTO cartDeleteDTO = new CartDeleteDTO(memberNo, memberOrderDetailAddDTO.getItemNo(), memberOrderDetailAddDTO.getItemSize());
             cartService.deleteCartItemByItemNoAndItemSize(cartDeleteDTO);
         }

@@ -365,6 +365,9 @@ public class ItemService {
     }
 
 
+    public void reduceItemStocks(ItemStockReduceDTO itemStockReduceDTO) {
+        itemRepository.reduceItemStocks(itemStockReduceDTO);
+    }
 }
 
 

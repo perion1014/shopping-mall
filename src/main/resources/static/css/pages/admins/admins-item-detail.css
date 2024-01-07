@@ -33,7 +33,6 @@
 }
 
 .photo {
-  border: 1px solid red;
   width: 34%;
   height: 90%;
 }
@@ -65,12 +64,14 @@ button {
   text-align: center;  
 }
 
-.item_btn button:nth-child(2){
+.btn--drop{
   color: red;
 }
 
+
 .top {
   margin-top : 5%;
+  padding-bottom: 1rem;
 }
 .top div {
   margin-bottom: 2%;
@@ -103,4 +104,48 @@ button {
   display: block;
   height: 48%;
   margin: 3% 0;
+}
+
+.thumb {
+  margin-top: 4px;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.thumb img{
+  width: 17rem;
+  height: 24rem;
+}
+
+.img__123 {
+  width: 17rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.img__123 img{
+  width: 4.25rem;
+  height: 6rem;
+}
+
+.image span {
+  font-size: 16px;
+}
+
+.price {
+  margin-top : 1rem;
+}
+
+textarea {
+  margin-top: 0.5rem;
+  overflow: hidden;
+  width: 80%;
+  height: 10.5rem;
+}
+
+.img__container {
+  text-align: center;
+}
+
+form {
+  display: inline;
 }
