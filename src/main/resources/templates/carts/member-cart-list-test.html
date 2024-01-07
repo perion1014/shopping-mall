@@ -24,7 +24,9 @@
         <thead>
            <tr>
                <th class="cart__checkbox">
-                   <input id = "cartListAllCheckBtn" onclick="toggleAllCartCheckbox('cartCheckboxes')" type = "checkbox">
+                   <input id = "cartListAllCheckBtn"
+                          onclick="toggleAllCartCheckbox('cartCheckboxes')"
+                          type = "checkbox" checked>
                </th>
                <th colspan="2" style="text-align: center">상품명</th>
                <th class="cart__price">상품 가격</th>
@@ -112,7 +114,7 @@
             <span id="orderSum">0</span>
             <span>원</span>
         </h4>
-        <span class="cart__delivery-price">배송비: 무료</span>
+        <span class="cart__delivery-price">배송비: 3000원 (10만원 이상 주문 시 무료)</span>
     </div>
     <div class="cart-order__btns">
         <button class="btn btn--white btn--mi">선택상품 삭제</button>

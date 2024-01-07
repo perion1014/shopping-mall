@@ -1,13 +1,40 @@
+window.onload = function() {
+    // 페이지 로딩이 완료된 후 실행되는 함수
+    toggleAllCartCheckbox('cartCheckboxes');
+};
 
 //회원 - 장바구니 조회 내 수량 변경 + 변경된 수량 DB에 반영하는 함수
 function updateQuantity(changeQuantity, index, cartNo, memberNo, itemNo, itemSize){
     let currentQuantity = document.getElementById('inputvalue_' + index);
     let currentQuantityNum = Number(currentQuantity.value);
+    let currentPrice = Number(document.getElementById('itemPrice_' + index).value);
+    let priceSumInput = document.getElementById('priceSum');
+    let priceSumValue = Number(priceSumInput.innerText);
+    let orderSumInput = document.getElementById('orderSum');
+    let orderSumValue = Number(orderSumInput.innerText);
 
-    currentQuantityNum += Number(changeQuantity);
-        if(currentQuantityNum == 0) {currentQuantityNum = 1;}
-        else if(currentQuantityNum == 100) {currentQuantityNum = 99;}
+    if(changeQuantity === 1){
+        if(currentQuantityNum !== 99){
+            currentQuantityNum += Number(changeQuantity);
+            priceSumValue += Number(changeQuantity) * currentPrice;
+            orderSumValue = priceSumValue >= 100000? priceSumValue : priceSumValue + 3000;
+             // alert('변경 상품 총액 : ' + priceSumValue);
+             // alert('변경 주문 총액 : ' + orderSumValue);
+        }
+    } else if(changeQuantity === -1){
+        if(currentQuantityNum !== 1){
+            currentQuantityNum += Number(changeQuantity);
+            priceSumValue += Number(changeQuantity) * currentPrice;
+            orderSumValue = priceSumValue >= 100000? priceSumValue : priceSumValue + 3000;
+        }
+    }
+
     currentQuantity.value = currentQuantityNum;
+
+    // currentQuantityNum += Number(changeQuantity);
+    //     if(currentQuantityNum === 0) {currentQuantityNum = 1;}
+    //     else if(currentQuantityNum === 100) {currentQuantityNum = 99;}
+    // currentQuantity.value = currentQuantityNum;
 
     fetch('/carts/' + memberNo + '/' + cartNo + '/update',{
         method: 'POST',
@@ -23,12 +50,8 @@ function updateQuantity(changeQuantity, index, cartNo, memberNo, itemNo, itemSiz
         }),
     }).then(response => response.json())
         .then(data => {
-            var responsemessage = data.response;
-            //alert(responsemessage);
-
-            location.reload();
-            //alert(currentQuantityNum);
-            //alert('전송 결과 : ' + data);
+            priceSumInput.innerText = String(priceSumValue);
+            orderSumInput.innerText = String(orderSumValue);
         }).catch(error => {
             alert('전송 실패 - Error : ' + error);
     })
@@ -64,7 +87,7 @@ function deleteCart(index, cartNo, memberNo){
 function toggleAllCartCheckbox(className){
 
     let checkBoxes = document.querySelectorAll('.' + className);
-    thisBoxChecked = Boolean(document.getElementById('cartListAllCheckBtn').checked);
+    let thisBoxChecked = Boolean(document.getElementById('cartListAllCheckBtn').checked);
             for(var i = 0; i < checkBoxes.length; i++){
                 checkBoxes[i].checked = thisBoxChecked;
             }
@@ -91,7 +114,7 @@ function calculatePriceSum(cartDTOListSize){
         itemQuantity = document.getElementById('inputvalue_' + i).value;
 
         priceSum += itemPrice * itemQuantity;
-        orderSum = priceSum - 1000;
+        orderSum = priceSum >= 100000? priceSum : priceSum + 3000;
         }
 
         //alert('for문돌려서 확인하는 상품 가격 : ' + itemPrice);
