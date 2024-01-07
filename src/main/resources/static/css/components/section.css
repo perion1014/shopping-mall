@@ -26,6 +26,10 @@
 .section--banner{
     height: 25rem;
 }
+.section__order{
+    width: 100%;
+    padding: 0 15rem;
+}
 
 #access{
     background-color: var(--color-text);
