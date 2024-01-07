@@ -20,21 +20,21 @@ import static com.example.shoppingmall.order.validation.OrderValidationGroup.*;
 @AllArgsConstructor
 public class NonMemberOrderAddDTO {
 
-    @NotBlank(message = "성명을 입력해주세요.", groups = OrderNotBlankGroup.class)
+    //@NotBlank(message = "성명을 입력해주세요.", groups = OrderNotBlankGroup.class)
     private String nonMemberName;
-    @NotBlank(message = "휴대폰 번호를 입력해주세요.", groups = OrderNotBlankGroup.class)
-    @Pattern(regexp = "^01(?:0|1|[6-9])\\d{7,8}$", message = "유효하지 않은 휴대폰 번호입니다.", groups = OrderPatternGroup.class)
+    //@NotBlank(message = "휴대폰 번호를 입력해주세요.", groups = OrderNotBlankGroup.class)
+    //@Pattern(regexp = "^01(?:0|1|[6-9])\\d{7,8}$", message = "유효하지 않은 휴대폰 번호입니다.", groups = OrderPatternGroup.class)
     private String orderHp;
-    @NotBlank(message = "이메일을 입력해주세요.", groups = OrderNotBlankGroup.class)
-    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,50}$", message = "유효하지 않은 이메일 주소입니다.", groups = OrderPatternGroup.class)
+    //@NotBlank(message = "이메일을 입력해주세요.", groups = OrderNotBlankGroup.class)
+    //@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,50}$", message = "유효하지 않은 이메일 주소입니다.", groups = OrderPatternGroup.class)
     private String orderEmail;
-    @NotBlank(message = "성명을 입력해주세요.", groups = OrderNotBlankGroup.class)
+    //@NotBlank(message = "성명을 입력해주세요.", groups = OrderNotBlankGroup.class)
     private String receiverName;
-    @NotNull(message = "우편번호를 입력해주세요.", groups = OrderNotBlankGroup.class)
+    //@NotNull(message = "우편번호를 입력해주세요.", groups = OrderNotBlankGroup.class)
     private Integer orderPostalCode;
-    @NotBlank(message = "기본주소를 입력해주세요.", groups = OrderNotBlankGroup.class)
+    //@NotBlank(message = "기본주소를 입력해주세요.", groups = OrderNotBlankGroup.class)
     private String orderAddressBasic;
-    @Pattern(regexp = "[가-힣]{0,50}", message = "최대 50자까지 가능합니다.", groups = OrderPatternGroup.class)
+    //@Pattern(regexp = "[가-힣]{0,50}", message = "최대 50자까지 가능합니다.", groups = OrderPatternGroup.class)
     private String orderAddressDetail;
 
     public static NonMemberOrder toNonMemberOrder(NonMemberOrderAddDTO nonMemberOrderAddDTO){
