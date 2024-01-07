@@ -88,6 +88,11 @@ public class OrderControllerPYM {
             memberOrderDetailAddDTOList.add(memberOrderDetailAddDTO);
         }
 
+        for (MemberOrderDetailAddDTO memberOrderDetailAddDTO: memberOrderDetailAddDTOList) {
+            memberOrderDetailAddDTO.setItemThumb(itemService.getItemThumbByNo(memberOrderDetailAddDTO.getItemNo()));
+        }
+        session.setAttribute("memberOrderDetailAddDTOList", memberOrderDetailAddDTOList);
+
         Member member = (Member) session.getAttribute("loginMember");
         MemberOrderAddDTO memberOrderAddDTO = new MemberOrderAddDTO();
         memberOrderAddDTO.setMemberNo(memberNo);
@@ -132,6 +137,7 @@ public class OrderControllerPYM {
         memberOrderDTO.setOrderAddressBasic(memberOrderAddDTO.getOrderAddressBasic());
         memberOrderDTO.setOrderAddressDetail(memberOrderAddDTO.getOrderAddressDetail());
         List<MemberOrderDetailAddDTO> memberOrderDetailAddDTOList = memberOrderDTO.getMemberOrderDetailAddDTOList();
+
         memberOrderService.saveMemberOrder(memberNo, memberOrderDTO);
         Long maxMemberOrderNo = memberOrderService.getMaxMemberOrderNo();
         memberOrderService.saveMemberOrderDetail(maxMemberOrderNo, memberOrderDetailAddDTOList);
@@ -144,6 +150,7 @@ public class OrderControllerPYM {
             cartService.deleteCartItemByItemNoAndItemSize(cartDeleteDTO);
         }
         session.setAttribute("memberOrderDTO", null);
+        session.setAttribute("memberOrderDetailAddDTOList", null);
 
         return "orders/member-order-success";
     }
