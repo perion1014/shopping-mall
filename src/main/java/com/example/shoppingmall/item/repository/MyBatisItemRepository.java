@@ -4,6 +4,7 @@ import com.example.shoppingmall.item.domain.Item;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.ItemStockDTO;
+import com.example.shoppingmall.item.dto.ItemStockReduceDTO;
 import com.example.shoppingmall.item.form.ItemCategoricalSearchPageForm;
 import com.example.shoppingmall.item.form.ItemCategoryPageForm;
 import com.example.shoppingmall.item.form.ItemSearchForm;
@@ -173,5 +174,10 @@ public class MyBatisItemRepository implements ItemRepository{
     @Override
     public List<Item> findAllItemsByReview() {
         return itemMapper.findAllItemsByReview();
+    }
+
+    @Override
+    public void reduceItemStocks(ItemStockReduceDTO itemStockReduceDTO) {
+        itemMapper.reduceItemStocks(itemStockReduceDTO);
     }
 }

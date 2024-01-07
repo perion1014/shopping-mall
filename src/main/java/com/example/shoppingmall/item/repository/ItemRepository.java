@@ -5,6 +5,7 @@ import com.example.shoppingmall.item.domain.ItemItemStock;
 import com.example.shoppingmall.item.domain.ItemPhotos;
 import com.example.shoppingmall.item.domain.ItemStock;
 import com.example.shoppingmall.item.dto.ItemStockDTO;
+import com.example.shoppingmall.item.dto.ItemStockReduceDTO;
 import com.example.shoppingmall.item.form.ItemCategoricalSearchPageForm;
 import com.example.shoppingmall.item.form.ItemCategoryPageForm;
 import com.example.shoppingmall.item.form.ItemSearchForm;
@@ -73,4 +74,6 @@ public interface ItemRepository {
     String getItemThumbByNo(Long itemNo);
 
     List<Item> findAllItemsByReview();
+
+    void reduceItemStocks(ItemStockReduceDTO itemStockReduceDTO);
 }
