@@ -21,6 +21,10 @@
   font-size: 32px;
 }
 
+.admin_order_detail {
+  margin-bottom: 1rem;
+}
+
 
 .admin_order_search {
   text-align: center;

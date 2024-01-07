@@ -18,7 +18,9 @@
 <main>
     <div class="main">
 
-            <div class="admin_order_detail">주문 상세</div>
+            <div class="admin_order">주문 상세</div>
+
+            <div class="admin_order_detail" th:text="'주문 총액: ' + ${priceSum} + '원'"></div>
             <table class="order_detail_table">
                 <thead>
                 <tr>
@@ -43,7 +45,8 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="admin_order_detail" th:text="'주문 총액: ' + ${priceSum} + '원'"></div>
+
+
         </div>
         <!--main div-->
 </main>
