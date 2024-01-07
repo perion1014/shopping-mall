@@ -31,7 +31,11 @@ public class NonMemberOrderService {
             NonMemberOrderDetail nonMemberOrderDetail = NonMemberOrderDetailAddDTO.toNonMemberOrderDetail(nonMemberOrderDetailAddDTOList.get(i), LastNonMemberOrderNo);
             nonMemberOrderRepository.saveNonMemberOrderDetail(nonMemberOrderDetail);
         }
+    }
 
+    public Long getNowOrderNo(){
+        Long MaxOrderNo = nonMemberOrderRepository.getMaxNoFromNonMemberOrderDB();
+        return MaxOrderNo;
     }
 
 }
