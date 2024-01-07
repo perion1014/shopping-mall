@@ -146,7 +146,12 @@ public class OrderController {
 
         req.getSession().setAttribute("nonMemberOrderDetailAddDTOList", null);
 
-        return "redirect:/orders/nonmember-order-success-test";
+        return "redirect:/orders/create-success";
+    }
+
+    @GetMapping("/orders/create-success")
+    public String goToMakeNonMemberOrderSuccess(){
+        return "orders/nonmember-order-success-test";
     }
 
     //비회원 - 주문 정보 입력 후 해당 주문 상세 페이지로 이동

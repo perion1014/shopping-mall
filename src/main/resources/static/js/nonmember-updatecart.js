@@ -1,4 +1,7 @@
-//alert('nonmember-updatecart.js 적용 확인');
+window.onload = function() {
+    // 페이지 로딩이 완료된 후 실행되는 함수
+    toggleAllCartCheckbox('cartCheckboxes');
+};
 
 //비회원 장바구니 조회 내 수량 변경 함수
 function updateQuantity(changeQuantity, cartListIndex){
@@ -55,21 +58,12 @@ function sendCartDeleteJson(cartNo){
     })
 }
 
-//비회원 - 모든 장바구니 항목을 선택/해제하는 체크박스
-function toggleAllCartCheckbox(checkBoxClass){
-
-    var checkBoxes = document.querySelectorAll('.' + checkBoxClass);
-    thisBoxChecked = Boolean(document.getElementById('cartListAllCheckBtn').checked);
-    for(var i = 0; i < checkBoxes.length; i++){
-        checkBoxes[i].checked = thisBoxChecked;
-    }
-
-}
-
+//비회원 - 모든 장바구니 항목을 선택/해제 + 전체 금액을 계산하는 체크박스 온클릭
 function toggleAllCartCheckbox(className){
 
     var checkBoxes = document.querySelectorAll('.' + className);
-    thisBoxChecked = Boolean(document.getElementById('cartListAllCheckBtn').checked);
+    let thisBoxChecked = Boolean(document.getElementById('cartListAllCheckBtn').checked);
+
     for(var i = 0; i < checkBoxes.length; i++){
         checkBoxes[i].checked = thisBoxChecked;
     }
@@ -156,3 +150,4 @@ function checkItemStock(cartDTOListSize){
         alert('JSON 전송 실패 - 사유 : ' + error);
     })
 }
+
