@@ -9,6 +9,8 @@ import com.example.shoppingmall.item.service.ItemService;
 import com.example.shoppingmall.qna.dto.QnaDTO;
 import com.example.shoppingmall.qna.service.QnaService;
 
+import com.example.shoppingmall.review.dto.ReviewDTO;
+import com.example.shoppingmall.review.service.ReviewService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,7 @@ public class ItemController {
 
     private final ItemService itemService;
     private final QnaService qnaService;
+    private final ReviewService reviewService;
 
     /*유저 쇼핑몰 조회*/
     @GetMapping("/all") /* state: not searched */
@@ -291,6 +294,9 @@ public class ItemController {
         model.addAttribute("itemNo", itemNo);
         List<QnaDTO> qnaByItemNo = qnaService.getQnaByItemNo(itemNo);
         model.addAttribute("qnaByItemNo",qnaByItemNo);
+
+        List<ReviewDTO> reviewByItemNo = reviewService.getReviewListByitemNo(itemNo);
+        model.addAttribute("reviewByItemNo",reviewByItemNo);
         /////////////////////////////////////////////////////////////////////////
         ItemDTO itemDTO = itemService.findItemByNo2(itemNo);
         ItemPhotosDTO itemPhotosDTO = itemService.findItemPhotosByNo(itemNo);
