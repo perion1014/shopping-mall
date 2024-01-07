@@ -29,6 +29,7 @@ public class CartController {
     private final ItemService itemService;
     private final QnaService qnaService;
 
+    //회원 - 장바구니 목록 조회
     @GetMapping("/{memberNo}")
     public String showMemberCartList(@PathVariable(name = "memberNo") Long memberNo, Model model) {
         List<CartReadDTO> cartDTOList = cartService.getCartList(memberNo);
@@ -37,7 +38,7 @@ public class CartController {
         return "carts/member-cart-list-test";
     }
 
-    //회원 장바구니 추가
+    //회원 - 장바구니 추가
     @PostMapping("/{memberNo}")
     public String addItemsToMemberCart(@PathVariable(name = "memberNo", required = false) Long memberNo,
                                        @RequestParam(name = "itemNo", required = false) Long itemNo,
@@ -65,6 +66,7 @@ public class CartController {
         }
     }
 
+    //회원 - 장바구니 항목 상품 수량 변경 및 쿼리에 적용
     @PostMapping("/{memberNo}/{cartNo}/update")
     @ResponseBody
     public Map<String, Object> updateItemsInMemberCart(@RequestBody Map<String, String> jsonData, Model model, RedirectAttributes rttr){
@@ -85,6 +87,7 @@ public class CartController {
         return responseData;
     }
 
+    //회원 - 장바구니 개별 항목 삭제
     @PostMapping("/{memberNo}/{cartNo}/delete")
     public String deleteItemsInMemberCart(@RequestBody Map<String, String> jsonData, Model model){
         Long cartNo = Long.parseLong(jsonData.get("cartNo"));
@@ -92,17 +95,13 @@ public class CartController {
         return "carts/member-cart-list";
     }
 
-    @GetMapping("/carts/item_info_temp")
-    public String gotoItemInfo(){
-        return "carts/itemInfo_Temp_CMS";
-    }
-
+    //비회원 - 장바구니 목록 조회
     @GetMapping("")
     public String showNonMemberCartList(){
         return "carts/nonmember-cart-list-test";
     }
 
-    //비회원 장바구니 추가
+    //비회원 - 장바구니 추가
     @PostMapping("")
     public String addItemsToNonMemberCart(@RequestParam(name = "itemThumbnail", required = false) String itemThumbnail,
                                           @RequestParam(name = "itemName", required = false) String itemName,
@@ -112,12 +111,12 @@ public class CartController {
                                           @RequestParam(name = "itemNo", required = false) Long itemNo,
                                           HttpServletRequest req){
 
-        System.out.println("비회원 - 받아온 썸네일 : " + itemThumbnail);
-        System.out.println("비회원 - 받아온 상품이름 : " + itemName);
-        System.out.println("비회원 - 받아온 상품사이즈 : " + itemSize);
-        System.out.println("비회원 - 받아온 상품가격 : " + itemPrice);
-        System.out.println("비회원 - 받아온 상품수량 : " + itemQuantity);
-        System.out.println("비회원 - 받아온 상품번호 : " + itemNo);
+//        System.out.println("비회원 - 받아온 썸네일 : " + itemThumbnail);
+//        System.out.println("비회원 - 받아온 상품이름 : " + itemName);
+//        System.out.println("비회원 - 받아온 상품사이즈 : " + itemSize);
+//        System.out.println("비회원 - 받아온 상품가격 : " + itemPrice);
+//        System.out.println("비회원 - 받아온 상품수량 : " + itemQuantity);
+//        System.out.println("비회원 - 받아온 상품번호 : " + itemNo);
 
         HttpSession session = req.getSession();
         session.setAttribute("nonmemberCartList", cartService.nonMemberAddCartItem(itemThumbnail, itemName, itemSize, itemPrice, itemQuantity, itemNo, req));
@@ -125,6 +124,7 @@ public class CartController {
         return "redirect:/items/" + itemNo;
     }
 
+    //비회원 - 장바구니 수량 변경 및, 세션의 해당 장바구니 항목에 변경된 수량 적용
     @PostMapping("/{cartNo}/update")
     public String updateItemsInNonMemberCart(@RequestBody Map<String, String> jsonData, HttpServletRequest req) {
         Integer changeQuantity = Integer.parseInt(jsonData.get("changeQuantity"));
@@ -138,6 +138,7 @@ public class CartController {
         return "carts/nonmember-cart-list";
     }
 
+    // 비회원 - 장바구니 개별 항목 삭제
     @PostMapping("/{cartNo}/delete")
     public String deleteItemsInNonMemberCart(@RequestBody Map<String, String> jsonData, HttpServletRequest req){
         Integer cartIndex = Integer.parseInt(jsonData.get("cartNo"));
@@ -148,64 +149,5 @@ public class CartController {
         return "carts/nonmember-cart-list";
     }
 
-    //페이지 개발 완료 - 회원 장바구니 목록
-    @GetMapping("/member/test")
-    public String goToMemberTestPage(){
-        return "carts/member-cart-list-test";
-    }
-
-    //페이지 개발 완료 - 비회원 장바구니 목록
-    @GetMapping("/nonmember/test")
-        public String goToNonMemberTestPage(){
-        return "carts/nonmember-cart-list-test";
-    }
-
-    //페이지 개발 완료 - 회원 주문 성공 페이지
-    @GetMapping("/member/order-success-test")
-        public String goToMemberOrderSuccessTest(){
-            return "orders/member-order-success-test";
-    }
-
-    //페이지 개발 완료 - 비회원 주문 성공 페이지
-    @GetMapping("/nonmember/order-success-test")
-    public String goToNonmemberOrderSuccessTest(){
-        return "orders/nonmember-order-success-test";
-    }
-
-    @GetMapping("/member/order-list-test")
-    public String goToMemberOrderListTest(){
-        return "orders/member-order-list-test";
-    }
-
-    @GetMapping("/member/order-detail-test")
-    public String goToMemberOrderDetailTest(){
-        return "orders/member-order-detail-test";
-    }
-
-    //페이지 개발 완료 - 비회원 주문 조회 입력 페이지
-    @GetMapping("/orders/non-members")
-    public String goToNonmemberOrderCheckTest(){
-        return "nonmember-order-check";
-    }
-
-    @GetMapping("/nonmember/order-detail-check-test")
-    public String goToNonmemberOrderDetailCheckTest(){
-        return "orders/nonmember-order-detail-check-test";
-    }
-
-    //페이지 개발 완료 - 비회원 주문 삭제 성공 페이지
-    @GetMapping("/orders/delete-sucess")
-    public String goToNonmemberOrderDeleteSuccessTest(){
-        return "orders/nonmember-order-delete-success-test";
-    }
-
 }
 
-//@Controller
-//@RequiredArgsConstructor
-//public class ItemControllerTemp{
-//    @GetMapping("/items/1")
-//    public String gotoItemInfoTemp(){
-//    return "carts/itemInfo_Temp_CMS";
-//    }
-//}
