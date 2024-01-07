@@ -133,6 +133,10 @@
     transition: all 200ms ease-in;
 }
 
+.btn--black--red {
+    color: red;
+}
+
 .active--btn{
     background-color: var(--color-text);
     color: var(--color-accent);

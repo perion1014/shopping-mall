@@ -76,6 +76,13 @@ public class QnaController {
         return "redirect:/qna/{qnaNo}";
     }
 
+    @PostMapping("/{qnaNo}/delete")
+    public String deleteQna(@PathVariable(name="qnaNo") Long qnaNo){
+        qnaService.deleteQustion(qnaNo);
+
+        return "redirect:/qna";
+    }
+
 
     // 답변완료 페이징
     @GetMapping("/answer")
