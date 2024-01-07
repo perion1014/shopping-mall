@@ -18,7 +18,7 @@
 </header>
 <main class="main__container">
     <section id="item__info" class="item__container">
-        <img class="item__img" th:src="@{/images/itemImages/__${itemDTO.itemNo}__/thumb/__${itemPhotosDTO.itemThumb}__}"/>
+        <img class="item__img" id = "item_Thumbnail" th:src="@{/images/itemImages/__${itemDTO.itemNo}__/thumb/__${itemPhotosDTO.itemThumb}__}"/>
         <div class="slide__info item__info">
             <h1 class="item__card-name" th:text="${itemDTO.itemName}"></h1>
             <div class="item__rank">

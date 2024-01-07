@@ -12,7 +12,7 @@ public class nonMemberCartAddDTO {
 
     private Long cartNo;
     private Long itemNo;
-    private String itemThumbnail;
+    private String itemThumb;
     private String itemName;
     private String itemSize;
     private Integer itemPrice;

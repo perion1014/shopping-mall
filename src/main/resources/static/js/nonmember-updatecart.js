@@ -102,6 +102,8 @@ function calculatePriceSum(cartDTOListSize){
     document.getElementById('orderSum').innerText = orderSum;
 }
 
+
+//비회원 - 장바구니 목록에서 선택한 물건들 구매 눌렀을 때 재고 체크
 function checkItemStock(cartDTOListSize){
 
     let jsonData= [];
