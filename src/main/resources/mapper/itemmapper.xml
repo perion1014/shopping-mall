@@ -2,36 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.shoppingmall.item.mapper.ItemMapper">
 
-
-    <resultMap id="viewItemItemStock" type="com.example.shoppingmall.item.domain.ItemItemStock">
-        <id column="item_no" property="itemNo"/>
-        <result column="item_name" property="itemName"/>
-        <result column="item_price" property="itemPrice"/>
-        <result column="item_category" property="itemCategory"/>
-        <result column="item_onsale" property="itemOnsale"/>
-        <collection property="itemStockList" resultMap="itemStockResult">
-            <id column="item_stock_no" property="itemStockNo"/>
-            <result column="item_no" property="itemNo"/>
-            <result column="item_size" property="itemSize"/>
-            <result column="item_stock_value" property="itemStockValue"/>
-        </collection>
-    </resultMap>
-
-
-
-    <select id="joinItemItemStock" resultMap="viewItemItemStock">
-        select a.item_no,
-               a.item_name,
-               a.item_price,
-               a.item_category,
-               a.item_onsale,
-               b.item_size,
-               b.item_stock_value
-        from item as a, item_stock as b
-        where a.item_no = b.item_no
-    </select>
-
-
     <insert id="saveItem" parameterType="com.example.shoppingmall.item.domain.Item">
         insert into item
         values (#{itemNo},#{itemName},#{itemCategory},#{itemGrade},#{itemDetail},#{itemPrice},1,DATE_ADD(NOW(), INTERVAL 0 HOUR))

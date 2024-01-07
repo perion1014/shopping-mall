@@ -63,23 +63,42 @@
     <input type="hidden" name="selectedCategory" th:value="${Category}">
     <button class="btn btn--xs btn--black">검색</button>
 </form>
-<div class="items__page">
+<div class="items__page" th:if="${session.ifSearched} == false">
 
     <span th:if="${pageSettings.page &lt;= 1}">이전</span>
     <span th:unless="${pageSettings.page &lt;= 1}">
-        <a th:href="@{/items/{category}(category=${Category}, page=${pageSettings.page - 1})}">이전</a>
+        <a th:href="@{/items/{category}(category=${Category}, page=${pageSettings.page - 1}, searchKeyword=${searchKeyword})}">이전</a>
     </span>
 
     <span th:each="i: ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
         <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
         <a th:if="${i != pageSettings.page}"
-           th:href="@{/items/{category}(category=${Category}, page=${i})}"
+           th:href="@{/items/{category}(category=${Category}, page=${i}, searchKeyword=${searchKeyword})}"
            th:text="${i}"></a>
     </span>
 
     <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
     <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
-       th:href="@{/items/{category}(category=${Category},page=${pageSettings.page + 1})}">다음</a>
+       th:href="@{/items/{category}(category=${Category},page=${pageSettings.page + 1}, searchKeyword=${searchKeyword})}">다음</a>
+</div>
+
+<div class="items__page" th:if="${session.ifSearched} == true">
+
+    <span th:if="${pageSettings.page &lt;= 1}">이전</span>
+    <span th:unless="${pageSettings.page &lt;= 1}">
+        <a th:href="@{/items/search(page=${pageSettings.page - 1}, searchKeyword=${searchKeyword})}">이전</a>
+    </span>
+
+    <span th:each="i: ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
+        <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
+        <a th:if="${i != pageSettings.page}"
+           th:href="@{/items/search(page=${i}, searchKeyword=${searchKeyword})}"
+           th:text="${i}"></a>
+    </span>
+
+    <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
+    <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
+       th:href="@{/items/search(page=${pageSettings.page + 1}, searchKeyword=${searchKeyword})}">다음</a>
 </div>
 </body>
 </html>

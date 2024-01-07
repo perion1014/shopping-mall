@@ -78,56 +78,12 @@ public class ItemService {
 
     public List<ItemDTO> findAllItems() {
         List<Item> itemList = itemRepository.findAllItems();
-        for (Item item: itemList) {
-            Long itemNo = item.getItemNo();
-            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
-            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
-            item.setItemStockList(itemStockList);
-        }
-        List<ItemDTO> itemDTOList = new ArrayList<>();
-        for (Item item: itemList) {
-            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
-            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
-            item.setItemStockDTOList(itemStockDTOList);
-            itemDTOList.add(ItemDTO.itemToItemDTO(item));
-        }
-        return itemDTOList;
+        return convertToItemDTOList(itemList);
     }
 
     public List<ItemDTO> findAllItemsOnsale() {
         List<Item> itemList = itemRepository.findAllItemsOnsale();
-        for (Item item: itemList) {
-            Long itemNo = item.getItemNo();
-            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
-            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
-            item.setItemStockList(itemStockList);
-        }
-        List<ItemDTO> itemDTOList = new ArrayList<>();
-        for (Item item: itemList) {
-            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
-            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
-            item.setItemStockDTOList(itemStockDTOList);
-            itemDTOList.add(ItemDTO.itemToItemDTO(item));
-        }
-        return itemDTOList;
-    }
-
-    public List<ItemDTO> findAllItemsOffmarket() {
-        List<Item> itemList = itemRepository.findAllItemsOffmarket();
-        for (Item item: itemList) {
-            Long itemNo = item.getItemNo();
-            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
-            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
-            item.setItemStockList(itemStockList);
-        }
-        List<ItemDTO> itemDTOList = new ArrayList<>();
-        for (Item item: itemList) {
-            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
-            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
-            item.setItemStockDTOList(itemStockDTOList);
-            itemDTOList.add(ItemDTO.itemToItemDTO(item));
-        }
-        return itemDTOList;
+        return convertToItemDTOList(itemList);
     }
 
     public List<ItemDTO> findItemsByName(ItemSearchDTO itemSearchDTO) {
@@ -144,26 +100,11 @@ public class ItemService {
         int itemsPerPage = 12;
         int startPage = (page - 1) * itemsPerPage;
 
-        Map<String, Integer> pagingSettings = new HashMap<>();
-        pagingSettings.put("startPage", startPage);
-        pagingSettings.put("itemsPerPage", itemsPerPage);
         itemCategoricalSearchPageForm.setStartPage(startPage);
         itemCategoricalSearchPageForm.setItemsPerPage(itemsPerPage);
         List<Item> itemList = itemRepository.findAllItemsBySearchKeyword(itemCategoricalSearchPageForm);
-        for (Item item: itemList) {
-            Long itemNo = item.getItemNo();
-            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
-            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
-            item.setItemStockList(itemStockList);
-        }
-        List<ItemDTO> itemDTOList = new ArrayList<>();
-        for (Item item: itemList) {
-            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
-            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
-            item.setItemStockDTOList(itemStockDTOList);
-            itemDTOList.add(ItemDTO.itemToItemDTO(item));
-        }
-        return itemDTOList;
+
+        return convertToItemDTOList(itemList);
     }
 
 
@@ -173,27 +114,11 @@ public class ItemService {
         int itemsPerPage = 12;
         int startPage = (page - 1) * itemsPerPage;
 
-        Map<String, Integer> pagingSettings = new HashMap<>();
-        pagingSettings.put("startPage", startPage);
-        pagingSettings.put("itemsPerPage", itemsPerPage);
         itemCategoricalSearchPageForm.setStartPage(startPage);
         itemCategoricalSearchPageForm.setItemsPerPage(itemsPerPage);
 
         List<Item> itemList = itemRepository.findAllItemsOuterBySearchKeyword(itemCategoricalSearchPageForm);
-        for (Item item: itemList) {
-            Long itemNo = item.getItemNo();
-            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
-            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
-            item.setItemStockList(itemStockList);
-        }
-        List<ItemDTO> itemDTOList = new ArrayList<>();
-        for (Item item: itemList) {
-            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
-            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
-            item.setItemStockDTOList(itemStockDTOList);
-            itemDTOList.add(ItemDTO.itemToItemDTO(item));
-        }
-        return itemDTOList;
+        return convertToItemDTOList(itemList);
     }
 
     public List<ItemDTO> findAllItemsInnerBySearchKeyword(int page, ItemCategoricalSearchPageForm itemCategoricalSearchPageForm) {
@@ -201,27 +126,11 @@ public class ItemService {
         int itemsPerPage = 12;
         int startPage = (page - 1) * itemsPerPage;
 
-        Map<String, Integer> pagingSettings = new HashMap<>();
-        pagingSettings.put("startPage", startPage);
-        pagingSettings.put("itemsPerPage", itemsPerPage);
         itemCategoricalSearchPageForm.setStartPage(startPage);
         itemCategoricalSearchPageForm.setItemsPerPage(itemsPerPage);
 
         List<Item> itemList = itemRepository.findAllItemsInnerBySearchKeyword(itemCategoricalSearchPageForm);
-        for (Item item: itemList) {
-            Long itemNo = item.getItemNo();
-            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
-            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
-            item.setItemStockList(itemStockList);
-        }
-        List<ItemDTO> itemDTOList = new ArrayList<>();
-        for (Item item: itemList) {
-            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
-            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
-            item.setItemStockDTOList(itemStockDTOList);
-            itemDTOList.add(ItemDTO.itemToItemDTO(item));
-        }
-        return itemDTOList;
+        return convertToItemDTOList(itemList);
     }
 
     public List<ItemDTO> findAllItemsPantsBySearchKeyword(int page, ItemCategoricalSearchPageForm itemCategoricalSearchPageForm) {
@@ -229,27 +138,11 @@ public class ItemService {
         int itemsPerPage = 12;
         int startPage = (page - 1) * itemsPerPage;
 
-        Map<String, Integer> pagingSettings = new HashMap<>();
-        pagingSettings.put("startPage", startPage);
-        pagingSettings.put("itemsPerPage", itemsPerPage);
         itemCategoricalSearchPageForm.setStartPage(startPage);
         itemCategoricalSearchPageForm.setItemsPerPage(itemsPerPage);
 
         List<Item> itemList = itemRepository.findAllItemsPantsBySearchKeyword(itemCategoricalSearchPageForm);
-        for (Item item: itemList) {
-            Long itemNo = item.getItemNo();
-            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
-            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
-            item.setItemStockList(itemStockList);
-        }
-        List<ItemDTO> itemDTOList = new ArrayList<>();
-        for (Item item: itemList) {
-            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
-            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
-            item.setItemStockDTOList(itemStockDTOList);
-            itemDTOList.add(ItemDTO.itemToItemDTO(item));
-        }
-        return itemDTOList;
+        return convertToItemDTOList(itemList);
     }
 
 
@@ -307,7 +200,7 @@ public class ItemService {
     public ItemPageForm setItemListPage(int page) { // setter
 
         int itemsPerPage = 12;
-        int pageLimit = 10;
+        int pageLimit = 5;
 
         int itemCount = itemRepository.findAllItems().size();
 
@@ -323,7 +216,6 @@ public class ItemService {
         return new ItemPageForm(page, totalPage, startPage, endPage);
     }
 
-
     @Transactional(readOnly = true)
     public List<ItemDTO> getItemListPage(int page) {
 
@@ -333,22 +225,9 @@ public class ItemService {
         Map<String, Integer> pagingSettings = new HashMap<>();
         pagingSettings.put("startPage", startPage);
         pagingSettings.put("itemsPerPage", itemsPerPage);
-        List<Item> itemList = itemRepository.findAllItemsByPaging(pagingSettings);
 
-        for (Item item: itemList) {
-            Long itemNo = item.getItemNo();
-            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
-            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
-            item.setItemStockList(itemStockList);
-        }
-        List<ItemDTO> itemDTOList = new ArrayList<>();
-        for (Item item: itemList) {
-            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
-            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
-            item.setItemStockDTOList(itemStockDTOList);
-            itemDTOList.add(ItemDTO.itemToItemDTO(item));
-        }
-        return itemDTOList;
+        List<Item> itemList = itemRepository.findAllItemsByPaging(pagingSettings);
+        return convertToItemDTOList(itemList);
     }
 
 
@@ -356,12 +235,11 @@ public class ItemService {
     public ItemPageForm setItemListPageByCategory(int page, ItemCategoryPageForm itemCategoryPageForm) { // setter
 
         int itemsPerPage = 12;
-        int pageLimit = 10;
+        int pageLimit = 5;
 
         int itemCount = itemRepository.findAllItemsByCategory(itemCategoryPageForm.getCategory()).size();
 
         int totalPage = (int) (Math.ceil((double) itemCount / itemsPerPage));
-
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
         int endPage = startPage + pageLimit - 1;
@@ -378,41 +256,23 @@ public class ItemService {
         int itemsPerPage = 12;
         int startPage = (page - 1) * itemsPerPage;
 
-        Map<String, Integer> pagingSettings = new HashMap<>();
-        pagingSettings.put("startPage", startPage);
-        pagingSettings.put("itemsPerPage", itemsPerPage);
-
         itemCategoryPageForm.setStartPage(startPage);
         itemCategoryPageForm.setItemsPerPage(itemsPerPage);
 
         List<Item> itemList = itemRepository.getItemListPageByCategory(itemCategoryPageForm);
 
-        for (Item item: itemList) {
-            Long itemNo = item.getItemNo();
-            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
-            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
-            item.setItemStockList(itemStockList);
-        }
-        List<ItemDTO> itemDTOList = new ArrayList<>();
-        for (Item item: itemList) {
-            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
-            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
-            item.setItemStockDTOList(itemStockDTOList);
-            itemDTOList.add(ItemDTO.itemToItemDTO(item));
-        }
-        return itemDTOList;
+        return convertToItemDTOList(itemList);
     }
 
     @Transactional(readOnly = true)
     public ItemPageForm setItemSearchList(int page, ItemSearchForm itemSearchForm) {
 
         int itemsPerPage = 12;
-        int pageLimit = 10;
+        int pageLimit = 5;
 
         int itemCount = itemRepository.findItemsByName(itemSearchForm.getSearchKeyword()).size();
 
         int totalPage = (int) (Math.ceil((double) itemCount / itemsPerPage));
-
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
         int endPage = startPage + pageLimit - 1;
@@ -429,39 +289,22 @@ public class ItemService {
         int itemsPerPage = 12;
         int startPage = (page - 1) * itemsPerPage;
 
-        Map<String, Integer> pagingSettings = new HashMap<>();
-        pagingSettings.put("startPage", startPage);
-        pagingSettings.put("itemsPerPage", itemsPerPage);
         itemSearchForm.setStartPage(startPage);
         itemSearchForm.setItemsPerPage(itemsPerPage);
 
         List<Item> itemList = itemRepository.getItemListPageBySearch(itemSearchForm);
 
-        for (Item item: itemList) {
-            Long itemNo = item.getItemNo();
-            item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
-            List<ItemStock> itemStockList = itemRepository.findAllItemStocks(itemNo);
-            item.setItemStockList(itemStockList);
-        }
-        List<ItemDTO> itemDTOList = new ArrayList<>();
-        for (Item item: itemList) {
-            item.setItemPhotosDTO(ItemPhotosDTO.toItemPhotosDTO(item.getItemPhotos()));
-            List<ItemStockDTO> itemStockDTOList = ItemStockDTO.toItemStockDTOList(item.getItemStockList());
-            item.setItemStockDTOList(itemStockDTOList);
-            itemDTOList.add(ItemDTO.itemToItemDTO(item));
-        }
-        return itemDTOList;
+        return convertToItemDTOList(itemList);
     }
 
     @Transactional(readOnly = true)
     public ItemPageForm setItemSearchListByAll(int page, ItemCategoricalSearchPageForm itemCategoricalSearchPageForm) {
         int itemsPerPage = 12;
-        int pageLimit = 10;
+        int pageLimit = 5;
 
         int itemCount = itemRepository.findItemsByName(itemCategoricalSearchPageForm.getSearchKeyword()).size();
 
         int totalPage = (int) (Math.ceil((double) itemCount / itemsPerPage));
-
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
         int endPage = startPage + pageLimit - 1;
@@ -475,12 +318,11 @@ public class ItemService {
     public ItemPageForm setItemSearchListByCategory(int page, ItemCategoricalSearchPageForm itemCategoricalSearchPageForm) {
 
         int itemsPerPage = 12;
-        int pageLimit = 10;
+        int pageLimit = 5;
 
         int itemCount = itemRepository.findItemsByNameAndCategory(itemCategoricalSearchPageForm).size();
 
         int totalPage = (int) (Math.ceil((double) itemCount / itemsPerPage));
-
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
         int endPage = startPage + pageLimit - 1;
@@ -501,6 +343,11 @@ public class ItemService {
 
     public List<ItemDTO> findAllItemsByReview() {
         List<Item> itemList = itemRepository.findAllItemsByReview();
+        return convertToItemDTOList(itemList);
+    }
+
+
+    public List<ItemDTO> convertToItemDTOList(List<Item> itemList) {
         for (Item item: itemList) {
             Long itemNo = item.getItemNo();
             item.setItemPhotos(itemRepository.findItemPhotosByItemNo(itemNo));
@@ -516,4 +363,9 @@ public class ItemService {
         }
         return itemDTOList;
     }
+
+
 }
+
+
+
