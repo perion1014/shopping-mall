@@ -103,6 +103,16 @@ public class OrderController {
         return "orders/nonmember-order-check";
     }
 
+    @PostMapping("/orders/check-itemstock")
+    @ResponseBody
+    public Map<String, Object> checkNonMemberOrderItemStock(@RequestBody Map<String, String> jsonData){
+
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("response", "데이터 전달 성공");
+
+        return responseData;
+    }
+
     @GetMapping("/orders/create")
     public String goToInputNonMemberOrderPage(HttpServletRequest req){
 

@@ -78,7 +78,7 @@
                         th:itemNo="${itemDTO.itemNo}"
                         th:itemName="${itemDTO.itemName}"
                         th:itemPrice="${itemDTO.itemPrice}"
-                        th:onclick="checkItemStockPurchase(this.getAttribute('itemNo'), this.getAttribute('itemName'), this.getAttribute('itemPrice'))"
+                        th:onclick="checkNonMemberItemStockPurchase(this.getAttribute('itemNo'), this.getAttribute('itemName'), this.getAttribute('itemPrice'))"
                         class="btn btn--index btn--black"
                         th:text="구매하기"></button>
             </div>
