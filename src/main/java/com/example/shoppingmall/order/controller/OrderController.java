@@ -9,11 +9,14 @@ import com.example.shoppingmall.order.domain.MemberOrder;
 import com.example.shoppingmall.order.dto.*;
 import com.example.shoppingmall.order.service.MemberOrderService;
 import com.example.shoppingmall.order.service.NonMemberOrderService;
+import com.example.shoppingmall.order.validation.OrderValidationSequence;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -28,28 +31,9 @@ public class OrderController {
     private final MemberOrderService memberOrderService;
     private final NonMemberOrderService nonMemberOrderService;
 
-//    @PostMapping("/members/{memberNo}/orders/check-itemstock")
-//    @ResponseBody
-//    public Map<String, Object> checkMemberOrderItemStock(@RequestBody List<MemberOrderItemStockCheckDTO> jsonData,
-//                                                         @PathVariable Integer memberNo){
-//
-////        System.out.println(jsonData);
-////        System.out.println(memberNo);
-//        System.out.println("컨트롤러에 도착 확인");
-//
-//        for(int i =0; i <jsonData.size(); i++){
-//            System.out.println(jsonData.get(i).getItemName());
-//            System.out.println(jsonData.get(i).getItemSize());
-//            System.out.println(jsonData.get(i).getItemQuantity());
-//        }
-//
-//        Map<String, Object> responseData = new HashMap<>();
-//        responseData.put("response", "선택하신 상품의 재고가 없습니다.");
-//
-//        return responseData;
-//    }
-
-    @PostMapping("orders/check-itemstock")
+    //비회원 - 장바구니 / 상세정보 보고있는 상품 재고 체크
+    //시간되면 코드 Service로 빼볼 예정
+    @PostMapping("/orders/check-itemstock")
     @ResponseBody
     public Map<String, Object> checkNonMemberOrderItemStock(@RequestBody List<MemberOrderItemStockCheckDTO> jsonData,
                                                             HttpServletRequest req){
@@ -103,27 +87,23 @@ public class OrderController {
         return "orders/nonmember-order-check";
     }
 
+    //비회원 - 재고 체크 후 주문 입력 페이지로 이동
     @GetMapping("/orders/create")
-    public String goToInputNonMemberOrderPage(HttpServletRequest req){
-
-//        HttpSession session = req.getSession();
-//        List<NonMemberOrderDetailAddDTO> nonMemberOrderDetailAddDTOList = (List<NonMemberOrderDetailAddDTO>) session.getAttribute("nonMemberOrderDetailAddDTOList");
-//        System.out.println("세션으로 받아온 리스트 사이즈 : " + nonMemberOrderDetailAddDTOList.size());
-//
-//        for(int i = 0; i < nonMemberOrderDetailAddDTOList.size(); i++){
-//            System.out.println(nonMemberOrderDetailAddDTOList.get(i).getItemNo());
-//            System.out.println(nonMemberOrderDetailAddDTOList.get(i).getItemName());
-//            System.out.println(nonMemberOrderDetailAddDTOList.get(i).getItemSize());
-//            System.out.println(nonMemberOrderDetailAddDTOList.get(i).getItemQuantity());
-//            System.out.println(nonMemberOrderDetailAddDTOList.get(i).getItemPrice());
-//        }
-
+    public String goToInputNonMemberOrderPage(){
         return "orders/nonmember-order";
     }
 
+    //비회원 - 주문 입력 페이지에서 입력받은 후 주문+주문상세 DB에 추가
+    /*PRG 패턴 반드시 써주세요 */
     @PostMapping("/orders/create")
-    public String makeNonMemberOrder(@ModelAttribute NonMemberOrderAddDTO nonMemberOrderAddDTO,
+    public String makeNonMemberOrder(@Validated(OrderValidationSequence.class)
+            @ModelAttribute("nonMemberOrderAddDTO") NonMemberOrderAddDTO nonMemberOrderAddDTO,
+                                     BindingResult bindingResult,
                                      HttpServletRequest req){
+
+        if(bindingResult.hasErrors()){
+            return "orders/nonmember-order";
+        }
 
         System.out.println("입력받은 주문자명 : " + nonMemberOrderAddDTO.getNonMemberName());
         System.out.println("입력받은 휴대폰 번호 : " + nonMemberOrderAddDTO.getOrderHp());
@@ -137,7 +117,17 @@ public class OrderController {
         List<NonMemberOrderDetailAddDTO> nonMemberOrderDetailAddDTOList = (List<NonMemberOrderDetailAddDTO>) req.getSession().getAttribute("nonMemberOrderDetailAddDTOList");
         nonMemberOrderService.saveNonMemberOrderDetail(nonMemberOrderDetailAddDTOList);
 
-        return "orders/nonmember-order-success-test";
+        req.getSession().setAttribute("nonMemberOrderDetailAddDTOList", null);
+
+        return "redirect:/orders/nonmember-order-success-test";
+    }
+
+    //비회원 - 주문 정보 입력 후 해당 주문 상세 페이지로 이동
+    @PostMapping("/orders/non-members")
+    @ResponseBody
+    public String showNonMemberOrderList(@RequestBody Map<String, String> jsonData){
+
+        return "orders/nonmember-order-detail-check-test";
     }
 
 }

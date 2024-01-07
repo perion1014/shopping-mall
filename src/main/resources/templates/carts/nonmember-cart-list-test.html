@@ -23,7 +23,7 @@
     <table class="table__client table--2">
         <thead>
         <tr>
-            <th class="cart__checkbox"><input type="checkbox" /></th>
+            <th class="cart__checkbox"><input class="btn__all-check" type="checkbox" /></th>
             <th colspan="2" style="text-align: center">상품명</th>
             <th class="cart__price">상품 가격</th>
             <th class="cart__quantity" style="text-align: center">수량</th>
@@ -55,7 +55,7 @@
             <td class="cart__quantity">
                 <div class="item__countbtns item__countbtns--cart">
                     <button type = "button" class="btn btn--xs btn--white btn--item-cart">-</button>
-                    <input th:id="'inputvalue_' + ${Index.index}" th:value="${nonMemberCartDTO.itemQuantity}" style = "text-align:center;" class="input input--item-cart">
+                    <input th:id="'inputvalue_' + ${Index.index}" th:value="${nonMemberCartDTO.itemQuantity}"  class="input input--item-cart">
                     <button type = "button" class="btn btn--xs btn--white btn--item-cart">+</button>
                 </div>
             </td>

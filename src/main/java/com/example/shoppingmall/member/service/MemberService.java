@@ -2,9 +2,7 @@ package com.example.shoppingmall.member.service;
 
 import com.example.shoppingmall.member.domain.Member;
 import com.example.shoppingmall.member.dto.*;
-import com.example.shoppingmall.member.exception.DuplicatedEmailException;
-import com.example.shoppingmall.member.exception.DuplicatedHpException;
-import com.example.shoppingmall.member.exception.DuplicatedIdException;
+import com.example.shoppingmall.member.exception.DuplicatedFieldException;
 import com.example.shoppingmall.member.form.MemberPageForm;
 import com.example.shoppingmall.member.form.MemberSearchForm;
 import com.example.shoppingmall.member.repository.MemberRepository;
@@ -27,11 +25,11 @@ public class MemberService {
     public void join(MemberAddDTO memberAddDTO){
         Member member = MemberAddDTO.MemberAddDTOToMember(memberAddDTO);
         memberRepository.findById(member.getMemberId())
-                .ifPresent(m -> {throw new DuplicatedIdException("이미 존재하는 아이디입니다.");});
+                .ifPresent(m -> {throw new DuplicatedFieldException("memberId","이미 존재하는 아이디입니다.");});
         memberRepository.findByEmail(member.getMemberEmail())
-                .ifPresent(m -> {throw new DuplicatedEmailException("이미 존재하는 이메일입니다.");});
+                .ifPresent(m -> {throw new DuplicatedFieldException("memberEmail","이미 존재하는 이메일입니다.");});
         memberRepository.findByHp(member.getMemberHp())
-                .ifPresent(m -> {throw new DuplicatedHpException("이미 존재하는 휴대폰 번호입니다.");});
+                .ifPresent(m -> {throw new DuplicatedFieldException("memberHp","이미 존재하는 휴대폰 번호입니다.");});
         memberRepository.save(member);
     }
 
@@ -47,6 +45,14 @@ public class MemberService {
     @Transactional
     public void update(MemberUpdateDTO memberUpdateDTO){
         Member member = MemberUpdateDTO.MemberUpdateDTOToMember(memberUpdateDTO);
+        memberRepository.findByHp(member.getMemberHp())
+                .ifPresent(existingMember -> {
+                    // 기존 휴대폰 번호와 다른 회원이 이미 존재 하면 예외 처리
+                    if (!existingMember.getMemberId().equals(member.getMemberId())) {
+                        throw new DuplicatedFieldException("memberHp", "이미 존재하는 휴대폰 번호입니다.");
+                    }
+                });
+
         memberRepository.update(member);
     }
 
