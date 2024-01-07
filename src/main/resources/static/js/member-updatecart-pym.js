@@ -1,7 +1,6 @@
 //장바구니 상품 선택하고 구매 누를 시, 구매 페이지로 넘어가기 전 재고 체크 함수
 function checkItemStock2(cartDTOListSize, memberNo){
 
-
     let jsonData= [];
 
     let itemNo = 0;

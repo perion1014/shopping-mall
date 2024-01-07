@@ -121,6 +121,7 @@ function checkItemStock(cartDTOListSize){
 
     let jsonData= [];
 
+    let nonMemberCartNo = -1;
     let itemNo = 0;
     let itemName = '';
     let itemSize = '';
@@ -129,6 +130,8 @@ function checkItemStock(cartDTOListSize){
 
     for(var i = 0; i < cartDTOListSize; i++){
         if(document.getElementById('cartCheckBox_' + i).checked === true){
+            nonMemberCartNo = Number(i);
+            alert('NonMemberCartNo : ' + nonMemberCartNo);
             itemNo = document.getElementById('itemNo_' + i).value;
              // alert('itemNo : ' + itemNo);
             itemName = document.getElementById('itemName_' + i).innerText;
@@ -139,7 +142,7 @@ function checkItemStock(cartDTOListSize){
              // alert('itemQuantity : ' + itemQuantity);
             itemPrice = document.getElementById('itemPrice_' + i).value;
              // alert('itemPrice :' + itemPrice);
-            var jsonItem = {itemNo:itemNo, itemName: itemName, itemSize: itemSize, itemQuantity : itemQuantity, itemPrice: itemPrice};
+            var jsonItem = {nonMemberCartNo: nonMemberCartNo, itemNo:itemNo, itemName: itemName, itemSize: itemSize, itemQuantity : itemQuantity, itemPrice: itemPrice};
             jsonData.push(jsonItem);
         }
     }
