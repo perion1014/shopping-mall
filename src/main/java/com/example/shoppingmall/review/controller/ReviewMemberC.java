@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
     private final ReviewService reviewService;
 
 //    /members/'+${ReviewDTO.memberNo}+'/reviews/'+${ReviewDTO.reviewNo}
-    @PostMapping("/{memberNo}/reviews/{reviewNo}")
-    public String deleteMyReview(@PathVariable(name = "reviewNo") Long reviewNo,
+    @PostMapping("/{memberNo}/reviews")
+    public String deleteMyReview(@RequestParam(name = "reviewNo") Long reviewNo,
                                  @PathVariable("memberNo") Long memberNo
                                  ) {
 

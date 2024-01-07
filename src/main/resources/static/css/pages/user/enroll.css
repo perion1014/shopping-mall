@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+}
+
+h1 {
+    margin-bottom: 3rem;
+}
+button {
+    margin-top : 3rem;
+}
+
+div {
+    text-align: center;
+}

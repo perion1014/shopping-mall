@@ -44,7 +44,8 @@ public class ReviewController {
 
         reviewService.updateItemGrade(itemNo);
 
-        return "redirect:/reviews/{itemNo}";
+//        return "redirect:/members/{memberNo}/reviews";
+        return "reviews/enroll-success";
     }
 
     // item 상세 에서의 review
