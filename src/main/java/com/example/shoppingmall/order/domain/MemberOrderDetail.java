@@ -2,6 +2,8 @@ package com.example.shoppingmall.order.domain;
 
 import com.example.shoppingmall.order.dto.MemberOrderDTO;
 import com.example.shoppingmall.order.dto.MemberOrderDetailAddDTO;
+import com.example.shoppingmall.review.domain.Review;
+import com.example.shoppingmall.review.dto.ReviewDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,5 +25,7 @@ public class MemberOrderDetail {
 
     private MemberOrder memberOrder;
     private MemberOrderDTO memberOrderDTO;
+
+    private Integer reviewCount;
 
 }

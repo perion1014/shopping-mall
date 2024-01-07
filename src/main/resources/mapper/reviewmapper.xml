@@ -97,4 +97,8 @@
     <select id="countItemReview" parameterType="Long" resultType="Long">
         SELECT count(review_no) FROM review WHERE item_no = #{itemNo}
     </select>
+
+    <select id="countReviewByMemberOrderDetailNo" parameterType="Long" resultType="Integer">
+        SELECT count(review_no) FROM review WHERE member_order_detail_no = #{memberOrderDetailNo}
+    </select>
 </mapper>

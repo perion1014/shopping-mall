@@ -24,19 +24,8 @@ public class MemberOrderDetailDTO {
     private Integer itemPrice;
 
     private String itemThumb;
+    private Integer reviewCount;
 
-
-    public static MemberOrderDetailDTO toMemberOrderDetailDTO(MemberOrderDetail memberOrderDetail) {
-        MemberOrderDetailDTO memberOrderDetailDTO = new MemberOrderDetailDTO();
-        memberOrderDetailDTO.setMemberOrderDetailNo(memberOrderDetail.getMemberOrderDetailNo());
-        memberOrderDetailDTO.setMemberOrderNo(memberOrderDetail.getMemberOrderNo());
-        memberOrderDetailDTO.setItemNo(memberOrderDetail.getItemNo());
-        memberOrderDetailDTO.setItemQuantity(memberOrderDetail.getItemQuantity());
-        memberOrderDetailDTO.setItemSize(memberOrderDetail.getItemSize());
-        memberOrderDetailDTO.setItemName(memberOrderDetail.getItemName());
-        memberOrderDetailDTO.setItemPrice(memberOrderDetail.getItemPrice());
-        return memberOrderDetailDTO;
-    }
 
     public static MemberOrderDetailDTO toMemberOrderDetailDTO(Long memberOrderNo, MemberOrderDetail memberOrderDetail) {
         MemberOrderDetailDTO memberOrderDetailDTO = new MemberOrderDetailDTO();

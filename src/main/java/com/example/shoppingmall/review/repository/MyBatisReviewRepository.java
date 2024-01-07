@@ -92,4 +92,9 @@ public class MyBatisReviewRepository implements ReviewRepository{
     public Long countItemReview(Long itemNo) {
         return reviewMapper.countItemReview(itemNo);
     }
+
+    @Override
+    public Integer countReviewByMemberOrderDetailNo(Long memberOrderDetailNo) {
+        return reviewMapper.countReviewByMemberOrderDetailNo(memberOrderDetailNo);
+    }
 }
