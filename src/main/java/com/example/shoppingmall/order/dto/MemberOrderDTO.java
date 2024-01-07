@@ -30,6 +30,7 @@ public class MemberOrderDTO {
     private List<MemberOrderDetailDTO> memberOrderDetailDTOList;
 
     private Integer priceSum;
+    private Integer reviewCount;
 
     public static MemberOrderDTO toMemberOrderDTO(MemberOrder memberOrder) {
         MemberOrderDTO memberOrderDTO = new MemberOrderDTO();
@@ -61,4 +62,38 @@ public class MemberOrderDTO {
         }
         return memberOrderDetailDTOList;
     }
+
+    public static MemberOrderDTO toMemberOrderDTO2(MemberOrder memberOrder) {
+        MemberOrderDTO memberOrderDTO = new MemberOrderDTO();
+        memberOrderDTO.setMemberOrderNo(memberOrder.getMemberOrderNo());
+        memberOrderDTO.setMemberNo(memberOrder.getMemberNo());
+        memberOrderDTO.setOrderTime(memberOrder.getOrderTime());
+        memberOrderDTO.setOrderHp(memberOrder.getOrderHp());
+        memberOrderDTO.setOrderPostalCode(memberOrder.getOrderPostalCode());
+        memberOrderDTO.setOrderAddressBasic(memberOrder.getOrderAddressBasic());
+        memberOrderDTO.setOrderAddressDetail(memberOrder.getOrderAddressDetail());
+        memberOrderDTO.setReceiverName(memberOrder.getReceiverName());
+        memberOrderDTO.setOrderStatus(memberOrder.getOrderStatus());
+        memberOrderDTO.setMemberOrderDetailDTOList(MemberOrderDTO.toMemberOrderDetailDTOList2(memberOrder.getMemberOrderDetailList()));
+        return memberOrderDTO;
+    }
+
+    public static List<MemberOrderDetailDTO> toMemberOrderDetailDTOList2(List<MemberOrderDetail> memberOrderDetailList) {
+        List<MemberOrderDetailDTO> memberOrderDetailDTOList = new ArrayList<>();
+        for (MemberOrderDetail memberOrderDetail: memberOrderDetailList) {
+            MemberOrderDetailDTO memberOrderDetailDTO = new MemberOrderDetailDTO();
+            memberOrderDetailDTO.setMemberOrderDetailNo(memberOrderDetail.getMemberOrderDetailNo());
+            memberOrderDetailDTO.setMemberOrderNo(memberOrderDetail.getMemberOrderNo());
+            memberOrderDetailDTO.setItemNo(memberOrderDetail.getItemNo());
+            memberOrderDetailDTO.setItemQuantity(memberOrderDetail.getItemQuantity());
+            memberOrderDetailDTO.setItemSize(memberOrderDetail.getItemSize());
+            memberOrderDetailDTO.setItemName(memberOrderDetail.getItemName());
+            memberOrderDetailDTO.setItemPrice(memberOrderDetail.getItemPrice());
+            memberOrderDetailDTO.setReviewCount(memberOrderDetail.getReviewCount());
+            memberOrderDetailDTOList.add(memberOrderDetailDTO);
+        }
+        return memberOrderDetailDTOList;
+    }
+
+
 }

@@ -45,4 +45,6 @@ public interface ReviewRepository {
     List<Review> findReviewByItemNo(int startPage, int pagePerReview, Long itemNo);
 
     Long countItemReview(Long itemNo);
+
+    Integer countReviewByMemberOrderDetailNo(Long memberOrderDetailNo);
 }

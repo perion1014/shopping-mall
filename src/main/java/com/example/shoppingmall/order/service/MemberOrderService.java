@@ -7,12 +7,12 @@ import com.example.shoppingmall.order.form.MemberOrderAdminViewForm;
 import com.example.shoppingmall.order.form.MemberOrderPageForm;
 import com.example.shoppingmall.order.form.MemberOrderViewForm;
 import com.example.shoppingmall.order.repository.MemberOrderRepository;
+import com.example.shoppingmall.review.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -20,6 +20,7 @@ import java.util.List;
 public class MemberOrderService {
 
     private final MemberOrderRepository memberOrderRepository;
+    private final ReviewRepository reviewRepository;
 
     /* user */
     public void saveMemberOrder(Long memberNo, MemberOrderAddDTO memberOrderAddDTO) {
@@ -86,7 +87,6 @@ public class MemberOrderService {
         memberOrderViewForm.setMemberOrdersPerPage(memberOrdersPerPage);
 
         List<MemberOrder> memberOrderList = memberOrderRepository.findMemberOrderList(memberOrderViewForm);
-        System.out.println("MemberOrderService.getMemberOrderListPage(page, memberOrderViewForm)");
         List<MemberOrderDTO> memberOrderDTOList = new ArrayList<>();
         for (MemberOrder memberOrder: memberOrderList) {
             Long memberOrderNo = memberOrder.getMemberOrderNo();
@@ -101,11 +101,16 @@ public class MemberOrderService {
         memberOrderRepository.cancelMemberOrder(memberOrderNo);
     }
 
+    /* user */ //구현해야 할 부분
     public MemberOrderDTO findMemberOrderByNo(Long memberOrderNo) {
         MemberOrder memberOrder = memberOrderRepository.findMemberOrderByNo(memberOrderNo);
         List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetailList(memberOrderNo);
         memberOrder.setMemberOrderDetailList(memberOrderDetailList);
-        return MemberOrderDTO.toMemberOrderDTO(memberOrder);
+        MemberOrderDTO memberOrderDTO =  MemberOrderDTO.toMemberOrderDTO(memberOrder);
+        for (MemberOrderDetailDTO memberOrderDetailDTO: memberOrderDTO.getMemberOrderDetailDTOList()) {
+            memberOrderDetailDTO.setReviewCount(reviewRepository.countReviewByMemberOrderDetailNo(memberOrderDetailDTO.getMemberOrderDetailNo()));
+        }
+        return memberOrderDTO;
     }
 
 
@@ -164,7 +169,8 @@ public class MemberOrderService {
     @Transactional(readOnly = true)
     public List<MemberOrderDetailDTO> getMemberOrderDetailList(Long memberOrderNo) {
         List<MemberOrderDetail> memberOrderDetailList = memberOrderRepository.findMemberOrderDetailList(memberOrderNo);
-        return MemberOrderDetailDTO.toMemberOrderDetailDTOList(memberOrderNo, memberOrderDetailList);
+        List<MemberOrderDetailDTO> memberOrderDetailDTOList = MemberOrderDetailDTO.toMemberOrderDetailDTOList(memberOrderNo, memberOrderDetailList);
+        return memberOrderDetailDTOList;
     }
 
     /* admin */
@@ -323,7 +329,6 @@ public class MemberOrderService {
         int memberOrderCount = memberOrderRepository.getMemberOrderListBySearchLong(memberOrderAdminViewForm).size();
 
         int totalPage = (int) (Math.ceil((double) memberOrderCount / memberOrdersPerPage));
-
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
         int endPage = startPage + pageLimit - 1;

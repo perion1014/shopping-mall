@@ -23,20 +23,20 @@
         </thead>
         <tbody>
         <!--반복 구간(tr -> th:each)-->
-        <tr>
-            <td class="cart__checkbox">1</td>
+        <tr th:each="memberOrderDetailAddDTO, memberOrderDetailAddDTOStat: ${session.memberOrderDetailAddDTOList}">
+            <td class="cart__checkbox" th:text="(${memberOrderDetailAddDTOStat.index} + 1)"></td>
             <td class="cart__imgbox">
-                <img class="cart__img" src="/images/itemImages/1/thumb/p1.jpg">
+                <img class="cart__img" th:src="@{/images/itemImages/__${memberOrderDetailAddDTO.itemNo}__/thumb/__${memberOrderDetailAddDTO.itemThumb}__}">
             </td>
             <td>
-                <h4>상품명</h4>
-                <span >사이즈</span>
+                <h4 th:text="${memberOrderDetailAddDTO.itemName}"></h4>
+                <span th:text="${memberOrderDetailAddDTO.itemSize}"></span>
                 <!--
                 <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
                 -->
             </td>
-            <td class="cart__price" >100원</td>
-            <td class="cart__quantity order__quantity">2</td>
+            <td class="cart__price" th:text="${memberOrderDetailAddDTO.itemPrice} + '원'"></td>
+            <td class="cart__quantity order__quantity" th:text="${memberOrderDetailAddDTO.itemQuantity}"></td>
           </tr>
         </tbody>
         </table>
