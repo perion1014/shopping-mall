@@ -149,7 +149,7 @@ public class OrderControllerPYM {
         }
         session.setAttribute("memberOrderDTO", null);
 
-        return "orders/member-order-success-test";
+        return "orders/member-order-success";
     }
 
 
@@ -180,7 +180,7 @@ public class OrderControllerPYM {
             memberOrderDTOList.get(i).setPriceSum(priceSumList.get(i));
         }
         model.addAttribute("memberOrderDTOList", memberOrderDTOList);
-        return "orders/member-order-list-test";
+        return "orders/member-order-list";
     }
 
     /* user */
@@ -207,7 +207,7 @@ public class OrderControllerPYM {
             memberOrderDetailDTO.setItemThumb(itemThumb);
         }
         model.addAttribute("memberOrderDTO", memberOrderDTO);
-        return "orders/member-order-detail-test";
+        return "orders/member-order-detail";
     }
 
     //..
@@ -222,6 +222,7 @@ public class OrderControllerPYM {
         return "/orders/nonmember-order";
     }
 
+    /* admin */
     @GetMapping("/orders/admin/members")
     public String showMemberOrderList(@RequestParam(value="page", required=false, defaultValue="1") int page,
                                       @RequestParam(value = "searchCategory", defaultValue = "member_no") String searchCategory,
@@ -231,9 +232,6 @@ public class OrderControllerPYM {
 
         HttpSession session = request.getSession();
         session.setAttribute("adminSearchCategory", searchCategory);
-
-        System.out.println("searchCategory: " + searchCategory);
-        System.out.println("searchKeyword: " + searchKeyword);
 
         MemberOrderAdminViewForm memberOrderAdminViewForm = new MemberOrderAdminViewForm();
 

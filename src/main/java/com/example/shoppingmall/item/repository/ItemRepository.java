@@ -60,7 +60,6 @@ public interface ItemRepository {
 
     String selectItemThumbByItemNo(Long itemNo);
 
-
     List<Item> findAllItemsByPaging(Map<String, Integer> pagingSettings);
 
     List<Item> getItemListPageByCategory(ItemCategoryPageForm itemCategoryPageForm);
