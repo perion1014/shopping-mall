@@ -22,7 +22,7 @@
         <div class="admin_item_container">
           <div>
             상품명
-            <input type="text" name="itemName" class="admin_item_name_input" />
+            <input type="text" name="itemName" class="admin_item_name_input" maxlength="30"/>
           </div>
 
           <div>
@@ -52,12 +52,12 @@
             <input type="number" name="itemStockValue2" />
             L<input type="hidden" name="itemSize3" value="L">
             <input type="number" name="itemStockValue3" />
-            <br>
-            금액: <input type="text" name="itemPrice"/>원
           </div>
 
-          <div>
-            <textarea name="itemDetail"></textarea>
+          <div> 금액: <input type="text" name="itemPrice"/>원</div>
+
+            <div class="item__detail">
+            <textarea name="itemDetail" maxlength="400"></textarea>
           </div>
           <!-- container-->
         </div>
