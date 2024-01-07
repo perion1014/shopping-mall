@@ -7,14 +7,31 @@ window.onload = function() {
 function updateQuantity(changeQuantity, cartListIndex){
     let currentQuantityInput = document.getElementById('inputvalue_' + cartListIndex);
     let currentQuantityValue = Number(currentQuantityInput.value);
+    let currentPriceInput = document.getElementById('itemPrice_' + cartListIndex);
+    let currentPriceValue = Number(currentPriceInput.value);
+    let currentPriceSumInput = document.getElementById('priceSum');
+    let currentPriceSumValue = Number(currentPriceSumInput.innerText);
+    let currentOrderSumInput = document.getElementById('orderSum');
+    let currentOrderSumValue = Number(currentOrderSumInput.innerText);
+
+    // alert('현재 상품 가격 : ' + currentPriceValue);
+    // alert('현재 상품 총액 : ' + currentPriceSumValue);
+    // alert('현재 주문 총액 : ' + currentOrderSumValue);
+
     //alert(currentQuantityValue);
-    if(changeQuantity == 1){
-        if(currentQuantityValue != 99){
+    if(changeQuantity === 1){
+        if(currentQuantityValue !== 99){
             currentQuantityValue += Number(changeQuantity);
+            currentPriceSumValue += Number(changeQuantity) * currentPriceValue;
+            currentOrderSumValue = currentPriceSumValue >= 100000? currentPriceSumValue : currentPriceSumValue - 3000;
+            // alert('변경 상품 총액 : ' + currentPriceSumValue);
+            // alert('변경 주문 총액 : ' + currentOrderSumValue);
         }
-    } else if(changeQuantity == -1){
-        if(currentQuantityValue != 1){
+    } else if(changeQuantity === -1){
+        if(currentQuantityValue !== 1){
             currentQuantityValue += Number(changeQuantity);
+            currentPriceSumValue += Number(changeQuantity) * currentPriceValue;
+            currentOrderSumValue = currentPriceSumValue >= 100000? currentPriceSumValue : currentPriceSumValue + 3000;
         }
     }
 
@@ -31,6 +48,8 @@ function updateQuantity(changeQuantity, cartListIndex){
         }),
     }).then(response => response.text())
         .then(data => {
+            currentOrderSumInput.innerText = String(currentOrderSumValue);
+            currentPriceSumInput.innerText = String(currentPriceSumValue);
             //alert('JSON JAVA로 전송 성공');
         }).catch(error => {
             alert('JSON 전송 실패 - 사유 : ' + error);
@@ -61,7 +80,7 @@ function sendCartDeleteJson(cartNo){
 //비회원 - 모든 장바구니 항목을 선택/해제 + 전체 금액을 계산하는 체크박스 온클릭
 function toggleAllCartCheckbox(className){
 
-    var checkBoxes = document.querySelectorAll('.' + className);
+    let checkBoxes = document.querySelectorAll('.' + className);
     let thisBoxChecked = Boolean(document.getElementById('cartListAllCheckBtn').checked);
 
     for(var i = 0; i < checkBoxes.length; i++){
@@ -87,7 +106,7 @@ function calculatePriceSum(cartDTOListSize){
             itemQuantity = document.getElementById('inputvalue_' + i).value;
 
             priceSum += itemPrice * itemQuantity;
-            orderSum = priceSum - 1000;
+            orderSum = priceSum >= 100000? priceSum: priceSum + 3000;
         }
 
     }

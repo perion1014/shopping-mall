@@ -126,7 +126,8 @@ public class OrderController {
     public String makeNonMemberOrder(@Validated(OrderValidationSequence.class)
             @ModelAttribute("nonMemberOrderAddDTO") NonMemberOrderAddDTO nonMemberOrderAddDTO,
                                      BindingResult bindingResult,
-                                     HttpServletRequest req){
+                                     HttpServletRequest req,
+                                     Model model){
 
         if(bindingResult.hasErrors()){
             return "orders/nonmember-order";
@@ -143,7 +144,10 @@ public class OrderController {
         nonMemberOrderService.saveNonMemberOrder(nonMemberOrderAddDTO);
         List<NonMemberOrderDetailAddDTO> nonMemberOrderDetailAddDTOList = (List<NonMemberOrderDetailAddDTO>) req.getSession().getAttribute("nonMemberOrderDetailAddDTOList");
         nonMemberOrderService.saveNonMemberOrderDetail(nonMemberOrderDetailAddDTOList);
+        Long nowOrderNo = nonMemberOrderService.getNowOrderNo();
+        System.out.println("주문 번호 : " + nowOrderNo);
 
+        model.addAttribute("nowOrderNo", nowOrderNo);
         req.getSession().setAttribute("nonMemberOrderDetailAddDTOList", null);
 
         return "redirect:/orders/create-success";
