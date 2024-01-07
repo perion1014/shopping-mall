@@ -205,7 +205,6 @@ public class ItemService {
         int itemCount = itemRepository.findAllItems().size();
 
         int totalPage = (int) (Math.ceil((double) itemCount / itemsPerPage));
-
         int startPage = (((int)(Math.ceil((double) page / pageLimit))) - 1) * pageLimit + 1;
 
         int endPage = startPage + pageLimit - 1;
@@ -346,6 +345,9 @@ public class ItemService {
         return convertToItemDTOList(itemList);
     }
 
+    public void reduceItemStocks(ItemStockReduceDTO itemStockReduceDTO) {
+        itemRepository.reduceItemStocks(itemStockReduceDTO);
+    }
 
     public List<ItemDTO> convertToItemDTOList(List<Item> itemList) {
         for (Item item: itemList) {
@@ -362,11 +364,6 @@ public class ItemService {
             itemDTOList.add(ItemDTO.itemToItemDTO(item));
         }
         return itemDTOList;
-    }
-
-
-    public void reduceItemStocks(ItemStockReduceDTO itemStockReduceDTO) {
-        itemRepository.reduceItemStocks(itemStockReduceDTO);
     }
 }
 
