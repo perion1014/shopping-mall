@@ -200,13 +200,6 @@ public class ItemController {
         return "admins/item/admins-item";
     }
 
-    @GetMapping("/admin/offmarket")
-    public String showItemListOffmarket(Model model) {
-        List<ItemDTO> itemDTOList = itemService.findAllItemsOffmarket();
-        model.addAttribute("itemDTOList", itemDTOList);
-        return "admins/item/admins-item";
-    }
-
     @PostMapping("/admin/search")
     public String searchItem(@ModelAttribute ItemSearchDTO itemSearchDTO, Model model) {
         List<ItemDTO> itemDTOList = itemService.findItemsByName(itemSearchDTO);

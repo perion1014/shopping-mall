@@ -163,7 +163,7 @@ public class CartController {
     //페이지 개발 완료 - 회원 주문 성공 페이지
     @GetMapping("/member/order-success-test")
         public String goToMemberOrderSuccessTest(){
-            return "orders/member-order-success-test";
+            return "member-order-success";
     }
 
     //페이지 개발 완료 - 비회원 주문 성공 페이지
@@ -174,12 +174,12 @@ public class CartController {
 
     @GetMapping("/member/order-list-test")
     public String goToMemberOrderListTest(){
-        return "orders/member-order-list-test";
+        return "member-order-list";
     }
 
     @GetMapping("/member/order-detail-test")
     public String goToMemberOrderDetailTest(){
-        return "orders/member-order-detail-test";
+        return "member-order-detail";
     }
 
     //페이지 개발 완료 - 비회원 주문 조회 입력 페이지
