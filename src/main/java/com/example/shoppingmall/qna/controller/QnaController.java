@@ -35,7 +35,7 @@ public class QnaController {
 
         qnaService.addQna(itemNo,memberNo,qnaAddDTO);
 
-        return "redirect:/items/{itemNo}";
+        return "reviews/enroll-success";
     }
 
     @GetMapping("")

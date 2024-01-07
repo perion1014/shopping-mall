@@ -253,110 +253,109 @@
         </div>
     </section>
     <section class="item-detail__container" id="item__reviews">
-        <h1 class="section__title">리뷰</h1>
-        <div class="reviews__container">
+<!--        <h1 class="section__title">리뷰</h1>
+    ★<span th:if="${itemDTO.itemGrade != null}" th:text="${itemDTO.itemGrade}"></span>
+-->
+        <div class="qna__more">
+            <h1 class="section__title">리뷰 </h1>
+            <a th:href="@{|/items/${itemNo}/reviews|}">더보기</a>
+        </div>
+        <div class="reviews__container" th:each="ReviewDTO,reviewNo : ${reviewByItemNo}" th:if="${reviewNo.index < 10}">
             <div class="review">
-                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
-                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
-                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
-                                                            <!--th:text 리뷰 내용 -->
-                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
+                <div class="review__flex">
+                    <div>
+                    <span class="review__header" th:text="${#strings.substring(ReviewDTO.memberId, 0, #strings.length(ReviewDTO.memberId) - 2)} + '***'"></span> <!--th:text 멤버 아이디-->
+                    <span class="review__header" th:text="'사이즈:'+${ReviewDTO.itemSize}"></span> <!--th:text 구입 상품 사이즈-->
+                    <span class="review__header" th:text="'★'+${ReviewDTO.reviewScore}"></span> <!--th:text 구입 상품 별점-->
+                    </div>
+
+                    <div> <span class="review__header2" th:text="${#dates.format(ReviewDTO.reviewCreatedTime, 'yyyy-MM-dd')}"></span></div>
+                </div>                                           <!--th:text 리뷰 내용 -->
+                <p th:text="${ReviewDTO.reviewContext}"></p>
             </div>
         </div>
-        <div class="reviews__container">
-            <div class="review">
-                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
-                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
-                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
-                <!--th:text 리뷰 내용 -->
-                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
-            </div>
-        </div>
-        <div class="reviews__container">
-            <div class="review">
-                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
-                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
-                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
-                <!--th:text 리뷰 내용 -->
-                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
-            </div>
-        </div>
-        <div class="reviews__container">
-            <div class="review">
-                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
-                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
-                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
-                <!--th:text 리뷰 내용 -->
-                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
-            </div>
-        </div>
-        <div class="reviews__container">
-            <div class="review">
-                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
-                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
-                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
-                <!--th:text 리뷰 내용 -->
-                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
-            </div>
-        </div>
-        <div class="reviews__container">
-            <div class="review">
-                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
-                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
-                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
-                <!--th:text 리뷰 내용 -->
-                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
-            </div>
-        </div>
-        <div class="reviews__container">
-            <div class="review">
-                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
-                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
-                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
-                <!--th:text 리뷰 내용 -->
-                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
-            </div>
-        </div>
-        <div class="reviews__container">
-            <div class="review">
-                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
-                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
-                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
-                <!--th:text 리뷰 내용 -->
-                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
-            </div>
-        </div>
-        <div class="reviews__container">
-            <div class="review">
-                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
-                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
-                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
-                <!--th:text 리뷰 내용 -->
-                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
-            </div>
-        </div>
-        <div class="reviews__container">
-            <div class="review">
-                <span class="review__header">회원 아이디</span> <!--th:text 멤버 아이디-->
-                <span class="review__header">사이즈:M</span> <!--th:text 구입 상품 사이즈-->
-                <span class="review__header">★4</span> <!--th:text 구입 상품 별점-->
-                <!--th:text 리뷰 내용 -->
-                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>
-            </div>
-        </div>
+<!--        <div class="reviews__container">-->
+<!--            <div class="review">-->
+<!--                <span class="review__header">회원 아이디</span> &lt;!&ndash;th:text 멤버 아이디&ndash;&gt;-->
+<!--                <span class="review__header">사이즈:M</span> &lt;!&ndash;th:text 구입 상품 사이즈&ndash;&gt;-->
+<!--                <span class="review__header">★4</span> &lt;!&ndash;th:text 구입 상품 별점&ndash;&gt;-->
+<!--                &lt;!&ndash;th:text 리뷰 내용 &ndash;&gt;-->
+<!--                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="reviews__container">-->
+<!--            <div class="review">-->
+<!--                <span class="review__header">회원 아이디</span> &lt;!&ndash;th:text 멤버 아이디&ndash;&gt;-->
+<!--                <span class="review__header">사이즈:M</span> &lt;!&ndash;th:text 구입 상품 사이즈&ndash;&gt;-->
+<!--                <span class="review__header">★4</span> &lt;!&ndash;th:text 구입 상품 별점&ndash;&gt;-->
+<!--                &lt;!&ndash;th:text 리뷰 내용 &ndash;&gt;-->
+<!--                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="reviews__container">-->
+<!--            <div class="review">-->
+<!--                <span class="review__header">회원 아이디</span> &lt;!&ndash;th:text 멤버 아이디&ndash;&gt;-->
+<!--                <span class="review__header">사이즈:M</span> &lt;!&ndash;th:text 구입 상품 사이즈&ndash;&gt;-->
+<!--                <span class="review__header">★4</span> &lt;!&ndash;th:text 구입 상품 별점&ndash;&gt;-->
+<!--                &lt;!&ndash;th:text 리뷰 내용 &ndash;&gt;-->
+<!--                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="reviews__container">-->
+<!--            <div class="review">-->
+<!--                <span class="review__header">회원 아이디</span> &lt;!&ndash;th:text 멤버 아이디&ndash;&gt;-->
+<!--                <span class="review__header">사이즈:M</span> &lt;!&ndash;th:text 구입 상품 사이즈&ndash;&gt;-->
+<!--                <span class="review__header">★4</span> &lt;!&ndash;th:text 구입 상품 별점&ndash;&gt;-->
+<!--                &lt;!&ndash;th:text 리뷰 내용 &ndash;&gt;-->
+<!--                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="reviews__container">-->
+<!--            <div class="review">-->
+<!--                <span class="review__header">회원 아이디</span> &lt;!&ndash;th:text 멤버 아이디&ndash;&gt;-->
+<!--                <span class="review__header">사이즈:M</span> &lt;!&ndash;th:text 구입 상품 사이즈&ndash;&gt;-->
+<!--                <span class="review__header">★4</span> &lt;!&ndash;th:text 구입 상품 별점&ndash;&gt;-->
+<!--                &lt;!&ndash;th:text 리뷰 내용 &ndash;&gt;-->
+<!--                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="reviews__container">-->
+<!--            <div class="review">-->
+<!--                <span class="review__header">회원 아이디</span> &lt;!&ndash;th:text 멤버 아이디&ndash;&gt;-->
+<!--                <span class="review__header">사이즈:M</span> &lt;!&ndash;th:text 구입 상품 사이즈&ndash;&gt;-->
+<!--                <span class="review__header">★4</span> &lt;!&ndash;th:text 구입 상품 별점&ndash;&gt;-->
+<!--                &lt;!&ndash;th:text 리뷰 내용 &ndash;&gt;-->
+<!--                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="reviews__container">-->
+<!--            <div class="review">-->
+<!--                <span class="review__header">회원 아이디</span> &lt;!&ndash;th:text 멤버 아이디&ndash;&gt;-->
+<!--                <span class="review__header">사이즈:M</span> &lt;!&ndash;th:text 구입 상품 사이즈&ndash;&gt;-->
+<!--                <span class="review__header">★4</span> &lt;!&ndash;th:text 구입 상품 별점&ndash;&gt;-->
+<!--                &lt;!&ndash;th:text 리뷰 내용 &ndash;&gt;-->
+<!--                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="reviews__container">-->
+<!--            <div class="review">-->
+<!--                <span class="review__header">회원 아이디</span> &lt;!&ndash;th:text 멤버 아이디&ndash;&gt;-->
+<!--                <span class="review__header">사이즈:M</span> &lt;!&ndash;th:text 구입 상품 사이즈&ndash;&gt;-->
+<!--                <span class="review__header">★4</span> &lt;!&ndash;th:text 구입 상품 별점&ndash;&gt;-->
+<!--                &lt;!&ndash;th:text 리뷰 내용 &ndash;&gt;-->
+<!--                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="reviews__container">-->
+<!--            <div class="review">-->
+<!--                <span class="review__header">회원 아이디</span> &lt;!&ndash;th:text 멤버 아이디&ndash;&gt;-->
+<!--                <span class="review__header">사이즈:M</span> &lt;!&ndash;th:text 구입 상품 사이즈&ndash;&gt;-->
+<!--                <span class="review__header">★4</span> &lt;!&ndash;th:text 구입 상품 별점&ndash;&gt;-->
+<!--                &lt;!&ndash;th:text 리뷰 내용 &ndash;&gt;-->
+<!--                <p>너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호너무 좋아요 호호호</p>-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="items__page review__page">
-            <span>이전</span>
-            <a class="now__page">1</a>
-            <a>2</a>
-            <a>3</a>
-            <a>4</a>
-            <a>5</a>
-            <a>6</a>
-            <a>7</a>
-            <a>8</a>
-            <a>9</a>
-            <a>10</a>
-            <span>다음</span>
         </div>
     </section>
     <aside class="item__aside">
