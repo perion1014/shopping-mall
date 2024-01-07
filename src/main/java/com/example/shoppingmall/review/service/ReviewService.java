@@ -212,12 +212,18 @@ public class ReviewService {
 
     public void updateItemGrade(Long itemNo) {
 
+        float itemGrade = 0;
+
         Long reviewScoreTotal = reviewRepository.getSumReviewScore(itemNo);
+
         Long reviewCount = reviewRepository.countReviewByItemNo(itemNo);
 
-        float result = (float) reviewScoreTotal / reviewCount ;
+        if (reviewScoreTotal !=  null && reviewCount != null ) {
+            float result = (float) reviewScoreTotal / reviewCount ;
 
-        float itemGrade = (float) (Math.round(result * 10.0) / 10.0);
+            itemGrade = (float) (Math.round(result * 10.0) / 10.0);
+        }
+
 
         reviewRepository.updateItemGrade(itemGrade,itemNo);
     }

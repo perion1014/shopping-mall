@@ -46,7 +46,9 @@
                         <img class="cart__img" th:src="@{/images/itemImages/__${memberorderDetail.itemNo}__/thumb/__${memberorderDetail.itemThumb}__}">
                     </td>
                     <td>
-                        <h4 th:text="${memberorderDetail.itemName}"></h4>
+                        <h4>
+                            <a th:href="@{/items/{itemNo}(itemNo=${memberorderDetail.itemNo})}" th:text="${memberorderDetail.itemName}"></a>
+                        </h4>
                         <span th:text="'사이즈: ' + ${memberorderDetail.itemSize}"></span>
                         <!--
                         <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
