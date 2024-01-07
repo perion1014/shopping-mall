@@ -119,10 +119,11 @@ public class ItemController {
     @GetMapping("/search")
     public String showItemSearched(@ModelAttribute ItemSearchForm itemSearchForm,
                                    @RequestParam(value="page", required=false, defaultValue="1") int page,
-                                   @RequestParam (name = "searchKeyword", defaultValue = "") String searchKeyword,
+                                   @RequestParam (name = "searchKeyword", required = false) String searchKeyword,
                                    Model model,
                                    HttpServletRequest request){
 
+        itemSearchForm.setSearchKeyword(searchKeyword);
         model.addAttribute("pageSettings", itemService.setItemSearchList(page, itemSearchForm));
 
         HttpSession session = request.getSession();
@@ -131,7 +132,7 @@ public class ItemController {
         if (searchKeyword.isEmpty()) {
             return "redirect:/items/searched";
         }
-
+        model.addAttribute("searchKeyword", searchKeyword);
         List<ItemDTO> itemDTOList = itemService.getItemListPageBySearch(page, itemSearchForm);
         model.addAttribute("itemDTOList", itemDTOList);
         return "items/item-list";

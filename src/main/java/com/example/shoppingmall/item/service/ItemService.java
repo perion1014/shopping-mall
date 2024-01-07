@@ -200,7 +200,7 @@ public class ItemService {
     public ItemPageForm setItemListPage(int page) { // setter
 
         int itemsPerPage = 12;
-        int pageLimit = 10;
+        int pageLimit = 5;
 
         int itemCount = itemRepository.findAllItems().size();
 
@@ -235,7 +235,7 @@ public class ItemService {
     public ItemPageForm setItemListPageByCategory(int page, ItemCategoryPageForm itemCategoryPageForm) { // setter
 
         int itemsPerPage = 12;
-        int pageLimit = 10;
+        int pageLimit = 5;
 
         int itemCount = itemRepository.findAllItemsByCategory(itemCategoryPageForm.getCategory()).size();
 
@@ -268,7 +268,7 @@ public class ItemService {
     public ItemPageForm setItemSearchList(int page, ItemSearchForm itemSearchForm) {
 
         int itemsPerPage = 12;
-        int pageLimit = 10;
+        int pageLimit = 5;
 
         int itemCount = itemRepository.findItemsByName(itemSearchForm.getSearchKeyword()).size();
 
@@ -300,7 +300,7 @@ public class ItemService {
     @Transactional(readOnly = true)
     public ItemPageForm setItemSearchListByAll(int page, ItemCategoricalSearchPageForm itemCategoricalSearchPageForm) {
         int itemsPerPage = 12;
-        int pageLimit = 10;
+        int pageLimit = 5;
 
         int itemCount = itemRepository.findItemsByName(itemCategoricalSearchPageForm.getSearchKeyword()).size();
 
@@ -318,7 +318,7 @@ public class ItemService {
     public ItemPageForm setItemSearchListByCategory(int page, ItemCategoricalSearchPageForm itemCategoricalSearchPageForm) {
 
         int itemsPerPage = 12;
-        int pageLimit = 10;
+        int pageLimit = 5;
 
         int itemCount = itemRepository.findItemsByNameAndCategory(itemCategoricalSearchPageForm).size();
 

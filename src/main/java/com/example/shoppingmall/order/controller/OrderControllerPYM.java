@@ -1,18 +1,12 @@
 package com.example.shoppingmall.order.controller;
 
 import com.example.shoppingmall.cart.dto.CartDeleteDTO;
-import com.example.shoppingmall.cart.dto.CartReadDTO;
 import com.example.shoppingmall.cart.service.CartService;
-import com.example.shoppingmall.item.dto.ItemDTO;
 import com.example.shoppingmall.item.dto.ItemStockDTO;
 import com.example.shoppingmall.item.service.ItemService;
 import com.example.shoppingmall.member.domain.Member;
-import com.example.shoppingmall.member.dto.MemberDTO;
-import com.example.shoppingmall.member.service.MemberService;
-import com.example.shoppingmall.order.domain.MemberOrderDetail;
 import com.example.shoppingmall.order.dto.*;
 import com.example.shoppingmall.order.form.MemberOrderAdminViewForm;
-import com.example.shoppingmall.order.form.MemberOrderPageForm;
 import com.example.shoppingmall.order.form.MemberOrderViewForm;
 import com.example.shoppingmall.order.service.MemberOrderService;
 import com.example.shoppingmall.order.validation.OrderValidationSequence;
@@ -25,7 +19,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -250,7 +243,7 @@ public class OrderControllerPYM {
                     model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPage(page));
                     List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPage(page, memberOrderAdminViewForm);
                     model.addAttribute("memberOrderDTOList", memberOrderDTOList);
-                    return "admins/admins-order-pym";
+                    return "admins/admins-order";
                 }
                 ////////////////////////////////////////////////////////////////////////////// 예외 처리 끝
                 if (searchCategory.equals("member_order_no")) {
@@ -271,7 +264,7 @@ public class OrderControllerPYM {
                     model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPage(page));
                     List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPage(page, memberOrderAdminViewForm);
                     model.addAttribute("memberOrderDTOList", memberOrderDTOList);
-                    return "admins/admins-order-pym";
+                    return "admins/admins-order";
                 }
                 ////////////////////////////////////////////////////////////////////////////// 예외 처리 끝
                 model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPageBySearchInteger(page, memberOrderAdminViewForm));
@@ -286,7 +279,7 @@ public class OrderControllerPYM {
                     model.addAttribute("pageSettings", memberOrderService.setMemberOrderAdminListPage(page));
                     List<MemberOrderAdminViewDTO> memberOrderDTOList = memberOrderService.getMemberOrderAdminListPage(page, memberOrderAdminViewForm);
                     model.addAttribute("memberOrderDTOList", memberOrderDTOList);
-                    return "admins/admins-order-pym";
+                    return "admins/admins-order";
                 }
                 ////////////////////////////////////////////////////////////////////////////// 예외 처리 끝
                 if (searchCategory.equals("receiver_name")) {
@@ -305,7 +298,7 @@ public class OrderControllerPYM {
                 ////////////////////////////////////////////////////////////////////////////// DTO 담기
             }
         }
-        return "admins/admins-order-pym";
+        return "admins/admins-order";
     }
 
     /* admin */
@@ -321,7 +314,7 @@ public class OrderControllerPYM {
         }
         model.addAttribute("priceSum", priceSum);
 
-        return "admins/admins-order-detail-pym";
+        return "admins/admins-order-detail";
     }
 
     /* admin */
