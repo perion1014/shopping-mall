@@ -23,7 +23,7 @@ function checkNonMemberItemStockPurchase(itemNo, itemName, itemPrice){
     let itemSize = '';
     let itemQuantity = 0;
     let itemThumbnail = document.getElementById('item_Thumbnail').src.replace('http://localhost:8082', '');
-    alert("상품 상세정보에서 받아온 썸네일 : " + itemThumbnail);
+    //alert("상품 상세정보에서 받아온 썸네일 : " + itemThumbnail);
 
     let itemSizelist = document.getElementsByName(`itemSize`);
 
