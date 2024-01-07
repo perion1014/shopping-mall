@@ -116,7 +116,9 @@ public class OrderController {
 //    }
 
     @GetMapping("/orders/create")
-    public String goToInputNonMemberOrderPage(HttpServletRequest req){
+    public String goToInputNonMemberOrderPage(
+            @ModelAttribute("nonMemberOrderAddDTO") NonMemberOrderAddDTO nonMemberOrderAddDTO,
+            HttpServletRequest req){
 
 //        HttpSession session = req.getSession();
 //        List<NonMemberOrderDetailAddDTO> nonMemberOrderDetailAddDTOList = (List<NonMemberOrderDetailAddDTO>) session.getAttribute("nonMemberOrderDetailAddDTOList");
@@ -135,7 +137,8 @@ public class OrderController {
 
     /*PRG 패턴 반드시 써주세요 */
     @PostMapping("/orders/create")
-    public String makeNonMemberOrder(@Validated(OrderValidationSequence.class) @ModelAttribute("nonMemberOrderAddDTO") NonMemberOrderAddDTO nonMemberOrderAddDTO,
+    public String makeNonMemberOrder(@Validated(OrderValidationSequence.class)
+            @ModelAttribute("nonMemberOrderAddDTO") NonMemberOrderAddDTO nonMemberOrderAddDTO,
                                      BindingResult bindingResult,
                                      HttpServletRequest req){
 
