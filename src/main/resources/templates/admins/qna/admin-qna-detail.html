@@ -93,6 +93,12 @@
           </div>
 
           <div class="line"></div>
+
+          <div class="qna__delete">
+            <form th:action="@{'/qna/' + ${qnaDetail.qnaNo} + '/delete'}" method="post">
+                <button class="btn btn--black btn--mi btn--black--red"> Q&A 삭제 </button>
+            </form>
+          </div>
       </div>
        <!--main div-->
     </main>
