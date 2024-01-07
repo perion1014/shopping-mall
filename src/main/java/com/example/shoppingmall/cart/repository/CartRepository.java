@@ -21,5 +21,5 @@ public interface CartRepository {
 
     void deleteCartItemByItemNoAndItemSize(CartDeleteDTO cartDeleteDTO);
 
-    List<Cart> getAllCarts();
+    List<Cart> getAllCarts(Long memberNo);
 }

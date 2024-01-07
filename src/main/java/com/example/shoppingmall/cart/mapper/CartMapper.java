@@ -24,5 +24,5 @@ public interface CartMapper {
 
     void deleteCartItemByItemNoAndItemSize(CartDeleteDTO cartDeleteDTO);
 
-    List<Cart> getAllCarts();
+    List<Cart> getAllCarts(Long memberNo);
 }

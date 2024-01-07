@@ -62,7 +62,7 @@ public class CartService {
         cart.setCartItemQuantity(addCartItemQuantiy);
 
         boolean ifExists = false;
-        List<Cart> cartList = cartRepository.getAllCarts();
+        List<Cart> cartList = cartRepository.getAllCarts(memberNo);
         for (Cart c: cartList) {
             if (c.getItemNo().equals(itemNo) && c.getItemSize().equals(cartAddItemSize)) {
                 ifExists = true;
