@@ -26,10 +26,7 @@ public class MemberCheckInterceptor implements HandlerInterceptor {
             String currentNo = Long.toString(currentNoLong);
 
             String[] path = requestURI.split("/");
-
-            if(path.length > 2 && path[1].equals("members")){
-                requestedMemberNo = path[2];
-            }
+            requestedMemberNo = path[2];
 
             log.info("멤버 체크 인터셉터 실행 {}", requestURI);
 
