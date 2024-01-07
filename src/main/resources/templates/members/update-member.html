@@ -9,7 +9,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10" defer></script>
 </head>
 <body>
-<div id="successMessage" th:attr="data-success-message=${memberUpdateSuccess}"></div>
 <header th:replace="~{/fragments/login-header :: header}">
 </header>
 <main class="main__container">
@@ -82,6 +81,7 @@
         <button type="submit" class="btn btn--white btn--lg btn--member-add-post">정보수정 하기</button>
     </form>
     <a class="delete__link" th:href="@{|/members/${session.loginMember.getMemberNo()}/delete|}">회원 탈퇴는 이 곳은 클릭해주세요</a>
+    <div id="successMessage" th:attr="data-success-message=${memberUpdateSuccess}"></div>
 </main>
 </body>
 </html>
