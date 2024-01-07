@@ -35,11 +35,11 @@ public class ReviewService {
 
         for (Review review : reviews) {
 
-            Long memberOrderDetilNo = review.getMemberOrderDetailNo();
+            Long memberOrderDetailNo = review.getMemberOrderDetailNo();
 
 //            Long itemStockNo = reviewRepository.getItemStockNo(memberOrderNo);
 
-            String itemSize = reviewRepository.getItemSize(memberOrderDetilNo);
+            String itemSize = reviewRepository.getItemSize(memberOrderDetailNo);
             String memberId = reviewRepository.getMemberId(review.getMemberNo());
 
             reviewDTOList.add(reivewToReviewDTO(review,itemSize,memberId));

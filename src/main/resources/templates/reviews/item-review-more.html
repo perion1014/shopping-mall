@@ -18,14 +18,15 @@
 
         <div class="review__myPage" th:each="ReviewDTO : ${itemReviewList}">
 
-            <div class="review_container">
-
+            <div class="review_container2">
                 <div class="review_info">
                     <span th:text="${#strings.substring(ReviewDTO.memberId, 0, 3)} + '***'"></span>
                     <span th:text="'사이즈: '+${ReviewDTO.itemSize}"></span>
                     <span th:text= "'★'+${ReviewDTO.reviewScore}"></span>
                 </div>
-
+                <div>
+                    <span th:text="${#dates.format(ReviewDTO.reviewCreatedTime, 'yyyy-MM-dd')}"></span>
+                </div>
 
             </div>
 

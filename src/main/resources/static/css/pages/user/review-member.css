@@ -60,3 +60,24 @@
 .item__link:hover {
     color:#ffb94f;
 }
+
+.review__flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.review__header2 {
+    display: inline-block;
+    margin: 1rem 1rem 0 0;
+}
+
+.review_container2 {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    padding-top: 0.5rem;
+}
+
+.review_container2 div:nth-child(2) span {
+    padding-right: 1rem;
+}
