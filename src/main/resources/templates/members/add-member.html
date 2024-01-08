@@ -72,7 +72,7 @@
         </label>
         <label class="label" for="memberAddressDetail">
             <h5 class="label__title">상세 주소</h5>
-            <input id="memberAddressDetail" name="memberAddressDetail" class="input input--member input--lg" placeholder="한글(최대 50자)" type="text" th:field="*{memberAddressDetail}" autocomplete="off"/>
+            <input id="memberAddressDetail" name="memberAddressDetail" class="input input--member input--lg" placeholder="한글,영문,숫자(최대 50자)" type="text" th:field="*{memberAddressDetail}" autocomplete="off"/>
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{memberAddressDetail}">에러 메시지를 출력합니다.</h6>
             </div>

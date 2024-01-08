@@ -15,35 +15,35 @@
     <form action = "/orders/create" method="post" th:object="${nonMemberOrderAddDTO}">
         <label class="label" for="memberName">
             <h5 class="label__title">주문자명*</h5>
-            <input id="memberName" name ="nonMemberName" class="input input--lg" type="text" th:field="*{nonMemberName}" />
+            <input id="memberName" name ="nonMemberName" class="input input--lg" type="text" th:field="*{nonMemberName}" placeholder="한글(2~40자)"/>
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{nonMemberName}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberHp">
             <h5 class="label__title">주문자 휴대폰 번호*</h5>
-            <input id="memberHp" name="orderHp" class="input input--lg" type="text" th:field="*{orderHp}"/>
+            <input id="memberHp" name="orderHp" class="input input--lg" type="text" th:field="*{orderHp}" placeholder="-를 제외한 숫자(11자)"/>
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{orderHp}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberEmail">
             <h5 class="label__title">주문자 이메일*</h5>
-            <input id="memberEmail" name="orderEmail" class="input input--lg" type="text" th:field="*{orderEmail}" />
+            <input id="memberEmail" name="orderEmail" class="input input--lg" type="text" th:field="*{orderEmail}" placeholder="영문 및 숫자(최대 50자)" />
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{orderEmail}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="receiverName">
             <h5 class="label__title">수령자명*</h5>
-            <input id="receiverName" name ="receiverName" class="input input--lg" type="text" th:field="*{receiverName}" />
+            <input id="receiverName" name ="receiverName" class="input input--lg" type="text" th:field="*{receiverName}" placeholder="한글(2~40자)" />
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{receiverName}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberPostalCode">
             <h5 class="label__title">우편번호*</h5>
-            <input id="memberPostalCode" name=orderPostalCode class="input input--mi" type="text" th:field="*{orderPostalCode}" readonly onclick="execDaumPostalcode()"/>
+            <input id="memberPostalCode" name=orderPostalCode class="input input--mi" type="text" th:field="*{orderPostalCode}" placeholder="클릭 시 자동입력" readonly onclick="execDaumPostalcode()"/>
             <button type="button" class="btn btn--mi btn--black btn--address"  onclick="execDaumPostalcode()">우편번호 찾기</button>
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{orderPostalCode}">에러 메시지를 출력합니다.</h6>
@@ -51,14 +51,14 @@
         </label>
         <label class="label" for="memberAddressBasic">
             <h5 class="label__title">기본 주소*</h5>
-            <input id="memberAddressBasic" name="orderAddressBasic" class="input input--lg" th:field="*{orderAddressBasic}" type="text" readonly onclick="execDaumPostalcode()"/>
+            <input id="memberAddressBasic" name="orderAddressBasic" class="input input--lg" th:field="*{orderAddressBasic}" placeholder="클릭 시 자동입력" type="text" readonly onclick="execDaumPostalcode()"/>
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{orderAddressBasic}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberAddressDetail">
             <h5 class="label__title">상세 주소</h5>
-            <input id="memberAddressDetail" name="orderAddressDetail" class="input input--lg" th:field="*{orderAddressDetail}" type="text" />
+            <input id="memberAddressDetail" name="orderAddressDetail" class="input input--lg" th:field="*{orderAddressDetail}" placeholder="한글,영문,숫자(최대 50자)" type="text" />
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{orderAddressDetail}">에러 메시지를 출력합니다.</h6>
             </div>
