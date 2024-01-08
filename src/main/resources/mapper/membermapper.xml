@@ -61,4 +61,8 @@
     <delete id="deleteByNo" parameterType="com.example.shoppingmall.member.domain.Member">
         delete from member where member_no = #{memberNo}
     </delete>
+
+    <update id="updatePwFindById" parameterType="com.example.shoppingmall.member.dto.MemberPwDTO">
+        update member set member_pw = #{memberPw} where member_id = #{memberId}
+    </update>
 </mapper>

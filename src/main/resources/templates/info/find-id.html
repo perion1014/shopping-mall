@@ -12,10 +12,10 @@
     <h1 class="main__title">아이디 조회 성공</h1>
     <h4 th:text="'회원님의 아이디는 ' + ${#strings.substring(memberIdDTO.memberId, 0, 3)} + '***' + ' 입니다.'"></h4>
     <form action="/members/login" method="get">
-        <button type="submit" class="btn btn--black btn--member-login">로그인 페이지로</button>
+        <button type="submit" class="btn btn--black">로그인 페이지로</button>
     </form>
     <form action="/members/info" method="get">
-        <button type="submit" class="btn btn--white btn--member-login">비밀번호 찾기</button>
+        <button type="submit" class="btn btn--white">비밀번호 찾기</button>
     </form>
 
 </main>

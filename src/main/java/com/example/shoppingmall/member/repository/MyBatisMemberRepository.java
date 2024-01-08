@@ -1,6 +1,7 @@
 package com.example.shoppingmall.member.repository;
 
 import com.example.shoppingmall.member.domain.Member;
+import com.example.shoppingmall.member.dto.MemberPwDTO;
 import com.example.shoppingmall.member.dto.MemberSearchDTO;
 import com.example.shoppingmall.member.form.MemberSearchForm;
 import com.example.shoppingmall.member.mapper.MemberMapper;
@@ -72,6 +73,10 @@ public class MyBatisMemberRepository implements MemberRepository {
         return memberMapper.findAllByKeyword(memberSearchForm);
     }
 
+    @Override
+    public void updatePwFindById(MemberPwDTO memberPwDTO) {
+        memberMapper.updatePwFindById(memberPwDTO);
+    }
 
 
 }

@@ -18,6 +18,7 @@ public class MemberPwDTO {
     private String memberEmail;
     @NotBlank(message = "핸드폰번호를 입력해주세요", groups = MemberNotBlankGroup.class)
     private String memberHp;
+//    @NotBlank(message = "비밀번호를 입력해주세요", groups = MemberNotBlankGroup.class)
     private String memberPw;
 
     public static MemberPwDTO MemberToMemberPwDTO(Member member){

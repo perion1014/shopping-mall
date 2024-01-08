@@ -5,35 +5,72 @@
     <title>PERION - ID/PW 찾기 페이지</title>
     <meta name="description" content="20대 선호도 1위 쇼핑몰! 지금 로그인하면 다양한 이벤트 정보를 확인할 수 있습니다.">
     <script type="module" src="/js/pages/member-login.js" defer></script>
+    <script src="/js/pages/find-pw-validation.js"></script>
+<!--    <script>-->
+<!--        function validatePassword() {-->
+<!--            let password = document.getElementById("memberPw").value;-->
+<!--            let confirmPassword = document.getElementById("memberPwCheck").value;-->
+
+<!--            let passwordError = document.getElementById("passwordError");-->
+<!--            let confirmPasswordError = document.getElementById("confirmPasswordError");-->
+<!--            let submitButton = document.getElementById("submitButton");-->
+
+
+<!--            if (password.trim() == "") {-->
+<!--                passwordError.innerText = "새롭게 적용할 비밀번호를 입력하세요.";-->
+<!--                submitButton.disabled = true;-->
+<!--            } else if (password.length < 8) {-->
+<!--                passwordError.innerText = "비밀번호는 8글자 이상이어야 합니다.";-->
+<!--                submitButton.disabled = true;-->
+<!--            } else {-->
+<!--                passwordError.innerText = "";-->
+<!--                if (password !== confirmPassword) {-->
+<!--                    confirmPasswordError.innerText = "비밀번호가 일치하지 않습니다.";-->
+<!--                    submitButton.disabled = true;-->
+<!--                } else {-->
+<!--                    confirmPasswordError.innerText = "";-->
+<!--                    submitButton.disabled = false;-->
+<!--                }-->
+<!--            }-->
+<!--        }-->
+<!--    </script>-->
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
 <main class="main__container">
     <h1 class="main__title">비밀번호 재설정</h1>
-    <form action="/members/info/pw/update" method="post" th:object="${memberPwDTO}"><!--th:object="${memberPwDTO}"-->
-        <label class="label" for="memberPw1">
-            <h5 class="label__title">기존 비밀번호*</h5>
-            <input id="memberPw1" name="memberPw" class="input" type="text"/>
+    <form id="passwordForm" action="/members/info/pw/update" method="post">
+        <input type="hidden" name="memberId" th:value="${memberPwDTO.memberId}">
+        <label class="label" for="memberPw">
+            <h5 class="label__title">새롭게 적용할 비밀번호*</h5>
+            <input id="memberPw" name="memberPw" class="input" type="password" oninput="validatePassword()"/>
             <div class="label__error-container">
-                <h6 class="label__error" th:errors="*{memberPw}">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberPw}-->
+                <h6 class="label__error" id="passwordError"></h6>
             </div>
         </label>
-        <label class="label" for="memberPw2">
-            <h5 class="label__title">비밀번호*</h5>
-            <input id="memberPw2" name="memberPw" class="input" type="text"/>
-            <div class="label__error-container">
-                <h6 class="label__error" th:errors="*{memberPw}">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberPw}"-->
-            </div>
-        </label>
-        <label class="label" for="pwCheck">
+        <label class="label" for="memberPwCheck">
             <h5 class="label__title">비밀번호 확인*</h5>
-            <input id="pwCheck" name="pwCheck" class="input" type="text"/>
+            <input id="memberPwCheck" name="memberPwCheck" class="input" type="password" oninput="validatePassword()"/>
             <div class="label__error-container">
-                <h6 class="label__error" th:errors="*{memberPw}">에러 메시지를 출력합니다.</h6><!--th:errors="*{memberPw}"-->
+                <h6 class="label__error" id="confirmPasswordError"></h6>
             </div>
         </label>
-        <button type="submit" class="btn btn--black btn--member-login">비밀번호 재설정</button>
+        <button type="submit" class="btn btn--black" id="submitButton" disabled>비밀번호 재설정</button>
     </form>
+
+    <!--    <form id="passwordForm" action="/members/info/pw/update" method="post">-->
+    <!--        <label class="label" for="memberPw2">-->
+    <!--            <h5 class="label__title">새롭게 적용할 비밀번호*</h5>-->
+    <!--            <input id="memberPw2" name="memberPw2" class="input" type="password" oninput="validatePassword()"/>-->
+    <!--            <div class="label__error-container" id="passwordError"></div>-->
+    <!--        </label>-->
+    <!--        <label class="label" for="pwCheck">-->
+    <!--            <h5 class="label__title">비밀번호 확인*</h5>-->
+    <!--            <input id="pwCheck" name="pwCheck" class="input" type="password" oninput="validatePassword()"/>-->
+    <!--            <div class="label__error-container" id="confirmPasswordError"></div>-->
+    <!--        </label>-->
+    <!--        <button type="submit" class="btn btn&#45;&#45;black btn&#45;&#45;member-login" id="submitButton" disabled>비밀번호 재설정</button>-->
+    <!--    </form>-->
 </main>
 </body>
 </html>

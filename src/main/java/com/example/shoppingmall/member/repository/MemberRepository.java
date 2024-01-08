@@ -1,6 +1,7 @@
 package com.example.shoppingmall.member.repository;
 
 import com.example.shoppingmall.member.domain.Member;
+import com.example.shoppingmall.member.dto.MemberPwDTO;
 import com.example.shoppingmall.member.dto.MemberSearchDTO;
 import com.example.shoppingmall.member.form.MemberSearchForm;
 
@@ -20,4 +21,6 @@ public interface MemberRepository {
     Long countAll();
     Long countAllByKeyword(MemberSearchForm memberSearchForm);
     List<Member> findAllByKeyword(MemberSearchForm memberSearchForm);
+
+    void updatePwFindById(MemberPwDTO memberPwDTO);
 }

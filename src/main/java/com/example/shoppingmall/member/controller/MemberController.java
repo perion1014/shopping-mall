@@ -241,39 +241,19 @@ public class MemberController {
 
     /*비밀번호 찾기*/
     @PostMapping("/info/pw")
-    public String findPw(@Validated(MemberValidationSequence.class) @ModelAttribute("memberPwDTO")MemberPwDTO memberPwDTO, BindingResult bindingResult){
+    public String findPw(@Validated(MemberValidationSequence.class) @ModelAttribute("memberPwDTO")MemberPwDTO memberPwDTO, BindingResult bindingResult ,Model model){
          if(bindingResult.hasErrors()){
              return "info/find-id-pw";
          }
         Member findPw = memberInfoService.getMemberPw(memberPwDTO);
+         model.addAttribute("memberPwDTO", findPw);
+
          if(findPw == null){
              bindingResult.reject("입력하신 정보가 일치하지 않습니다.");
-             return "info/find-id-pw";
+             return "redirect:/members/info";
          }
         return"info/find-pw";
     }
-//    @PostMapping("/login")
-//    public String memberLogin(@Validated(MemberValidationSequence.class) @ModelAttribute("memberLoginDTO") MemberLoginDTO memberLoginDTO, BindingResult bindingResult,HttpServletRequest request){
-//        //로그인 실패 1 (필드 에러 1)
-//        if(bindingResult.hasErrors()){
-//            return "members/member-login";
-//        }
-//
-//        Member loginMember = memberLoginService.login(memberLoginDTO);
-//
-//        //로그인 실패 2 (아이디와 비밀번호 불일치)
-//        if(loginMember == null){
-//            bindingResult.reject("loginFail","아이디 또는 비밀번호가 일치하지 않습니다.");
-//            return "members/member-login";
-//        }
-//
-//        //로그인 성공 시
-//        HttpSession session = request.getSession();
-//        session.setAttribute("loginMember",loginMember);
-//        session.setMaxInactiveInterval(1800);
-//        return "redirect:/";
-//
-//    }
 
     /*비빌번호 재설정 페이지*///아이디 찾기와 비밀번호 찾기가 한페이지에서 출력되기때문에 나눌필요없음
 //    @GetMapping("/info/pw/update")
@@ -283,13 +263,14 @@ public class MemberController {
 
     /*비밀번호 재설정 */
     @PostMapping("/info/pw/update")
-    public String updatePw(){
+    public String updatePw(@ModelAttribute("memberPwDTO")MemberPwDTO memberPwDTO){
+        memberInfoService.updatePwFindById(memberPwDTO);
         return "info/find-pw-ok";
     }
 
     /*비밀번호 재설정 완료*/
     @GetMapping("/info/pw/update-success")
-    public String updatePwSuccess (){
+    public String updatePwSuccess (@Validated(MemberValidationSequence.class) @ModelAttribute("memberLoginDTO") MemberLoginDTO memberLoginDTO, BindingResult bindingResult,HttpServletRequest request){
         return "info/find-pw-ok";
     }
 }

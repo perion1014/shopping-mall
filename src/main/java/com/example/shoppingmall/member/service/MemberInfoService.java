@@ -33,4 +33,14 @@ public class MemberInfoService {
                 .filter(m -> m.getMemberEmail().equals(member.getMemberEmail()))
                 .filter(m -> m.getMemberHp().equals(member.getMemberHp())).orElse(null);
     }
+    /*비밀번호 변경*/
+    @Transactional
+    public void UpdateMemberPw(MemberPwDTO memberPwDTO){
+        Member member = MemberPwDTO.MemberPwDTOToMember(memberPwDTO);
+        memberRepository.update(member);
+    }
+
+    public void updatePwFindById(MemberPwDTO memberPwDTO) {
+        memberRepository.updatePwFindById(memberPwDTO);
+    }
 }
