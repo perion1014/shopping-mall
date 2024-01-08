@@ -40,3 +40,19 @@ footer{
     width: 3rem;
     margin-left: 1.5rem;
 }
+
+@media screen and (max-width: 1440px) {
+    footer{
+        padding: 0 6rem;
+    }
+}
+@media screen and (max-width: 1024px) {
+    footer{
+        padding: 0 4rem;
+    }
+}
+@media screen and (max-width: 768px) {
+    footer{
+        padding: 0 2rem;
+    }
+}
