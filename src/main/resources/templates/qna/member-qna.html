@@ -13,7 +13,7 @@
     <div class="main__container">
         <h1 class="main__title">나의 질문 목록</h1>
         <!-- table Ex-->
-        <table class="table__client">
+        <table class="table__client" th:if="${qnaListByPaging.size()} > 0">
             <thead>
             <tr>
                 <th class="table__no">질문번호</th>
@@ -49,8 +49,9 @@
             </tr>
             </tbody>
         </table>
+        <div th:if="${qnaListByPaging.size()} == 0" class="no-dto-comment">질문 내역이 없습니다.</div>
     </div>
-    <div class="qna__page">
+    <div class="qna__page" th:if="${qnaListByPaging.size()} > 0">
         <span th:if="${pageSettings.page &lt;= 1}">이전</span>
         <span th:unless="${pageSettings.page &lt;= 1}">
             <a th:href="@{/members/{memberNo}/qna(memberNo=${memberNo},page=${pageSettings.page - 1})}">이전</a>

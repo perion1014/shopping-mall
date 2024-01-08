@@ -10,7 +10,7 @@
 <header th:replace="~{/fragments/login-header :: header}"></header>
         <h1 class="main__title">나의 리뷰 목록</h1>
 
-        <div class="review__myPage" th:each="ReviewDTO : ${memberReviewList}">
+        <div class="review__myPage" th:if="${memberReviewList} > 0" th:each="ReviewDTO : ${memberReviewList}">
 
             <div class="review_container">
 
@@ -35,9 +35,11 @@
 
         </div>
 
+        <div th:if="${memberReviewList} == 0" class="no-dto-comment">리뷰 내역이 없습니다.</div>
+
         <div class="line"></div>
 
-    <div class="review__page">
+    <div class="review__page" th:if="${memberReviewList} > 0">
 
         <span th:if="${pageSettings.page &lt;= 1}">이전</span>
         <span th:unless="${pageSettings.page &lt;= 1}">

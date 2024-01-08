@@ -30,7 +30,7 @@
         </div>
 
         <!-- table Ex-->
-        <table>
+        <table th:if="${itemDTOList.size()} > 0">
           <thead>
             <tr>
               <th>상품 번호</th>
@@ -58,8 +58,9 @@
             </tr>
           </tbody>
         </table>
+        <div th:if="${itemDTOList.size()} == 0" class="no-dto-comment">등록된 상품이 없습니다.</div>
 
-        <div class="admin_item_page">
+        <div class="admin_item_page" th:if="${itemDTOList.size()} > 0">
           <span th:if="${pageSettings.page &lt;= 1}">이전</span>
           <span th:unless="${pageSettings.page &lt;= 1}">
         <a th:href="@{/items/admin(page=${pageSettings.page - 1})}">이전</a>

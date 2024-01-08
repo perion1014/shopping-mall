@@ -29,7 +29,7 @@
                th:href="@{/items/{itemNo}(itemNo=${itemNo})}"></a>
         </h1>
         <!-- table Ex-->
-        <table class="table__client">
+        <table class="table__client" th:if="${qnaListByPaging.size()} > 0">
             <thead>
             <tr>
                 <th class="table__no">질문번호</th>
@@ -53,8 +53,9 @@
             </tr>
             </tbody>
         </table>
+        <div th:if="${qnaListByPaging.size()} == 0" class="no-dto-comment">Q&A 내역이 없습니다.</div>
     </div>
-    <div class="qna__page">
+    <div class="qna__page" th:if="${qnaListByPaging} > 0">
         <span th:if="${pageSettings.page &lt;= 1}">이전</span>
         <span th:unless="${pageSettings.page &lt;= 1}">
             <a th:href="@{/items/{itemNo}/qna(itemNo=${itemNo},page=${pageSettings.page - 1})}">이전</a>
