@@ -80,6 +80,10 @@ header{
     display: block;
 }
 
+.header__toggle{
+    display: none;
+}
+
 @media screen and (max-width: 1440px) {
     header{
         padding: 0 6rem;
@@ -95,4 +99,9 @@ header{
     header{
         padding: 0 2rem;
     }
+
+   .header__lists{
+       gap:1rem;
+       font-size: 0.75rem;
+   }
 }
