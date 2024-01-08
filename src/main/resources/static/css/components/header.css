@@ -80,3 +80,19 @@ header{
     display: block;
 }
 
+@media screen and (max-width: 1440px) {
+    header{
+        padding: 0 6rem;
+    }
+}
+@media screen and (max-width: 1024px) {
+    header{
+        padding: 0 4rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header{
+        padding: 0 2rem;
+    }
+}
