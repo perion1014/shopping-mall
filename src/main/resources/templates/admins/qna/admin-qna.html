@@ -17,23 +17,9 @@
           <span> | </span>
           <a  href="/qna/noAnswer">답변대기</a>
         </div>
-<!--        <div class="admin_member_search">-->
-<!--          <form th:action="@{admin/search}" method="get">-->
-<!--            <select name="category">-->
-<!--              <option value="member_no" >회원번호</option>-->
-<!--              <option value="member_id" >아이디</option>-->
-<!--              <option value="member_hp" >전화번호</option>-->
-<!--              <option value="member_email" >이메일</option>-->
-<!--              <option value="member_name" >이름</option>-->
-<!--              <option value="member_address_basic" >주소</option>-->
-<!--            </select>-->
-<!--          <input name="keyword" type="text" />-->
-<!--          <button>검색</button>-->
-<!--          </form>-->
-<!--        </div>-->
 
         <!-- table Ex-->
-        <table>
+        <table th:if="${qnaListByPaging.size()} > 0">
           <thead>
             <tr>
               <th>번호</th>
@@ -59,8 +45,9 @@
             </td>
           </tr>
         </table>
+        <div th:if="${qnaListByPaging.size()} == 0" class="no-dto-comment">Q&A 내역이 없습니다.</div>
 
-        <div class="admin_member_page">
+        <div class="admin_member_page" th:if="${qnaListByPaging.size()} > 0">
           <span th:if="${pageSettings.page &lt;= 1}">이전</span>
           <span th:unless="${pageSettings.page &lt;= 1}">
             <a th:href="@{/qna(page=${pageSettings.page - 1})}">이전</a>

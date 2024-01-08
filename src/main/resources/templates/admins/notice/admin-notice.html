@@ -30,7 +30,7 @@
         </div>
 
         <!-- table Ex-->
-        <table>
+        <table th:if="${noticeListByPaging.size()} > 0">
             <thead>
             <tr>
                 <th>No</th>
@@ -58,12 +58,13 @@
             </tr>
             </tbody>
         </table>
+        <div th:if="${noticeListByPaging.size()} == 0" class="no-dto-comment">등록된 공지사항이 없습니다.</div>
         <form action="admin/add" method="get">
             <div class="notice_btn">
                 <button class="btn btn--index btn--black btn--mi">등록</button>
             </div>
         </form>
-        <div class="admin_notice_page">
+        <div class="admin_notice_page" th:if="${noticeListByPaging.size()} > 0">
             <span th:if="${pageSettings.page &lt;= 1}">이전</span>
             <span th:unless="${pageSettings.page &lt;= 1}">
                     <a th:href="@{/notice/admin(page=${pageSettings.page - 1})}">이전</a>

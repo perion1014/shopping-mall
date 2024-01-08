@@ -33,7 +33,7 @@
         </div>
 
         <hr />
-        <div class="review" th:each="ReviewDTO : ${reviewList}">
+        <div class="review" th:if="${reviewList.size()} > 0" th:each="ReviewDTO : ${reviewList}">
           <div class="review_container">
             <div class="review_info">
               <span th:text="${ReviewDTO.memberId}"></span>
@@ -53,10 +53,10 @@
           </div>
           <hr />
         </div>
-
+        <div th:if="${reviewList.size()} == 0" class="no-dto-comment">등록된 리뷰가 없습니다.</div>
 
         <div class="margin"></div>
-        <div class ="items__page">
+        <div class ="items__page" th:if="${reviewList.size()} > 0">
           <span th:if="${pageSettings.page &lt;= 1}">이전</span>
           <span th:unless="${pageSettings.page &lt;= 1}">
                 <a th:href="@{/reviews(page=${pageSettings.page - 1})}">이전</a>
