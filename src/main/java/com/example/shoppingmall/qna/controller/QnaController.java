@@ -73,7 +73,7 @@ public class QnaController {
     public String deleteQnaAnswer(@PathVariable(name="qnaNo") Long qnaNo){
         qnaService.deleteAnswer(qnaNo);
 
-        return "redirect:/qna/{qnaNo}";
+        return "redirect:/qna";
     }
 
     @PostMapping("/{qnaNo}/delete")

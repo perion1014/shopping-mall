@@ -2,6 +2,23 @@
 <html lang="kr">
 <head>
     <div th:remove="tag" th:replace="~{/fragments/admin-head :: admin-head} "></div>
+    <style>
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .main img {
+            width: 10%;
+            height: 12%;
+            padding-bottom: 10rem;
+        }
+    </style>
 </head>
 <body>
     <header th:replace="~{/fragments/admin-login-header :: admin-login-header}">
@@ -11,7 +28,7 @@
 
     <main>
         <div class="main">
-            메인페이지입니다.
+            <div><img src="/images/spartan-helmet.svg" alt="실패"></div>
         </div> <!--main div-->
     </main>
 </body>
