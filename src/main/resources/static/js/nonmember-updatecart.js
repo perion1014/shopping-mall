@@ -23,7 +23,7 @@ function updateQuantity(changeQuantity, cartListIndex){
         if(currentQuantityValue !== 99){
             currentQuantityValue += Number(changeQuantity);
             currentPriceSumValue += Number(changeQuantity) * currentPriceValue;
-            currentOrderSumValue = currentPriceSumValue >= 100000? currentPriceSumValue : currentPriceSumValue - 3000;
+            currentOrderSumValue = currentPriceSumValue >= 100000? currentPriceSumValue : currentPriceSumValue + 3000;
             // alert('변경 상품 총액 : ' + currentPriceSumValue);
             // alert('변경 주문 총액 : ' + currentOrderSumValue);
         }
