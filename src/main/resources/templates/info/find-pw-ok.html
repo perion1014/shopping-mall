@@ -4,38 +4,40 @@
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
     <title>PERION - 비밀번호 수정완료</title>
     <meta name="description" content="20대 선호도 1위 쇼핑몰! 지금 로그인하면 다양한 이벤트 정보를 확인할 수 있습니다.">
-    <script type="module" src="/js/pages/member-login.js" defer></script>
+    <script type="text/javascript" src="/js/pages/member-add-success.js" defer></script>
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
 <main class="main__container">
     <img class="main__logo" src="/images/spartan-helmet.svg">
     <h4>비밀번호 변경이 완료되었습니다!</h4>
-    <h4>지금 로그인 하시겠어요?</h4>
-    <form action="/members/login" method="post">
-        <label class="label" for="memberId">
-            <h5 class="label__title">아이디</h5>
-            <input id="memberId" name="memberId" class="input" type="text"/>
-            <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
-            </div>
-        </label>
-        <label class="label" for="memberPw">
-            <h5 class="label__title">비밀번호</h5>
-            <input id="memberPw" name="memberPw" class="input" type="password"/>
-            <div class="label__error-container">
-                <h6 class="label__error">에러 메시지를 출력합니다.</h6>
-            </div>
-        </label>
-        <button type="submit" class="btn btn--black btn--member-login">로그인</button>
-    </form>
+    <h4>상단의 로그인버튼을 눌러 로그인해주세요</h4>
+    <button type="button" class="btn btn--white btn--home btn--home-member-add-success">홈으로</button>
+    <button type="button" class="btn btn--black btn--login">로그인 하기</button>
+<!--    <form action="/members/login" method="post">-->
+<!--        <label class="label" for="memberId">-->
+<!--            <h5 class="label__title">아이디</h5>-->
+<!--            <input id="memberId" name="memberId" class="input" type="text"/>-->
+<!--            <div class="label__error-container">-->
+<!--                <h6 class="label__error">에러 메시지를 출력합니다.</h6>-->
+<!--            </div>-->
+<!--        </label>-->
+<!--        <label class="label" for="memberPw">-->
+<!--            <h5 class="label__title">비밀번호</h5>-->
+<!--            <input id="memberPw" name="memberPw" class="input" type="password"/>-->
+<!--            <div class="label__error-container">-->
+<!--                <h6 class="label__error">에러 메시지를 출력합니다.</h6>-->
+<!--            </div>-->
+<!--        </label>-->
+<!--        <button type="submit" class="btn btn&#45;&#45;black btn&#45;&#45;member-login">로그인</button>-->
+<!--    </form>-->
 
-    <nav class="info__nav">
-        <ul class="info__links">
-            <a href="/members/info">아이디/비밀번호 찾기</a>
-            <a href="/orders/non-members">비회원 주문 조회하기</a>
-        </ul>
-    </nav>
+<!--    <nav class="info__nav">-->
+<!--        <ul class="info__links">-->
+<!--            <a href="/members/info">아이디/비밀번호 찾기</a>-->
+<!--            <a href="/orders/non-members">비회원 주문 조회하기</a>-->
+<!--        </ul>-->
+<!--    </nav>-->
 </main>
 </body>
 </html>

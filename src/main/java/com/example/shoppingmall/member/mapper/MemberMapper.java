@@ -1,6 +1,7 @@
 package com.example.shoppingmall.member.mapper;
 
 import com.example.shoppingmall.member.domain.Member;
+import com.example.shoppingmall.member.dto.MemberPwDTO;
 import com.example.shoppingmall.member.dto.MemberSearchDTO;
 import com.example.shoppingmall.member.form.MemberSearchForm;
 import org.apache.ibatis.annotations.Mapper;
@@ -24,5 +25,5 @@ public interface MemberMapper {
     Long countAllByKeyword(MemberSearchForm memberSearchForm);
 
 
-
+    void updatePwFindById(MemberPwDTO memberPwDTO);
 }

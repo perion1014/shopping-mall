@@ -55,8 +55,6 @@ public class NoticeService {
     public void update(NoticeUpdateDTO noticeUpdateDTO) {
         Notice notice = NoticeUpdateDTO.NoticeUpdateDTOToNotice(noticeUpdateDTO);
         noticeRepository.updateNotice(notice);
-        System.out.println("noticeUpdateDTO.getNoticeNo() = " + noticeUpdateDTO.getNoticeNo());
-
     }
 
     /*공지삭제*/
