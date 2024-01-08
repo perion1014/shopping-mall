@@ -59,35 +59,35 @@
     <form id="display1" method="post" th:action="@{/members/{memberNo}/orders/create-success(memberNo=${session.loginMember.memberNo})}">
         <label class="label" for="memberHp">
             <h5 class="label__title">주문자 휴대폰 번호*</h5>
-            <input id="memberHp" name="orderHp" class="input input--lg" type="text" th:value="${session.memberOrderDTO.orderHp}" />
+            <input id="memberHp" name="orderHp" class="input input--lg input--update" type="text" th:value="${session.memberOrderDTO.orderHp}" />
             <div class="label__error-container">
 
             </div>
         </label>
         <label class="label" for="memberName">
             <h5 class="label__title">수령자명*</h5>
-            <input id="memberName" name ="receiverName" class="input input--lg" type="text" th:value="${session.memberOrderDTO.receiverName}"/>
+            <input id="memberName" name ="receiverName" class="input input--lg input--update"  type="text" th:value="${session.memberOrderDTO.receiverName}"/>
             <div class="label__error-container">
 
             </div>
         </label>
         <label class="label" for="memberPostalCode">
             <h5 class="label__title">우편번호*</h5>
-            <input id="memberPostalCode" name="orderPostalCode" class="input input--lg" type="text" readonly th:value="${session.memberOrderDTO.orderPostalCode}"/>
+            <input id="memberPostalCode" name="orderPostalCode" class="input input--lg input--update" type="text" readonly th:value="${session.memberOrderDTO.orderPostalCode}"/>
             <div class="label__error-container">
 
             </div>
         </label>
         <label class="label" for="memberAddressBasic">
             <h5 class="label__title">기본 주소*</h5>
-            <input id="memberAddressBasic" name="orderAddressBasic" class="input input--lg" type="text" readonly th:value="${session.memberOrderDTO.orderAddressBasic}"/>
+            <input id="memberAddressBasic" name="orderAddressBasic" class="input input--lg input--update" type="text" readonly th:value="${session.memberOrderDTO.orderAddressBasic}"/>
             <div class="label__error-container">
 
             </div>
         </label>
         <label class="label" for="memberAddressDetail">
             <h5 class="label__title">상세 주소</h5>
-            <input id="memberAddressDetail" name="orderAddressDetail" class="input input--lg" type="text" readonly th:value="(${session.memberOrderDTO.orderAddressDetail} == null or ${session.loginMember.memberAddressDetail.replace(' ', '').length()} == 0)? '':  ${session.loginMember.memberAddressDetail}"/>
+            <input id="memberAddressDetail" name="orderAddressDetail" class="input input--lg input--update" type="text" readonly th:value="(${session.memberOrderDTO.orderAddressDetail} == null or ${session.loginMember.memberAddressDetail.replace(' ', '').length()} == 0)? '':  ${session.loginMember.memberAddressDetail}"/>
             <div class="label__error-container">
 
             </div>
