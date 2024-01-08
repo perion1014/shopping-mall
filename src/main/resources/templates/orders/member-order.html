@@ -40,7 +40,11 @@
           </tr>
         </tbody>
         </table>
-
+        <div class="cart-order__price">
+            <h4 th:text="' 상품 총액: ' + ${session.priceSum} + '원 '"></h4>
+            <h4 th:text="' 주문 총액: ' + ${session.orderSum} + '원 '"></h4>
+            <span class="cart__delivery-price">배송비: 3000원 (10만원 이상 주문 시 무료)</span>
+        </div>
     </div>
     <h1 class="main__title">주문 정보 입력</h1>
     <form class="radio__container">
@@ -62,7 +66,7 @@
         </label>
         <label class="label" for="memberName">
             <h5 class="label__title">수령자명*</h5>
-            <input id="memberName" name ="receiverName" class="input input--lg input--update"  type="text" th:value="${session.memberOrderDTO.receiverName}"/>
+            <input id="memberName" name ="receiverName" class="input input--lg input--update" type="text" th:value="${session.memberOrderDTO.receiverName}"/>
             <div class="label__error-container">
 
             </div>
@@ -101,21 +105,21 @@
     <form id="display2" method="post" th:object="${memberOrderAddDTO}" th:action="@{/members/{memberNo}/orders/create-success(memberNo=${session.loginMember.memberNo})}">
         <label class="label" for="memberHp2">
             <h5 class="label__title">주문자 휴대폰 번호*</h5>
-            <input id="memberHp2" name="orderHp" class="input input--lg" type="text" th:value="${session.memberOrderDTO.orderHp}" />
+            <input id="memberHp2" name="orderHp" class="input input--lg" type="text" th:value="${session.memberOrderDTO.orderHp}" placeholder="-를 제외한 숫자(11자)"/>
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{orderHp}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberName2">
             <h5 class="label__title">수령자명*</h5>
-            <input id="memberName2" name ="receiverName" class="input input--lg" type="text" th:value="${session.memberOrderDTO.receiverName}" />
+            <input id="memberName2" name ="receiverName" class="input input--lg" type="text" th:value="${session.memberOrderDTO.receiverName}" placeholder="한글(2~40자)"/>
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{receiverName}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberPostalCode2">
             <h5 class="label__title">우편번호*</h5>
-            <input id="memberPostalCode2" name=orderPostalCode class="input input--mi" type="text" th:field="*{orderPostalCode}" readonly onclick="execDaumPostalcode()"/>
+            <input id="memberPostalCode2" name=orderPostalCode class="input input--mi" type="text" th:field="*{orderPostalCode}" placeholder="클릭 시 자동입력" readonly onclick="execDaumPostalcode()"/>
             <button type="button" class="btn btn--mi btn--black btn--address"  onclick="execDaumPostalcode()">우편번호 찾기</button>
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{orderPostalCode}">에러 메시지를 출력합니다.</h6>
@@ -123,14 +127,14 @@
         </label>
         <label class="label" for="memberAddressBasic2">
             <h5 class="label__title">기본 주소*</h5>
-            <input id="memberAddressBasic2" name="orderAddressBasic" class="input input--lg" type="text" th:field="*{orderAddressBasic}" readonly onclick="execDaumPostalcode()"/>
+            <input id="memberAddressBasic2" name="orderAddressBasic" class="input input--lg" type="text" th:field="*{orderAddressBasic}"  placeholder="클릭 시 자동입력"  readonly onclick="execDaumPostalcode()"/>
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{orderAddressBasic}">에러 메시지를 출력합니다.</h6>
             </div>
         </label>
         <label class="label" for="memberAddressDetail2">
             <h5 class="label__title">상세 주소</h5>
-            <input id="memberAddressDetail2" name="orderAddressDetail" class="input input--lg" th:field="*{orderAddressDetail}" type="text" />
+            <input id="memberAddressDetail2" name="orderAddressDetail" class="input input--lg" th:field="*{orderAddressDetail}" placeholder="한글,영문,숫자(최대 50자)" type="text" />
             <div class="label__error-container">
                 <h6 class="label__error" th:errors="*{orderAddressDetail}">에러 메시지를 출력합니다.</h6>
             </div>
