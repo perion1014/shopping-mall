@@ -6,6 +6,8 @@ import com.example.shoppingmall.order.mapper.NonMemberOrderMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class MyBatisNonmemberOrderRepository implements nonMemberOrderRepository {
@@ -20,5 +22,11 @@ public class MyBatisNonmemberOrderRepository implements nonMemberOrderRepository
 
     @Override
     public void saveNonMemberOrderDetail(NonMemberOrderDetail nonMemberOrderDetail){nonMemberOrderMapper.saveNonMemberOrderDetail(nonMemberOrderDetail);}
+
+    public NonMemberOrder getNonMemberOrderFromOrderNo(Long nonMemberOrderNo, String nonMemberOrderName) {return nonMemberOrderMapper.getNonMemberOrderFromOrderNo(nonMemberOrderNo, nonMemberOrderName);}
+
+    public List<NonMemberOrderDetail> getNonMemberOrderDetailFromOrderNo(Long nonMemberOrderNo) {return nonMemberOrderMapper.getNonMemberOrderDetailFromOrderNo(nonMemberOrderNo);}
+
+    public void cancelNonMemberOrder(Long nonMemberOrderNo) {nonMemberOrderMapper.cancelNonMemberOrder(nonMemberOrderNo);}
 
 }

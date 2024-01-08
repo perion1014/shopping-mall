@@ -14,10 +14,23 @@
     insert into non_member_order_detail values(#{nonMemberOrderDetailNo}, #{nonMemberOrderNo}, #{itemNo}, #{itemQuantity}, #{itemSize}, #{itemName}, #{itemPrice});
     </insert>
 
-    <select id="" parameterType="com.example.shoppingmall.order.domain.NonMemberOrderDetail">
+    <select id="getNonMemberOrderFromOrderNo" resultType="com.example.shoppingmall.order.domain.NonMemberOrder">
 
-    select * from non_member_order_detail where
+    select * from non_member_order where non_member_order_no = #{nonMemberOrderNo} and non_member_name = #{nonMemberOrderName};
 
     </select>
+
+    <select id="getNonMemberOrderDetailFromOrderNo" resultType="com.example.shoppingmall.order.domain.NonMemberOrderDetail">
+
+    select * from non_member_order_detail where non_member_order_no = #{nonMemberOrderNo}
+
+    </select>
+
+   <update id = "cancelNonMemberOrder">
+
+    update non_member_order set order_status = 0 where non_member_order_no = #{nonMemberOrderNo}
+
+   </update>
+
 
 </mapper>

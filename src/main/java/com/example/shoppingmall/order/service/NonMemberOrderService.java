@@ -1,10 +1,12 @@
 package com.example.shoppingmall.order.service;
 
 import com.example.shoppingmall.cart.dto.nonMemberCartAddDTO;
+import com.example.shoppingmall.item.service.ItemService;
 import com.example.shoppingmall.order.domain.NonMemberOrder;
 import com.example.shoppingmall.order.domain.NonMemberOrderDetail;
 import com.example.shoppingmall.order.dto.NonMemberOrderAddDTO;
 import com.example.shoppingmall.order.dto.NonMemberOrderDetailAddDTO;
+import com.example.shoppingmall.order.dto.ShowNonMemberOrderDetailDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import java.util.List;
 public class NonMemberOrderService {
 
     private final nonMemberOrderRepository nonMemberOrderRepository;
+    private final ItemService itemService;
 
     public void saveNonMemberOrder(NonMemberOrderAddDTO nonMemberOrderAddDTO){
 
@@ -64,14 +67,45 @@ public class NonMemberOrderService {
         }
     }
 
-    public Boolean getNonmemberOrderDetailFromOrderNoAndOrderName(Long nonMemberOrderNo, String nonMemberOrderName){
+    public ShowNonMemberOrderDetailDTO getNonmemberOrderDetailFromOrderNoAndOrderName(Long nonMemberOrderNo, String nonMemberOrderName){
 
-        boolean isExist = false;
-        //List<NonMemberOrderDetail>
+    NonMemberOrder nonMemberOrder = nonMemberOrderRepository.getNonMemberOrderFromOrderNo(nonMemberOrderNo, nonMemberOrderName);
+    System.out.println(nonMemberOrder);
 
+    if(nonMemberOrder != null){
+    ShowNonMemberOrderDetailDTO showNonMemberOrderDetailDTO = new ShowNonMemberOrderDetailDTO();
+//        System.out.println("db에서 꺼내온 주문번호 : " + nonMemberOrder.getNonMemberOrderNo());
+//        System.out.println("db에서 꺼내온 주문자명 : " + nonMemberOrder.getNonMemberName());
+//        System.out.println("db에서 꺼내온 수령자명 : " + nonMemberOrder.getReceiverName());
+//        System.out.println("db에서 꺼내온 전화번호 : " + nonMemberOrder.getOrderHp());
+//        System.out.println("db에서 꺼내온 기본주소 : " + nonMemberOrder.getOrderAddressBasic());
+    List<NonMemberOrderDetail> nonMemberOrderDetailList = nonMemberOrderRepository.getNonMemberOrderDetailFromOrderNo(nonMemberOrderNo);
+//        System.out.println(nonMemberOrderDetailList == null);
+//        System.out.println(nonMemberOrderDetailList);
+            for(int i = 0; i < nonMemberOrderDetailList.size(); i++){
+//                System.out.println("DB에서 꺼내온 상품명 : " + nonMemberOrderDetailList.get(i).getItemName());
+//                System.out.println("DB에서 꺼내온 사이즈 : " + nonMemberOrderDetailList.get(i).getItemSize());
+//                System.out.println("DB에서 꺼내온걸로 꺼내온 아이템 썸네일 : " + itemService.getItemThumbByNo(nonMemberOrderDetailList.get(i).getItemNo()));
+//                System.out.println("DB에서 꺼내온 상품 가격 : " + nonMemberOrderDetailList.get(i).getItemPrice());
+//                System.out.println("DB에서 꺼내온 상품 수량 : " + nonMemberOrderDetailList.get(i).getItemQuantity());
+                nonMemberOrderDetailList.get(i).setItemThumb(itemService.getItemThumbByNo(nonMemberOrderDetailList.get(i).getItemNo()));
+            }
 
+           showNonMemberOrderDetailDTO = ShowNonMemberOrderDetailDTO.toShowNonMemberOrderDetailDTO(nonMemberOrder, nonMemberOrderDetailList);
 
-        return isExist;
+           System.out.println("객체 있음");
+
+           return showNonMemberOrderDetailDTO;
+
+    } else{
+            System.out.println("해당 주문번호, 혹은 주문자명으로 등록된 주문이 없습니다.");
+            return null;
+    }
+
+    }
+
+    public void cancelNonMemberOrder(Long nonMemberOrderNo){
+        nonMemberOrderRepository.cancelNonMemberOrder(nonMemberOrderNo);
     }
 
 }

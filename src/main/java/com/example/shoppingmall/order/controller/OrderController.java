@@ -24,10 +24,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -163,18 +160,26 @@ public class OrderController {
     //비회원 - 주문 정보 입력 후 해당 주문 상세 페이지로 이동
     @PostMapping("/orders/non-members")
     @ResponseBody
-    public Map<String, Object> showNonMemberOrderList(@RequestBody nonMemberOrderCheckDTO jsonData){
-
+    public Map<String, Object> showNonMemberOrderList(@RequestBody nonMemberOrderCheckDTO jsonData,
+                                                      HttpServletRequest req){
         Map<String, Object> responseData = new HashMap<>();
 
-        System.out.println("입력받은 주문 번호 : " + jsonData.getCheckNonMemberOrderNo());
-        System.out.println("입력받은 주문자 명 : " + jsonData.getCheckNonMemberOrderName());
+//        System.out.println("입력받은 주문 번호 : " + jsonData.getCheckNonMemberOrderNo());
+//        System.out.println("입력받은 주문자 명 : " + jsonData.getCheckNonMemberOrderName());
 
-        nonMemberOrderService.getNonmemberOrderDetailFromOrderNoAndOrderName(jsonData.getCheckNonMemberOrderNo(), jsonData.getCheckNonMemberOrderName());
+        ShowNonMemberOrderDetailDTO showNonMemberOrderDetailDTO = nonMemberOrderService.getNonmemberOrderDetailFromOrderNoAndOrderName(jsonData.getCheckNonMemberOrderNo(), jsonData.getCheckNonMemberOrderName());
+//        System.out.println(showNonMemberOrderDetailDTO);
+//        System.out.println(showNonMemberOrderDetailDTO.getNonMemberName());
+//        System.out.println(showNonMemberOrderDetailDTO.getNonMemberOrderDetailAddDTOList().get(0).getItemThumb());
 
-        responseData.put("response", "데이터 수신 성공");
-
+        if(showNonMemberOrderDetailDTO == null){
+        responseData.put("response", "해당 주문번호, 혹은 주문자명으로 등록된 주문이 없습니다.");
         return responseData;
+        } else{
+        req.getSession().setAttribute("showNonMemberOrderDetailDTO", showNonMemberOrderDetailDTO);
+        responseData.put("response", "주문 정상 조회 및 DTO 생성 완료");
+        return responseData;
+        }
 
     }
 
@@ -182,6 +187,26 @@ public class OrderController {
     @GetMapping("/orders/{orderNo}")
     public String showNonMemberOrderDetail(){
         return "orders/nonmember-order-detail-check-test";
+    }
+
+    @PostMapping("/orders/{orderNo}")
+    @ResponseBody
+    public Map<String, Object> cancelNonMemberOrder(@PathVariable(name="orderNo") Long orderNo,
+                                                    @RequestBody Map<String, String> jsonData){
+
+        Map<String, Object> responseData = new HashMap<>();
+        responseData.put("response", "자바로 정상 이동 완료");
+        Long nonMemberOrderNo = Long.parseLong(jsonData.get("nonMemberOrderNo"));
+//        System.out.println("전달받은 주문 번호 : " + nonMemberOrderNo);
+
+        nonMemberOrderService.cancelNonMemberOrder(nonMemberOrderNo);
+
+        return responseData;
+    }
+
+    @GetMapping("/orders/delete-success")
+    public String goToCancelNonMemberOrderSuccess(){
+        return "orders/nonmember-order-delete-success-test";
     }
 
     //====================================================영무님 메소드
