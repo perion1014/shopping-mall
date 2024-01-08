@@ -17,5 +17,6 @@ public class NonMemberOrderDetail {
     private String itemSize;
     private String itemName;
     private Integer itemPrice;
+    private String itemThumb;
 
 }

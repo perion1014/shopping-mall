@@ -4,6 +4,7 @@
     <div th:remove="tag" th:replace="~{/fragments/head :: head} "></div>
     <title>PERION - 비회원 주문 상세 조회</title>
     <script type="text/javascript" src="/js/pages/order.js" defer></script>
+    <script type="text/javascript" src="/js/nonmember-orderdetail.js" defer></script>
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
@@ -17,15 +18,17 @@
             <th class="cart__price">수령자명</th>
             <th class ="order__hp">수령자 연락처</th>
             <th>수령자 주소</th>
+            <th>주문 상태</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td class="cart__price">1</td>
-            <td class="cart__price">창명성</td>
-            <td class="cart__price">박아무개</td>
-            <td class="order__hp">01012345678</td>
-            <td>서울시 동작구 대방동</td>
+            <td class="cart__price" th:text="${session.showNonMemberOrderDetailDTO.getNonMemberOrderNo()}"></td>
+            <td class="cart__price" th:text="${session.showNonMemberOrderDetailDTO.getNonMemberName()}"></td>
+            <td class="cart__price" th:text="${session.showNonMemberOrderDetailDTO.getReceiverName()}"></td>
+            <td class="order__hp" th:text="${session.showNonMemberOrderDetailDTO.getOrderHp()}"></td>
+            <td th:text="${session.showNonMemberOrderDetailDTO.getOrderAddressBasic()}"></td>
+            <td th:text="${session.showNonMemberOrderDetailDTO.getOrderStatus() == 1 ? '주문 완료' : '주문 취소'}"></td>
         </tr>
         </tbody>
     </table>
@@ -41,162 +44,34 @@
         <tbody>
         <!--반복 구간(tr -> th:each)-->
         <div>
-            <tr>
-                <td class="cart__checkbox">1</td>
+            <tr th:each="nonMemberOrderDetailDTO, Index : ${session.showNonMemberOrderDetailDTO.getNonMemberOrderDetailAddDTOList()}">
+                <td class="cart__checkbox" th:text="${Index.index} + 1"></td>
                 <td class="cart__imgbox">
-                    <img class="cart__img" src="/images/itemImages/1/thumb/p1.jpg">
+                    <img class="cart__img" th:src="@{/images/itemImages/__${nonMemberOrderDetailDTO.getItemNo()}__/thumb/__${nonMemberOrderDetailDTO.getItemThumb()}__}">
                 </td>
                 <td>
-                    <h4>상품명</h4>
-                    <span>사이즈:S</span>
+                    <h4 th:text = "${nonMemberOrderDetailDTO.getItemName()}"></h4>
+                    <span>사이즈:</span>
+                    <span th:text="${nonMemberOrderDetailDTO.getItemSize()}">S</span>
                     <!--
                     <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
                     -->
                 </td>
-                <td class="cart__price">100000원</td>
-                <td class="cart__quantity order__quantity">2</td>
+                <td class="cart__price" th:text="${nonMemberOrderDetailDTO.getItemPrice()} + '원'"></td>
+                <td class="cart__quantity order__quantity" th:text="${nonMemberOrderDetailDTO.getItemQuantity()}"></td>
             </tr>
-            <tr>
-                <td class="cart__checkbox">2</td>
-                <td class="cart__imgbox">
-                    <img class="cart__img" src="/images/itemImages/1/thumb/p1.jpg">
-                </td>
-                <td>
-                    <h4>상품명</h4>
-                    <span>사이즈:S</span>
-                    <!--
-                    <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
-                    -->
-                </td>
-                <td class="cart__price">100000원</td>
-                <td class="cart__quantity order__quantity">2</td>
-            </tr>
-            <tr>
-                <td class="cart__checkbox">3</td>
-                <td class="cart__imgbox">
-                    <img class="cart__img" src="/images/itemImages/1/thumb/p1.jpg">
-                </td>
-                <td>
-                    <h4>상품명</h4>
-                    <span>사이즈:S</span>
-                    <!--
-                    <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
-                    -->
-                </td>
-                <td class="cart__price">100000원</td>
-                <td class="cart__quantity order__quantity">2</td>
-            </tr>
-            <tr>
-                <td class="cart__checkbox">4</td>
-                <td class="cart__imgbox">
-                    <img class="cart__img" src="/images/itemImages/1/thumb/p1.jpg">
-                </td>
-                <td>
-                    <h4>상품명</h4>
-                    <span>사이즈:S</span>
-                    <!--
-                    <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
-                    -->
-                </td>
-                <td class="cart__price">100000원</td>
-                <td class="cart__quantity order__quantity">2</td>
-            </tr>
-            <tr>
-                <td class="cart__checkbox">5</td>
-                <td class="cart__imgbox">
-                    <img class="cart__img" src="/images/itemImages/1/thumb/p1.jpg">
-                </td>
-                <td>
-                    <h4>상품명</h4>
-                    <span>사이즈:S</span>
-                    <!--
-                    <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
-                    -->
-                </td>
-                <td class="cart__price">100000원</td>
-                <td class="cart__quantity order__quantity">2</td>
-            </tr>
-            <tr>
-                <td class="cart__checkbox">6</td>
-                <td class="cart__imgbox">
-                    <img class="cart__img" src="/images/itemImages/1/thumb/p1.jpg">
-                </td>
-                <td>
-                    <h4>상품명</h4>
-                    <span>사이즈:S</span>
-                    <!--
-                    <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
-                    -->
-                </td>
-                <td class="cart__price">100000원</td>
-                <td class="cart__quantity order__quantity">2</td>
-            </tr>
-            <tr>
-                <td class="cart__checkbox">7</td>
-                <td class="cart__imgbox">
-                    <img class="cart__img" src="/images/itemImages/1/thumb/p1.jpg">
-                </td>
-                <td>
-                    <h4>상품명</h4>
-                    <span>사이즈:S</span>
-                    <!--
-                    <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
-                    -->
-                </td>
-                <td class="cart__price">100000원</td>
-                <td class="cart__quantity order__quantity">2</td>
-            </tr>
-            <tr>
-                <td class="cart__checkbox">8</td>
-                <td class="cart__imgbox">
-                    <img class="cart__img" src="/images/itemImages/1/thumb/p1.jpg">
-                </td>
-                <td>
-                    <h4>상품명</h4>
-                    <span>사이즈:S</span>
-                    <!--
-                    <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
-                    -->
-                </td>
-                <td class="cart__price">100000원</td>
-                <td class="cart__quantity order__quantity">2</td>
-            </tr>
-            <tr>
-                <td class="cart__checkbox">9</td>
-                <td class="cart__imgbox">
-                    <img class="cart__img" src="/images/itemImages/1/thumb/p1.jpg">
-                </td>
-                <td>
-                    <h4>상품명</h4>
-                    <span>사이즈:S</span>
-                    <!--
-                    <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
-                    -->
-                </td>
-                <td class="cart__price">100000원</td>
-                <td class="cart__quantity order__quantity">2</td>
-            </tr>
-            <tr>
-                <td class="cart__checkbox">10</td>
-                <td class="cart__imgbox">
-                    <img class="cart__img" src="/images/itemImages/1/thumb/p1.jpg">
-                </td>
-                <td>
-                    <h4>상품명</h4>
-                    <span>사이즈:S</span>
-                    <!--
-                    <input th:id="'itemNo_' + ${cartIndex.index}" th:value ="${cartDTO.itemNo}" style="display:none;">
-                    -->
-                </td>
-                <td class="cart__price">100000원</td>
-                <td class="cart__quantity order__quantity">2</td>
-            </tr>
+
         </div>
         </tbody>
     </table>
     <div class="cart-order__btns">
         <button class="btn btn--black btn--mi btn--home">홈으로</button>
-        <button class="btn btn--white btn--mi">주문 취소하기</button>
+        <div th:if = "${session.showNonMemberOrderDetailDTO.getOrderStatus() == 1}">
+        <button class="btn btn--white btn--mi"
+                th:nonMemberOrderNo = "${session.showNonMemberOrderDetailDTO.getNonMemberOrderNo()}"
+                th:onclick="checkNonMemberOrderCancel(this.getAttribute('nonMemberOrderNo'))"
+        >주문 취소하기</button>
+        </div>
     </div>
 </main>
 </body>
