@@ -15,12 +15,6 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
-    // 주문 목록 페이지 (test)
-    @GetMapping("{memberNo}/order")
-    public String showMemberOrderList(@PathVariable(name="memberNo") Long memberNo, Model model) {
-
-        return "reviews/order-page-test";
-    }
 
     //리뷰 등록
     @GetMapping("{memberNo}/{itemNo}/add")

@@ -150,3 +150,77 @@ address{
         grid-template-rows: repeat(4,1fr);
     }
 }
+
+/* Best Item 반응형 웹 적용 */
+
+@media screen and (max-width: 1440px) {
+    .slide__wrap {
+        width: 100%;
+        height: 55%;
+    }
+
+    .slide__box {
+        width: 33.1%;
+    }
+
+    .rating-wrap {
+        width: 0.5rem;
+    }
+    .slide__box img:nth-child(2) {
+        width: 33%;
+    }
+
+    .slide__box button {
+    }
+
+}
+
+
+@media screen and (max-width: 1024px) {
+
+    .slide__box {
+        padding-bottom: 6rem;
+    }
+
+
+}
+
+
+@media screen and (max-width: 664px) {
+    .slide__wrap{
+        font-size: 0.75rem;
+    }
+
+    svg {
+        display: none;
+    }
+
+    .overlay1 , .overlay2 ,.overlay3 {
+        display: none;
+    }
+
+    .slide__box.btn.btn--index {
+
+    }
+
+}
+
+@media screen and (max-width: 532px) {
+    .slide__wrap{
+        font-size: 0.6rem;
+    }
+
+    h2.item__card-name.item__card-name--rank {
+        margin: 16px 0;
+    }
+
+}
+
+@media screen and (max-width: 436px) {
+    .slide__box button.btn--index {
+        width: 3rem;
+        height: 1.75rem;
+        font-size: 0.4rem;
+    }
+
+}
