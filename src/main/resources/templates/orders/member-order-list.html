@@ -11,7 +11,7 @@
     <div class="main__container">
         <h1 class="main__title">나의 주문 목록</h1>
         <!-- table Ex-->
-        <table class="table__client">
+        <table class="table__client" th:if="${memberOrderDTOList.size()} > 0">
             <thead>
             <tr>
                 <th class="table__no">주문번호</th>
@@ -45,24 +45,25 @@
             </tr>
             </tbody>
         </table>
+        <div th:unless="${memberOrderDTOList.size()} > 0">주문 내역이 없습니다.</div>
     </div>
-    <div class="items__page">
+    <div class="items__page" th:if="${memberOrderDTOList.size()} != 0">
         <span th:if="${pageSettings.page &lt;= 1}">이전</span>
         <span th:unless="${pageSettings.page &lt;= 1}">
-        <a th:href="@{/members/{memberNo}/orders(memberNo=${session.loginMember.memberNo}, page=${pageSettings.page - 1})}">이전</a>
-    </span>
+            <a th:href="@{/members/{memberNo}/orders(memberNo=${session.loginMember.memberNo}, page=${pageSettings.page - 1})}">이전</a>
+        </span>
 
-        <span th:each="i: ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
-        <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
-        <a th:if="${i != pageSettings.page}"
-           th:href="@{/members/{memberNo}/orders(memberNo=${session.loginMember.memberNo}, page=${i})}"
-           th:text="${i}"></a>
-    </span>
+            <span th:each="i: ${#numbers.sequence(pageSettings.startPage, pageSettings.endPage)}">
+            <span th:if="${i == pageSettings.page}" th:text="${i}" th:class="now__page"></span>
+            <a th:if="${i != pageSettings.page}"
+               th:href="@{/members/{memberNo}/orders(memberNo=${session.loginMember.memberNo}, page=${i})}"
+               th:text="${i}"></a>
+        </span>
 
-        <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
-        <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
-           th:href="@{/members/{memberNo}/orders(memberNo=${session.loginMember.memberNo}, page=${pageSettings.page + 1})}">다음</a>
-    </div><!--main div-->
+            <span th:if="${pageSettings.page >= pageSettings.totalPage}">다음</span>
+            <a th:unless="${pageSettings.page >= pageSettings.totalPage}"
+               th:href="@{/members/{memberNo}/orders(memberNo=${session.loginMember.memberNo}, page=${pageSettings.page + 1})}">다음</a>
+        </div><!--main div-->
 </main>
 </body>
 </html>
