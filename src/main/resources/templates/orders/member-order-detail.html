@@ -63,14 +63,8 @@
                                 th:onclick="|window.open('/reviews/${session.loginMember.memberNo}/${memberorderDetail.itemNo}/add?memberOrderDetailNo=${memberorderDetail.memberOrderDetailNo}', 'name', 'resizable=no,width=400,height=660'); return false;|">
                             리뷰 작성
                         </button>
-
-<!--                        <form th:if="${memberOrderDTO.orderStatus} == 1 and ${memberorderDetail.reviewCount} == 0"-->
-<!--                              th:action="@{'/reviews/' + ${session.loginMember.memberNo} + '/' + ${memberorderDetail.itemNo} + '/add'}" method="get">-->
-<!--                            <input type="hidden" name="memberOrderDetailNo" th:value="${memberorderDetail.memberOrderDetailNo}">-->
-<!--                            <button class="btn btn&#45;&#45;order btn&#45;&#45;black"> 리뷰 작성 </button>-->
-<!--                        </form>-->
-                        <div th:unless="${memberOrderDTO.orderStatus} == 1 and ${memberorderDetail.reviewCount} == 0" th:text="'작성 완료'">
-                        </div>
+                        <div th:if="${memberOrderDTO.orderStatus} == 1 and ${memberorderDetail.reviewCount} != 0" th:text="'작성 완료'"></div>
+                        <div th:if="${memberOrderDTO.orderStatus} == 0" th:text="'작성 불가'"></div>
                     </td>
                 </tr>
 
