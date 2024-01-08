@@ -31,7 +31,7 @@ public class MemberOrderAddDTO {
     private Integer orderPostalCode;
     @NotBlank(message = "기본주소를 입력해주세요.", groups = OrderNotBlankGroup.class)
     private String orderAddressBasic;
-    @Pattern(regexp = "[가-힣a-zA-Z0-9]{0,50}", message = "최대 50자까지 가능합니다.", groups = OrderPatternGroup.class)
+    @Pattern(regexp = "[\\s가-힣a-zA-Z0-9]{0,50}", message = "최대 50자까지 가능합니다.", groups = OrderPatternGroup.class)
     private String orderAddressDetail;
     @NotBlank(message = "성명을 입력해주세요.", groups = OrderNotBlankGroup.class)
     @Pattern(regexp = "[가-힣]{2,40}", message = "잘못된 이름 형식입니다.", groups = OrderPatternGroup.class)
