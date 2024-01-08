@@ -160,31 +160,6 @@ public class CartController {
         return "carts/nonmember-cart-list";
     }
 
-
-    //페이지 개발 완료 - 회원 장바구니 목록
-    @GetMapping("/member/test")
-    public String goToMemberTestPage(){
-        return "carts/member-cart-list-test";
-    }
-
-    //페이지 개발 완료 - 비회원 장바구니 목록
-    @GetMapping("/nonmember/test")
-        public String goToNonMemberTestPage(){
-        return "carts/nonmember-cart-list-test";
-    }
-
-    //페이지 개발 완료 - 회원 주문 성공 페이지
-    @GetMapping("/member/order-success-test")
-        public String goToMemberOrderSuccessTest(){
-            return "member-order-success";
-    }
-
-    //페이지 개발 완료 - 비회원 주문 성공 페이지
-    @GetMapping("/nonmember/order-success-test")
-    public String goToNonmemberOrderSuccessTest(){
-        return "orders/nonmember-order-success-test";
-    }
-
     @GetMapping("/member/order-list-test")
     public String goToMemberOrderListTest(){
         return "member-order-list";
@@ -193,12 +168,6 @@ public class CartController {
     @GetMapping("/member/order-detail-test")
     public String goToMemberOrderDetailTest(){
         return "member-order-detail";
-    }
-
-    //페이지 개발 완료 - 비회원 주문 조회 입력 페이지
-    @GetMapping("/orders/non-members")
-    public String goToNonmemberOrderCheckTest(){
-        return "nonmember-order-check";
     }
 
     @GetMapping("/nonmember/order-detail-check-test")

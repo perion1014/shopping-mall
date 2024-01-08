@@ -236,6 +236,9 @@ function checkItemStockPurchase(memberNo, itemNo, itemName, itemPrice){
     let itemQuantity = 0;
 
     let itemSizelist = document.getElementsByName(`itemSize`);
+    let priceSum = Number(document.getElementById('priceSum').innerText);
+    let orderSum = Number(document.getElementById('orderSum').innerText);
+
 
     for (var i=0; i <itemSizelist.length; i++) {
         if (itemSizelist.item(i) !== null) {
@@ -245,7 +248,7 @@ function checkItemStockPurchase(memberNo, itemNo, itemName, itemPrice){
 
     itemQuantity = document.getElementById(`item__count`).value;
 
-    let jsonItem = {memberNo: memberNo, itemNo: itemNo, itemName: itemName, itemSize: itemSize, itemQuantity: itemQuantity, itemPrice: itemPrice};
+    let jsonItem = {priceSum: priceSum, orderSum:orderSum, memberNo: memberNo, itemNo: itemNo, itemName: itemName, itemSize: itemSize, itemQuantity: itemQuantity, itemPrice: itemPrice};
 
     jsonData.push(jsonItem);
 
