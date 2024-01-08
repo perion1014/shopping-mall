@@ -278,6 +278,16 @@ public class OrderController {
             memberOrderAddDTO.setReceiverName(member.getMemberName());
             memberOrderAddDTO.setMemberOrderDetailAddDTOList(memberOrderDetailAddDTOList);
 
+            Integer priceSum = 0;
+            for (MemberOrderDetailAddDTO memberOrderDetailAddDTO: memberOrderAddDTO.getMemberOrderDetailAddDTOList()) {
+                Integer price = memberOrderDetailAddDTO.getItemPrice();
+                Integer quantity = memberOrderDetailAddDTO.getItemQuantity();
+                priceSum += price * quantity;
+            }
+            Integer orderSum = (priceSum >= 100000)? priceSum: (priceSum + 3000);
+            session.setAttribute("priceSum", priceSum);
+            session.setAttribute("orderSum", orderSum);
+
             session.setAttribute("memberOrderDTO", memberOrderAddDTO);
 
             return "orders/member-order";
