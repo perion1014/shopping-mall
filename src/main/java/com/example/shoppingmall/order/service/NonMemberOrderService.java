@@ -64,4 +64,14 @@ public class NonMemberOrderService {
         }
     }
 
+    public Boolean getNonmemberOrderDetailFromOrderNoAndOrderName(Long nonMemberOrderNo, String nonMemberOrderName){
+
+        boolean isExist = false;
+        //List<NonMemberOrderDetail>
+
+
+
+        return isExist;
+    }
+
 }

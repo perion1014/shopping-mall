@@ -1,14 +1,14 @@
-alert('nonmember-ordercheck.js 적용 확인');
+//alert('nonmember-ordercheck.js 적용 확인');
 
 function checkNonMemberOrderDetailFromDB(){
 
     alert('온클릭 함수 진입');
 
-    let nonMemberOrderNo = document.getElementById('nonMemberOrderNo').value;
-    let nonMemberOrderName = document.getElementById('nonMemberOrderName').value;
+    let checkNonMemberOrderNo = document.getElementById('nonMemberOrderNo').value;
+    let checkNonMemberOrderName = document.getElementById('nonMemberOrderName').value;
 
-    alert(nonMemberOrderNo);
-    alert(nonMemberOrderName);
+    alert(checkNonMemberOrderNo);
+    alert(checkNonMemberOrderName);
 
     fetch('/orders/non-members', {
         method: 'post',
@@ -16,11 +16,12 @@ function checkNonMemberOrderDetailFromDB(){
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            nonMemberOrderNo: nonMemberOrderNo,
-            nonMemberOrderName: nonMemberOrderName,
+            checkNonMemberOrderNo: checkNonMemberOrderNo,
+            checkNonMemberOrderName: checkNonMemberOrderName,
         }),
     }).then(response =>response.json())
         .then(data => {
             alert(data.response);
+            location.href = "/orders/" + checkNonMemberOrderNo;
         })
 }
