@@ -15,7 +15,7 @@ function checkNonMemberOrderCancel(nonMemberOrderNo){
         }),
     }).then(response => response.json())
         .then(data => {
-            alert(JSON.stringify(data.response));
+            //alert(JSON.stringify(data.response));
             location.href = "/orders/delete-success";
         })
     } else{

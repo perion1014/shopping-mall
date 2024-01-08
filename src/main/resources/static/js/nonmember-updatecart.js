@@ -131,7 +131,7 @@ function checkItemStock(cartDTOListSize){
     for(var i = 0; i < cartDTOListSize; i++){
         if(document.getElementById('cartCheckBox_' + i).checked === true){
             nonMemberCartNo = Number(i);
-            alert('NonMemberCartNo : ' + nonMemberCartNo);
+            // alert('NonMemberCartNo : ' + nonMemberCartNo);
             itemNo = document.getElementById('itemNo_' + i).value;
              // alert('itemNo : ' + itemNo);
             itemName = document.getElementById('itemName_' + i).innerText;
