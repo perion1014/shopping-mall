@@ -10,7 +10,7 @@
 
 ## 全体目次
 - [プロジェクト概要](#プロジェクト概要)
-- [プロジェクト説明](#プロジェクト説明)
+- [プロジェクト説明(フロントエンド・バックエンド)](#プロジェクト説明)
 - [リファクタリング](#リファクタリング)
 - [参考資料](#参考資料)
 
@@ -57,7 +57,9 @@
 ## プロジェクト説明
 ※[プロジェクトの詳しい説明と過程につきましてはこちらより](https://zenn.dev/eldorado215) 
 
-### フロントエンド
+ページの日本語はGoogle翻訳を使って臨時的に翻訳しております。
+
+## フロントエンド
 
   + Responsive WEB
 <table>
@@ -94,7 +96,7 @@
       <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/f937bf6a-9a3c-4ccb-b309-6cfba8f3ed9e" width="200px;" alt=""/></td>
     </tr>
      <tr>
-      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/02b7a1aa-badf-4077-9458-b2bfb481ede6" width="300px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/02b7a1aa-badf-4077-9458-b2bfb481ede6" width="400px;" alt=""/></td>
       <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/5cdcf06c-3be5-4135-9601-ad6182d1ade0" width="300px;" alt=""/></td>
       <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/95a06d98-20c8-42b4-924f-5f631d60b653" width="200px;" alt=""/></td>
     </tr>
@@ -116,10 +118,10 @@
     </tr>
   <tbody>
     <tr>
-      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/2bb098cc-c753-41dc-ba3e-a566b524e12f" width="300px;" alt=""/></td>
-      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/a06c5094-81a4-4856-ab8a-4030d4f2bd21" width="300px;" alt=""/></td>
-      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/b6035dbe-9741-4e65-913e-f1edf1acbddb" width="300px;" alt=""/></td>
-      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/808c9e7a-69f5-4596-9300-83ee70882e2b" width="300px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/9f0626d0-c811-4885-b493-30eff72097d4" width="300px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/9b4de93f-4ced-4d24-a3a5-25049df06207" width="300px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/8f5e397c-4a87-4946-b29c-7a1b3700b5fa" width="300px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/d886d6ce-c5a0-40b1-b288-201279325ef5" width="300px;" alt=""/></td>
      <tr/>
   </tbody>
 </table>
@@ -129,29 +131,118 @@
   3. より直感的にログインができるよう、IDとパスワードの最低文字数を超えれば、ログインボターンのOpacityが１になるように調節しました。<br><br>
 
   + AJAX
-　  <table>
-      <thead>
-        <tr>
-        <th align="center">商品詳細</th>
-        <th align="center">カート</th>
-      </tr>
-    <tbody>
-      <tr>
-        <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/5a141cba-4bd7-4d56-be76-864e6b721628" width="500px;" alt=""/></td>
-        <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/af7a73e7-40f4-4a23-8f17-f6f53eea2831" width="500px;" alt=""/></td>
-       <tr/>
-    </tbody>
+    
+　<table>
+  <thead>
+    <tr>
+      <th align="center">商品詳細</th>
+      <th align="center">カート</th>
+    </tr>
+  <tbody>
+    <tr>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/5bada663-7fbd-47e7-8e1f-ea348bff3071" width="500px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/af7a73e7-40f4-4a23-8f17-f6f53eea2831" width="500px;" alt=""/></td>
+    <tr/>
+  </tbody>
   </table>
     
    JavaScriptのfetch、JSON、SpringBootの＠ResponseBodyアノテーションなどを活用し、カートを具象しました。<br>
+   カートページは翻訳機を使う場合、レイアウトが崩れたため、そのまま展示しました。ご了承いただければと思います。<br>
 
+  + Rendering
+      
+  1. Indexの5000x3000、4mb以上のJPEG画像を約1900x1000までリサイズし、webpに変換することでレンダリング速度を改善しました。<br> 
+  2. 通販サイトの場合、SEO対策が重要であるため、Metaタグを活用しました。<br>
+  3. 一部のscriptにdeferを適用し、htmlのparsingを改善する努力をしました。<br>
+  4. 一部のjsにEvent Delegation通して、不要なEvent Handlerを減らす努力をしました。<br>
 
-### バックエンド
+## バックエンド
   + 商品関連
+
+  <table>
+  <thead>
+    <tr>
+      <th align="center">商品登録（管理者）</th>
+      <th align="center">商品詳細・修正・削除（管理者）</th>
+      <th align="center">商品リスト一覧（ユーザー）</th>
+      <th align="center">商品詳細（ユーザー）</th>
+    </tr>
+  <tbody>
+    <tr>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/ed3802b5-4154-4600-bb50-f3b1a623ee7b" width="300px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/d157e335-693b-4d75-97ef-98ba8efe78f5" width="300px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/615c5401-a8ac-428e-ae48-5ef80bd59336" width="300px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/5bada663-7fbd-47e7-8e1f-ea348bff3071" width="300px;" alt=""/></td>
+     <tr/>
+  </tbody>
+  </table>
+
+
+  管理者ページから商品・写真・在庫などをDB、resourceフォルダーに登録し、クライアントページからそのデーターを読む形です。<br>
+    
   + 注文
+
+  <table>
+  <thead>
+    <tr>
+      <th align="center">会員注文ページ</th>
+      <th align="center">会員注文ページ</th>
+      <th align="center">会員注文ページ</th>
+      <th align="center">会員注文完了ページ</th>
+    </tr>
+  <tbody>
+    <tr>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/c87ca19e-c70c-4eab-abeb-6b3c9467621f" width="300px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/62e3c23d-53e0-407b-821b-d5faf677370e" width="300px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/df9c0645-97ad-400a-8f44-d4d159dd3616" width="300px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/5bada663-7fbd-47e7-8e1f-ea348bff3071" width="300px;" alt=""/></td>
+     <tr/>
+  </tbody>
+  </table>
+
   + 管理者ページ
+
+  <table>
+  <thead>
+    <tr>
+      <th align="center">管理者ページ</th>
+      <th align="center">会員リスト</th>
+      <th align="center">Q&A</th>
+    </tr>
+  <tbody>
+    <tr>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/6313fc23-a60f-43fd-9ab9-dd20bc4e58bd" width="400px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/6326ef40-2862-4ceb-9eac-4c34f761ef54" width="400px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/04ab0a49-fd69-492a-9e0d-e4380a47e0aa" width="400px;" alt=""/></td>
+     <tr/>
+  </tbody>
+  </table>
+
+　売上はペンディング、非会員注文一覧はまだ、バグの問題で紹介することはできませんでした。まだ原因が分からないため、後ほど解決したいと思います。
+
+
   + 認証(Spring Interceptor)
 
+  <table>
+  <thead>
+    <tr>
+      <th align="center">User1の会員情報ページ</th>
+      <th align="center">権限外の要請</th>
+      <th align="center">ログ</th>
+    </tr>
+  <tbody>
+    <tr>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/fe5ed579-cf5f-4f72-b6cb-7bdfd5b8cc43" width="400px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/daa040e4-beee-4bb7-8499-e37a04a98ed9" width="400px;" alt=""/></td>
+      <td align="center"><img src="https://github.com/HyonHyonKOR/team-project/assets/134394081/96f6de73-f59e-4f45-a307-b57586af260d" width="400px;" alt=""/></td>
+     <tr/>
+  </tbody>
+  </table>
+
+  未認証ユーザーの要請は会員ログインページに、権限があい会員の要請は404エラーページをリターンして、認証を強化しました。<br>
+  権限外の要請がある場合は、log4jを通して、WARNログを残すようにコードを作成しました。<br>
+
+  解決できなかった点：一部のページではInterceptorが適用されない現象があるので、今後改善してみたいと思います。<br>
 
 ## リファクタリング
 - 近いうちにAWSへのdeployを計画中
