@@ -42,7 +42,6 @@
     <img src="https://img.shields.io/badge/ERDCloud-181717?style=flat-square&logo=ERDCloud&logoColor=white"/>
     <img src="https://img.shields.io/badge/Google Spreadsheets-34A853?style=flat-square&logo=Google Sheets&logoColor=white"/>
 
-    ※[プロジェクトの技術選定理由はこちらを](https://zenn.dev/eldorado215/articles/46a4196145cf40)
     
 - チームメンバー:
   + クォン・ヒョンモ（PM/BE/FE）[@HyonHyonKOR](https://github.com/HyonHyonKOR) <br><br>
